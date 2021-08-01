@@ -11,7 +11,13 @@ app.use(cors())
 const server = app.listen(8000, console.log(`Server is running on the port 8000`))
 const io = socket(server)
 
-const createMessage = (user, message, destination) => { return { userId: user.id, userName: user.userName, content : message, destination : destination } }
+const createMessage = (user, message, destination, otherParameters = {}) => { return {
+  userId: user.id,
+  userName: user.userName,
+  content : message,
+  destination : destination,
+  ...otherParameters
+} }
     
 io.on("connection", socket =>
 {
@@ -21,7 +27,7 @@ io.on("connection", socket =>
 
     socket.join(user.room)
     socket.emit("message", createMessage(user, `Welcome ${user.userName}`))
-    socket.to(user.roomName).emit("message", createMessage(user, `${user.userName} has joined the room "${user.roomName}"`, 'ROOM'))
+    socket.to(user.roomName).emit("message", createMessage(user, `${user.userName} has joined the room "${user.roomName}"`, 'ROOM', { groupName : user.roomName }))
   })
 
   socket.on("userLeaveRoom", () =>
@@ -29,14 +35,14 @@ io.on("connection", socket =>
     const user = getUser(socket.id)
 
     socket.leave(user.room)
-    socket.to(user.roomName).emit("message", createMessage(user, `${user.userName} has left the room "${user.roomName}"`, 'ROOM'))
+    socket.to(user.roomName).emit("message", createMessage(user, `${user.userName} has left the room "${user.roomName}"`, 'ROOM', { groupName : user.roomName }))
   })
 
   socket.on("sendRoomMessage", content =>
   {
     const user = getUser(socket.id)
 
-    io.to(user.roomName).emit("message", createMessage(user, `${user.userName} : ${content}`, 'ROOM'))
+    io.to(user.roomName).emit("message", createMessage(user, `${user.userName} : ${content}`, 'ROOM', { groupName : user.roomName }))
   })
 
   socket.on("sendMessageToEverybody", content =>
@@ -51,7 +57,7 @@ io.on("connection", socket =>
     const user = getUser(socket.id)
     const destinationUser = getUserByUserName(userName)
 
-    io.to(destinationUser.userId).emit("message", createMessage(user, `${user.userName} : ${content}`, 'PRIVATE'))
+    io.to(destinationUser.userId).emit("message", createMessage(user, `${user.userName} : ${content}`, 'PRIVATE', { destinationUserName : destinationUser.userName }))
   })
 
   socket.on("disconnect", () =>
