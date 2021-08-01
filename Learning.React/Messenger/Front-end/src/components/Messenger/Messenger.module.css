@@ -6,8 +6,8 @@
     width : 50%;
 }
 
-.message { width : 100px; }
 .messageTitle { font-weight: 700; }
+.message { width : 100px; }
 .messageFromUser { margin-left : 100px; }
 .messageFromOtherUser { float : left; }
 
