@@ -1,0 +1,16 @@
+.container
+{
+    display : flex;
+    margin : auto;
+    flex-direction: column;
+    width : 50%;
+}
+
+.message { width : 100px; }
+.messageTitle { font-weight: 700; }
+.messageFromUser { margin-left : 100px; }
+.messageFromOtherUser { float : left; }
+
+.messageToEverybody { color : white; }
+.groupMessage { color : green; }
+.privateMessage { color : red; }
