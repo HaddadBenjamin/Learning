@@ -6,13 +6,13 @@ import io from "socket.io-client";
 
 const socket = io('http://localhost:8000/')
 
-const Messenger = () =>
+const Messenger = ({socket}) =>
 {
+    const [messages, setMessages] = useState<IMessage[]>([])
     useEffect(() => { 
         socket.on("message", (message : IMessage) => setMessages([...messages, {...message, from : userName === message.userName ? 'USER' : 'OTHER_USER' }]))
-     }, [])
+     }, [socket, messages])
      
-    const [messages, setMessages] = useState<IMessage[]>([])
 
     const [userName, setUserName] = useState('')
     const [everybodyMessage, setEverybodyMessage] = useState('')
