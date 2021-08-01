@@ -3,6 +3,7 @@ export type MessageFrom = 'USER' | 'OTHER_USER'
 
 export interface IMessage
 {
+    id : string,
     userName : string
     content : string
     destination : MessageDestination
