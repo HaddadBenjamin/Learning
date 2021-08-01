@@ -45,9 +45,8 @@ const Messenger = ({socket} : any) =>
         { userName : 'Jess', content : 'blabla', destination : 'GROUP', from : 'OTHER_USER', groupName : 'My great company' },
         { userName : 'David', content : 'lipsum', destination : 'PRIVATE', from : 'OTHER_USER', destinationUserName : 'Jess' }])
     
-    useEffect(() => { socket.on("message", (message : MessageProps) => setMessages([...messages, message])) }, [socket])
+    useEffect(() => { socket.on("message", (message : MessageProps) => { setMessages([...messages, message]); console.log(messages) }) }, [socket])
 
-    console.log(messages)
     const [userName, setUserName] = useState('')
     const [everybodyMessage, setEverybodyMessage] = useState('')
     const [groupMessage, setGroupMessage] = useState('')
