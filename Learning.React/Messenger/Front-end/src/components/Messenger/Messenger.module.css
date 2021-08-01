@@ -24,15 +24,6 @@
     padding : 12px;
 }
 
-.messageTitle { font-weight: 700; }
-.message {  margin-bottom : 12px; }
-.messageFromUser { display : flex; justify-content: flex-end; width : 100%; }
-.messageFromOtherUser { float : left; }
-
-.messageToEverybody { color : white; }
-.groupMessage { color : green; }
-.privateMessage { color : red; }
-
 .inputContainer
 {
     display : flex;

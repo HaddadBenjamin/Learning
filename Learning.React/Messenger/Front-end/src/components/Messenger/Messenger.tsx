@@ -1,51 +1,18 @@
 import { useState, useEffect } from 'react';
 import styles from './Messenger.module.css'
-import cn from 'classnames'
+import { IMessage } from '../message.model'
+import Message from '../Message/Message'
+import io from "socket.io-client";
 
-type MessageDestination = 'EVERYBODY' | 'ROOM' | 'PRIVATE' | 'INFO'
-type MessageFrom = 'USER' | 'OTHER_USER'
+const socket = io('http://localhost:8000/')
 
-interface MessageProps
+const Messenger = () =>
 {
-    userName : string
-    content : string
-    destination : MessageDestination
-    from : MessageFrom
-    groupName? : string
-    destinationUserName? : string
-}
-
-const Message = ({userName, content, destination, from, groupName, destinationUserName} : MessageProps) =>
-{
-    const messageTitleFirstPart =  `${from === 'USER' ? 'You' : userName} sent a message to `
-    let messageTitleSecondPart = 
-        destination === 'EVERYBODY' ? 'everybody' : 
-        destination === 'ROOM' ? `the group ${groupName}` :
-        destination === 'PRIVATE' ? `the user ${destinationUserName}` : ''
-    const messageTitle = `${messageTitleFirstPart}${messageTitleSecondPart}`
-
-    const messageClasses = cn(
-        styles.message,
-        destination === 'EVERYBODY' && styles.messageToEverybody,
-        destination === 'ROOM' && styles.groupMessage,
-        destination === 'PRIVATE' && styles.privateMessage,
-        from === 'USER' && styles.messageFromUser,
-        from === 'OTHER_USER' && styles.messageFromOtherUser)
-
-    return <>
-        <div className={styles.messageTitle}>{destination === 'INFO' ? '' : messageTitle}</div>
-        <div className={messageClasses}>{content}</div>
-    </>
-}
-
-const Messenger = ({socket} : any) =>
-{
-    const [messages, setMessages] = useState<MessageProps[]>([
-        { userName : 'Ben', content : 'lorem', destination : 'EVERYBODY', from : 'USER' },
-        { userName : 'Jess', content : 'blabla', destination : 'ROOM', from : 'OTHER_USER', groupName : 'My great company' },
-        { userName : 'David', content : 'lipsum', destination : 'PRIVATE', from : 'OTHER_USER', destinationUserName : 'Jess' }])
-    
-    useEffect(() => { socket.on("message", (message : MessageProps) => { setMessages([...messages, message]); console.log(messages) }) }, [socket])
+    useEffect(() => { 
+        socket.on("message", (message : IMessage) => setMessages([...messages, {...message, from : userName === message.userName ? 'USER' : 'OTHER_USER' }]))
+     }, [])
+     
+    const [messages, setMessages] = useState<IMessage[]>([])
 
     const [userName, setUserName] = useState('')
     const [everybodyMessage, setEverybodyMessage] = useState('')
@@ -55,12 +22,11 @@ const Messenger = ({socket} : any) =>
     const [destinationUserName, setDestinationUserName] = useState('')
     const [isInAGroup, setIsInAGroup] = useState(false)
 
-    // TODO : l'event message et ces derniers là : + joinGroup et leaveGroup + reset
     const sendMessageToEverybody = () => { socket.emit("sendMessageToEverybody", everybodyMessage); setEverybodyMessage('') }
     const sendGroupMessage = () => { socket.emit("sendRoomMessage", groupMessage); setGroupMessage('') }
     const sendPrivateMessage = () => { socket.emit("sendPrivateMessage", { content : privateMessage, userName : destinationUserName }); setPrivateMessage('') }
 
-    const joinGroup = () => { socket.emit("userJoinRoom", { userName : userName, groupName : groupName }); setIsInAGroup(true) }
+    const joinGroup = () => { socket.emit("userJoinRoom", { userName : userName, groupName : groupName }); setIsInAGroup(true)}
     const leaveGroup = () => { socket.emit("userLeaveRoom"); setIsInAGroup(false) }
     const joinOrLeaveGroup = () => isInAGroup ? leaveGroup() : joinGroup()
 
@@ -71,13 +37,12 @@ const Messenger = ({socket} : any) =>
     const onGroupNameChange = (event : React.ChangeEvent<HTMLInputElement>) => setGroupName(event.target.value)
     const onDestinationUserNameChange = (event : React.ChangeEvent<HTMLInputElement>) => setDestinationUserName(event.target.value)
 
-    console.log(groupName)
     return <>
        <input placeholder="Username" onChange={onUsernameChange} className={styles.username}/>
         <div className={styles.container}>
-            {messages.map((m, i) => <Message {...m} key={i} />)} 
+            {messages && messages.map(m => <Message {...m} key={m.content} />)} 
         </div>
-        
+       
         <div className={styles.inputContainer}>
             <input value={everybodyMessage} placeholder="Write a message" onChange={onEverybodyMessageChange}/>
             <button onClick={sendMessageToEverybody}>Send</button>
@@ -89,7 +54,7 @@ const Messenger = ({socket} : any) =>
             <button onClick={joinOrLeaveGroup}>{isInAGroup ? 'Leave Group' : 'Join Group'}</button>
             <button onClick={sendGroupMessage}>Send</button>
         </div>
-        
+    
         <div className={styles.inputContainer}>
             <input value={privateMessage} placeholder="Write a message" onChange={onPrivateMessageChange}/>
             <input value={destinationUserName} placeholder="Destination username" onChange={onDestinationUserNameChange}/>

@@ -24,30 +24,30 @@ io.on("connection", socket =>
     const user = createUser(socket.id, userName, groupName)
 
     socket.join(user.roomName)
-    socket.to(socket.id).emit("message", createMessage(user, `Welcome ${user.userName}`, 'INFO', { groupName : user.roomName }))
-    socket.to(user.roomName).emit("message", createMessage(user, `${user.userName} has joined the room "${user.roomName}"`, 'ROOM', { groupName : user.roomName }))
+    io.sockets.in(user.roomName).emit("message", createMessage(user, `${user.userName} has joined the room "${user.roomName}"`, 'ROOM', { groupName : user.roomName }))
+    socket.emit("message", createMessage(user, `Welcome ${user.userName}`, 'INFO', { groupName : user.roomName }))
   })
 
   socket.on("userLeaveRoom", () =>
   {
     const user = getUser(socket.id)
 
+    io.sockets.in(user.roomName).emit("message", createMessage(user, `${user.userName} has left the room "${user.roomName}"`, 'ROOM', { groupName : user.roomName }))
     socket.leave(user.roomName)
-    socket.to(user.roomName).emit("message", createMessage(user, `${user.userName} has left the room "${user.roomName}"`, 'ROOM', { groupName : user.roomName }))
   })
 
   socket.on("sendRoomMessage", content =>
   {
     const user = getUser(socket.id)
 
-    socket.to(user.roomName).emit("message", createMessage(user, content, 'ROOM', { groupName : user.roomName }))
+    io.sockets.in(user.roomName).emit("message", createMessage(user, content, 'ROOM', { groupName : user.roomName }))
   })
 
   socket.on("sendMessageToEverybody", content =>
   {
     const user = getUser(socket.id)
 
-    socket.broadcast.emit("message", createMessage(user, content, 'EVERYBODY'))
+    io.sockets.emit("message", createMessage(user, content, 'EVERYBODY'))
   })
 
   socket.on("sendPrivateMessage", ({content, userName}) =>
@@ -55,7 +55,8 @@ io.on("connection", socket =>
     const user = getUser(socket.id)
     const destinationUser = getUserByUserName(userName)
 
-    socket.to(destinationUser.userId).emit("message", createMessage(user, content, 'PRIVATE', { destinationUserName : destinationUser.userName }))
+    io.sockets.to(destinationUser.id).emit("message", createMessage(user, content, 'PRIVATE', { destinationUserName : destinationUser.userName }))
+    socket.emit("message", createMessage(user, content, 'INFO'))
   })
 
   socket.on("disconnect", () =>
@@ -63,6 +64,6 @@ io.on("connection", socket =>
     const user = removeUser(socket.id)
 
     if (user)
-    socket.broadcast.emit("message", createMessage(user, `${user.userName} has left the chat`, 'EVERYBODY'))
+      io.sockets.emit("message", createMessage(user, `${user.userName} has left the chat`, 'EVERYBODY'))
   })
 })
