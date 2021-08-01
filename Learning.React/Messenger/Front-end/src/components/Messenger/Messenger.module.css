@@ -25,7 +25,7 @@
 }
 
 .messageTitle { font-weight: 700; }
-.message { width : 100px; margin-bottom : 12px; }
+.message {  margin-bottom : 12px; }
 .messageFromUser { display : flex; justify-content: flex-end; width : 100%; }
 .messageFromOtherUser { float : left; }
 

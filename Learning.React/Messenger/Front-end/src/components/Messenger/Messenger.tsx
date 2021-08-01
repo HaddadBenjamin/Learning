@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styles from './Messenger.module.css'
 import cn from 'classnames'
 
-type MessageDestination = 'EVERYBODY' | 'GROUP' | 'PRIVATE'
+type MessageDestination = 'EVERYBODY' | 'ROOM' | 'PRIVATE' | 'INFO'
 type MessageFrom = 'USER' | 'OTHER_USER'
 
 interface MessageProps
@@ -18,22 +18,22 @@ interface MessageProps
 const Message = ({userName, content, destination, from, groupName, destinationUserName} : MessageProps) =>
 {
     const messageTitleFirstPart =  `${from === 'USER' ? 'You' : userName} sent a message to `
-    const messageTitleSecondPart = 
+    let messageTitleSecondPart = 
         destination === 'EVERYBODY' ? 'everybody' : 
-        destination === 'GROUP' ? `the group ${groupName}` :
-        `the user ${destinationUserName}`
+        destination === 'ROOM' ? `the group ${groupName}` :
+        destination === 'PRIVATE' ? `the user ${destinationUserName}` : ''
     const messageTitle = `${messageTitleFirstPart}${messageTitleSecondPart}`
 
     const messageClasses = cn(
         styles.message,
         destination === 'EVERYBODY' && styles.messageToEverybody,
-        destination === 'GROUP' && styles.groupMessage,
+        destination === 'ROOM' && styles.groupMessage,
         destination === 'PRIVATE' && styles.privateMessage,
         from === 'USER' && styles.messageFromUser,
         from === 'OTHER_USER' && styles.messageFromOtherUser)
 
     return <>
-        <div className={styles.messageTitle}>{messageTitle}</div>
+        <div className={styles.messageTitle}>{destination === 'INFO' ? '' : messageTitle}</div>
         <div className={messageClasses}>{content}</div>
     </>
 }
@@ -42,7 +42,7 @@ const Messenger = ({socket} : any) =>
 {
     const [messages, setMessages] = useState<MessageProps[]>([
         { userName : 'Ben', content : 'lorem', destination : 'EVERYBODY', from : 'USER' },
-        { userName : 'Jess', content : 'blabla', destination : 'GROUP', from : 'OTHER_USER', groupName : 'My great company' },
+        { userName : 'Jess', content : 'blabla', destination : 'ROOM', from : 'OTHER_USER', groupName : 'My great company' },
         { userName : 'David', content : 'lipsum', destination : 'PRIVATE', from : 'OTHER_USER', destinationUserName : 'Jess' }])
     
     useEffect(() => { socket.on("message", (message : MessageProps) => { setMessages([...messages, message]); console.log(messages) }) }, [socket])
@@ -71,6 +71,7 @@ const Messenger = ({socket} : any) =>
     const onGroupNameChange = (event : React.ChangeEvent<HTMLInputElement>) => setGroupName(event.target.value)
     const onDestinationUserNameChange = (event : React.ChangeEvent<HTMLInputElement>) => setDestinationUserName(event.target.value)
 
+    console.log(groupName)
     return <>
        <input placeholder="Username" onChange={onUsernameChange} className={styles.username}/>
         <div className={styles.container}>

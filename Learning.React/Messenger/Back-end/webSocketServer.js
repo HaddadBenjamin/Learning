@@ -19,12 +19,12 @@ io.on("connection", socket =>
   console.log(`connection`)
   socket.on("connect_error", error => console.log(`connect_error due to ${error.message}`))
 
-  socket.on("userJoinRoom", ({ userName, roomName }) =>
+  socket.on("userJoinRoom", ({ userName, groupName }) =>
   {
-    const user = createUser(socket.id, userName, roomName)
+    const user = createUser(socket.id, userName, groupName)
 
     socket.join(user.roomName)
-    socket.emit("message", createMessage(user, `Welcome ${user.userName}`))
+    socket.to(socket.id).emit("message", createMessage(user, `Welcome ${user.userName}`, 'INFO', { groupName : user.roomName }))
     socket.to(user.roomName).emit("message", createMessage(user, `${user.userName} has joined the room "${user.roomName}"`, 'ROOM', { groupName : user.roomName }))
   })
 
@@ -55,7 +55,7 @@ io.on("connection", socket =>
     const user = getUser(socket.id)
     const destinationUser = getUserByUserName(userName)
 
-    io.to(destinationUser.userId).emit("message", createMessage(user, content, 'PRIVATE', { destinationUserName : destinationUser.userName }))
+    socket.to(destinationUser.userId).emit("message", createMessage(user, content, 'PRIVATE', { destinationUserName : destinationUser.userName }))
   })
 
   socket.on("disconnect", () =>
@@ -63,6 +63,6 @@ io.on("connection", socket =>
     const user = removeUser(socket.id)
 
     if (user)
-      io.broadcast.emit("message", createMessage(user, `${user.userName} has left the chat`, 'EVERYBODY'))
+    socket.broadcast.emit("message", createMessage(user, `${user.userName} has left the chat`, 'EVERYBODY'))
   })
 })
