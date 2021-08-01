@@ -18,13 +18,13 @@ const Messenger = ({socket} : any) =>
         setMessages([...messages, {...message, from : userName === message.userName ? 'USER' : 'OTHER_USER' }])), 
         [socket, messages])
 
-    const sendMessageToEverybody = useCallback(() => { socket.emit("sendMessageToEverybody", everybodyMessage); setEverybodyMessage('') }, [socket])
-    const sendGroupMessage = useCallback(() => { socket.emit("sendRoomMessage", groupMessage); setGroupMessage('') }, [socket])
-    const sendPrivateMessage = useCallback(() => { socket.emit("sendPrivateMessage", { content : privateMessage, userName : destinationUserName }); setPrivateMessage('') }, [socket])
+    const sendMessageToEverybody = () => { socket.emit("sendMessageToEverybody", everybodyMessage); setEverybodyMessage('') }
+    const sendGroupMessage = () => { socket.emit("sendRoomMessage", groupMessage); setGroupMessage('') }
+    const sendPrivateMessage = () => { socket.emit("sendPrivateMessage", { content : privateMessage, userName : destinationUserName }); setPrivateMessage('') }
 
-    const joinGroup = useCallback(() => { socket.emit("userJoinRoom", { userName : userName, groupName : groupName }); setIsInAGroup(true)}, [socket])
-    const leaveGroup = useCallback(() => { socket.emit("userLeaveRoom"); setIsInAGroup(false) }, [socket])
-    const joinOrLeaveGroup = useCallback(() => isInAGroup ? leaveGroup() : joinGroup(), [socket, isInAGroup])
+    const joinGroup = () => { socket.emit("userJoinRoom", { userName : userName, groupName : groupName }); setIsInAGroup(true)}
+    const leaveGroup = () => { socket.emit("userLeaveRoom"); setIsInAGroup(false) }
+    const joinOrLeaveGroup = () => isInAGroup ? leaveGroup() : joinGroup();
 
     const onUsernameChange = (event : React.ChangeEvent<HTMLInputElement>) => setUserName(event.target.value)
     const onEverybodyMessageChange = (event : React.ChangeEvent<HTMLInputElement>) => setEverybodyMessage(event.target.value)
