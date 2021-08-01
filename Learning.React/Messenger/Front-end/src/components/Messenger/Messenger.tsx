@@ -6,14 +6,6 @@ import Message from '../Message/Message'
 const Messenger = ({socket} : any) =>
 {
     const [messages, setMessages] = useState<IMessage[]>([])
-    useEffect(() => { 
-        socket.on("message", (message : IMessage) => 
-        {
-            console.log(message)
-            setMessages([...messages, {...message, from : userName === message.userName ? 'USER' : 'OTHER_USER' }])
-        })
-     }, [socket, messages])
-
     const [userName, setUserName] = useState('')
     const [everybodyMessage, setEverybodyMessage] = useState('')
     const [groupMessage, setGroupMessage] = useState('')
@@ -21,6 +13,10 @@ const Messenger = ({socket} : any) =>
     const [groupName, setGroupName] = useState('')
     const [destinationUserName, setDestinationUserName] = useState('')
     const [isInAGroup, setIsInAGroup] = useState(false)
+
+    useEffect(() => socket.on("message", (message : IMessage) => 
+        setMessages([...messages, {...message, from : userName === message.userName ? 'USER' : 'OTHER_USER' }])), 
+        [socket, messages])
 
     const sendMessageToEverybody = useCallback(() => { socket.emit("sendMessageToEverybody", everybodyMessage); setEverybodyMessage('') }, [socket])
     const sendGroupMessage = useCallback(() => { socket.emit("sendRoomMessage", groupMessage); setGroupMessage('') }, [socket])
