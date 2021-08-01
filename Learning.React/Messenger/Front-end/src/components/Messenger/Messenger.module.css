@@ -1,9 +1,13 @@
 .container
 {
     display : flex;
-    margin : auto;
     flex-direction: column;
+
+    margin : auto;
     width : 50%;
+
+    margin-top : 24px;
+    margin-bottom : 24px;
 }
 
 .messageTitle { font-weight: 700; }
@@ -14,3 +18,14 @@
 .messageToEverybody { color : white; }
 .groupMessage { color : green; }
 .privateMessage { color : red; }
+
+.inputContainer
+{
+    display : flex;
+    gap : 4px;
+
+    margin : auto;
+    margin-bottom : 12px;
+
+    width: 50%;
+}

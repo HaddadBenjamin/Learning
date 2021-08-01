@@ -45,9 +45,29 @@ const Messenger = () =>
         { userName : 'Jess', content : 'blabla', destination : 'GROUP', from : 'OTHER_USER', groupName : 'My great company' },
         { userName : 'David', content : 'lipsum', destination : 'PRIVATE', from : 'OTHER_USER', destinationUserName : 'Jess' }]
 
-    return <div className={styles.container}>
-        {messages.map((m, i) => <Message {...m} key={i} />)}
-    </div>
+    return <>
+        <div className={styles.container}>
+            {messages.map((m, i) => <Message {...m} key={i} />)} 
+        </div>
+        
+        <div className={styles.inputContainer}>
+            <input placeholder="Write a message"/>
+            <button>Send</button>
+        </div>
+
+        <div className={styles.inputContainer}>
+            <input placeholder="Write a message"/>
+            <input placeholder="Group name"/>
+            <button>Join Group</button>
+            <button>Send</button>
+        </div>
+        
+        <div className={styles.inputContainer}>
+            <input placeholder="Write a message"/>
+            <input placeholder="Destination username"/>
+            <button>Send</button>
+        </div>
+    </>
 }
 
 export default Messenger
