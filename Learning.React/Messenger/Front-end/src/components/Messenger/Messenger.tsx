@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from './Messenger.module.css'
 import cn from 'classnames'
-import io from "socket.io-client";
-
-const socket = io('http://localhost:8000/');
 
 type MessageDestination = 'EVERYBODY' | 'GROUP' | 'PRIVATE'
 type MessageFrom = 'USER' | 'OTHER_USER'
@@ -41,7 +38,7 @@ const Message = ({userName, content, destination, from, groupName, destinationUs
     </>
 }
 
-const Messenger = () =>
+const Messenger = ({socket} : any) =>
 {
     const [messages, setMessages] = useState<MessageProps[]>([
         { userName : 'Ben', content : 'lorem', destination : 'EVERYBODY', from : 'USER' },
@@ -50,6 +47,7 @@ const Messenger = () =>
     
     useEffect(() => { socket.on("message", (message : MessageProps) => setMessages([...messages, message])) }, [socket])
 
+    console.log(messages)
     const [userName, setUserName] = useState('')
     const [everybodyMessage, setEverybodyMessage] = useState('')
     const [groupMessage, setGroupMessage] = useState('')
@@ -75,7 +73,7 @@ const Messenger = () =>
     const onDestinationUserNameChange = (event : React.ChangeEvent<HTMLInputElement>) => setDestinationUserName(event.target.value)
 
     return <>
-       <input placeholder="Username" onChange={onUsernameChange}/>
+       <input placeholder="Username" onChange={onUsernameChange} className={styles.username}/>
         <div className={styles.container}>
             {messages.map((m, i) => <Message {...m} key={i} />)} 
         </div>

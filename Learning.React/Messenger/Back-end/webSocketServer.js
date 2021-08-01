@@ -19,8 +19,12 @@ const createMessage = (user, message, destination, otherParameters = {}) => { re
   ...otherParameters
 } }
     
+
 io.on("connection", socket =>
 {
+  console.log(`connection`)
+  socket.on("connect_error", error => console.log(`connect_error due to ${error.message}`))
+
   socket.on("userJoinRoom", ({ userName, roomName }) =>
   {
     const user = createUser(socket.id, userName, roomName)

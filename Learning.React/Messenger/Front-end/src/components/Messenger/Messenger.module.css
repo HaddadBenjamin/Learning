@@ -1,4 +1,4 @@
-.container
+.username
 {
     display : flex;
     flex-direction: column;
@@ -7,6 +7,17 @@
     width : 30%;
 
     margin-top : 42px;
+    margin-bottom : 24px;
+}
+
+.container
+{
+    display : flex;
+    flex-direction: column;
+
+    margin : auto;
+    width : 30%;
+
     margin-bottom : 24px;
 
     border : solid 1px white;
