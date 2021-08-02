@@ -8,9 +8,6 @@ import Leave from './Svg/Leave.svg'
 import cn from 'classnames'
 
 { /* 
-- Changer le SVG si l'utilisateur est dans le groupe ou non
-- Vérifier la taille des SVGS
-- Vérifier où se met le styles
 - Fixer from user & from other user 
 - Afficher le now ?*/}
 const Messenger = ({socket} : any) =>
@@ -28,7 +25,7 @@ const Messenger = ({socket} : any) =>
         const previousMessageUserName = messages.length > 0 ? messages[messages.length - 1].userName : ''
         const previousMessageContent = messages.length > 0 ? messages[messages.length - 1].content : ''
 
-        if (previousMessageContent !== message.content)
+        if (!messages.some((m : IMessage) => m.id === message.id || m.content === message.content))
             setMessages([...messages, {...message, from : userName === message.userName ? 'USER' : 'OTHER_USER', previousMessageUserName : previousMessageUserName }])
     }), 
         [socket, messages])
