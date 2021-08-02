@@ -59,3 +59,14 @@
 }
 .messageDestinationInputContainer > input { flex-grow : 1; }
 
+.imageButton
+{
+    cursor: pointer;
+
+    width : 25px;
+    height : 44px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

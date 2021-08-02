@@ -60,20 +60,28 @@ const Messenger = ({socket} : any) =>
 
         <div className={styles.messageDestinationInputContainer}>
             <input className={styles.input} placeholder="Write a message..." value={everybodyMessage} onChange={onEverybodyMessageChange} />
-            <img src={Send} onClick={sendMessageToEverybody} alt=""/>
+            <div className={styles.imageButton} onClick={sendMessageToEverybody}>
+                <img src={Send} alt=""/>
+            </div>
         </div>
 
         <div className={styles.messageDestinationInputContainer}>
             <input className={styles.input} placeholder="Write a message..." value={groupMessage} onChange={onGroupMessageChange}/>
             <input className={styles.input} placeholder="Group Name" value={groupName} onChange={onGroupNameChange}/>
-            <img src={Join} onClick={joinOrLeaveGroup} alt=""/>
-            <img src={Send} onClick={sendGroupMessage} alt=""/>
+            <div className={styles.imageButton} onClick={joinOrLeaveGroup}>
+                <img src={Join} onClick={joinOrLeaveGroup} alt=""/>
+            </div>
+            <div className={styles.imageButton}>
+                <img src={Send} alt=""/>
+            </div>
         </div>
 
         <div className={styles.messageDestinationInputContainer}>
             <input className={styles.input} placeholder="Write a message..." value={privateMessage} onChange={onPrivateMessageChange}/>
             <input className={styles.input} placeholder="Username" value={destinationUserName} onChange={onDestinationUserNameChange}/>
-            <img src={Send} onClick={sendPrivateMessage} alt=""/>
+            <div className={styles.imageButton} onClick={sendPrivateMessage}>
+                <img src={Send} alt=""/>
+            </div>
         </div>
     </div>
 }
