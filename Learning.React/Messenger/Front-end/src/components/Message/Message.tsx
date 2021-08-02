@@ -19,10 +19,15 @@ const Message = ({userName, content, destination, from, groupName, destinationUs
         from === 'USER' && styles.messageFromUser,
         from === 'OTHER_USER' && styles.messageFromOtherUser)
 
-    return <>
-        <div className={styles.messageTitle}>{destination === 'INFO' ? '' : messageTitle}</div>
-        <div className={messageClasses}>{content}</div>
-    </>
+    return <div className={styles.messageFromOtherUser}>
+        <div className={styles.messageTitle}>{destination === 'INFO' ? '' : messageTitle}</div> 
+        <div className={styles.conversationContainer}>
+            <img className={styles.profilImage}/>
+            <div>
+                <div className={messageClasses}>{content}</div>
+            </div>
+        </div>
+    </div>
 }
 
 export default Message

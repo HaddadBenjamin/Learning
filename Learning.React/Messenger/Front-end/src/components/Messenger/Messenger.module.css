@@ -1,13 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 
-body
-{
-  margin: 0;
-  background-image: linear-gradient(to left bottom, #120f19, #14101e, #161122, #181227, #1a122b);
 
-  color: #8A8596;
-  font-family: 'Noto Sans JP', sans-serif;
+.input
+{
+  background-color: transparent;
+
+  color : white;
+  font-size: 16px;
+
+  border: #777474 1px solid;
+  border-radius: 8px;
+
+  padding: 12px 20px;
 }
+
+
 
 .container { padding: 0 32px; }
 
@@ -43,44 +50,6 @@ body
   font-weight: 100;
 }
 
-.messageFromUser > .conversationContainer { flex-direction: row-reverse; }
-.messageFromOtherUser .message { background-color: #222236;}
-.messageFromUser .message { background-color: #6549F1; color: white;}
-
-.messageTitle 
-{ 
-  text-align: center; 
-  padding: 20px 0;
-  font-size: 14px;
-  color: rgb(40, 190, 40);
-}
-
-.conversationContainer { display: flex; gap: 12px; }
-
-.profilImage
-{
-  background-image: url(Images/user.jpg);
-  background-size: cover;
-  height: 32px;
-  width: 32px;
-  border-radius: 50%;
-}
-
-.message
-{
-  width: max-content;
-  max-width: 340px;
-    
-  border-radius: 24px;
-  
-  padding: 7px 24px;
-  margin-bottom: 5px;
-
-  font-size: 16px;
-  line-height: 32px;
-}
-
-
 .messageDestinationInputContainer
 {
   display: flex;
@@ -90,54 +59,3 @@ body
 }
 .messageDestinationInputContainer > input { flex-grow : 1; }
 
-.input
-{
-  background-color: transparent;
-
-  font-size: 16px;
-  color: #777474;
-
-  border: #777474 1px solid;
-  border-radius: 8px;
-
-  padding: 12px 20px;
-}
-input:focus { outline: none; color: white; }
-input::placeholder { font-size: 16px; }
-
-/* .username
-{
-    display : flex;
-    flex-direction: column;
-
-    margin : auto;
-    width : 30%;
-
-    margin-top : 42px;
-    margin-bottom : 24px;
-}
-
-.container
-{
-    display : flex;
-    flex-direction: column;
-
-    margin : auto;
-    width : 30%;
-
-    margin-bottom : 24px;
-
-    border : solid 1px white;
-    padding : 12px;
-}
-
-.inputContainer
-{
-    display : flex;
-    gap : 4px;
-
-    margin : auto;
-    margin-bottom : 12px;
-
-    width: 30%;
-} */

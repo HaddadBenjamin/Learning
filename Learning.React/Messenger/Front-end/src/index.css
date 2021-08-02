@@ -1,6 +1,11 @@
-body {
+body
+{
   margin: 0;
-  background:#12121C;
-  color : white;
-  margin-left : -70px;
+  background-image: linear-gradient(to left bottom, #120f19, #14101e, #161122, #181227, #1a122b);
+
+  color: #8A8596;
+  font-family: 'Noto Sans JP', sans-serif;
 }
+input:focus { outline: none; }
+input::placeholder { font-size: 16px; color: #777474; }
+img { cursor : pointer;}
