@@ -23,7 +23,7 @@ const Messenger = ({socket} : any) =>
 
     useEffect(() => socket.on("message", (message : IMessage) => 
         setMessages([...messages, {...message, from : userName === message.userName ? 'USER' : 'OTHER_USER' }])), 
-        [socket, messages])
+        [socket, messages, userName])
 
     const sendMessageToEverybody = () => { socket.emit("sendMessageToEverybody", everybodyMessage); setEverybodyMessage('') }
     const sendGroupMessage = () => { socket.emit("sendRoomMessage", groupMessage); setGroupMessage('') }
@@ -60,20 +60,20 @@ const Messenger = ({socket} : any) =>
 
         <div className={styles.messageDestinationInputContainer}>
             <input className={styles.input} placeholder="Write a message..." value={everybodyMessage} onChange={onEverybodyMessageChange} />
-            <img src={Send} onClick={sendMessageToEverybody}/>
+            <img src={Send} onClick={sendMessageToEverybody} alt=""/>
         </div>
 
         <div className={styles.messageDestinationInputContainer}>
             <input className={styles.input} placeholder="Write a message..." value={groupMessage} onChange={onGroupMessageChange}/>
             <input className={styles.input} placeholder="Group Name" value={groupName} onChange={onGroupNameChange}/>
-            <img src={Join} onClick={joinOrLeaveGroup}/>
-            <img src={Send} onClick={sendGroupMessage}/>
+            <img src={Join} onClick={joinOrLeaveGroup} alt=""/>
+            <img src={Send} onClick={sendGroupMessage} alt=""/>
         </div>
 
         <div className={styles.messageDestinationInputContainer}>
             <input className={styles.input} placeholder="Write a message..." value={privateMessage} onChange={onPrivateMessageChange}/>
             <input className={styles.input} placeholder="Username" value={destinationUserName} onChange={onDestinationUserNameChange}/>
-            <img src={Send} onClick={sendPrivateMessage}/>
+            <img src={Send} onClick={sendPrivateMessage} alt=""/>
         </div>
     </div>
 }

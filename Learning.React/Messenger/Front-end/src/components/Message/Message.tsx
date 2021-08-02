@@ -22,7 +22,7 @@ const Message = ({userName, content, destination, from, groupName, destinationUs
     return <div className={styles.messageFromOtherUser}>
         <div className={styles.messageTitle}>{destination === 'INFO' ? '' : messageTitle}</div> 
         <div className={styles.conversationContainer}>
-            <img className={styles.profilImage}/>
+            <img className={styles.profilImage} alt=""/>
             <div>
                 <div className={messageClasses}>{content}</div>
             </div>
