@@ -4,21 +4,24 @@
 
 .messageTitle 
 { 
-  text-align: center; 
-  padding: 20px 0;
-  font-size: 14px;
   color: rgb(40, 190, 40);
+  text-align: center; 
+  font-size: 14px;
+  
+  padding: 20px 0;
 }
 
 .conversationContainer { display: flex; gap: 12px; }
-.messageFromSameUser { margin-top : -38px; margin-left : 42px;}
+.messageFromSameUser { margin-top : 0px; margin-left : 42px;}
 
 .profilImage
 {
   background-image: url(Images/user.jpg);
   background-size: cover;
+
   height: 32px;
   width: 32px;
+
   border-radius: 50%;
 }
 

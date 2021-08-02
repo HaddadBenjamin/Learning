@@ -1,4 +1,4 @@
-import styles from './Message.module.scss'
+import styles from './Message.module.css'
 import cn from 'classnames'
 import { IMessage } from '../message.model'
 
@@ -21,7 +21,7 @@ const Message = ({userName, content, destination, from, groupName, destinationUs
         destination === 'PRIVATE' && styles.privateMessageTitle)
 
     return <div className={cn(styles.messageFromOtherUser, previousMessageUserName === userName && styles.messageFromSameUser)} >
-        <div className={messageTitleClasses}>{destination === 'INFO' ? '' : messageTitle}</div> 
+        { previousMessageUserName !== userName &&  <div className={messageTitleClasses}>{destination === 'INFO' ? '' : messageTitle}</div> }
         <div className={styles.conversationContainer}>
             {previousMessageUserName !== userName && <img className={styles.profilImage} alt="" style={{backgroundImage: `url(${userName}.jpg)`}}/>}
             <div>

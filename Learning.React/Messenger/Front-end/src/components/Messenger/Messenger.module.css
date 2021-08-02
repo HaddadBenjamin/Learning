@@ -34,8 +34,6 @@
   background: rgb(27,32,52);
   background: linear-gradient(90deg, rgba(27,32,52,1) 64%, rgba(21,20,32,1) 100%);
 
-  margin-top: 32px;
-
   padding: 18px 32px;
   margin: 0 -32px;
 }
@@ -46,10 +44,10 @@
 
 .messageDate
 {
+  font-weight: 100;
   text-align: center;
 
   margin: 32px 0;
-  font-weight: 100;
 }
 
 .messageDestinationInputContainer

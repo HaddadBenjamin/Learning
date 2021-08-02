@@ -4,12 +4,14 @@ import { IMessage } from '../message.model'
 import Message from '../Message/Message'
 import Join from './Svg/Join.svg'
 import Send from './Svg/Send.svg'
+import Leave from './Svg/Leave.svg'
 import cn from 'classnames'
 
 { /* 
-- Changer l'image en fonction du username
+- Changer le SVG si l'utilisateur est dans le groupe ou non
 - Vérifier la taille des SVGS
-- En fonction du nom changer l'image 
+- Vérifier où se met le styles
+- Fixer from user & from other user 
 - Afficher le now ?*/}
 const Messenger = ({socket} : any) =>
 {
@@ -75,9 +77,9 @@ const Messenger = ({socket} : any) =>
             <input className={styles.input} placeholder="Write a group message..." value={groupMessage} onChange={onGroupMessageChange}/>
             <input className={cn(styles.input, styles.responsiveInput)} placeholder="Group Name" value={groupName} onChange={onGroupNameChange}/>
             <div className={styles.imageButton} onClick={joinOrLeaveGroup}>
-                <img src={Join} onClick={joinOrLeaveGroup} alt=""/>
+                <img src={isInAGroup ? Leave : Join} onClick={joinOrLeaveGroup} alt=""/>
             </div>
-            <div className={styles.imageButton}>
+            <div className={styles.imageButton} onClick={sendGroupMessage}>
                 <img src={Send} alt=""/>
             </div>
         </div>
