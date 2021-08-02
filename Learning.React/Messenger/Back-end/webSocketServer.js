@@ -29,10 +29,9 @@ io.on("connection", socket =>
   socket.on("userJoinRoom", ({ userName, groupName }) =>
   {
     const user = createUser(socket.id, userName, groupName)
-    console.log(userName, groupName, user)
 
     socket.join(user.roomName)
-    io.sockets.in(user.roomName).emit("message", createMessage(user, `${user.userName} has joined the room "${user.roomName}"`, 'ROOM', { groupName : user.roomName }))
+    io.sockets.to(user.roomName).emit("message", createMessage(user, `${user.userName} has joined the room "${user.roomName}"`, 'ROOM', { groupName : user.roomName }))
     socket.emit("message", createMessage(user, `Welcome ${user.userName}`, 'INFO', { groupName : user.roomName }))
   })
 

@@ -20,10 +20,12 @@
 .usernameContainer 
 {
   display: flex; 
-  justify-content: space-between; 
-  align-items: center;
+  justify-content : space-between;
+  gap : 8px;
+  
   padding: 32px 0px;
 }
+@media (max-width : 600px) { .responsiveInput { max-width : 95px; } }
 
 .title { font-size: 28px; color: white;}
 
@@ -40,6 +42,7 @@
 
 .descriptionTitle { color: #5B89D0; margin-bottom: 10px; }
 .description { color: #536278; width: 480px }
+@media (max-width : 600px) { .description { width : auto; } }
 
 .messageDate
 {

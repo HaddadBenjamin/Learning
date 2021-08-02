@@ -44,7 +44,7 @@ const Messenger = ({socket} : any) =>
     return <div className={styles.container}>
         <div className={styles.usernameContainer}>
             <div className={styles.title}>Scouting Group</div>
-            <input className={styles.input} value={userName} onChange={onUsernameChange} placeholder="Username"/>
+            <input className={cn(styles.input, styles.responsiveInput)} value={userName} onChange={onUsernameChange} placeholder="Username"/>
         </div>
 
         <div className={styles.descriptionContainer}>
@@ -68,7 +68,7 @@ const Messenger = ({socket} : any) =>
 
         <div className={styles.messageDestinationInputContainer}>
             <input className={styles.input} placeholder="Write a group message..." value={groupMessage} onChange={onGroupMessageChange}/>
-            <input className={styles.input} placeholder="Group Name" value={groupName} onChange={onGroupNameChange}/>
+            <input className={cn(styles.input, styles.responsiveInput)} placeholder="Group Name" value={groupName} onChange={onGroupNameChange}/>
             <div className={styles.imageButton} onClick={joinOrLeaveGroup}>
                 <img src={Join} onClick={joinOrLeaveGroup} alt=""/>
             </div>
@@ -79,7 +79,7 @@ const Messenger = ({socket} : any) =>
 
         <div className={styles.messageDestinationInputContainer}>
             <input className={styles.input} placeholder="Write a private message..." value={privateMessage} onChange={onPrivateMessageChange}/>
-            <input className={styles.input} placeholder="Username" value={destinationUserName} onChange={onDestinationUserNameChange}/>
+            <input className={cn(styles.input, styles.responsiveInput)} placeholder="Username" value={destinationUserName} onChange={onDestinationUserNameChange}/>
             <div className={styles.imageButton} onClick={sendPrivateMessage}>
                 <img src={Send} alt=""/>
             </div>
