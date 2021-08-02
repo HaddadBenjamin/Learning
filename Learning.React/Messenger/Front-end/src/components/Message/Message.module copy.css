@@ -36,4 +36,4 @@
 }
 .messageTitleToEverybody { color : white; }
 .groupMessageTitle { color : rgb(40, 190, 40); }
-.privateMessageTitle { color : #ff3636; }
+.privateMessageTitle { color : red; }

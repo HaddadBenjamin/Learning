@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 
-
 .input
 {
   background-color: transparent;
@@ -14,7 +13,7 @@
   padding: 12px 20px;
 }
 
-
+.spacingMd { margin-top : 32px; }
 
 .container { padding: 0 32px; }
 

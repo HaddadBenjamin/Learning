@@ -4,6 +4,7 @@ import { IMessage } from '../message.model'
 import Message from '../Message/Message'
 import Join from './Svg/Join.svg'
 import Send from './Svg/Send.svg'
+import cn from 'classnames'
 
 { /* 
 - Changer l'image en fonction de isInGroup
@@ -23,7 +24,7 @@ const Messenger = ({socket} : any) =>
 
     useEffect(() => socket.on("message", (message : IMessage) => 
         setMessages([...messages, {...message, from : userName === message.userName ? 'USER' : 'OTHER_USER' }])), 
-        [socket, messages, userName])
+        [socket, messages])
 
     const sendMessageToEverybody = () => { socket.emit("sendMessageToEverybody", everybodyMessage); setEverybodyMessage('') }
     const sendGroupMessage = () => { socket.emit("sendRoomMessage", groupMessage); setGroupMessage('') }
@@ -58,7 +59,7 @@ const Messenger = ({socket} : any) =>
 
         {messages && messages.map(m => <Message {...m} key={m.id} />)} 
 
-        <div className={styles.messageDestinationInputContainer}>
+        <div className={cn(styles.messageDestinationInputContainer, styles.spacingMd)}>
             <input className={styles.input} placeholder="Write a message..." value={everybodyMessage} onChange={onEverybodyMessageChange} />
             <div className={styles.imageButton} onClick={sendMessageToEverybody}>
                 <img src={Send} alt=""/>
@@ -66,7 +67,7 @@ const Messenger = ({socket} : any) =>
         </div>
 
         <div className={styles.messageDestinationInputContainer}>
-            <input className={styles.input} placeholder="Write a message..." value={groupMessage} onChange={onGroupMessageChange}/>
+            <input className={styles.input} placeholder="Write a group message..." value={groupMessage} onChange={onGroupMessageChange}/>
             <input className={styles.input} placeholder="Group Name" value={groupName} onChange={onGroupNameChange}/>
             <div className={styles.imageButton} onClick={joinOrLeaveGroup}>
                 <img src={Join} onClick={joinOrLeaveGroup} alt=""/>
@@ -77,7 +78,7 @@ const Messenger = ({socket} : any) =>
         </div>
 
         <div className={styles.messageDestinationInputContainer}>
-            <input className={styles.input} placeholder="Write a message..." value={privateMessage} onChange={onPrivateMessageChange}/>
+            <input className={styles.input} placeholder="Write a private message..." value={privateMessage} onChange={onPrivateMessageChange}/>
             <input className={styles.input} placeholder="Username" value={destinationUserName} onChange={onDestinationUserNameChange}/>
             <div className={styles.imageButton} onClick={sendPrivateMessage}>
                 <img src={Send} alt=""/>

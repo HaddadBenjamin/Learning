@@ -10,17 +10,18 @@ const Message = ({userName, content, destination, from, groupName, destinationUs
         destination === 'ROOM' ? `the group "${groupName}"` :
         destination === 'PRIVATE' ? `the user ${destinationUserName}` : ''
     const messageTitle = `${messageTitleFirstPart}${messageTitleSecondPart}`
-
     const messageClasses = cn(
         styles.message,
-        destination === 'EVERYBODY' && styles.messageToEverybody,
-        destination === 'ROOM' && styles.groupMessage,
-        destination === 'PRIVATE' && styles.privateMessage,
         from === 'USER' && styles.messageFromUser,
         from === 'OTHER_USER' && styles.messageFromOtherUser)
+    const messageTitleClasses = cn(
+        styles.messageTitle,
+        destination === 'EVERYBODY' && styles.messageTitleToEverybody,
+        destination === 'ROOM' && styles.groupMessageTitle,
+        destination === 'PRIVATE' && styles.privateMessageTitle)
 
     return <div className={styles.messageFromOtherUser}>
-        <div className={styles.messageTitle}>{destination === 'INFO' ? '' : messageTitle}</div> 
+        <div className={messageTitleClasses}>{destination === 'INFO' ? '' : messageTitle}</div> 
         <div className={styles.conversationContainer}>
             <img className={styles.profilImage} alt=""/>
             <div>
