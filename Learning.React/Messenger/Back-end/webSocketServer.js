@@ -31,8 +31,8 @@ io.on("connection", socket =>
     const user = createUser(socket.id, userName, groupName)
 
     socket.join(user.roomName)
-    io.sockets.to(user.roomName).emit("message", createMessage(user, `${user.userName} has joined the room "${user.roomName}"`, 'ROOM', { groupName : user.roomName }))
     socket.emit("message", createMessage(user, `Welcome ${user.userName}`, 'INFO', { groupName : user.roomName }))
+    io.sockets.to(user.roomName).emit("message", createMessage(user, `${user.userName} has joined the room "${user.roomName}"`, 'ROOM', { groupName : user.roomName }))
   })
 
   socket.on("userLeaveRoom", () =>

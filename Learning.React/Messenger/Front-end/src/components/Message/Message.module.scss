@@ -1,6 +1,6 @@
-.messageFromUser > .conversationContainer { flex-direction: row-reverse; }
 .messageFromOtherUser .message { background-color: #222236;}
 .messageFromUser .message { background-color: #6549F1; color: white;}
+.messageFromUser > .conversationContainer { flex-direction: row-reverse; }
 
 .messageTitle 
 { 
@@ -11,6 +11,7 @@
 }
 
 .conversationContainer { display: flex; gap: 12px; }
+.messageFromSameUser { margin-top : -38px; margin-left : 42px;}
 
 .profilImage
 {
@@ -36,4 +37,4 @@
 }
 .messageTitleToEverybody { color : white; }
 .groupMessageTitle { color : rgb(40, 190, 40); }
-.privateMessageTitle { color : red; }
+.privateMessageTitle { color : #ff3636; }

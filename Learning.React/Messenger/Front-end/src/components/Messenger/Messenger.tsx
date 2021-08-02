@@ -7,7 +7,7 @@ import Send from './Svg/Send.svg'
 import cn from 'classnames'
 
 { /* 
-- Changer l'image en fonction de isInGroup
+- Changer l'image en fonction du username
 - Vérifier la taille des SVGS
 - En fonction du nom changer l'image 
 - Afficher le now ?*/}
@@ -22,15 +22,20 @@ const Messenger = ({socket} : any) =>
     const [destinationUserName, setDestinationUserName] = useState('')
     const [isInAGroup, setIsInAGroup] = useState(false)
 
-    useEffect(() => socket.on("message", (message : IMessage) => 
-        setMessages([...messages, {...message, from : userName === message.userName ? 'USER' : 'OTHER_USER' }])), 
+    useEffect(() => socket.on("message", (message : IMessage) => {
+        const previousMessageUserName = messages.length > 0 ? messages[messages.length - 1].userName : ''
+        const previousMessageContent = messages.length > 0 ? messages[messages.length - 1].content : ''
+
+        if (previousMessageContent !== message.content)
+            setMessages([...messages, {...message, from : userName === message.userName ? 'USER' : 'OTHER_USER', previousMessageUserName : previousMessageUserName }])
+    }), 
         [socket, messages])
 
     const sendMessageToEverybody = () => { socket.emit("sendMessageToEverybody", everybodyMessage); setEverybodyMessage('') }
     const sendGroupMessage = () => { socket.emit("sendRoomMessage", groupMessage); setGroupMessage('') }
     const sendPrivateMessage = () => { socket.emit("sendPrivateMessage", { content : privateMessage, userName : destinationUserName }); setPrivateMessage('') }
 
-    const joinGroup = () => { alert(userName); console.log(userName, groupName); socket.emit("userJoinRoom", { userName : userName, groupName : groupName }); setIsInAGroup(true)}
+    const joinGroup = () => { socket.emit("userJoinRoom", { userName : userName, groupName : groupName }); setIsInAGroup(true)}
     const leaveGroup = () => { socket.emit("userLeaveRoom"); setIsInAGroup(false) }
     const joinOrLeaveGroup = () => isInAGroup ? leaveGroup() : joinGroup();
 
