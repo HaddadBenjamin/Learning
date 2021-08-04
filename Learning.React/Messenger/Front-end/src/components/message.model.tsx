@@ -11,4 +11,5 @@ export interface IMessage
     groupName? : string
     destinationUserName? : string
     previousMessageUserName : string
+    previousMessageDestination : string
 }

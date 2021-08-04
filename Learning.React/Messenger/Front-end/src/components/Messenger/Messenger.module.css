@@ -58,6 +58,7 @@
   margin-bottom: 12px;
 }
 .messageDestinationInputContainer > input { flex-grow : 1; }
+.lastMessageDestinationInputContainer { margin-bottom : 42px;}
 
 .imageButton
 {
@@ -69,4 +70,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width : 600px)
+{ 
+  .messageToEveryBodyInput { max-width: 405px; }
+  .privateMessageInput { max-width: 250px ; }
+  .imageButtonWithLeftMargin { margin-left: 36px; }
 }

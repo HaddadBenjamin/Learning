@@ -62,8 +62,8 @@ io.on("connection", socket =>
     const user = getUser(socket.id)
     const destinationUser = getUserByUserName(userName)
 
-    io.sockets.to(destinationUser.id).emit("message", createMessage(user, content, 'PRIVATE', { destinationUserName : destinationUser.userName }))
-    socket.emit("message", createMessage(user, content, 'INFO'))
+    socket.to(destinationUser.id).emit("message", createMessage(user, content, 'PRIVATE', { destinationUserName : destinationUser.userName }))
+    socket.emit("message", createMessage(user, content, 'PRIVATE'))
   })
 
   socket.on("disconnect", () =>

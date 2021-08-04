@@ -23,10 +23,15 @@ const Messenger = ({socket} : any) =>
 
     useEffect(() => socket.on("message", (message : IMessage) => {
         const previousMessageUserName = messages.length > 0 ? messages[messages.length - 1].userName : ''
-        const previousMessageContent = messages.length > 0 ? messages[messages.length - 1].content : ''
+        const previousMessageDestination = messages.length > 0 ? messages[messages.length - 1].destination : ''
 
         if (!messages.some((m : IMessage) => m.id === message.id || m.content === message.content))
-            setMessages([...messages, {...message, from : userName === message.userName ? 'USER' : 'OTHER_USER', previousMessageUserName : previousMessageUserName }])
+            setMessages([...messages, {
+                ...message, 
+                from : userName === message.userName ? 'USER' : 'OTHER_USER', 
+                previousMessageUserName : previousMessageUserName, 
+                previousMessageDestination : previousMessageDestination  
+            }])
     }), 
         [socket, messages])
 
@@ -64,8 +69,8 @@ const Messenger = ({socket} : any) =>
         {messages && messages.map(m => <Message {...m} key={m.id} />)} 
 
         <div className={cn(styles.messageDestinationInputContainer, styles.spacingMd)}>
-            <input className={styles.input} placeholder="Write a message..." value={everybodyMessage} onChange={onEverybodyMessageChange} />
-            <div className={styles.imageButton} onClick={sendMessageToEverybody}>
+            <input className={cn(styles.input, styles.messageToEveryBodyInput)} placeholder="Write a message..." value={everybodyMessage} onChange={onEverybodyMessageChange} />
+            <div className={cn(styles.imageButton, styles.imageButtonWithLeftMargin)} onClick={sendMessageToEverybody}>
                 <img src={Send} alt=""/>
             </div>
         </div>
@@ -81,10 +86,10 @@ const Messenger = ({socket} : any) =>
             </div>
         </div>
 
-        <div className={styles.messageDestinationInputContainer}>
-            <input className={styles.input} placeholder="Write a private message..." value={privateMessage} onChange={onPrivateMessageChange}/>
+        <div className={cn(styles.messageDestinationInputContainer, styles.lastMessageDestinationInputContainer)}>
+            <input className={cn(styles.input, styles.privateMessageInput)} placeholder="Write a private message..." value={privateMessage} onChange={onPrivateMessageChange}/>
             <input className={cn(styles.input, styles.responsiveInput)} placeholder="Username" value={destinationUserName} onChange={onDestinationUserNameChange}/>
-            <div className={styles.imageButton} onClick={sendPrivateMessage}>
+            <div className={cn(styles.imageButton, styles.imageButtonWithLeftMargin)} onClick={sendPrivateMessage}>
                 <img src={Send} alt=""/>
             </div>
         </div>
