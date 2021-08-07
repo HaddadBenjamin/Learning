@@ -47,7 +47,7 @@
   font-weight: 100;
   text-align: center;
 
-  margin: 32px 0;
+  margin: 32px 0 0 0;
 }
 
 .messageDestinationInputContainer
@@ -75,6 +75,6 @@
 @media (max-width : 600px)
 { 
   .messageToEveryBodyInput { max-width: 405px; }
-  .privateMessageInput { max-width: 250px ; }
+  .privateMessageInput { max-width: 269px; }
   .imageButtonWithLeftMargin { margin-left: 36px; }
 }

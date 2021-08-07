@@ -11,7 +11,7 @@ const Message = ({userName, content, destination, from, groupName, destinationUs
     const messageTitleSecondPart = 
         destination === 'EVERYBODY' ? 'everybody' : 
         destination === 'ROOM' ? `the group "${groupName}"` :
-        destination === 'PRIVATE' ? `the user ${destinationUserName}` : ''
+        destination === 'PRIVATE' ? `"${destinationUserName}"` : ''
     const messageTitle = `${messageTitleFirstPart}${messageTitleSecondPart}`
     const messageFrom = cn(
         from === 'USER' && styles.messageFromUser,
