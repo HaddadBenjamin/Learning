@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
+.input
+{
+  background-color: transparent;
+
+  color : white;
+  font-size: 16px;
+
+  border: #777474 1px solid;
+  border-radius: 8px;
+
+  padding: 12px 20px;
+}
+
+.spacingMd { margin-top : 32px; }
+
+.container { padding: 0 32px; }
+
+.usernameContainer 
+{
+  display: flex; 
+  justify-content : space-between;
+  gap : 8px;
+  
+  padding: 32px 0px;
+}
+@media (max-width : 600px) { .responsiveInput { max-width : 95px; } }
+
+.title { font-size: 28px; color: white;}
+
+.descriptionContainer
+{
+  background: rgb(27,32,52);
+  background: linear-gradient(90deg, rgba(27,32,52,1) 64%, rgba(21,20,32,1) 100%);
+
+  padding: 18px 32px;
+  margin: 0 -32px;
+}
+
+.descriptionTitle { color: #5B89D0; margin-bottom: 10px; }
+.description { color: #536278; width: 480px }
+@media (max-width : 600px) { .description { width : auto; } }
+
+.messageDate
+{
+  font-weight: 100;
+  text-align: center;
+
+  margin: 32px 0 0 0;
+}
+
+.messageDestinationInputContainer
+{
+  display: flex;
+  gap : 8px;
+
+  margin-bottom: 12px;
+}
+.messageDestinationInputContainer > input { flex-grow : 1; }
+.lastMessageDestinationInputContainer { margin-bottom : 42px;}
+
+.imageButton
+{
+    cursor: pointer;
+
+    width : 25px;
+    height : 44px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width : 600px)
+{ 
+  .messageToEveryBodyInput { max-width: 405px; }
+  .privateMessageInput { max-width: 269px; }
+  .imageButtonWithLeftMargin { margin-left: 36px; }
+}

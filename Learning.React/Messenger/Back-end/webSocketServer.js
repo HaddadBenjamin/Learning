@@ -31,8 +31,8 @@ io.on("connection", socket =>
     const user = createUser(socket.id, userName, groupName)
 
     socket.join(user.roomName)
-    io.sockets.in(user.roomName).emit("message", createMessage(user, `${user.userName} has joined the room "${user.roomName}"`, 'ROOM', { groupName : user.roomName }))
     socket.emit("message", createMessage(user, `Welcome ${user.userName}`, 'INFO', { groupName : user.roomName }))
+    io.sockets.to(user.roomName).emit("message", createMessage(user, `${user.userName} has joined the room "${user.roomName}"`, 'ROOM', { groupName : user.roomName }))
   })
 
   socket.on("userLeaveRoom", () =>
@@ -62,8 +62,8 @@ io.on("connection", socket =>
     const user = getUser(socket.id)
     const destinationUser = getUserByUserName(userName)
 
-    io.sockets.to(destinationUser.id).emit("message", createMessage(user, content, 'PRIVATE', { destinationUserName : destinationUser.userName }))
-    socket.emit("message", createMessage(user, content, 'INFO'))
+    socket.to(destinationUser.id).emit("message", createMessage(user, content, 'PRIVATE', { destinationUserName : destinationUser.userName }))
+    socket.emit("message", createMessage(user, content, 'PRIVATE'))
   })
 
   socket.on("disconnect", () =>

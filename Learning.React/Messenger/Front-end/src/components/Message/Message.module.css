@@ -1,0 +1,43 @@
+.messageFromOtherUser .message { background-color: #222236;}
+.messageFromUser .message { background-color: #6549F1; color: white;}
+.messageFromUser > .conversationContainer { flex-direction: row-reverse; }
+
+.messageTitle 
+{ 
+  color: rgb(40, 190, 40);
+  text-align: center; 
+  font-size: 14px;
+  
+  padding: 20px 0;
+}
+
+.conversationContainer { display: flex; gap: 12px; }
+.messageFromSameUser { margin-top : 0px; margin-left : 42px;}
+
+.profilImage
+{
+  background-image: url(Images/user.jpg);
+  background-size: cover;
+
+  height: 32px;
+  width: 32px;
+
+  border-radius: 50%;
+}
+
+.message
+{
+  width: max-content;
+  max-width: 340px;
+    
+  border-radius: 24px;
+  
+  padding: 7px 24px;
+  margin-bottom: 5px;
+
+  font-size: 16px;
+  line-height: 32px;
+}
+.messageTitleToEverybody { color : white; }
+.groupMessageTitle { color : rgb(40, 190, 40); }
+.privateMessageTitle { color : #ff3636; }
