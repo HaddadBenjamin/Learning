@@ -3,6 +3,11 @@
 
 Projet d'apprentissage que j'utilise pour appréhender et tester de nouvelles notions.
 
+
+## React
+Développement d'une application qui permet d'envoyer des messages privés, dans un groupe ou visibles par tout le monde https://www.youtube.com/watch?v=K4WVlXHjnG4
+> ![Image of Yaktocat](https://imgur.com/Tb4ip0L.png)
+
 ## CSS
 Refaire à la main l'intégration HTML & CSS de Netflix en gérant également le responsive https://haddadflix.netlify.app/
 > ![Image of Yaktocat](https://imgur.com/dvHJHsH.png)
@@ -26,10 +31,6 @@ Développement d'un CRUD qui utilise une fausse API :
 ## React Native
 Réalisation d'une application de type todo list inspirée par "Microsoft To do" https://www.youtube.com/watch?v=ATKug3CPKEI
 > ![Image of Yaktocat](https://imgur.com/EP8DPJ0.png)
-
-## React
-> ![Image of Yaktocat](https://imgur.com/eFOEUeD.png)
-> ![Image of Yaktocat](https://imgur.com/LzmaDEu.png)
 
 ## .NET Core
 Réalisation d'un petit chat "en temps réel" avec la gestion des messages vu par tous, privés et par salle https://recordit.co/TuKHJ9lty0

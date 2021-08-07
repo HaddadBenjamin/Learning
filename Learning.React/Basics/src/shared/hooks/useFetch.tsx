@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 
+// Utiliser à la place la librairie use-http qui permet de faire des get, post, update, delete
 interface State<T>
 {
     isLoading : boolean
