@@ -2,11 +2,12 @@ const { grpcOptions, grpcServerUrl } = require ("../grpc.configs.js");
 const {getTodoById, getAllTodos, addTodo, updateTodo, removeTodo } = require("./todo.manager");
 let grpc = require("grpc");
 let protoLoader = require("@grpc/proto-loader");
-let customersProto = grpc.loadPackageDefinition(protoLoader.loadSync("../todo.model.proto", grpcOptions));
+let todoContracts = grpc.loadPackageDefinition(protoLoader.loadSync("../todo.model.proto", grpcOptions));
 const server = new grpc.Server();
-
 const grpcNotFoundResponse = { code: grpc.status.NOT_FOUND, details: "Not found" }
-server.addService(customersProto.CustomerService.service, {
+
+server.addService(todoContracts.CustomerService.service,
+{
     getAll: (_, callback) => callback(null, { todos : getAllTodos() }),
 
     get: (call, callback) =>

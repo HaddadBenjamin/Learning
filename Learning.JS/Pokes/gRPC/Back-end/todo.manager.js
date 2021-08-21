@@ -1,10 +1,10 @@
 const todos = require("./todo.mock.js");
-const {v4: uuidv4} = require("uuid");
+const {v4: newGuid} = require("uuid");
 
 const getAllTodos = () => todos
 const getTodoById = id => todos.find(todo => todo.id === id)
 const getTodoIndex = id => todo.findIndex(todo => todo.id === id)
-const addTodo = todo => { todo.id = uuidv4(); return (todos.push(todo), todo) }
+const addTodo = todo => { todo.id = newGuid(); return (todos.push(todo), todo) }
 const updateTodo = ({id, title, competed}) =>
 {
     let todo = getTodoById(id)
