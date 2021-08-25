@@ -14,7 +14,8 @@
 
 @mixin flex(
     $justifyContent : undefined, 
-    $alignItems : undefined, $flexDirection : undefined, 
+    $alignItems : undefined,
+    $flexDirection : undefined,
     $gap : undefined, 
     $flexWrap : undefined)
 {
@@ -49,7 +50,7 @@
 {
     display : grid;
     @if ($gridColumn != undefined) { grid-column: $gridColumn; }
-    @if ($gridTemplateRows != undefined) { grid-row: $gridRow; }
+    @if ($gridRow != undefined) { grid-row: $gridRow; }
     @if ($justifySelf != undefined) { justify-self: $justifySelf; }
     @if ($alignSelf != undefined) { align-self: $alignSelf; }
 }

@@ -1,10 +1,10 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
-import './Todos.css'
+import React, { FC, useEffect } from 'react';
 import Todo from '../Todo/Todo';
 import AddTodo from '../AddTodo/AddTodo';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectTodos } from '../../todos.selector';
 import { getTodosRequestAction } from '../../todos.actions';
+import styles from './Todos.module.scss'
 
 const Todos : FC = () =>
 {
@@ -14,13 +14,15 @@ const Todos : FC = () =>
     useEffect(() => { dispatch(getTodosRequestAction()) }, [])
 
     return <>
-        { todos &&  <div className="todoContainer">
-            <h1 className="title">Todo List</h1>
-            <div className="todoElement">
-                { todos && todos.todos.map(t => <Todo {...t} key={t.id}/>) }
-                <AddTodo />
-            </div>
-        </div> }
+        { todos &&
+            <>
+                <h1 className={styles.title}>Todo List</h1>
+                <div className={styles.container}>
+                    { todos && todos.todos.map(t => <Todo {...t} key={t.id}/>) }
+                    <AddTodo />
+                </div>
+            </>
+        }
     </>
 };
 

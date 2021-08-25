@@ -1,8 +1,9 @@
 import { useState, ChangeEvent, FC } from 'react';
-import "./AddTodo.css"
-import { newGuid } from '../../../../shared/utils/string';
+import "./AddTodo.module.scss"
+import { newGuid } from '../../../../shared/utils/newGuid';
 import { useDispatch } from 'react-redux';
 import { addTodoRequestAction } from '../../todos.actions';
+import styles from './AddTodo.module.scss'
 
 const AddTodo : FC = () => {
 
@@ -18,14 +19,15 @@ const AddTodo : FC = () => {
     const onChangeTodo = (event: ChangeEvent<HTMLInputElement>) : void =>
         setTitle(event.target.value)
 
-    return <div className="container">
-        <div className="addButton" onClick={addTodoInContextAndModel}>+</div>
-        <input 
-            onChange={onChangeTodo}
-            value={title}
-            placeholder="Ajouter une tâche"
-            className="input"
-            name="addTodo"/>
+    return  <div className={styles.todo}>
+        <div className={styles.container}>
+            <div className={styles.addButton} onClick={addTodoInContextAndModel}>+</div>
+            <input
+                onChange={onChangeTodo}
+                value={title}
+                placeholder="Ajouter une tâche"
+                className={styles.input}/>
+        </div>
     </div>
 };
 

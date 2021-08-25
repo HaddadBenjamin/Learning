@@ -1,0 +1,12 @@
+@import '../../styles/styles.scss';
+
+.todo
+{
+  @include flex(space-between, center, row);
+
+  padding : 0 $spacingXs;
+  margin : 0 $spacingXs;
+
+  background-color: #F0F0F0;
+  border-radius: $defaultBorderRadius;
+}
