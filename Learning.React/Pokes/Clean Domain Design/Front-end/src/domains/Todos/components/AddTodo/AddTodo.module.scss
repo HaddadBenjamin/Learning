@@ -16,7 +16,6 @@
 {
     @include text($textH5FontSize, undefined, $fontWeightSemiBold);
     padding : $spacingMd 0;
-
 }
 
 .input::placeholder
