@@ -36,3 +36,5 @@ export const todoStateMock : TodoState =
 }
 
 export const todoMock = todoStateMock.todos[0]
+export const {title : todoTitleMock, id : todoIdMock} = todoStateMock.todos[1]
+export const errorMessageMock = '404 not found'

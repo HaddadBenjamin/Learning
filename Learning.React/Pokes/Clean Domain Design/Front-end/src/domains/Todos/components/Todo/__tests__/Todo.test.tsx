@@ -1,7 +1,7 @@
 import {fireEvent, render} from "@testing-library/react";
 import Todo from "../Todo";
 import {useDispatch} from "react-redux";
-import {todoMock} from "../../../todos.mock";
+import {todoMock, todoTitleMock} from "../../../todos.mock";
 import {editTodoRequestAction, removeTodoRequestAction, toggleTodoRequestAction} from "../../../todos.actions";
 
 jest.mock('react-redux')
@@ -26,13 +26,12 @@ describe("Todo", () => {
         // Given
         const {container} = render(<Todo {...todoMock} />)
         const input = container.getElementsByTagName('input')[1]
-        const newTitle = "Ranger le linge"
 
         // When
-        fireEvent.change(input, {target: {value: newTitle}})
+        fireEvent.change(input, {target: {value: todoTitleMock}})
 
         // Then
-        expect(mockDispatch).toBeCalledWith(editTodoRequestAction(todoMock.id, newTitle))
+        expect(mockDispatch).toBeCalledWith(editTodoRequestAction(todoMock.id, todoTitleMock))
     })
 
     it("should dispatch toggleTodoRequestAction when toggle is check", () =>

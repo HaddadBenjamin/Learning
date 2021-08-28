@@ -2,6 +2,7 @@ import {fireEvent, render} from "@testing-library/react";
 import AddTodo from "../AddTodo";
 import {useDispatch} from "react-redux";
 import {addTodoRequestAction} from "../../../todos.actions";
+import {todoTitleMock} from "../../../todos.mock";
 
 jest.mock('react-redux')
 const mockUseDispatch = useDispatch as jest.MockedFunction<typeof useDispatch>
@@ -28,14 +29,13 @@ describe("AddTodo", () =>
         const { container, getByText } = render(<AddTodo />)
         const input = container.getElementsByTagName('input')[0]
         const button = getByText('+')
-        const newTitle = 'Faire la cuisine'
 
         // When
-        fireEvent.change(input, {target: {value: newTitle}})
+        fireEvent.change(input, {target: {value: todoTitleMock}})
         fireEvent.click(button)
 
         // Then
-        expect(input.value).toBe(newTitle)
-        expect(mockDispatch).toBeCalledWith(addTodoRequestAction(newTitle))
+        expect(input.value).toBe(todoTitleMock)
+        expect(mockDispatch).toBeCalledWith(addTodoRequestAction(todoTitleMock))
     })
 })
