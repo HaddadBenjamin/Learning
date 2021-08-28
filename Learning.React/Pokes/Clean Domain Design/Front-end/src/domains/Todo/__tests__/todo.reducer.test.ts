@@ -19,7 +19,10 @@ import {
     getTodosSuccessAction,
     removeTodoFailedAction,
     removeTodoRequestAction,
-    removeTodoSuccessAction
+    removeTodoSuccessAction,
+    toggleTodoFailedAction,
+    toggleTodoRequestAction,
+    toggleTodoSuccessAction
 } from "../todoActions";
 import {ActionStatus} from "../../../shared/domains/Redux/redux.model";
 import {TodoState} from "../todo.state";
@@ -149,6 +152,48 @@ describe("todo.reducer", () =>
         })
     })
 
+    describe("TOGGLE_TODO", () =>
+    {
+        it("Should change the status to loading and set the error to undefined on request", () =>
+        {
+            // Given & When
+            const newState = todoReducer(emptyTodoStateMock, toggleTodoRequestAction(todoIdMock))
+
+            // Then
+            expect(newState).toEqual(expect.objectContaining({
+                status: ActionStatus.Loading,
+                error: undefined
+            }))
+        })
+
+        it("Should toggle the todo, change the status to loaded and set the error to undefined on success", () =>
+        {
+            // Given & When
+            const toggledTodo : ITodo = { ...todoMock, completed : !todoMock.completed }
+            const newState = todoReducer(todoStateMock, toggleTodoSuccessAction(toggledTodo))
+            const firstTodo = newState.todos[0]
+
+            // Then
+            expect(newState).toEqual(expect.objectContaining({
+                status: ActionStatus.Loaded,
+                error: undefined,
+            }))
+            expect(firstTodo).toBe(toggledTodo)
+        })
+
+        it("Should change the status to failed and set the error on failed", () =>
+        {
+            // Given & When
+            const newState = todoReducer(emptyTodoStateMock, toggleTodoFailedAction(errorMessageMock))
+
+            // Then
+            expect(newState).toEqual(expect.objectContaining({
+                status: ActionStatus.Failed,
+                error: errorMessageMock,
+            }))
+        })
+    })
+
     describe("REMOVE_TODO", () =>
     {
         it("Should change the status to loading and set the error to undefined on request", () =>
@@ -187,6 +232,19 @@ describe("todo.reducer", () =>
                 status: ActionStatus.Failed,
                 error: errorMessageMock,
             }))
+        })
+    })
+
+    describe("UNKNOWN", () =>
+    {
+        it("Should don't change the state when the action is unkwown", () =>
+        {
+            // Given & When
+            // @ts-ignore
+            const newState = todoReducer(emptyTodoStateMock, { type : 'UNKNOWN' })
+
+            // Then
+            expect(newState).toEqual(newState)
         })
     })
 })

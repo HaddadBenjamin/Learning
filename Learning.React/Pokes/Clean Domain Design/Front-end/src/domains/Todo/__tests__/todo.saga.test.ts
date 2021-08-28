@@ -1,25 +1,57 @@
-import {addTodo, getAllTodos} from "../todo.api";
-import {errorMessageMock, errorMock, todoMock, todoStateMock} from "../todo.mock";
+import {
+    addTodo,
+    getAllTodos,
+    patchCompleted,
+    patchTitle,
+    removeTodo
+} from "../todo.api";
+import {
+    errorMessageMock,
+    errorMock,
+    todoMock,
+    todoStateMock
+} from "../todo.mock";
 import {expectSaga} from "redux-saga-test-plan";
 import * as matchers from 'redux-saga-test-plan/matchers';
-import {addTodoSaga, getAllTodosSaga} from "../todo.saga";
+import {
+    addTodoSaga,
+    editTodoSaga,
+    getAllTodosSaga,
+    removeTodoSaga,
+    toggleTodoSaga
+} from "../todo.saga";
 import {
     addTodoFailedAction,
     addTodoRequestAction,
     addTodoSuccessAction,
+    editTodoFailedAction,
+    editTodoRequestAction,
+    editTodoSuccessAction,
     getTodosFailedAction,
     getTodosRequestAction,
-    getTodosSuccessAction
+    getTodosSuccessAction,
+    removeTodoFailedAction,
+    removeTodoRequestAction,
+    removeTodoSuccessAction,
+    toggleTodoFailedAction,
+    toggleTodoRequestAction,
+    toggleTodoSuccessAction
 } from "../todoActions";
 import {call} from "redux-saga-test-plan/matchers";
 import {throwError} from "redux-saga-test-plan/providers";
+import {useSelector} from "react-redux";
+import {selectTodos} from "../todo.selector";
 
+jest.mock('react-redux')
 jest.mock('../todo.api')
+jest.mock('../todo.selector')
 
 describe("todo.saga", () =>
 {
     describe("GET_TODOS", () =>
     {
+        const action = getTodosRequestAction()
+
         it("should get all the todos", () =>
         {
             // Given
@@ -29,7 +61,7 @@ describe("todo.saga", () =>
             return expectSaga(getAllTodosSaga)
                 .provide([call(() => getAllTodos)])
                 .put(getTodosSuccessAction(todoStateMock.todos))
-                .dispatch(getTodosRequestAction())
+                .dispatch(action)
                 .silentRun()
         })
 
@@ -38,13 +70,14 @@ describe("todo.saga", () =>
             expectSaga(getAllTodosSaga)
                 .provide([[matchers.call.fn(getAllTodos), throwError(errorMock)]])
                 .put(getTodosFailedAction(errorMessageMock))
-                .dispatch(getTodosRequestAction())
+                .dispatch(action)
                 .silentRun())
     })
 
     describe("ADD_TODO", () =>
     {
         const action = addTodoRequestAction(todoMock.title)
+
         it("should add a todo", () =>
         {
             // Given
@@ -59,9 +92,93 @@ describe("todo.saga", () =>
         })
 
         it("should handle errors", () =>
+            // When & Then
             expectSaga(addTodoSaga, action)
                 .provide([[matchers.call.fn(addTodo), throwError(errorMock)]])
                 .put(addTodoFailedAction(errorMessageMock))
+                .dispatch(action)
+                .silentRun())
+    })
+
+    describe("EDIT_TODO", () =>
+    {
+        const action = editTodoRequestAction(todoMock.id, todoMock.title)
+
+        it("should edit a todo", () =>
+        {
+            (patchTitle as jest.Mock).mockReturnValue(todoMock)
+
+            // When & Then
+            return expectSaga(editTodoSaga, action)
+                .provide([call(() => patchTitle, todoMock.id, todoMock.title)])
+                .put(editTodoSuccessAction(todoMock))
+                .dispatch(action)
+                .silentRun()
+        })
+
+        it("should handle errors", () =>
+            // When & Then
+            expectSaga(editTodoSaga, action)
+                .provide([[matchers.call.fn(patchTitle), throwError(errorMock)]])
+                .put(editTodoFailedAction(errorMessageMock))
+                .dispatch(action)
+                .silentRun())
+    })
+
+    describe("TOGGLE_TODO", () =>
+    {
+        const action = toggleTodoRequestAction(todoMock.id)
+
+        it("should toggle a todo", () =>
+        {
+            // Given
+            (selectTodos as jest.Mock).mockImplementation((state) => todoStateMock)
+            (patchCompleted as jest.Mock).mockReturnValue(todoMock)
+
+            // When & Then
+            return expectSaga(toggleTodoSaga, action)
+                .provide([call(() => patchCompleted, todoMock.id, todoMock.completed)])
+                .put(toggleTodoSuccessAction(todoMock))
+                .dispatch(action)
+                .silentRun()
+        })
+
+        it("should handle errors", () =>
+        {
+            // Given
+            (useSelector as jest.Mock).mockReturnValue(todoStateMock)
+
+            // When & Then
+            return expectSaga(toggleTodoSaga, action)
+                .provide([[matchers.call.fn(patchCompleted), throwError(errorMock)]])
+                .put(toggleTodoFailedAction(errorMessageMock))
+                .dispatch(action)
+                .silentRun()
+        })
+    })
+
+    describe("REMOVE_TODO", () =>
+    {
+        const action = removeTodoRequestAction(todoMock.id)
+
+        it("should remove a todo", () =>
+        {
+            // Given
+            (removeTodo as jest.Mock).mockReturnValue(todoMock)
+
+            // When & Then
+            return expectSaga(removeTodoSaga, action)
+                .provide([call(() => removeTodo, todoMock.id)])
+                .put(removeTodoSuccessAction(todoMock.id))
+                .dispatch(action)
+                .silentRun()
+        })
+
+        it("should handle errors", () =>
+            // When & Then
+            expectSaga(removeTodoSaga, action)
+                .provide([[matchers.call.fn(removeTodo), throwError(errorMock)]])
+                .put(removeTodoFailedAction(errorMessageMock))
                 .dispatch(action)
                 .silentRun())
     })
