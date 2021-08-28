@@ -1,6 +1,6 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
-import { ITodo } from './todos.model'
-import {httpConfiguration, routes} from "./todos.constants";
+import { ITodo } from './todo.model'
+import {httpConfiguration, routes} from "./todo.constant";
 
 export const getAllTodos = async () : Promise<AxiosResponse<ITodo[]>> =>
     (await axios.get(routes.api, httpConfiguration.default)).data

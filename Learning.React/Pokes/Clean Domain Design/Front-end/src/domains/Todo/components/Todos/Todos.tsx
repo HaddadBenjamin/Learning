@@ -2,8 +2,8 @@ import React, { FC, useEffect } from 'react';
 import Todo from '../Todo/Todo';
 import AddTodo from '../AddTodo/AddTodo';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectTodos } from '../../todos.selector';
-import { getTodosRequestAction } from '../../todos.actions';
+import { selectTodos } from '../../todo.selector';
+import { getTodosRequestAction } from '../../todoActions';
 import styles from './Todos.module.scss'
 
 const Todos : FC = () =>

@@ -1,8 +1,8 @@
-import { TodoState, initialTodosState } from './todos.state';
-import { TodoActions, TodoAction } from './todos.actions';
+import { TodoState, initialTodoState } from './todo.state';
+import { TodoActions, TodoActions } from './todoActions';
 import { failedActionMetadata, loadedActionMetadata, loadingActionMetadata } from '../../shared/domains/Redux/redux.utils';
 
-export const todosReducer = (state: TodoState = initialTodosState, action: TodoActions) 
+export const todoReducer = (state: TodoState = initialTodoState, action: TodoActions)
 : TodoState =>
 {
     switch (action.type)

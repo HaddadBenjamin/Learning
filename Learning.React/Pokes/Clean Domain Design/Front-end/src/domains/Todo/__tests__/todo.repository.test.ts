@@ -1,5 +1,5 @@
-import {createTodo} from "../todos.repository";
-import {todoTitleMock} from "../todos.mock";
+import {createTodo} from "../todo.repository";
+import {todoTitleMock} from "../todo.mock";
 
 describe("todo.repository", () =>
 {

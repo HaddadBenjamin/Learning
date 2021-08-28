@@ -1,4 +1,4 @@
-import { ITodo } from './todos.model';
+import { ITodo } from './todo.model';
 
 export enum TodoAction
 {
@@ -186,7 +186,7 @@ export const removeTodoFailedAction = (error : string) : RemoveTodoFailedAction 
     error 
 })
 
-export type TodoActions = 
+export type TodoActions =
     GetTodosRequestAction |
     GetTodosSuccessAction |
     GetTodosFailedAction |

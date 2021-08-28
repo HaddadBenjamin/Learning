@@ -1,5 +1,5 @@
 import {newGuid} from "../../shared/utils/newGuid";
-import {ITodo} from "./todos.model";
+import {ITodo} from "./todo.model";
 
 export const createTodo = (title : string) : ITodo =>
 ({

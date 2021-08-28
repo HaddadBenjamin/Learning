@@ -1,12 +1,12 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
-import { addTodoFailedAction, AddTodoRequestAction, addTodoSuccessAction, editTodoFailedAction, EditTodoRequestAction, editTodoSuccessAction, getTodosFailedAction, GetTodosRequestAction, getTodosSuccessAction, removeTodoFailedAction, RemoveTodoRequestAction, removeTodoSuccessAction, TodoAction, toggleTodoFailedAction, ToggleTodoRequestAction, toggleTodoSuccessAction } from './todos.actions';
-import { addTodo, getAllTodos, patchTitle, removeTodo, patchCompleted } from './todos.api';
-import { ITodo } from './todos.model';
-import { selectTodos } from './todos.selector';
-import { TodoState } from './todos.state';
-import {createTodo} from "./todos.repository";
+import { addTodoFailedAction, AddTodoRequestAction, addTodoSuccessAction, editTodoFailedAction, EditTodoRequestAction, editTodoSuccessAction, getTodosFailedAction, GetTodosRequestAction, getTodosSuccessAction, removeTodoFailedAction, RemoveTodoRequestAction, removeTodoSuccessAction, TodoActions, toggleTodoFailedAction, ToggleTodoRequestAction, toggleTodoSuccessAction } from './todoActions';
+import { addTodo, getAllTodos, patchTitle, removeTodo, patchCompleted } from './todo.api';
+import { ITodo } from './todo.model';
+import { selectTodos } from './todo.selector';
+import { TodoState } from './todo.state';
+import {createTodo} from "./todo.repository";
 
-function* getAllTodosSaga(action : GetTodosRequestAction)
+export function* getAllTodosSaga()
 {
    try
    {
@@ -19,7 +19,7 @@ function* getAllTodosSaga(action : GetTodosRequestAction)
    }
 }
 
-function* addTodoSaga(action : AddTodoRequestAction)
+export function* addTodoSaga(action : AddTodoRequestAction)
 {
    try
    {
@@ -32,7 +32,7 @@ function* addTodoSaga(action : AddTodoRequestAction)
    }
 }
 
-function* editTodoSaga(action : EditTodoRequestAction)
+export function* editTodoSaga(action : EditTodoRequestAction)
 {
    try
    {
@@ -46,7 +46,7 @@ function* editTodoSaga(action : EditTodoRequestAction)
    }
 }
 
-function* toggleTodoSaga(action : ToggleTodoRequestAction)
+export function* toggleTodoSaga(action : ToggleTodoRequestAction)
 {
    try
    {
@@ -64,7 +64,7 @@ function* toggleTodoSaga(action : ToggleTodoRequestAction)
    }
 }
 
-function* removeTodoSaga(action : RemoveTodoRequestAction)
+export function* removeTodoSaga(action : RemoveTodoRequestAction)
 {
    try
    {

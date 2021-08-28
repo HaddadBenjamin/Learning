@@ -1,4 +1,4 @@
-import {TodoState} from "./todos.state";
+import {TodoState} from "./todo.state";
 import {ActionStatus} from "../../shared/domains/Redux/redux.model";
 
 export const emptyTodoStateMock : TodoState =
@@ -38,3 +38,4 @@ export const todoStateMock : TodoState =
 export const todoMock = todoStateMock.todos[0]
 export const {title : todoTitleMock, id : todoIdMock} = todoStateMock.todos[1]
 export const errorMessageMock = '404 not found'
+export const errorMock  = new Error(errorMessageMock)

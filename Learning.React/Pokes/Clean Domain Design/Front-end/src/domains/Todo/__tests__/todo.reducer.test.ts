@@ -1,4 +1,4 @@
-import {todosReducer} from "../todos.reducer";
+import {todoReducer} from "../todo.reducer";
 import {
     emptyTodoStateMock,
     errorMessageMock,
@@ -6,7 +6,7 @@ import {
     todoMock,
     todoStateMock,
     todoTitleMock
-} from "../todos.mock";
+} from "../todo.mock";
 import {
     addTodoFailedAction,
     addTodoRequestAction,
@@ -20,10 +20,10 @@ import {
     removeTodoFailedAction,
     removeTodoRequestAction,
     removeTodoSuccessAction
-} from "../todos.actions";
+} from "../todoActions";
 import {ActionStatus} from "../../../shared/domains/Redux/redux.model";
-import {TodoState} from "../todos.state";
-import {ITodo} from "../todos.model";
+import {TodoState} from "../todo.state";
+import {ITodo} from "../todo.model";
 
 describe("todo.reducer", () =>
 {
@@ -32,7 +32,7 @@ describe("todo.reducer", () =>
         it("Should change the status to loading and set the error to undefined on request", () =>
         {
             // Given & When
-            const newState = todosReducer(emptyTodoStateMock, getTodosRequestAction())
+            const newState = todoReducer(emptyTodoStateMock, getTodosRequestAction())
 
             // Then
             expect(newState).toEqual(expect.objectContaining({
@@ -44,7 +44,7 @@ describe("todo.reducer", () =>
         it("Should set the todos, change the status to loaded and set the error to undefined on success", () =>
         {
             // Given & When
-            const newState = todosReducer(emptyTodoStateMock, getTodosSuccessAction(todoStateMock.todos))
+            const newState = todoReducer(emptyTodoStateMock, getTodosSuccessAction(todoStateMock.todos))
 
             // Then
             expect(newState).toEqual({
@@ -57,7 +57,7 @@ describe("todo.reducer", () =>
         it("Should change the status to failed and set the error on failed", () =>
         {
             // Given & When
-            const newState = todosReducer(emptyTodoStateMock, getTodosFailedAction(errorMessageMock))
+            const newState = todoReducer(emptyTodoStateMock, getTodosFailedAction(errorMessageMock))
 
             // Then
             expect(newState).toEqual(expect.objectContaining({
@@ -72,7 +72,7 @@ describe("todo.reducer", () =>
         it("Should change the status to loading and set the error to undefined on request", () =>
         {
             // Given & When
-            const newState = todosReducer(emptyTodoStateMock, addTodoRequestAction(todoTitleMock))
+            const newState = todoReducer(emptyTodoStateMock, addTodoRequestAction(todoTitleMock))
 
             // Then
             expect(newState).toEqual(expect.objectContaining({
@@ -84,7 +84,7 @@ describe("todo.reducer", () =>
         it("Should add the todo, change the status to loaded and set the error to undefined on success", () =>
         {
             // Given & When
-            const newState = todosReducer(emptyTodoStateMock, addTodoSuccessAction(todoMock))
+            const newState = todoReducer(emptyTodoStateMock, addTodoSuccessAction(todoMock))
 
             // Then
             expect(newState).toEqual<TodoState>({
@@ -97,7 +97,7 @@ describe("todo.reducer", () =>
         it("Should change the status to failed and set the error on failed", () =>
         {
             // Given & When
-            const newState = todosReducer(emptyTodoStateMock, addTodoFailedAction(errorMessageMock))
+            const newState = todoReducer(emptyTodoStateMock, addTodoFailedAction(errorMessageMock))
 
             // Then
             expect(newState).toEqual(expect.objectContaining({
@@ -112,7 +112,7 @@ describe("todo.reducer", () =>
         it("Should change the status to loading and set the error to undefined on request", () =>
         {
             // Given & When
-            const newState = todosReducer(emptyTodoStateMock, editTodoRequestAction(todoIdMock, todoTitleMock))
+            const newState = todoReducer(emptyTodoStateMock, editTodoRequestAction(todoIdMock, todoTitleMock))
 
             // Then
             expect(newState).toEqual(expect.objectContaining({
@@ -125,7 +125,7 @@ describe("todo.reducer", () =>
         {
             // Given & When
             const editedTodo : ITodo = { ...todoMock, title : todoTitleMock }
-            const newState = todosReducer(todoStateMock, editTodoSuccessAction(editedTodo))
+            const newState = todoReducer(todoStateMock, editTodoSuccessAction(editedTodo))
             const firstTodo = newState.todos[0]
 
             // Then
@@ -139,7 +139,7 @@ describe("todo.reducer", () =>
         it("Should change the status to failed and set the error on failed", () =>
         {
             // Given & When
-            const newState = todosReducer(emptyTodoStateMock, editTodoFailedAction(errorMessageMock))
+            const newState = todoReducer(emptyTodoStateMock, editTodoFailedAction(errorMessageMock))
 
             // Then
             expect(newState).toEqual(expect.objectContaining({
@@ -154,7 +154,7 @@ describe("todo.reducer", () =>
         it("Should change the status to loading and set the error to undefined on request", () =>
         {
             // Given & When
-            const newState = todosReducer(emptyTodoStateMock, removeTodoRequestAction(todoIdMock))
+            const newState = todoReducer(emptyTodoStateMock, removeTodoRequestAction(todoIdMock))
 
             // Then
             expect(newState).toEqual(expect.objectContaining({
@@ -166,7 +166,7 @@ describe("todo.reducer", () =>
         it("Should remove the todo, change the status to loaded and set the error to undefined on success", () =>
         {
             // Given & When
-            const newState = todosReducer(todoStateMock, removeTodoSuccessAction(todoIdMock))
+            const newState = todoReducer(todoStateMock, removeTodoSuccessAction(todoIdMock))
             const newTodos : ITodo[] = [todoStateMock.todos[0], todoStateMock.todos[2], todoStateMock.todos[3]]
 
             // Then
@@ -180,7 +180,7 @@ describe("todo.reducer", () =>
         it("Should change the status to failed and set the error on failed", () =>
         {
             // Given & When
-            const newState = todosReducer(emptyTodoStateMock, removeTodoFailedAction(errorMessageMock))
+            const newState = todoReducer(emptyTodoStateMock, removeTodoFailedAction(errorMessageMock))
 
             // Then
             expect(newState).toEqual(expect.objectContaining({

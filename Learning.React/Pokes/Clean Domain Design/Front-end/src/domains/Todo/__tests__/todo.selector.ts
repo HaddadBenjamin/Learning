@@ -1,6 +1,6 @@
-import {selectTodos} from "../todos.selector";
+import {selectTodos} from "../todo.selector";
 import {initialApplicationState} from "../../Root/root.state";
-import {initialTodosState} from "../todos.state";
+import {initialTodoState} from "../todo.state";
 
 describe("todo.selector", () =>
 {
@@ -11,6 +11,6 @@ describe("todo.selector", () =>
 
         // Then
         expect(todoState).toBeDefined()
-        expect(todoState).toEqual(initialTodosState)
+        expect(todoState).toEqual(initialTodoState)
     })
 })
