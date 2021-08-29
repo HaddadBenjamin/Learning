@@ -1,12 +1,9 @@
-import { applyMiddleware, createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { createStore } from 'redux';
 import rootReducer from './root.reducer';
 import {initialApplicationState} from './root.state'
-import createSagaMiddleware from 'redux-saga'
-import watchTodosSagas from '../Todos/todos.saga';
+import middlewares, {sagaMiddleware} from "./root.middleware";
+import watchTodosSagas from "../Todo/todo.saga";
 
-const sagaMiddleware = createSagaMiddleware()
-const middlewares = composeWithDevTools({})(applyMiddleware(sagaMiddleware))
 const store = createStore(rootReducer, initialApplicationState, middlewares)
 
 sagaMiddleware.run(watchTodosSagas)

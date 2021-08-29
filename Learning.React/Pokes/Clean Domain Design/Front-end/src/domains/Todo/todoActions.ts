@@ -1,4 +1,4 @@
-import { ITodo } from './todos.model';
+import { ITodo } from './todo.model';
 
 export enum TodoAction
 {
@@ -43,7 +43,7 @@ export interface GetTodosFailedAction
 export interface AddTodoRequestAction
 { 
     type: TodoAction.ADD_TODO_REQUEST
-    payload : ITodo
+    payload : { title : string }
 }
 
 export interface AddTodoSuccessAction
@@ -126,9 +126,9 @@ export const getTodosFailedAction = (error : string) : GetTodosFailedAction => (
     error
 })
 
-export const addTodoRequestAction = (payload : ITodo) : AddTodoRequestAction => ({
+export const addTodoRequestAction = (title : string) : AddTodoRequestAction => ({
     type : TodoAction.ADD_TODO_REQUEST,
-    payload
+    payload : { title }
 })
 
 export const addTodoSuccessAction = (payload : ITodo) : AddTodoSuccessAction => ({
@@ -186,7 +186,7 @@ export const removeTodoFailedAction = (error : string) : RemoveTodoFailedAction 
     error 
 })
 
-export type TodoActions = 
+export type TodoActions =
     GetTodosRequestAction |
     GetTodosSuccessAction |
     GetTodosFailedAction |

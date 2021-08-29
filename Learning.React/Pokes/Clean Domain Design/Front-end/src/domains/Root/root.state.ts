@@ -1,4 +1,4 @@
-import { initialTodosState, TodoState } from '../Todos/todos.state';
+import { initialTodoState, TodoState } from '../Todo/todo.state';
 
 export interface ApplicationState
 {
@@ -7,5 +7,5 @@ export interface ApplicationState
 
 export const initialApplicationState : ApplicationState =
 {
-    todos : initialTodosState
+    todos : initialTodoState
 }

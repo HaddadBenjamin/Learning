@@ -1,11 +1,11 @@
 import React, {ChangeEvent, FC} from 'react';
 import './Todo.module.scss'
-import { ITodo } from '../../todos.model';
-import { editTodoRequestAction, removeTodoRequestAction, toggleTodoRequestAction } from '../../todos.actions';
+import { ITodo } from '../../todo.model';
+import { editTodoRequestAction, removeTodoRequestAction, toggleTodoRequestAction } from '../../todoActions';
 import { useDispatch } from 'react-redux';
 import styles from './Todo.module.scss'
 
-const Todo : FC<ITodo> = ({ id, content, completed }) =>
+const Todo : FC<ITodo> = ({ id, title, completed }) =>
 {
     const dispatch = useDispatch()
 
@@ -16,7 +16,7 @@ const Todo : FC<ITodo> = ({ id, content, completed }) =>
     return <div className={styles.todo}>
         <div>
             <input type="checkbox" checked={completed} onChange={onChecked} className={styles.toggle}/>
-            <input className={styles.content} defaultValue={content} onChange={onChangeTitle}/>
+            <input className={styles.content} defaultValue={title} onChange={onChangeTitle}/>
         </div>
         <div className={styles.removeButton} onClick={onRemove}>X</div>
     </div>

@@ -1,6 +1,6 @@
 ![Image of Yaktocat](https://imgur.com/eFOEUeD.png)
 
-**Année de développement :** 2021.</br>
+**Année de développement :** 2019.</br>
 
 Ce petit projet me permet de m'entraîner à développer mes compétences sur React.
 
