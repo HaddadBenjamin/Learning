@@ -1,6 +1,4 @@
 import {initialTodoState} from "../../Todo/todo.state";
-import rootReducer from "../root.reducer";
-import {createStore} from "redux";
 import store from "../root.store";
 
 describe("root.reducer", () =>
