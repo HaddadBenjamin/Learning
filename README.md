@@ -8,6 +8,11 @@ Projet d'apprentissage que j'utilise pour appréhender et tester de nouvelles no
 Développement d'une application qui permet d'envoyer des messages privés, dans un groupe ou visibles par tout le monde https://www.youtube.com/watch?v=K4WVlXHjnG4
 > ![Image of Yaktocat](https://imgur.com/Tb4ip0L.png)
 
+Développement d'une architecture que l'on peut réutiliser de projet en projet avec 100% de coverage.
+J'ai choisi une architecture découpée par domaines et par couches car pour l'avoir testé en entreprise elle se maintient et se lit facilement.
+> ![Image of Yaktocat](https://imgur.com/ZhXJp81.png)
+> ![Image of Yaktocat](https://imgur.com/bBRa6Ft.png)
+
 ## CSS
 Refaire à la main l'intégration HTML & CSS de Netflix en gérant également le responsive https://haddadflix.netlify.app/
 > ![Image of Yaktocat](https://imgur.com/dvHJHsH.png)
