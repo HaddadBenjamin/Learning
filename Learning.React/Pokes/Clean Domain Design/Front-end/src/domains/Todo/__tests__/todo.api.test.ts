@@ -10,7 +10,7 @@ describe("todo.api", () =>
     it("getAllTodos should return all the todos and axios.get should be called with routes.api and httpConfiguration.default", () =>
     {
         // Given
-        (axios.get as jest.Mock).mockImplementationOnce(() => Promise.resolve({ data : todoStateMock.todos }))
+        (axios.get as jest.Mock).mockReturnValue(Promise.resolve({ data : todoStateMock.todos }))
 
         // When
         const todos = getAllTodos()
@@ -23,7 +23,7 @@ describe("todo.api", () =>
     it("addTodo should return add a todo and axios.post should be called with routes.api and httpConfiguration.default", () =>
     {
         // Given
-        (axios.post as jest.Mock).mockImplementationOnce(() => Promise.resolve(todoMock))
+        (axios.post as jest.Mock).mockReturnValue(Promise.resolve({ data : todoMock }))
 
         // When
         const todo = addTodo(todoMock)
@@ -36,7 +36,7 @@ describe("todo.api", () =>
     it("patchTitle should patch the todo title and axios.patch should be called with routes.api/id and httpConfiguration.default", () =>
     {
         // Given
-        (axios.patch as jest.Mock).mockImplementationOnce(() => Promise.resolve(todoMock))
+        (axios.patch as jest.Mock).mockReturnValue(Promise.resolve({ data : todoMock }))
 
         // When
         const todo = patchTitle(todoMock.id, todoMock.title)
@@ -49,7 +49,7 @@ describe("todo.api", () =>
     it("patchCompleted should patch the todo completed and axios.patch should be called with routes.api/id and httpConfiguration.default", () =>
     {
         // Given
-        (axios.patch as jest.Mock).mockImplementationOnce(() => Promise.resolve(todoMock))
+        (axios.patch as jest.Mock).mockReturnValue(Promise.resolve({ data : todoMock }))
 
         // When
         const todo = patchCompleted(todoMock.id, todoMock.completed)
@@ -62,7 +62,7 @@ describe("todo.api", () =>
     it("removeTodo should remove the todo and axios.delete should be called with routes.api/id and httpConfiguration.default", () =>
     {
         // Given
-        (axios.delete as jest.Mock).mockImplementationOnce(() => Promise.resolve(todoMock))
+        (axios.delete as jest.Mock).mockReturnValue(Promise.resolve({ data : todoMock }))
 
         // When
         const todo = removeTodo(todoMock.id)
