@@ -1,13 +1,13 @@
-import {initialTodoState} from "../../Todo/todo.state";
 import store from "../root.store";
+import {initialApplicationState} from "../root.state";
 
 describe("root.reducer", () =>
 {
-    it("rootReducer.state should be equals to initialState", () => {
+    it("rootReducer should be equals to initialApplicationState", () => {
         // Given & When
-        const todoState = store.getState().todos
+        const state = store.getState()
 
         // Then
-        expect(todoState).toEqual(initialTodoState)
+        expect(state).toEqual(initialApplicationState)
     })
 })
