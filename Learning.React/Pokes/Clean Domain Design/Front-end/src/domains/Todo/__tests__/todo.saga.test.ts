@@ -13,7 +13,7 @@ import {
 } from "../todo.mock";
 import {expectSaga} from "redux-saga-test-plan";
 import * as matchers from 'redux-saga-test-plan/matchers';
-import {
+import watchTodosSagas, {
     addTodoSaga,
     editTodoSaga,
     getAllTodosSaga,
@@ -21,6 +21,7 @@ import {
     toggleTodoSaga
 } from "../todo.saga";
 import {
+    TodoAction,
     addTodoFailedAction,
     addTodoRequestAction,
     addTodoSuccessAction,
@@ -37,11 +38,13 @@ import {
     toggleTodoRequestAction,
     toggleTodoSuccessAction
 } from "../todoActions";
-import {call} from "redux-saga-test-plan/matchers";
+import {call, fork} from "redux-saga-test-plan/matchers";
 import {throwError} from "redux-saga-test-plan/providers";
 import {useSelector} from "react-redux";
 import {selectTodos} from "../todo.selector";
 import {ITodo} from "../todo.model";
+import {takeLatest} from "redux-saga/effects";
+import {excludeSagaPayloadFn} from "../../../shared/domains/Redux/redux.util";
 
 jest.mock('react-redux')
 jest.mock('../todo.api')
@@ -184,5 +187,17 @@ describe("todo.saga", () =>
                 .put(removeTodoFailedAction(errorMessageMock))
                 .dispatch(action)
                 .silentRun())
+    })
+
+    it("watchTodosSagas should watch and takeLatest GET_TODOS_REQUEST, ADD_TODO_REQUEST, EDIT_TODO_REQUEST, TOGGLE_TODO_REQUEST, REMOVE_TODO_REQUEST", () =>
+    {
+        const iterator = watchTodosSagas();
+
+        // assert
+        expect(excludeSagaPayloadFn(iterator.next().value)).toEqual(excludeSagaPayloadFn(fork(takeLatest, TodoAction.GET_TODOS_REQUEST, getAllTodosSaga)));
+        expect(excludeSagaPayloadFn(iterator.next().value)).toEqual(excludeSagaPayloadFn(fork(takeLatest, TodoAction.ADD_TODO_REQUEST, addTodoSaga)));
+        expect(excludeSagaPayloadFn(iterator.next().value)).toEqual(excludeSagaPayloadFn(fork(takeLatest, TodoAction.EDIT_TODO_REQUEST, editTodoSaga)));
+        expect(excludeSagaPayloadFn(iterator.next().value)).toEqual(excludeSagaPayloadFn(fork(takeLatest, TodoAction.TOGGLE_TODO_REQUEST, toggleTodoSaga)));
+        expect(excludeSagaPayloadFn(iterator.next().value)).toEqual(excludeSagaPayloadFn(fork(takeLatest, TodoAction.REMOVE_TODO_REQUEST, removeTodoSaga)));
     })
 })

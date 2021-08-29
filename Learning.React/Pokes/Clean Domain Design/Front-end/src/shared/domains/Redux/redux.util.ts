@@ -8,3 +8,11 @@ export const loadedActionMetadata = <State>(state : State) : State & IActionMeta
 
 export const failedActionMetadata = <State>(error : string, state : State) : State & IActionMetadata =>
     ({ ...state, error, status : ActionStatus.Failed })
+
+export const excludeSagaPayloadFn = (saga : any) => expect.objectContaining({
+    ...saga,
+    payload : {
+        ...saga.payload,
+        fn : undefined
+    }
+})
