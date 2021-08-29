@@ -41,6 +41,7 @@ import {call} from "redux-saga-test-plan/matchers";
 import {throwError} from "redux-saga-test-plan/providers";
 import {useSelector} from "react-redux";
 import {selectTodos} from "../todo.selector";
+import {ITodo} from "../todo.model";
 
 jest.mock('react-redux')
 jest.mock('../todo.api')
@@ -132,13 +133,14 @@ describe("todo.saga", () =>
         it("should toggle a todo", () =>
         {
             // Given
-            (selectTodos as jest.Mock).mockImplementation((state) => todoStateMock)
+            (selectTodos as jest.Mock).mockReturnValue(todoStateMock);
             (patchCompleted as jest.Mock).mockReturnValue(todoMock)
+            const toggledTodo : ITodo = { ...todoMock, completed : !todoMock.completed}
 
             // When & Then
             return expectSaga(toggleTodoSaga, action)
-                .provide([call(() => patchCompleted, todoMock.id, todoMock.completed)])
-                .put(toggleTodoSuccessAction(todoMock))
+                .provide([call(() => patchCompleted, todoMock.id, toggledTodo.completed)])
+                .put(toggleTodoSuccessAction(toggledTodo))
                 .dispatch(action)
                 .silentRun()
         })
@@ -146,6 +148,7 @@ describe("todo.saga", () =>
         it("should handle errors", () =>
         {
             // Given
+            (selectTodos as jest.Mock).mockReturnValue(todoStateMock);
             (useSelector as jest.Mock).mockReturnValue(todoStateMock)
 
             // When & Then

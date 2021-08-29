@@ -1,4 +1,4 @@
-import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { ITodo } from './todo.model'
 import {httpConfiguration, routes} from "./todo.constant";
 
