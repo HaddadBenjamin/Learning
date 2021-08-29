@@ -25,8 +25,9 @@ import {
     toggleTodoSuccessAction
 } from "../todoActions";
 import {ActionStatus} from "../../../shared/domains/Redux/redux.model";
-import {TodoState} from "../todo.state";
+import {initialTodoState, TodoState} from "../todo.state";
 import {ITodo} from "../todo.model";
+import store from "../../Root/root.store";
 
 describe("todo.reducer", () =>
 {
@@ -246,5 +247,13 @@ describe("todo.reducer", () =>
             // Then
             expect(newState).toEqual(newState)
         })
+    })
+
+    it("rootReducer.todos should be equals to initialTodoState", () => {
+        // Given & When
+        const todoState = store.getState().todos
+
+        // Then
+        expect(todoState).toEqual(initialTodoState)
     })
 })
