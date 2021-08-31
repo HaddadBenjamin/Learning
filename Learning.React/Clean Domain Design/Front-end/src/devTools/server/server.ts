@@ -18,4 +18,3 @@ app.listen(PORT, async () =>
     await loadApiMocks(app)
     console.log(getRoutes(app))
 })
-
