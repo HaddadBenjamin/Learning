@@ -1,7 +1,7 @@
 import {addTodo, getAllTodos, patchCompleted, patchTitle, removeTodo} from '../todo.api'
 import {todoMock, todoStateMock} from '../todo.mock'
 import axios from 'axios'
-import {httpConfiguration, routes} from "../todo.constant";
+import {httpConfiguration, routes} from "../todo.configuration";
 
 jest.mock('axios')
 

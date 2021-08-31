@@ -23,7 +23,7 @@ import {
     toggleTodoFailedAction,
     toggleTodoRequestAction,
     toggleTodoSuccessAction
-} from "../todoActions";
+} from "../todo.action";
 import {ActionStatus} from "../../../shared/domains/Redux/redux.model";
 import {initialTodoState, TodoState} from "../todo.state";
 import {ITodo} from "../todo.model";

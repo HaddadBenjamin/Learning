@@ -37,7 +37,7 @@ import {
     toggleTodoFailedAction,
     toggleTodoRequestAction,
     toggleTodoSuccessAction
-} from "../todoActions";
+} from "../todo.action";
 import {call, fork} from "redux-saga-test-plan/matchers";
 import {throwError} from "redux-saga-test-plan/providers";
 import {useSelector} from "react-redux";

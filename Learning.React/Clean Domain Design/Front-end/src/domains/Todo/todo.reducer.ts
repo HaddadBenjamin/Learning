@@ -1,5 +1,5 @@
 import { TodoState, initialTodoState } from './todo.state';
-import { TodoAction, TodoActions } from './todoActions';
+import { TodoAction, TodoActions } from './todo.action';
 import { failedActionMetadata, loadedActionMetadata, loadingActionMetadata } from '../../shared/domains/Redux/redux.util';
 
 export const todoReducer = (state: TodoState = initialTodoState, action: TodoActions)

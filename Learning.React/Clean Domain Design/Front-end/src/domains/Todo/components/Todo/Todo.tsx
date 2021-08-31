@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FC} from 'react';
 import './Todo.module.scss'
 import { ITodo } from '../../todo.model';
-import { editTodoRequestAction, removeTodoRequestAction, toggleTodoRequestAction } from '../../todoActions';
+import { editTodoRequestAction, removeTodoRequestAction, toggleTodoRequestAction } from '../../todo.action';
 import { useDispatch } from 'react-redux';
 import styles from './Todo.module.scss'
 

@@ -1,7 +1,7 @@
 import {fireEvent, render} from "@testing-library/react";
 import AddTodo from "../AddTodo";
 import {useDispatch} from "react-redux";
-import {addTodoRequestAction} from "../../../todoActions";
+import {addTodoRequestAction} from "../../../todo.action";
 import {todoTitleMock} from "../../../todo.mock";
 
 jest.mock('react-redux')

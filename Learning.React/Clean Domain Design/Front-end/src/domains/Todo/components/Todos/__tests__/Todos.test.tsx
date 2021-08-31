@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {render} from "@testing-library/react";
 import Todos from "../Todos";
 import {todoStateMock} from "../../../todo.mock";
-import {getTodosRequestAction} from "../../../todoActions";
+import {getTodosRequestAction} from "../../../todo.action";
 
 jest.mock('react-redux')
 const mockUseDispatch = useDispatch as jest.MockedFunction<typeof useDispatch>
