@@ -11,10 +11,9 @@ export const httpConfiguration =
     {
         baseURL : '',
         headers :
-            {
-                'Content-Type' : 'application/json',
-                'X-Requested-With' : 'XMLHttpRequest',
-                'Origin' : 'http://localhost:3000'
-            }
+        {
+            'Content-Type' : 'application/json',
+            'X-Requested-With' : 'XMLHttpRequest'
+        }
     } as AxiosRequestConfig
 }
