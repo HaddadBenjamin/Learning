@@ -1,18 +1,21 @@
 import axios, { AxiosResponse } from 'axios'
 import { ITodo } from './todo.model'
-import {httpConfiguration, routes} from "./todo.configuration";
+import {routes} from "./todo.configuration";
+import {apiConfiguration, httpConfiguration} from "../../shared/shared.configuration";
+
+const baseUrl = `${apiConfiguration.baseUrl}${routes.api}`
 
 export const getAllTodos = async () : Promise<AxiosResponse<ITodo[]>> =>
-    (await axios.get(routes.api, httpConfiguration.default)).data
+    (await axios.get(baseUrl, httpConfiguration.default)).data
 
 export const addTodo = async (todo : ITodo) : Promise<AxiosResponse<ITodo>> =>
-    (await axios.post(routes.api, todo, httpConfiguration.default)).data
+    (await axios.post(baseUrl, todo, httpConfiguration.default)).data
 
 export const patchTitle = async (id : string, title : string) : Promise<AxiosResponse<ITodo>> => 
-    (await axios.patch(`${routes.api}/${id}`, { title : title }, httpConfiguration.default)).data
+    (await axios.patch(`${baseUrl}/${id}`, { title : title }, httpConfiguration.default)).data
 
 export const patchCompleted = async (id : string, completed : boolean) : Promise<AxiosResponse<ITodo>> => 
-    (await axios.patch(`${routes.api}/${id}`, { completed : completed }, httpConfiguration.default)).data
+    (await axios.patch(`${baseUrl}/${id}`, { completed : completed }, httpConfiguration.default)).data
 
 export const removeTodo = async (id : string) : Promise<AxiosResponse<ITodo>> =>
-    (await axios.delete(`${routes.api}/${id}`, httpConfiguration.default)).data
+    (await axios.delete(`${baseUrl}/${id}`, httpConfiguration.default)).data

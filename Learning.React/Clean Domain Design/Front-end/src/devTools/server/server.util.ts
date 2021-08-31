@@ -1,6 +1,6 @@
 import glob from 'glob'
 import path from 'path'
-import {Router, Request, Response, NextFunction} from "express";
+import {Express} from "express";
 
 const getApiMockPaths = async () => await new Promise<string[]>((resolve, reject) =>
     glob(path.join(process.cwd(), 'src/domains/**/*.apiMock.ts'),
@@ -10,7 +10,7 @@ const getApiMockPaths = async () => await new Promise<string[]>((resolve, reject
         else resolve(files)
     }))
 
-export const loadApiMocks = async (router : Router) =>
+export const loadApiMocks = async (app : Express) =>
 {
     const apiMockPaths = await getApiMockPaths()
 
@@ -18,22 +18,22 @@ export const loadApiMocks = async (router : Router) =>
     {
         const apiMock = (await import(apiMockPath)).default
 
-        apiMock(router)
+        apiMock(app)
     }))
 }
 
-export const corsMiddleware = (req : Request, res : Response, next : NextFunction) =>
-{
-    const { origin } = req.headers
+let route, routes : string[] = [];
+export const getRoutes = (app : Express) : string[] => {
+    app._router.stack.forEach(function (middleware: any) {
+        if (middleware.route) { // routes registered directly on the app
+            routes.push(middleware.route);
+        } else if (middleware.name === 'router') { // router middleware
+            middleware.handle.stack.forEach(function (handler: any) {
+                route = handler.route;
+                route && routes.push(route);
+            });
+        }
+    });
 
-    if (origin)
-    {
-        res.setHeader('Access-Control-Allow-Origin', origin)
-        res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE')
-    }
-
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization, Origin')
-    res.header('Access-Control-Allow-Credentials', 'true')
-
-    next()
+    return routes
 }
