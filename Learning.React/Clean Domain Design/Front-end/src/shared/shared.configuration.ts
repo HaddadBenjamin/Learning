@@ -7,12 +7,5 @@ export const apiConfiguration =
 
 export const httpConfiguration =
 {
-    default :
-    {
-        baseURL : '',
-        headers :
-        {
-            'Content-Type' : 'application/json',
-        }
-    } as AxiosRequestConfig
+    default : { headers : { 'Content-Type' : 'application/json' } } as AxiosRequestConfig
 }
