@@ -22,17 +22,17 @@ export const loadApiMocks = async (app : Express) =>
     }))
 }
 
-let route, routes : string[] = [];
-export const getRoutes = (app : Express) : string[] => {
-    app._router.stack.forEach(function (middleware: any) {
-        if (middleware.route) { // routes registered directly on the app
+let routes : string[] = [];
+export const getRoutes = (app : Express) : string[] =>
+{
+    app._router.stack.forEach((middleware: any) =>
+    {
+        if (middleware.route)
             routes.push(middleware.route);
-        } else if (middleware.name === 'router') { // router middleware
-            middleware.handle.stack.forEach(function (handler: any) {
-                route = handler.route;
-                route && routes.push(route);
-            });
-        }
+
+        else if (middleware.name === 'router')
+            middleware.handle.stack.forEach((handler: any) =>
+                handler.route && routes.push(handler.route));
     });
 
     return routes
