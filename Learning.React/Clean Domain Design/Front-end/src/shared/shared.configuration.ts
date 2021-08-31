@@ -13,7 +13,6 @@ export const httpConfiguration =
         headers :
         {
             'Content-Type' : 'application/json',
-            'X-Requested-With' : 'XMLHttpRequest'
         }
     } as AxiosRequestConfig
 }
