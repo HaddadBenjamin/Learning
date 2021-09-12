@@ -1,8 +1,8 @@
 import {AxiosRequestConfig} from "axios";
 
-export const routes =
+export const apiConfiguration =
 {
-    api : 'http://localhost:3001/todos'
+    baseUrl : 'http://localhost:3001'
 }
 
 export const httpConfiguration =

@@ -7,7 +7,6 @@ import {
    EditTodoRequestAction,
    editTodoSuccessAction,
    getTodosFailedAction,
-   GetTodosRequestAction,
    getTodosSuccessAction,
    removeTodoFailedAction,
    RemoveTodoRequestAction,
@@ -16,7 +15,7 @@ import {
    toggleTodoFailedAction,
    ToggleTodoRequestAction,
    toggleTodoSuccessAction
-} from './todoActions';
+} from './todo.action';
 import {
    addTodo,
    getAllTodos,

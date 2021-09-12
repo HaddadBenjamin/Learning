@@ -3,7 +3,7 @@ import Todo from '../Todo/Todo';
 import AddTodo from '../AddTodo/AddTodo';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectTodos } from '../../todo.selector';
-import { getTodosRequestAction } from '../../todoActions';
+import { getTodosRequestAction } from '../../todo.action';
 import styles from './Todos.module.scss'
 
 const Todos : FC = () =>

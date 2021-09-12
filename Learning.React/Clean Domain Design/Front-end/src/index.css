@@ -5,6 +5,7 @@ body {
     sans-serif;
   background: rgb(66,3,133);
   background: linear-gradient(135deg, rgba(66,3,133,1) 0%, rgba(51,110,238,1) 100%);
+  min-height: 97.2vh;
 }
 input {
   all: unset;

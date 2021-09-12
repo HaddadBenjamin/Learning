@@ -37,14 +37,14 @@ import {
     toggleTodoFailedAction,
     toggleTodoRequestAction,
     toggleTodoSuccessAction
-} from "../todoActions";
+} from "../todo.action";
 import {call, fork} from "redux-saga-test-plan/matchers";
 import {throwError} from "redux-saga-test-plan/providers";
 import {useSelector} from "react-redux";
 import {selectTodos} from "../todo.selector";
 import {ITodo} from "../todo.model";
 import {takeLatest} from "redux-saga/effects";
-import {excludeSagaPayloadFn} from "../../../shared/domains/Redux/redux.util";
+import {excludeSagaPayloadFn} from "shared/domains/Redux/redux.util";
 
 jest.mock('react-redux')
 jest.mock('../todo.api')
