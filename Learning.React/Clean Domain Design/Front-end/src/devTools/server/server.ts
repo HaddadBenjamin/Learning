@@ -11,10 +11,12 @@ app.use(cors({
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
 }))
 
+const generateSwaggerOpenApi = require('express-oas-generator');
+generateSwaggerOpenApi.init(app, {});
 
 app.listen(PORT, async () =>
 {
-    console.log(`%c API mocks listening http://localhost:${PORT}`, 'background: #222; color: #bada55');
+    console.log(`%c API mocks listening http://localhost:${PORT}/api-docs/`, 'background: #222; color: #bada55');
     await loadApiMocks(app)
     console.log(getRoutes(app))
 })
