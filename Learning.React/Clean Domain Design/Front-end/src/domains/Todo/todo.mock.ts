@@ -1,5 +1,5 @@
 import {TodoState} from "./todo.state";
-import {ActionStatus} from "../../shared/domains/Redux/redux.model";
+import {ActionStatus} from "shared/domains/Redux/redux.model";
 
 export const emptyTodoStateMock : TodoState =
 {

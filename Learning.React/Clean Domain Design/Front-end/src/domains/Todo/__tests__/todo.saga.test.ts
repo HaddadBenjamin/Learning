@@ -44,7 +44,7 @@ import {useSelector} from "react-redux";
 import {selectTodos} from "../todo.selector";
 import {ITodo} from "../todo.model";
 import {takeLatest} from "redux-saga/effects";
-import {excludeSagaPayloadFn} from "../../../shared/domains/Redux/redux.util";
+import {excludeSagaPayloadFn} from "shared/domains/Redux/redux.util";
 
 jest.mock('react-redux')
 jest.mock('../todo.api')

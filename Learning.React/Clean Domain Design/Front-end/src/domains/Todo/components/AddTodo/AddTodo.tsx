@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, FC } from 'react';
 import "./AddTodo.module.scss"
 import { useDispatch } from 'react-redux';
-import { addTodoRequestAction } from '../../todo.action';
+import { addTodoRequestAction } from 'domains/Todo/todo.action';
 import styles from './AddTodo.module.scss'
 
 const AddTodo : FC = () => {

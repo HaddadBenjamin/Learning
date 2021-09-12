@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import { ITodo } from './todo.model'
 import {routes} from "./todo.configuration";
-import {apiConfiguration, httpConfiguration} from "../../shared/shared.configuration";
+import {apiConfiguration, httpConfiguration} from "shared/shared.configuration";
 
 export const baseUrl = `${apiConfiguration.baseUrl}${routes.api}`
 

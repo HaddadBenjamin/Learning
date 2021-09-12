@@ -1,5 +1,5 @@
 import { ITodo } from "./todo.model";
-import { ActionStatus, IActionMetadata } from '../../shared/domains/Redux/redux.model';
+import { ActionStatus, IActionMetadata } from 'shared/domains/Redux/redux.model';
 
 export interface TodoState extends IActionMetadata
 { 

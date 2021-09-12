@@ -1,4 +1,4 @@
-import { initialTodoState, TodoState } from '../Todo/todo.state';
+import { initialTodoState, TodoState } from 'domains/Todo/todo.state';
 
 export interface ApplicationState
 {
