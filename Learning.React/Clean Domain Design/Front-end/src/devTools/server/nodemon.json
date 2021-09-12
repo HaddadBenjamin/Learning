@@ -1,0 +1,9 @@
+{
+  "verbose": true,
+  "restartable": "rs",
+  "watch": ["./*", "../../domains/**/*"],
+  "ext": "apiMock.ts",
+  "execMap": {
+    "ts": "ts-node -r tsconfig-paths/register --project src/devTools/server/tsconfig.json --transpile-only src/devTools/server/server.ts"
+  }
+}
