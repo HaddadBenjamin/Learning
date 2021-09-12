@@ -3,7 +3,7 @@ import { ITodo } from './todo.model'
 import {routes} from "./todo.configuration";
 import {apiConfiguration, httpConfiguration} from "../../shared/shared.configuration";
 
-const baseUrl = `${apiConfiguration.baseUrl}${routes.api}`
+export const baseUrl = `${apiConfiguration.baseUrl}${routes.api}`
 
 export const getAllTodos = async () : Promise<AxiosResponse<ITodo[]>> =>
     (await axios.get(baseUrl, httpConfiguration.default)).data
