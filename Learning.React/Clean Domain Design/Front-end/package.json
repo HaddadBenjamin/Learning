@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"yarn dev:react\" \"dev:apiMock\"",
+    "dev": "concurrently \"yarn dev:react\" \"yarn dev:apiMock\"",
     "dev:react": "react-scripts start",
     "dev:apiMock": "nodemon src/devTools/server/server.ts --config src/devTools/server/nodemon.json",
     "build": "react-scripts build",
