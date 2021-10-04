@@ -1,10 +1,9 @@
 import React from 'react';
-import { lazyImageDatas } from './shared/domains/lazyLoad/lazyImage/lazyImage.mock';
-import LazyImage from "./shared/domains/lazyLoad/lazyImage/components/LazyImage";
+import { InfiniteScrollingSample } from './samples/infiniteScrolling/InfiniteScrollingSample';
+import { LazyImageSample } from './samples/lazyImage/LazyImageSample';
 
-export const App = () => <div>
-    <h1>Lazy Load Images</h1>
-    <section>
-      { lazyImageDatas.map(data => <LazyImage key={data.id} {...data}/>) }
-    </section>
-  </div>
+export const App = () =>
+  <>
+    <InfiniteScrollingSample/>
+    <LazyImageSample/>
+</>

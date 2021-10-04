@@ -1,6 +1,6 @@
 import React, { useState, useRef, FC } from 'react';
 import cn from 'classnames';
-import { useDoesRefIsVisible } from '../hooks/useDoesRefIsVisible';
+import { useDoesRefIsVisible } from '../../../../hooks/useDoesRefIsVisible';
 import styles from './LazyImage.module.scss';
 import {LazyImageData} from "../lazyImage.model";
 
