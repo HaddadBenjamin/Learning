@@ -29,8 +29,8 @@ const InfiniteScrolling = () =>
 
     const [items, setItems] = useState<any[]>([])
     const [isFetching] = useInfiniteScroll(getItems, 'infiniteScrollContainerId')
-    const [page, setPage] = useState<number>(1)
-    const [hasNextPage, setHasNextPage] = useState<boolean>(true)
+    const [page, setPage] = useState(1)
+    const [hasNextPage, setHasNextPage] = useState(true)
 
     return <>
         <h2>Infinite scrolling</h2>

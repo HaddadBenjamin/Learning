@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const useInfiniteScroll = (getItems : () => Promise<any>, containerId : string = '', updateDelay : number = 250) =>
 {
-    const [isFetching, setIsFetching] = useState<boolean>(false)
+    const [isFetching, setIsFetching] = useState(false)
 
     useEffect(() =>
     {
