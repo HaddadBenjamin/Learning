@@ -4,7 +4,8 @@ import LazyImage from "../../shared/domains/lazyLoad/lazyImage/components/LazyIm
 
 export const LazyImageSample = () =>
   <div>
-    <h1>Lazy Load Images</h1>
+    <h2>Lazy Images Load</h2>
+
     <section>
       { lazyImageDatas.map(data => <LazyImage key={data.id} {...data}/>) }
     </section>

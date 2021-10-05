@@ -5,6 +5,7 @@
 {
     @include flex(center, center, row);
 }
+
 .addButton
 {
     @include text($spacingXL, #37a2ff, $fontWeightBold, undefined);
