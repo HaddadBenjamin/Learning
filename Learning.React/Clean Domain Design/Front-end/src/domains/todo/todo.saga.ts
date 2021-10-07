@@ -6,7 +6,7 @@ import {
    editTodoFailedAction,
    EditTodoRequestAction,
    editTodoSuccessAction,
-   getTodosFailedAction,
+   getTodosFailedAction, getTodosRequestAction,
    getTodosSuccessAction,
    removeTodoFailedAction,
    RemoveTodoRequestAction,
@@ -43,10 +43,11 @@ export function* getAllTodosSaga()
 
 export function* addTodoSaga(action : AddTodoRequestAction)
 {
-   try
-   {
-      const newTodo : ITodo = yield call(addTodo, createTodo(action.payload.title));
+   try {
+      const newTodo: ITodo = yield call(addTodo, createTodo(action.payload.title));
+
       yield put(addTodoSuccessAction(newTodo));
+      yield put(getTodosRequestAction());
    }
    catch (error)
    {
@@ -60,7 +61,9 @@ export function* editTodoSaga(action : EditTodoRequestAction)
    {
       const { id, title } = action.payload
       const editedTodo : ITodo = yield call(patchTitle, id, title);
+
       yield put(editTodoSuccessAction(editedTodo));
+      yield put(getTodosRequestAction());
    }
    catch (error)
    {
@@ -79,6 +82,7 @@ export function* toggleTodoSaga(action : ToggleTodoRequestAction)
    
       yield call(patchCompleted, id, toggledTodo.completed);
       yield put(toggleTodoSuccessAction(toggledTodo));
+      yield put(getTodosRequestAction());
    }
    catch (error)
    {
@@ -90,10 +94,11 @@ export function* removeTodoSaga(action : RemoveTodoRequestAction)
 {
    try
    {
-        const { id } = action.payload
+     const { id } = action.payload
 
-        yield call(removeTodo, id);
-        yield put(removeTodoSuccessAction(id));
+     yield call(removeTodo, id);
+     yield put(removeTodoSuccessAction(id));
+      yield put(getTodosRequestAction());
    }
    catch (error)
    {

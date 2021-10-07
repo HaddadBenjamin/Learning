@@ -89,8 +89,9 @@ describe("todo.saga", () =>
 
             // When & Then
             return expectSaga(addTodoSaga, action)
-                .provide([call(() => addTodo, todoMock)])
+                .provide([call(() => addTodo, todoMock), call(() => getAllTodos, todoStateMock.todos)])
                 .put(addTodoSuccessAction(todoMock))
+                .put(getTodosRequestAction())
                 .dispatch(action)
                 .silentRun()
         })
@@ -114,8 +115,9 @@ describe("todo.saga", () =>
 
             // When & Then
             return expectSaga(editTodoSaga, action)
-                .provide([call(() => patchTitle, todoMock.id, todoMock.title)])
+                .provide([call(() => patchTitle, todoMock.id, todoMock.title), call(() => getAllTodos, todoStateMock.todos)])
                 .put(editTodoSuccessAction(todoMock))
+                .put(getTodosRequestAction())
                 .dispatch(action)
                 .silentRun()
         })
@@ -142,8 +144,9 @@ describe("todo.saga", () =>
 
             // When & Then
             return expectSaga(toggleTodoSaga, action)
-                .provide([call(() => patchCompleted, todoMock.id, toggledTodo.completed)])
+                .provide([call(() => patchCompleted, todoMock.id, toggledTodo.completed), call(() => getAllTodos, todoStateMock.todos)])
                 .put(toggleTodoSuccessAction(toggledTodo))
+                .put(getTodosRequestAction())
                 .dispatch(action)
                 .silentRun()
         })
@@ -174,8 +177,9 @@ describe("todo.saga", () =>
 
             // When & Then
             return expectSaga(removeTodoSaga, action)
-                .provide([call(() => removeTodo, todoMock.id)])
+                .provide([call(() => removeTodo, todoMock.id), call(() => getAllTodos, todoStateMock.todos)])
                 .put(removeTodoSuccessAction(todoMock.id))
+                .put(getTodosRequestAction())
                 .dispatch(action)
                 .silentRun()
         })

@@ -85,7 +85,7 @@ describe("todo.reducer", () =>
             }))
         })
 
-        it("Should add the todo, change the status to loaded and set the error to undefined on success", () =>
+        it("Should change the status to loaded and set the error to undefined on success", () =>
         {
             // Given & When
             const newState = todoReducer(emptyTodoStateMock, addTodoSuccessAction(todoMock))
@@ -94,7 +94,7 @@ describe("todo.reducer", () =>
             expect(newState).toEqual<TodoState>({
                 status: ActionStatus.Loaded,
                 error: undefined,
-                todos : [todoMock]
+                todos : []
             })
         })
 
@@ -125,19 +125,18 @@ describe("todo.reducer", () =>
             }))
         })
 
-        it("Should edit the todo, change the status to loaded and set the error to undefined on success", () =>
+        it("Should change the status to loaded and set the error to undefined on success", () =>
         {
             // Given & When
             const editedTodo : ITodo = { ...todoMock, title : todoTitleMock }
             const newState = todoReducer(todoStateMock, editTodoSuccessAction(editedTodo))
-            const firstTodo = newState.todos[0]
 
             // Then
-            expect(newState).toEqual(expect.objectContaining({
+            expect(newState).toEqual({
                 status: ActionStatus.Loaded,
                 error: undefined,
-            }))
-            expect(firstTodo).toBe(editedTodo)
+                todos: todoStateMock.todos
+            })
         })
 
         it("Should change the status to failed and set the error on failed", () =>
@@ -158,28 +157,28 @@ describe("todo.reducer", () =>
         it("Should change the status to loading and set the error to undefined on request", () =>
         {
             // Given & When
-            const newState = todoReducer(emptyTodoStateMock, toggleTodoRequestAction(todoIdMock))
+            const newState = todoReducer(todoStateMock, toggleTodoRequestAction(todoIdMock))
 
             // Then
-            expect(newState).toEqual(expect.objectContaining({
+            expect(newState).toEqual({
                 status: ActionStatus.Loading,
-                error: undefined
-            }))
+                error: undefined,
+                todos : todoStateMock.todos
+            })
         })
 
-        it("Should toggle the todo, change the status to loaded and set the error to undefined on success", () =>
+        it("Should change the status to loaded and set the error to undefined on success", () =>
         {
             // Given & When
             const toggledTodo : ITodo = { ...todoMock, completed : !todoMock.completed }
             const newState = todoReducer(todoStateMock, toggleTodoSuccessAction(toggledTodo))
-            const firstTodo = newState.todos[0]
 
             // Then
-            expect(newState).toEqual(expect.objectContaining({
+            expect(newState).toEqual({
                 status: ActionStatus.Loaded,
                 error: undefined,
-            }))
-            expect(firstTodo).toBe(toggledTodo)
+                todos: todoStateMock.todos
+            })
         })
 
         it("Should change the status to failed and set the error on failed", () =>
@@ -209,17 +208,16 @@ describe("todo.reducer", () =>
             }))
         })
 
-        it("Should remove the todo, change the status to loaded and set the error to undefined on success", () =>
+        it("Should change the status to loaded and set the error to undefined on success", () =>
         {
             // Given & When
             const newState = todoReducer(todoStateMock, removeTodoSuccessAction(todoIdMock))
-            const newTodos : ITodo[] = [todoStateMock.todos[0], todoStateMock.todos[2], todoStateMock.todos[3]]
 
             // Then
             expect(newState).toEqual({
                 status: ActionStatus.Loaded,
                 error: undefined,
-                todos : newTodos
+                todos : todoStateMock.todos
             })
         })
 

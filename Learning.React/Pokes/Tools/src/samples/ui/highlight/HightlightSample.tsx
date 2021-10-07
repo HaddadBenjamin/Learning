@@ -1,12 +1,13 @@
 import { Highlight } from '../../../shared/domains/ui/highlight/components/Highlight'
 import {highlightDatasMock} from './highlight.mock'
-import {useState} from "react";
+import {ChangeEvent, useState} from "react";
 
 export const HightlightSample = () =>
 {
   const [searchTerm, setSearchTerm] = useState('')
 
-  const onChangeSearchTerm = (e : any) => setSearchTerm(e.target.value)
+  const onChangeSearchTerm = (event : ChangeEvent<HTMLInputElement>) : void =>
+      setSearchTerm(event.target.value)
 
   return <>
     <h2>Highlight</h2>
