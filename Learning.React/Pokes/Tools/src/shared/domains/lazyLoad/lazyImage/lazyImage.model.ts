@@ -1,8 +1,9 @@
 export interface LazyImageData
 {
-  id : string
-  url : string
+  src : string
   alt : string
   width : number
   height : number
+  sizes? : string
+  srcSet?: string
 }

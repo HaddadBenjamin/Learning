@@ -5,5 +5,5 @@ export interface LazyImageData
   width : number
   height : number
   sizes? : string
-  srcSet?: string
+  srcSet? : string
 }

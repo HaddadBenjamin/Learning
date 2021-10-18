@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { doesElementIsVisible } from "../../../../utils/doesElementIsVisible";
 import axios from "axios"
 
-// Pour pouvoir faire de l'infinite scrolling, il faut que votre endpoint en GET gère la pagination.
+// Pour pouvoir faire de l'infinite scrolling, il est nécéssaire que votre endpoint en GET gère la pagination.
 export const useInfiniteScrolling = (
   containerSelector : string,
   computeFetchUrl : (page : number, pageSize : number) => string,

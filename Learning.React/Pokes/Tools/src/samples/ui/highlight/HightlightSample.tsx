@@ -2,7 +2,7 @@ import { Highlight } from '../../../shared/domains/ui/highlight/components/Highl
 import {highlightDatasMock} from './highlight.mock'
 import {ChangeEvent, useState} from "react";
 
-export const HightlightSample = () =>
+const HightlightSample = () =>
 {
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -18,3 +18,5 @@ export const HightlightSample = () =>
       .map((text, index) => <Highlight searchTerm={searchTerm} text={text} color='blue' key={`Highlight${index}`} />)}
   </>
 }
+
+export default HightlightSample

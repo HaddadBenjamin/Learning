@@ -1,7 +1,7 @@
 import { useInfiniteScrolling } from '../../shared/domains/lazyLoad/infiniteScrolling/hooks/useInfiniteScrolling'
 
 // Pour pouvoir faire de l'infinite scrolling, il faut que votre endpoint en GET gère la pagination.
-export const InfiniteScrollingSample = () =>
+const InfiniteScrollingSample = () =>
 {
   const computeFetchUrl = (page : number, pageSize : number) : string =>
     `https://jsonplaceholder.typicode.com/photos?_page=${page}&_limit=${pageSize}`
@@ -17,3 +17,5 @@ export const InfiniteScrollingSample = () =>
     </div>
   </>
 }
+
+export default InfiniteScrollingSample

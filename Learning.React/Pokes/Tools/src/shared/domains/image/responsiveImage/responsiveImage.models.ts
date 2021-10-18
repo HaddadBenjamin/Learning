@@ -1,5 +1,5 @@
 export interface ResponsiveImageData
 {
-  url : string
+  src : string
   width : number
 }

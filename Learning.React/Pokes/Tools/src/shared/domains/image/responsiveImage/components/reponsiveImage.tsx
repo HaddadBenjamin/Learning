@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { ResponsiveImageData } from "../responsiveImage.models";
+import useResponsiveImage from "../hooks/useResponsiveImage";
 
 interface Props 
 {
@@ -9,14 +10,12 @@ interface Props
 }
 
 const ResponsiveImage : FC<Props> = ({ images, alt, className }) => {
-  const largestImage = images.reduce((previous, current) => current.width > previous.width ? current : previous)
-  const sizes = `(max-width: ${largestImage.width}px) 100vw, ${largestImage.width}px`
-  const srcSet = images.map(i => `${i.url} ${i.width}w`).join(',\n')
+ const { sizes, srcSet, src } = useResponsiveImage(images)
 
   return <img
     sizes={sizes}
     srcSet={srcSet}
-    src={largestImage.url}
+    src={src}
     alt={alt}
     className={className}/>
 }

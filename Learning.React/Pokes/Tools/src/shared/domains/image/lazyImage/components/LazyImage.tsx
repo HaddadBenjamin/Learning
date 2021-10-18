@@ -1,20 +1,26 @@
-import React, { useState, useRef, FC } from 'react';
+import React, { FC } from 'react';
 import cn from 'classnames';
-import { useDoesRefIsVisible } from '../../../../hooks/useDoesRefIsVisible';
 import styles from './LazyImage.module.scss';
 import {LazyImageData} from "../lazyImage.model";
+import useLazyImage from "../hooks/useLazyImage";
 
 interface Props extends LazyImageData
 {
   className?: string
 }
 
-const LazyImage : FC<Props> = ({ url, width, height, alt, className }) => {
-  const imgRef = useRef(null);
-  const isVisible = useDoesRefIsVisible(imgRef);
-  const [imageIsLoaded, setImageIsLoaded] = useState(false);
-
-  const onImageLoad = () => setImageIsLoaded(true);
+const LazyImage : FC<Props> = (
+{
+   src,
+   width,
+   height,
+   alt,
+   className,
+  
+   srcSet,
+   sizes
+}) => {
+  const { imgRef, isVisible, imageIsLoaded, onImageLoad } = useLazyImage()
 
   return <div
       className={cn(styles.container, className)}
@@ -24,9 +30,11 @@ const LazyImage : FC<Props> = ({ url, width, height, alt, className }) => {
       {isVisible && (
           <img
             className={cn(styles.image, imageIsLoaded && styles.loadedImage)}
-            src={url}
+            src={src}
             alt={alt}
             onLoad={onImageLoad}
+            sizes={sizes}
+            srcSet={srcSet}
           />
       )}
     </div>
