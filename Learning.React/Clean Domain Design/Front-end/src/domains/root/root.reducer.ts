@@ -1,20 +1,11 @@
-import {combineReducers, Reducer, ReducersMapObject, Store} from "redux";
+import {combineReducers, ReducersMapObject } from "redux";
 
-const alwaysInjectedReducers = combineReducers(
+const defaultReducers = combineReducers(
 	{
 		// todos : todoReducer,
 	});
 
 export const createLazyRootReducer = (lazyLoadedReducers? : ReducersMapObject) =>
 	combineReducers(
-		{ /* ...alwaysInjectedReducers,*/ ...lazyLoadedReducers}
+		{ ...defaultReducers, ...lazyLoadedReducers}
 	);
-
-export const injectReducer = (store : any, key : string, reducer : Reducer) =>
-{
-	if (Object.hasOwnProperty.call(store.lazyLoadedReducers, key))
-		return;
-	
-	store.lazyLoadedReducers[key] = reducer;
-	store.replaceReducer(createLazyRootReducer(store.lazyLoadedReducers));
-};

@@ -2,18 +2,17 @@
   "todos": [
     {
       "id": "1",
-      "content": "Faire la bouffe",
-      "completed": false,
-      "title": "Faire le ménage"
+      "completed": true,
+      "title": "Faire le ménageeeee"
     },
     {
       "id": "2",
-      "content": "Commander un tournevis",
+      "title": "Commander un tournevis",
       "completed": false
     },
     {
       "id": "3",
-      "content": "Aller au ski",
+      "title": "Aller au ski",
       "completed": false
     },
     {

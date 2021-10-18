@@ -5,9 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectTodos } from '../../todo.selector';
 import { getTodosRequestAction } from '../../todo.action';
 import styles from './Todos.module.scss'
-import {injectReducer} from "../../../root/root.reducer";
-import {sagaMiddleware} from "../../../root/root.saga";
-import watchTodosSagas from "../../todo.saga";
 import store from "../../../root/root.store";
 
 const Todos : FC = () =>
@@ -17,12 +14,16 @@ const Todos : FC = () =>
 
   useEffect(() =>
   {
-    import('../../todo.reducer')
-      .then(({ default: reducer }) =>
+    import('../../todo.reducer').then(({ default: reducer }) =>
       {
-        injectReducer(store, 'todos', reducer);
-        sagaMiddleware.run(watchTodosSagas)
-        dispatch(getTodosRequestAction())
+        store.injectReducer('todos', reducer);
+       
+        import('../../todo.saga').then(({ default: watchTodosSagas }) =>
+        {
+          store.injectSaga('todos', watchTodosSagas)
+  
+          dispatch(getTodosRequestAction())
+        })
       })
      }, []
   )
