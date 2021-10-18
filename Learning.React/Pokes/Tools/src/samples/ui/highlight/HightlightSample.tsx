@@ -15,6 +15,6 @@ export const HightlightSample = () =>
 
     {highlightDatasMock
       .filter(text => text.toLowerCase().includes(searchTerm.toLowerCase()))
-      .map(text => <Highlight searchTerm={searchTerm} text={text} color='blue' />)}
+      .map((text, index) => <Highlight searchTerm={searchTerm} text={text} color='blue' key={`Highlight${index}`} />)}
   </>
 }
