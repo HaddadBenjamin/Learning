@@ -1,4 +1,4 @@
-import {todoReducer} from "../todo.reducer";
+import todoReducer from "../todo.reducer";
 import {
     emptyTodoStateMock,
     errorMessageMock,
@@ -247,11 +247,11 @@ describe("todo.reducer", () =>
         })
     })
 
-    it("rootReducer.todos should be equals to initialTodoState", () => {
+    it("rootReducer.todos should be undefined", () => {
         // Given & When
         const todoState = store.getState().todos
 
         // Then
-        expect(todoState).toEqual(initialTodoState)
+        expect(todoState).toEqual(undefined)
     })
 })

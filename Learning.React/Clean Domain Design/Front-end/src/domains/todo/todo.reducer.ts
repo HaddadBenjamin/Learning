@@ -2,7 +2,7 @@ import { TodoState, initialTodoState } from './todo.state';
 import { TodoAction, TodoActions } from './todo.action';
 import { failedActionMetadata, loadedActionMetadata, loadingActionMetadata } from 'shared/domains/redux/redux.util';
 
-export const todoReducer = (state: TodoState = initialTodoState, action: TodoActions)
+const todoReducer = (state: TodoState = initialTodoState, action: TodoActions)
 : TodoState =>
 {
     switch (action.type)
@@ -30,3 +30,5 @@ export const todoReducer = (state: TodoState = initialTodoState, action: TodoAct
         default : return state
     }
 }
+
+export default todoReducer

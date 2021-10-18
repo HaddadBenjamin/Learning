@@ -5,13 +5,27 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectTodos } from '../../todo.selector';
 import { getTodosRequestAction } from '../../todo.action';
 import styles from './Todos.module.scss'
+import {injectReducer} from "../../../root/root.reducer";
+import {sagaMiddleware} from "../../../root/root.saga";
+import watchTodosSagas from "../../todo.saga";
+import store from "../../../root/root.store";
 
 const Todos : FC = () =>
 {
-    const todos = useSelector(selectTodos)
-    const dispatch = useDispatch()
+  const todos = useSelector(selectTodos)
+  const dispatch = useDispatch()
 
-    useEffect(() => { dispatch(getTodosRequestAction()) }, [])
+  useEffect(() =>
+  {
+    import('../../todo.reducer')
+      .then(({ default: reducer }) =>
+      {
+        injectReducer(store, 'todos', reducer);
+        sagaMiddleware.run(watchTodosSagas)
+        dispatch(getTodosRequestAction())
+      })
+     }, []
+  )
 
     return <>
         { todos &&

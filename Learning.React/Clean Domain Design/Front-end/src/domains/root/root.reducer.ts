@@ -1,9 +1,20 @@
-import { combineReducers } from "redux";
-import { todoReducer } from 'domains/todo/todo.reducer'
+import {combineReducers, Reducer, ReducersMapObject, Store} from "redux";
 
-const rootReducer = combineReducers(
+const alwaysInjectedReducers = combineReducers(
+	{
+		// todos : todoReducer,
+	});
+
+export const createLazyRootReducer = (lazyLoadedReducers? : ReducersMapObject) =>
+	combineReducers(
+		{ /* ...alwaysInjectedReducers,*/ ...lazyLoadedReducers}
+	);
+
+export const injectReducer = (store : any, key : string, reducer : Reducer) =>
 {
-    todos : todoReducer
-});
-
-export default rootReducer
+	if (Object.hasOwnProperty.call(store.lazyLoadedReducers, key))
+		return;
+	
+	store.lazyLoadedReducers[key] = reducer;
+	store.replaceReducer(createLazyRootReducer(store.lazyLoadedReducers));
+};

@@ -1,11 +1,26 @@
-import { createStore } from 'redux';
-import rootReducer from './root.reducer';
+import {createStore, Reducer, Store} from 'redux';
+import { createLazyRootReducer } from './root.reducer';
 import {initialApplicationState} from './root.state'
 import middlewares from "./root.middleware";
 import rootSagas, {sagaMiddleware} from "./root.saga";
 
-const store = createStore(rootReducer, initialApplicationState, middlewares)
+export interface LazyStore extends Store
+{
+	lazyLoadedReducers : Map<string, Reducer>
+}
 
-sagaMiddleware.run(rootSagas)
+const createLazyStore = () : LazyStore =>
+{
+	const store = createStore(createLazyRootReducer(), initialApplicationState, middlewares)
 
-export default store;
+	// @ts-ignore
+	store.lazyLoadedReducers = { }
+
+	sagaMiddleware.run(rootSagas)
+
+	return store as LazyStore;
+}
+
+const store = createLazyStore()
+
+export default store

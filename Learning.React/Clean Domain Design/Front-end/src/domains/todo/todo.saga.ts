@@ -35,7 +35,7 @@ export function* getAllTodosSaga()
       const todos : ITodo[] = yield call(getAllTodos);
       yield put(getTodosSuccessAction(todos));
    }
-   catch (error)
+      catch (error : any)
    {
       yield put(getTodosFailedAction(error.message));
    }
@@ -49,7 +49,7 @@ export function* addTodoSaga(action : AddTodoRequestAction)
       yield put(addTodoSuccessAction(newTodo));
       yield put(getTodosRequestAction());
    }
-   catch (error)
+   catch (error : any)
    {
       yield put(addTodoFailedAction(error.message));
    }
@@ -65,7 +65,7 @@ export function* editTodoSaga(action : EditTodoRequestAction)
       yield put(editTodoSuccessAction(editedTodo));
       yield put(getTodosRequestAction());
    }
-   catch (error)
+   catch (error : any)
    {
       yield put(editTodoFailedAction(error.message));
    }
@@ -84,7 +84,7 @@ export function* toggleTodoSaga(action : ToggleTodoRequestAction)
       yield put(toggleTodoSuccessAction(toggledTodo));
       yield put(getTodosRequestAction());
    }
-   catch (error)
+   catch (error : any)
    {
       yield put(toggleTodoFailedAction(error.message));
    }
@@ -100,7 +100,7 @@ export function* removeTodoSaga(action : RemoveTodoRequestAction)
      yield put(removeTodoSuccessAction(id));
       yield put(getTodosRequestAction());
    }
-   catch (error)
+   catch (error : any)
    {
       yield put(removeTodoFailedAction(error.message));
    }
