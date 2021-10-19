@@ -33,8 +33,9 @@ export default (app : Express) =>
 			if (todo)
 				todo = { ...todo, ...req.body }
 			
-			todoStateMock.todos = todoStateMock.todos.filter(t => t.id === id ? todo : t)
+			todoStateMock.todos = todoStateMock.todos.map(t => t.id === id ? todo : t) as ITodo[]
 			
+			res.status(200)
 			res.json(todo)
 		})
 		.delete((req, res) =>
