@@ -21,20 +21,20 @@ class LazyStore<TApplicationState> implements ILazyStore
 	
 	constructor(
 		defaultReducers: Reducer,
-		preloadedState: PreloadedState<TApplicationState>,
-		enhancer: StoreEnhancer,
+		initialApplicationState: PreloadedState<TApplicationState>,
+		middlewares: StoreEnhancer,
 		sagaMiddleware : SagaMiddleware,
-		rootSagas? : Saga)
+		rootSagas : Saga)
 	{
 		this.defaultReducers = defaultReducers
 		this.sagaMiddleware = sagaMiddleware
 		this.injectedReducers = { }
 		
-		this.store = createStore(this.createRootReducer(), preloadedState, enhancer)
+		this.store = createStore(this.createRootReducer(), initialApplicationState, middlewares)
 		
-		this.injectedSagas = new Map<string, Task>(rootSagas ? [
+		this.injectedSagas = new Map<string, Task>([
 			['root', sagaMiddleware.run(rootSagas)]
-		] : [])
+		])
 	}
 	
 	injectReducer = (key : string, reducer : Reducer) : void =>
@@ -56,9 +56,9 @@ class LazyStore<TApplicationState> implements ILazyStore
 		this.injectedSagas.set(key, task);
 	}
 	
-	createRootReducer = (lazyLoadedReducers? : ReducersMapObject) : Reducer =>
+	createRootReducer = (lazyReducers? : ReducersMapObject) : Reducer =>
 		combineReducers(
-			{ ...this.defaultReducers, ...lazyLoadedReducers }
+			{ ...this.defaultReducers, ...lazyReducers }
 		);
 }
 

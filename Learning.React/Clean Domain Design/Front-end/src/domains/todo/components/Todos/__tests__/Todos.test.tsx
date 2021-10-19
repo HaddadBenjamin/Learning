@@ -3,6 +3,7 @@ import {render} from "@testing-library/react";
 import Todos from "../Todos";
 import {todoStateMock} from "domains/todo/todo.mock";
 import {getTodosRequestAction} from "domains/todo/todo.action";
+import {act} from "react-dom/test-utils";
 
 jest.mock('react-redux')
 const mockUseDispatch = useDispatch as jest.MockedFunction<typeof useDispatch>
@@ -24,13 +25,15 @@ describe("Todos", () => {
         expect(container).toMatchSnapshot()
     })
 
-    it("should dispatch getTodosRequestAction when component is mounted", () =>
+    it("should dispatch getTodosRequestAction when component is mounted", async() =>
     {
         // Given
         (useSelector as jest.Mock).mockReturnValue(todoStateMock)
 
         // When
-        render(<Todos/>)
+        await act(async () => {
+            render(<Todos/>)
+        })
 
         // Then
         expect(mockDispatch).toBeCalledWith(getTodosRequestAction())

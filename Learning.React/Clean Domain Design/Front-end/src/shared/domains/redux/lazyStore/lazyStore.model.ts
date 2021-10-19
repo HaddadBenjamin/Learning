@@ -11,7 +11,7 @@ export interface ILazyStore
 	injectedReducers : ReducersMapObject
 	injectedSagas : Map<string, Task>
 	
-	createRootReducer : (lazyLoadedReducers? : ReducersMapObject) => Reducer
+	createRootReducer : (lazyReducers? : ReducersMapObject) => Reducer
 	injectReducer : (key : string, reducer : Reducer) => void
 	injectSaga : (key : string, saga : Saga) => void
 }
