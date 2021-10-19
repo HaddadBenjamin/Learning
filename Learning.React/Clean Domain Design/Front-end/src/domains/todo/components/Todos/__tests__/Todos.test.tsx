@@ -7,7 +7,7 @@ import {act} from "react-dom/test-utils";
 import {lazyStore} from "../../../../root/root.store";
 import {todoReducerKey, todoSagaKey} from "../../../todo.configuration";
 import todoReducer from "../../../todo.reducer";
-import {todoSaga} from "../../../todo.saga";
+import todoSaga from "../../../todo.saga";
 
 jest.mock('react-redux')
 const mockUseDispatch = useDispatch as jest.MockedFunction<typeof useDispatch>

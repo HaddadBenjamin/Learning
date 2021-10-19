@@ -13,12 +13,11 @@ import {
 } from "../todo.mock";
 import {expectSaga} from "redux-saga-test-plan";
 import * as matchers from 'redux-saga-test-plan/matchers';
-import {
+import todoSaga, {
     addTodoSaga,
     editTodoSaga,
     getAllTodosSaga,
     removeTodoSaga,
-    todoSaga,
     toggleTodoSaga
 } from "../todo.saga";
 import {

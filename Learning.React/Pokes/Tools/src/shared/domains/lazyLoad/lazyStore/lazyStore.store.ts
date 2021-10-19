@@ -4,7 +4,8 @@ import {
 	ReducersMapObject,
 	createStore,
 	StoreEnhancer,
-	PreloadedState, Store
+	PreloadedState,
+	Store
 } from 'redux';
 import {ILazyStore} from "./lazyStore.model";
 import {Task} from "@redux-saga/types";
@@ -37,14 +38,9 @@ class LazyStore<TApplicationState> implements ILazyStore
 		])
 	}
 	
-	createRootReducer = (lazyReducers? : ReducersMapObject) : Reducer =>
-		combineReducers(
-			{ ...this.defaultReducers, ...lazyReducers }
-		);
-	
 	injectReducer = (key : string, reducer : Reducer) : void =>
 	{
-		if (this.doesReducerHasBeenInjected(key))
+		if (Object.hasOwnProperty.call(this.injectedReducers, key))
 			return;
 		
 		this.injectedReducers[key] = reducer;
@@ -53,7 +49,7 @@ class LazyStore<TApplicationState> implements ILazyStore
 	
 	injectSaga = (key : string, saga : Saga) : void =>
 	{
-		if (this.doesSagaHasBeenInjected(key))
+		if (this.injectedSagas.has(key))
 			return;
 		
 		const task = this.sagaMiddleware.run(saga);
@@ -61,11 +57,10 @@ class LazyStore<TApplicationState> implements ILazyStore
 		this.injectedSagas.set(key, task);
 	}
 	
-	doesReducerHasBeenInjected = (key: string): boolean =>
-		Object.hasOwnProperty.call(this.injectedReducers, key)
-	
-	doesSagaHasBeenInjected = (key: string): boolean =>
-		this.injectedSagas.has(key)
+	createRootReducer = (lazyReducers? : ReducersMapObject) : Reducer =>
+		combineReducers(
+			{ ...this.defaultReducers, ...lazyReducers }
+		);
 }
 
 export default LazyStore

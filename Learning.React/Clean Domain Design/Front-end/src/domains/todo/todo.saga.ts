@@ -106,7 +106,7 @@ export function* removeTodoSaga(action : RemoveTodoRequestAction)
 	}
 }
 
-export function* todoSaga() : Generator {
+export default function* todoSaga() : Generator {
 	yield takeLatest(TodoAction.GET_TODOS_REQUEST, getAllTodosSaga);
 	yield takeLatest(TodoAction.ADD_TODO_REQUEST, addTodoSaga);
 	yield takeLatest(TodoAction.EDIT_TODO_REQUEST, editTodoSaga);

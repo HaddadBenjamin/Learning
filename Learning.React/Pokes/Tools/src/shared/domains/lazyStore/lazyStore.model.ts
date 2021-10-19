@@ -14,7 +14,4 @@ export interface ILazyStore
 	createRootReducer : (lazyReducers? : ReducersMapObject) => Reducer
 	injectReducer : (key : string, reducer : Reducer) => void
 	injectSaga : (key : string, saga : Saga) => void
-	
-	doesReducerHasBeenInjected : (key : string) => boolean
-	doesSagaHasBeenInjected : (key : string) => boolean
 }
