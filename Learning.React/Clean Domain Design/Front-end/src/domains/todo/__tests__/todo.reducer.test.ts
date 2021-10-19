@@ -25,7 +25,7 @@ import {
     toggleTodoSuccessAction
 } from "../todo.action";
 import {ActionStatus} from "../../../shared/domains/redux/redux.model";
-import {initialTodoState, TodoState} from "../todo.state";
+import { TodoState} from "../todo.state";
 import {ITodo} from "../todo.model";
 import store from "../../root/root.store";
 

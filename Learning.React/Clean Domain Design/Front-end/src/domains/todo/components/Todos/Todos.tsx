@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectTodos } from '../../todo.selector';
 import { getTodosRequestAction } from '../../todo.action';
 import styles from './Todos.module.scss'
-import store from "../../../root/root.store";
+import {lazyStore} from "../../../root/root.store";
 
 const Todos : FC = () =>
 {
@@ -14,19 +14,19 @@ const Todos : FC = () =>
 
   useEffect(() =>
   {
-    import('../../todo.reducer').then(({ default: reducer }) =>
-      {
-        store.injectReducer('todos', reducer);
-       
-        import('../../todo.saga').then(({ default: watchTodosSagas }) =>
-        {
-          store.injectSaga('todos', watchTodosSagas)
+    async function asyncEffect()
+    {
+      const { default : reducer } = await import('../../todo.reducer')
+      const { default : watchTodosSagas } = await import ('../../todo.saga')
   
-          dispatch(getTodosRequestAction())
-        })
-      })
-     }, []
-  )
+      lazyStore.injectReducer('todos', reducer);
+      lazyStore.injectSaga('todos', watchTodosSagas)
+  
+      dispatch(getTodosRequestAction())
+    }
+    
+    asyncEffect()
+  }, [])
 
     return <>
         { todos &&

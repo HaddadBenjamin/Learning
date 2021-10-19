@@ -1,5 +1,5 @@
-import store from "../root.store";
 import {initialApplicationState} from "../root.state";
+import store from "../root.store";
 
 describe("root.reducer", () =>
 {
