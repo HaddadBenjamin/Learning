@@ -11,6 +11,7 @@ const HightlightSample = () =>
 
   return <>
     <h2>Highlight</h2>
+    <div>This component search elements by a text and highlight this text in your elements</div>
     <input type="text" value={searchTerm} onChange={onChangeSearchTerm}/>
 
     {highlightDatasMock

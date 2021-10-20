@@ -19,12 +19,17 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/react-redux": "^7.1.19",
+    "@types/redux-saga": "^0.10.5",
+    "axios": "^0.21.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
+    "react-redux": "^7.2.5",
+    "react-scripts": "^4.0.3",
+    "redux": "^4.1.1",
+    "redux-devtools-extension": "^2.13.9",
     "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1",
-    "axios": "^0.21.1"
+    "web-vitals": "^1.0.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
@@ -33,6 +38,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-oas-generator": "^1.0.41",
+    "mongoose": "^6.0.11",
+    "mongoose-to-swagger": "^1.3.0",
     "nodemon": "^2.0.12",
     "sass": "^1.42.1"
   },

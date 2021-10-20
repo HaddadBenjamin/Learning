@@ -4,6 +4,7 @@ import ResponsiveImage from "../../shared/domains/image/responsiveImage/componen
 const ResponsiveImageSample = () =>
   <div>
     <h2>Responsive Image</h2>
+    <div>To test : F12 / Network / Img / resize the window or reload to load a new image that depend of your resolution</div>
 
     <ResponsiveImage
       images={responsiveImageDatasMock}

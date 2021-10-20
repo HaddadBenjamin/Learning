@@ -1,4 +1,4 @@
-import {todoReducer} from "../todo.reducer";
+import todoReducer from "../todo.reducer";
 import {
     emptyTodoStateMock,
     errorMessageMock,
@@ -25,7 +25,7 @@ import {
     toggleTodoSuccessAction
 } from "../todo.action";
 import {ActionStatus} from "../../../shared/domains/redux/redux.model";
-import {initialTodoState, TodoState} from "../todo.state";
+import { TodoState} from "../todo.state";
 import {ITodo} from "../todo.model";
 import store from "../../root/root.store";
 
@@ -247,11 +247,11 @@ describe("todo.reducer", () =>
         })
     })
 
-    it("rootReducer.todos should be equals to initialTodoState", () => {
+    it("rootReducer.todos should be undefined", () => {
         // Given & When
         const todoState = store.getState().todos
 
         // Then
-        expect(todoState).toEqual(initialTodoState)
+        expect(todoState).toEqual(undefined)
     })
 })

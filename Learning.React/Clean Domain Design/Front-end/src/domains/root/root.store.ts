@@ -1,11 +1,16 @@
-import { createStore } from 'redux';
-import rootReducer from './root.reducer';
-import {initialApplicationState} from './root.state'
-import middlewares from "./root.middleware";
+import LazyStore from "../../shared/domains/redux/lazyRedux/lazyRedux.store";
 import rootSagas, {sagaMiddleware} from "./root.saga";
+import {initialApplicationState} from "./root.state";
+import middlewares from "./root.middleware";
+import defaultReducers from "./root.reducer";
 
-const store = createStore(rootReducer, initialApplicationState, middlewares)
+export const lazyStore = new LazyStore(
+	defaultReducers,
+	initialApplicationState,
+	middlewares,
+	sagaMiddleware,
+	rootSagas)
 
-sagaMiddleware.run(rootSagas)
+const store = lazyStore.store
 
-export default store;
+export default store

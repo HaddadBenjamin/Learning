@@ -13,7 +13,7 @@ import {
 } from "../todo.mock";
 import {expectSaga} from "redux-saga-test-plan";
 import * as matchers from 'redux-saga-test-plan/matchers';
-import watchTodosSagas, {
+import todoSaga, {
     addTodoSaga,
     editTodoSaga,
     getAllTodosSaga,
@@ -195,7 +195,7 @@ describe("todo.saga", () =>
 
     it("watchTodosSagas should watch and takeLatest GET_TODOS_REQUEST, ADD_TODO_REQUEST, EDIT_TODO_REQUEST, TOGGLE_TODO_REQUEST, REMOVE_TODO_REQUEST", () =>
     {
-        const iterator = watchTodosSagas();
+        const iterator = todoSaga();
 
         // assert
         expect(excludeSagaPayloadFn(iterator.next().value)).toEqual(excludeSagaPayloadFn(fork(takeLatest, TodoAction.GET_TODOS_REQUEST, getAllTodosSaga)));

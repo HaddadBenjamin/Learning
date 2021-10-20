@@ -5,7 +5,7 @@ import {httpConfiguration} from 'shared/shared.configuration'
 
 jest.mock('axios')
 
-describe("todo.api", async () =>
+describe("todo.api", () =>
 {
     it("getAllTodos should return all the todos and axios.get should be called with routes.api and httpConfiguration.default", async () =>
     {
