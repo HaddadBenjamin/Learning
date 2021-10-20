@@ -6,22 +6,22 @@ import { selectTodos } from '../../todo.selector';
 import { getTodosRequestAction } from '../../todo.action';
 import styles from './Todos.module.scss'
 import {todoReducerKey, todoSagaKey} from "../../todo.configuration";
-import useLazyReducer from "../../../../shared/domains/redux/lazyStore/hooks/useLazyReducer";
-import useLazySaga from "../../../../shared/domains/redux/lazyStore/hooks/useLazySaga";
+import useLazyReducer from "../../../../shared/domains/redux/lazyRedux/hooks/useLazyReducer";
+import useLazySaga from "../../../../shared/domains/redux/lazyRedux/hooks/useLazySaga";
 
 const Todos : FC = () =>
 {
 	const todos = useSelector(selectTodos)
 	const dispatch = useDispatch()
 	
-	const reducerIsInjected = useLazyReducer(todoReducerKey, async () => (await import('../../todo.reducer')).default)
-	const sagaIsInjected = useLazySaga(todoSagaKey, async () => (await import('../../todo.saga')).default)
+	const reducerIsInjected = useLazyReducer(todoReducerKey, 'domains/todo/todo.reducer')
+	const sagaIsInjected = useLazySaga(todoSagaKey, 'domains/todo/todo.saga')
 
 	useEffect(() =>
 	{
 		if (reducerIsInjected && sagaIsInjected)
 			dispatch(getTodosRequestAction())
-	}, [reducerIsInjected, sagaIsInjected])
+	}, [reducerIsInjected, sagaIsInjected, dispatch])
 	
 	return <>
 		{ todos &&

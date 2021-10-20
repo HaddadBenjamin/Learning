@@ -5,6 +5,7 @@ import LazyImage from "../../shared/domains/lazyLoad/lazyImage/components/LazyIm
 const LazyImageSample = () =>
   <div>
     <h2>Lazy Images Load</h2>
+    <div>To test : F12 / Network / Image / see the image loaded only when it's visible</div>
 
     <section>
       { lazyImageDatas.map(data => <LazyImage key={data.alt} {...data}/>) }

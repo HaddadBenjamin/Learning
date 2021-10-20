@@ -8,6 +8,7 @@ const LazyReduxSample = () =>
 	
 	return <div>
 		<h2>Lazy component with lazy reducer & saga</h2>
+		<div>To test : F12 / Network / JS and see the chunks loading on click </div>
 		{ !componentIsVisible ?
 			<button onClick={showComponent}>Click to display id</button> :
 			<Suspense fallback={<div>Chargement...</div>}>

@@ -1,8 +1,7 @@
 import {useEffect, useState} from "react";
 import {lazyStore} from "../../../../../domains/root/root.store";
-import {Saga} from "redux-saga";
 
-const useLazySaga = (key : string, getSaga : () => Promise<Saga>) =>
+const useLazySaga = (key : string, path : string) =>
 {
 	const [sagaIsInjected, setSagaIsInjected] = useState(lazyStore.doesSagaHasBeenInjected(key))
 	
@@ -12,7 +11,7 @@ const useLazySaga = (key : string, getSaga : () => Promise<Saga>) =>
 		{
 			if (!sagaIsInjected)
 			{
-				const saga = await getSaga()
+				const { default : saga } = await import('../../../../../' + path)
 				
 				lazyStore.injectSaga(key, saga)
 				
@@ -21,7 +20,8 @@ const useLazySaga = (key : string, getSaga : () => Promise<Saga>) =>
 		}
 		
 		asyncInjectSaga()
-	}, [])
+	}, // eslint-disable-next-line
+	[])
 	
 	return sagaIsInjected
 }

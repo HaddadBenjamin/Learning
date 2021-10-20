@@ -6,7 +6,7 @@ import {
 	StoreEnhancer,
 	PreloadedState, Store
 } from 'redux';
-import {ILazyStore} from "./lazyStore.model";
+import {ILazyStore} from "./lazyRedux.model";
 import {Task} from "@redux-saga/types";
 import {Saga} from "redux-saga";
 import {SagaMiddleware} from "@redux-saga/core";
