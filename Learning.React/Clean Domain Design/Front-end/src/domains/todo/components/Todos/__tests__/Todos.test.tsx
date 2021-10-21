@@ -11,8 +11,8 @@ jest.mock('react-redux')
 const mockUseDispatch = useDispatch as jest.MockedFunction<typeof useDispatch>
 const mockDispatch = jest.fn()
 
-jest.mock('../../../../../shared/domains/redux/lazyStore/hooks/useLazySaga')
-jest.mock('../../../../../shared/domains/redux/lazyStore/hooks/useLazyReducer')
+jest.mock('../../../../../shared/domains/redux/lazyRedux/hooks/useLazySaga')
+jest.mock('../../../../../shared/domains/redux/lazyRedux/hooks/useLazyReducer')
 
 describe("Todos", () => {
     beforeEach(() => {

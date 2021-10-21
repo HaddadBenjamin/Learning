@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {lazyStore} from "../../../../../domains/root/root.store";
 
-const useLazySaga = (key : string, path : string) =>
+const useLazySaga = (key : string, path : string, condition : boolean = true) =>
 {
 	const [sagaIsInjected, setSagaIsInjected] = useState(lazyStore.doesSagaHasBeenInjected(key))
 	
@@ -9,7 +9,7 @@ const useLazySaga = (key : string, path : string) =>
 	{
 		const asyncInjectSaga = async () =>
 		{
-			if (!sagaIsInjected)
+			if (!sagaIsInjected && condition)
 			{
 				const { default : saga } = await import('../../../../../' + path)
 				
@@ -21,7 +21,7 @@ const useLazySaga = (key : string, path : string) =>
 		
 		asyncInjectSaga()
 	}, // eslint-disable-next-line
-	[])
+		[condition, sagaIsInjected])
 	
 	return sagaIsInjected
 }
