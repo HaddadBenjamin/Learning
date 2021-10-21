@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {render} from "@testing-library/react";
 import useLazySaga from "../../shared/hooks/useLazySaga";
-import useLazyReducer from "../../shared/hooks/useLazyReducer";
+import useInjectReducer from "../../shared/hooks/useInjectReducer";
 import {act} from "react-dom/test-utils";
 import {getMessageRequestAction} from "./fakeDomain.action";
 import LazyComponent from "./LazyComponent";
@@ -23,7 +23,7 @@ describe("Todos", () => {
 		// Given
 		(useSelector as jest.Mock).mockReturnValue('blabla');
 		(useLazySaga as jest.Mock).mockReturnValue(true);
-		(useLazyReducer as jest.Mock).mockReturnValue(true);
+		(useInjectReducer as jest.Mock).mockReturnValue(true);
 		
 		// When
 		await act(async () => {

@@ -7,6 +7,7 @@ import useLazyImage from "../hooks/useLazyImage";
 interface Props extends LazyImageData
 {
   className?: string
+  condition? : boolean
 }
 
 const LazyImage : FC<Props> = (
@@ -15,12 +16,14 @@ const LazyImage : FC<Props> = (
    width,
    height,
    alt,
+  
    className,
+   condition  = true,
   
    srcSet,
    sizes
 }) => {
-  const { imgRef, isVisible, imageIsLoaded, onImageLoad } = useLazyImage()
+  const { imgRef, isVisible, imageIsLoaded, onImageLoad } = useLazyImage(condition)
 
   return <div
       className={cn(styles.container, className)}
