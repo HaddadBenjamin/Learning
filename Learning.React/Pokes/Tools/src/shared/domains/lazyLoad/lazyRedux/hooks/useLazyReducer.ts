@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {lazyStore} from "../../../../../samples/lazyRedux/root.store";
 
-const useLazyReducer = (key : string, path : string, condition : boolean) =>
+const useLazyReducer = (key : string, path : string, condition : boolean = true) =>
 {
 	const [reducerIsInjected, setReducerIsInjected] = useState(lazyStore.doesReducerHasBeenInjected(key))
 
@@ -9,7 +9,7 @@ const useLazyReducer = (key : string, path : string, condition : boolean) =>
 	{
 		const asyncInjectReducer = async () =>
 		{
-			if (!reducerIsInjected && condition)
+			if (!reducerIsInjected && reducerIsInjected)
 			{
 				const { default : reducer } = await import('../../../../../' + path)
 				
@@ -21,7 +21,7 @@ const useLazyReducer = (key : string, path : string, condition : boolean) =>
 
 		asyncInjectReducer()
 	}, // eslint-disable-next-line
-		[condition, reducerIsInjected])
+	[condition, reducerIsInjected])
 	
 	return reducerIsInjected
 }
