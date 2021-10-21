@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 import useLazySaga from "../../shared/hooks/useLazySaga";
-import useInjectReducer from "../../shared/hooks/useInjectReducer";
+import useLazyReducer from "../../shared/hooks/useLazyReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {fakeDomainReducerKey} from "./fakeDomain.reducer";
 import {getMessageRequestAction} from "./fakeDomain.action";
@@ -12,7 +12,7 @@ const LazyComponent = () =>
 	const dispatch = useDispatch()
 	const message = useSelector(selectMessage)
 	
-	const reducerIsInjected = useInjectReducer(fakeDomainReducerKey, 'samples/lazyRedux/fakeDomain.reducer')
+	const reducerIsInjected = useLazyReducer(fakeDomainReducerKey, 'samples/lazyRedux/fakeDomain.reducer')
 	const sagaIsInjected = useLazySaga(fakeDomainSagaKey, 'samples/lazyRedux/fakeDomain.saga')
 	
 	useEffect(() =>
