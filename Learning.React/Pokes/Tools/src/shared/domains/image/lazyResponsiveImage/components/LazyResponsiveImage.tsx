@@ -10,6 +10,7 @@ interface Props
   width : number // Image width on large resolution
   height : number // Image height on on large resolution
   className?: string
+  condition?: boolean
 }
 
 const LazyResponsiveImage : FC<Props> = (
@@ -18,7 +19,8 @@ const LazyResponsiveImage : FC<Props> = (
   alt,
   width,
   height,
-  className
+  className,
+  condition = true
 }) => {
   const { sizes, srcSet, src } = useResponsiveImage(images)
   
@@ -31,7 +33,8 @@ const LazyResponsiveImage : FC<Props> = (
     width={width}
     height={height}
     
-    className={className}/>
+    className={className}
+    condition={condition} />
 };
 
 export default LazyResponsiveImage;

@@ -18,7 +18,7 @@ const LazyImage : FC<Props> = (
    alt,
   
    className,
-   condition  = true,
+   condition = true,
   
    srcSet,
    sizes

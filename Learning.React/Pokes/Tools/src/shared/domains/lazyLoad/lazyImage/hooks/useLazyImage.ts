@@ -9,7 +9,7 @@ const useLazyImage = (condition : boolean = true) =>
   
   const onImageLoad = () => setImageIsLoaded(true);
   
-  return { imgRef, isVisible, imageIsLoaded : imageIsLoaded && condition, onImageLoad } as const
+  return { imgRef, isVisible : isVisible && !!condition, imageIsLoaded, onImageLoad } as const
 }
 
 export default useLazyImage

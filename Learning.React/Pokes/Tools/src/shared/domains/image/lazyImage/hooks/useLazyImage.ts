@@ -1,7 +1,7 @@
 import {useRef, useState} from "react";
 import {useDoesRefIsVisible} from "../../../../hooks/useDoesRefIsVisible";
 
-const useLazyImage = () =>
+const useLazyImage = (condition? : boolean) =>
 {
   const imgRef = useRef(null);
   const isVisible = useDoesRefIsVisible(imgRef);
@@ -9,7 +9,7 @@ const useLazyImage = () =>
   
   const onImageLoad = () => setImageIsLoaded(true);
   
-  return { imgRef, isVisible, imageIsLoaded, onImageLoad } as const
+  return { imgRef, isVisible : isVisible && !!condition, imageIsLoaded, onImageLoad } as const
 }
 
 export default useLazyImage
