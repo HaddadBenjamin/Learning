@@ -73,6 +73,13 @@
     @if ($padding != undefined) { padding: $padding; } 
 }
 
+@mixin scaleWithoutModifyTheWidth($scale : 0.9, $widthPercent : 100%)
+{
+    transform: scale($scale);
+    width: 1 / $scale * $widthPercent;
+    margin-left : ($widthPercent - (1 / $scale) * $widthPercent) / 2;
+}
+
 @mixin belowXs { @media (max-width: $xsWidth) { @content; } }
 @mixin belowSm { @media (max-width: $smWidth) { @content; } }
 @mixin belowMd { @media (max-width: $mdWidth) { @content; } }
