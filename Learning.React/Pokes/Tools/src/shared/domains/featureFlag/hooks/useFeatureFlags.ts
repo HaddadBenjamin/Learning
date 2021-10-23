@@ -3,7 +3,7 @@ import {selectFeatureFlagsState} from "../featureFlag.selector";
 import {featureFlagReducerKey, featureFlagSagaKey} from "../featureFlag.configuration";
 import useLazyReducer from "../../redux/lazyRedux/hooks/useLazyReducer";
 import useLazySaga from "../../redux/lazyRedux/hooks/useLazySaga";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {getFeatureFlagsAction} from "../featureFlag.action";
 import {FeatureFlag} from "../featureFlag.model";
 
@@ -15,11 +15,16 @@ export const useFeatureFlags = (...featureFlagsIds : number[]) =>
 	const reducerIsInjected = useLazyReducer(featureFlagReducerKey, 'shared/domains/featureFlag/featureFlag.reducer')
 	const sagaIsInjected = useLazySaga(featureFlagSagaKey, 'shared/domains/featureFlag/featureFlag.saga')
 	
+	const [isInitialized, setIsInitialized] = useState(false)
+	
 	useEffect(() =>
 	{
-		if (reducerIsInjected && sagaIsInjected && !featureFlagsState.initialized)
+		if (reducerIsInjected && sagaIsInjected && !featureFlagsState.initialized && !isInitialized)
+		{
 			dispatch(getFeatureFlagsAction())
-	}, [reducerIsInjected, sagaIsInjected, featureFlagsState.initialized, dispatch])
+			setIsInitialized(true)
+		}
+	}, [reducerIsInjected, sagaIsInjected, featureFlagsState.initialized, isInitialized, dispatch])
 	
 	const getFeatureFlagById = (ffId : number) : FeatureFlag | undefined =>
 		featureFlagsState.featureFlags.find(ff => ff.id === ffId)

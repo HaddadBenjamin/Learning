@@ -12,5 +12,10 @@ export const backOfficeApiConfiguration =
 
 export const httpConfiguration =
 {
-	default : { headers : { 'Content-Type' : 'application/json' } } as AxiosRequestConfig
+	default : { headers : { 'Content-Type' : 'application/json' } } as AxiosRequestConfig,
+	platform : { headers :
+	{
+		'Content-Type' : 'application/json',
+		'PLATFORM' : 'FR'
+	} } as AxiosRequestConfig
 }
