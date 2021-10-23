@@ -6,6 +6,8 @@ import {fakeDomainReducerKey} from "./fakeDomain.reducer";
 import {getMessageRequestAction} from "./fakeDomain.action";
 import {selectMessage} from "./fakeDomain.selector";
 import {fakeDomainSagaKey} from "./fakeDomain.saga";
+import {useFeatureFlags} from "../../shared/domains/featureFlag/hooks/useFeatureFlags";
+import {FeatureFlagIds} from "./fakeDomain.configuration";
 
 const LazyComponent = () =>
 {
@@ -14,17 +16,18 @@ const LazyComponent = () =>
 	
 	const reducerIsInjected = useLazyReducer(fakeDomainReducerKey, 'samples/lazyRedux/fakeDomain.reducer')
 	const sagaIsInjected = useLazySaga(fakeDomainSagaKey, 'samples/lazyRedux/fakeDomain.saga')
+	const [featureFlagIsEnabled] = useFeatureFlags(FeatureFlagIds.fakeDomain)
 	
 	useEffect(() =>
 	{
-		if (sagaIsInjected && reducerIsInjected)
+		if (sagaIsInjected && reducerIsInjected && featureFlagIsEnabled)
 			dispatch(getMessageRequestAction())
-	}, [sagaIsInjected, reducerIsInjected, dispatch])
+	}, [sagaIsInjected, reducerIsInjected, featureFlagIsEnabled, dispatch])
 	
 	return <div>
-		<div>Lazy component has been loaded with its reducer and saga</div>
-		<div>Does reducer has been injected : {reducerIsInjected ? 'yes' : 'no'}</div>
-		<div>Does saga has been injected : {sagaIsInjected ? 'yes' : 'no'}</div>
+		<div>Does reducer has been injected : {reducerIsInjected.toString()}</div>
+		<div>Does saga has been injected : {sagaIsInjected.toString()}</div>
+		<div>Does feature flag is enabled : {featureFlagIsEnabled.toString()}</div>
 		<div>Message from the store lazy loaded : {message}</div>
 	</div>
 }

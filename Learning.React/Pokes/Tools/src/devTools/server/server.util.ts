@@ -3,7 +3,7 @@ import path from 'path'
 import {Express} from "express";
 
 const getApiMockPaths = async () => await new Promise<string[]>((resolve, reject) =>
-    glob(path.join(process.cwd(), 'src/domains/**/*.apiMock.ts'),
+    glob(path.join(process.cwd(), 'src/**/*.apiMock.ts'),
         (error, files) => resolve(files)))
 
 export const loadApiMocks = async (app : Express) =>
