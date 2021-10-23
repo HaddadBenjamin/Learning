@@ -31,6 +31,8 @@ const LazyComponent = () =>
 	}, [sagaIsInjected, reducerIsInjected, featureFlagIsEnabled, abTestIsEnabled, isInitialized, dispatch])
 	
 	return <div>
+		<div>Feature flag allow to enable or disable a feature depending some buisness condition and by environments</div>
+		<div>AB test allow to enable or disable a feature depending some a platform (fr, en, it, ...) or a part of your users or some buisness condition and by environments</div>
 		<div>Does reducer has been injected : {reducerIsInjected.toString()}</div>
 		<div>Does saga has been injected : {sagaIsInjected.toString()}</div>
 		<div>Does feature flag is enabled : {featureFlagIsEnabled.toString()}</div>
