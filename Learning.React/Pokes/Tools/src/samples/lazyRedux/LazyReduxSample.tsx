@@ -7,7 +7,7 @@ const LazyReduxSample = () =>
 	const showComponent = () => setComponentIsVisible(true)
 	
 	return <div>
-		<h2>Lazy component with lazy reducer & saga</h2>
+		<h2>Lazy component with lazy reducer & saga & feature flag & ab test</h2>
 		<div>To test : F12 / Network / JS and see the chunks loading on click </div>
 		{ !componentIsVisible ?
 			<button onClick={showComponent}>Click to display id</button> :
