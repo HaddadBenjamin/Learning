@@ -6,16 +6,18 @@ import LazyResponsiveImageSample from './samples/lazyResponsiveImage/LazyRespons
 import ResponsiveImageSample from "./samples/responsiveImage/ResponsiveImageSample";
 import LazyReduxSample from "./samples/lazyRedux/LazyReduxSample";
 import BreakpointsSample from "./samples/breakpoints/BreakpointsSample";
+import ConfigurationSample from './samples/configuration/ConfigurationSample';
 import store from "./samples/lazyRedux/root.store"
 import {Provider} from "react-redux";
 
 export const App = () =>
 	<Provider store={store}>
     <HightlightSample/>
-		<BreakpointsSample/>
 	  <LazyReduxSample/>
 	  <ResponsiveImageSample />
     <LazyImageSample/>
 	  <LazyResponsiveImageSample/>
 	  <InfiniteScrollingSample/>
+		<BreakpointsSample/>
+		<ConfigurationSample/>
   </Provider>
