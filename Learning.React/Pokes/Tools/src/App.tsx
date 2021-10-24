@@ -13,11 +13,11 @@ import {Provider} from "react-redux";
 export const App = () =>
 	<Provider store={store}>
     <HightlightSample/>
-		<BreakpointsSample/>
-		<ConfigurationSample/>
 	  <LazyReduxSample/>
 	  <ResponsiveImageSample />
     <LazyImageSample/>
 	  <LazyResponsiveImageSample/>
 	  <InfiniteScrollingSample/>
+		<BreakpointsSample/>
+		<ConfigurationSample/>
   </Provider>
