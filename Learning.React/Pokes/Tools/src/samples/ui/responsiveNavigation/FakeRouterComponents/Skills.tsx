@@ -1,3 +1,3 @@
-const Skills = () => <div>Skills</div>
+const Skills = () => <div>Lazy Skills Component</div>
 
 export default Skills

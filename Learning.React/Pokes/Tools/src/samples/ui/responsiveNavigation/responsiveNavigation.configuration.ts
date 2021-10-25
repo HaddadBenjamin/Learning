@@ -1,5 +1,3 @@
-export const navigationReducerKey = "navigation"
-
 export const routes =
 {
 	home : '/',

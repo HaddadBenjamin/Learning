@@ -1,3 +1,3 @@
-const CV = () => <div>CV</div>
+const CV = () => <div>Lazy CV Component</div>
 
 export default CV

@@ -4,8 +4,3 @@ export interface INavigationElement
 	href : string
 	active? : boolean
 }
-
-export interface SetActiveElementActionPayload
-{
-	title : string
-}
