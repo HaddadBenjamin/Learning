@@ -1,0 +1,13 @@
+@import 'src/styles/styles';
+
+.element
+{
+  cursor : pointer;
+
+  @include text($textH5FontSize, $secondaryColor, undefined, $fontWeightSemiBold, $textH5LineHeight);
+
+  @include belowSm  { width : 100%; text-align : center; }
+}
+.element:hover { color : pink; }
+
+.active { color : red; }

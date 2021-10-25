@@ -1,0 +1,14 @@
+@import 'src/styles/styles';
+
+.container
+{
+  position: relative;
+  background: rgba(0,0,0,0.5);
+  padding-left : $spacingMd;
+
+  @include flex(undefined, undefined, undefined, $spacingMd);
+
+  @include belowSm { flex-direction: column; }
+}
+
+.navigationButton { position: absolute; right : 0; }
