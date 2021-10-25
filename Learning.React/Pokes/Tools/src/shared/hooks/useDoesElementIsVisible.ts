@@ -1,6 +1,8 @@
 import {useEffect, useState} from 'react';
 
-export const useDoesElementIsVisible = (getElement : () => any, stopToObserveWhenElementIsVisible : boolean = true) =>
+export const useDoesElementIsVisible = (
+  getElement : () => any,
+  stopToObserveWhenElementIsVisible : boolean = true) : boolean =>
 {
   const [isVisible, setIsVisible] = useState(false);
 
