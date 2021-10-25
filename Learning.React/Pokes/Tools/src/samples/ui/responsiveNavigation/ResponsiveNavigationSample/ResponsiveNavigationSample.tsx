@@ -4,10 +4,9 @@ import styles from './ResponsiveNavigationSample.module.scss';
 import React, {FC, lazy, ReactNode, useRef, useState} from 'react';
 import { INavigationElement } from '../responsiveNavigation.model';
 import NavigationElement from '../NavigationElement/NavigationElement';
-import { routes} from "../responsiveNavigation.configuration";
-import { BrowserRouter, Switch, Route } from "react-router-dom"
+import {initialNavigationElements, routes} from "../responsiveNavigation.configuration";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom"
 import { useClickOutside } from '../../../../shared/hooks/useClickOutside';
-import {initialNavigationElements} from "../responsiveNavigation.mock";
 
 const LazyHome = lazy(() => import('../FakeRouterComponents/Home'))
 const LazyAbout = lazy(() => import('../FakeRouterComponents/About'))
