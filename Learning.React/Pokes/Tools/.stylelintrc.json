@@ -1,0 +1,9 @@
+{
+  "extends": "stylelint-config-standard",
+  "customSyntax": "postcss-scss",
+  "parser": "postcss-scss",
+  "rules": {
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$",
+    "at-rule-no-unknown": [true, { "ignoreAtRules": ["function", "if", "each", "include", "mixin"] }]
+  }
+}

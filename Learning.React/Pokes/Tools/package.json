@@ -6,7 +6,8 @@
     "dev": "concurrently \"yarn dev:react\" \"yarn dev:apiMock\"",
     "dev:react": "react-scripts start",
     "dev:apiMock": "nodemon src/devTools/server/server.ts --config src/devTools/server/nodemon.json",
-    "dev:lint": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix",
+    "lint:ts": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix",
+    "lint:sass": "stylelint \"**/*.{css,scss,sass}\" --fix",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -54,8 +55,12 @@
     "mongoose": "^6.0.11",
     "mongoose-to-swagger": "^1.3.0",
     "nodemon": "^2.0.12",
+    "postcss": "^8.3.11",
+    "postcss-scss": "^4.0.1",
     "prettier": "^2.4.1",
-    "sass": "^1.42.1"
+    "sass": "^1.42.1",
+    "stylelint": "^14.0.0",
+    "stylelint-config-standard": "^23.0.0"
   },
   "eslintConfig": {
     "extends": [
