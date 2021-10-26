@@ -1,9 +1,11 @@
-import { getOrDefaultDataFromLocalStorage, setLocalStorageData } from '../domains/localStorage/localStorage.util'
+import {
+  getOrDefaultDataFromLocalStorage,
+  setLocalStorageData,
+} from '../domains/localStorage/localStorage.util';
 
-export const useLocalStorage = <T>(key : string, initialValue : T) =>
-{
-  const get = () => getOrDefaultDataFromLocalStorage(key, initialValue)
-  const set = (value : T) => setLocalStorageData(key, value)
+export default <T>(key: string, initialValue: T) => {
+  const get = () => getOrDefaultDataFromLocalStorage(key, initialValue);
+  const set = (value: T) => setLocalStorageData(key, value);
 
-  return [get, set] as const
-}
+  return [get, set] as const;
+};

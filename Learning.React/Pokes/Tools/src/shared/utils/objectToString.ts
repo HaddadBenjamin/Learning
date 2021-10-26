@@ -1,4 +1,3 @@
-import util from 'util'
+import util from 'util';
 
-export const objectTostring = (object : any) : string =>
-  util.inspect(object)
+export default (object: any): string => util.inspect(object);

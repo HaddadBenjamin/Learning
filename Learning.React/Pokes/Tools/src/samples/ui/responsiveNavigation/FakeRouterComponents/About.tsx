@@ -1,3 +1,5 @@
-const About = () => <div>Lazy About Component</div>
+import React from 'react';
 
-export default About
+const About = () => <div>Lazy About Component</div>;
+
+export default About;

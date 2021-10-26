@@ -1,7 +1,6 @@
-export interface FakeDomainState
-{
-	message? : string
-	error? : string
+export interface FakeDomainState {
+  message?: string;
+  error?: string;
 }
 
-export const initialFakeDomainState : FakeDomainState = { }
+export const initialFakeDomainState: FakeDomainState = {};

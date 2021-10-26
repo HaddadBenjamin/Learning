@@ -1,6 +1,5 @@
-export interface INavigationElement
-{
-	title : string
-	href : string
-	active? : boolean
+export interface INavigationElement {
+  title: string;
+  href: string;
+  active?: boolean;
 }

@@ -1,4 +1,4 @@
-export const highlightDatasMock : string[] = [
+const highlightDatasMock: string[] = [
   '<div>Chery Dalley</div>',
   '<span>M<div>t</div>od</span>esta Quijada',
   '<<div>>Thomas Acedo<</div>>',
@@ -9,5 +9,7 @@ export const highlightDatasMock : string[] = [
   'Tammi Hung',
   'Tracee Sartori',
   'Rosario Schack',
-  'Melanie Rafter'
-]
+  'Melanie Rafter',
+];
+
+export default highlightDatasMock;

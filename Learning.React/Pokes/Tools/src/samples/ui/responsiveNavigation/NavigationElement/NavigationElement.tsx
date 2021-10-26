@@ -1,24 +1,30 @@
-import { INavigationElement } from "../responsiveNavigation.model"
-import cn from 'classnames'
+import React, { FC } from 'react';
+import cn from 'classnames';
+import { Link } from 'react-router-dom';
 import styles from './NavigationElement.module.scss';
-import {FC} from "react";
-import { Link } from "react-router-dom"
+import { INavigationElement } from '../responsiveNavigation.model';
 
-interface Props extends INavigationElement
-{
-	selectNavigationElement : (navigationElement : INavigationElement) => void
+interface Props extends INavigationElement {
+  selectNavigationElement: (navigationElement: INavigationElement) => void;
 }
 
-const NavigationElement : FC<Props> = (navigationElement) =>
-{
-	const { active, href, title, selectNavigationElement } = navigationElement
-	
-	return <Link
-		to={href}
-		className={cn(styles.element, active && styles.active)}
-		onClick={() => selectNavigationElement(navigationElement)}>
-		{title}
-	</Link>
-}
+const NavigationElement: FC<Props> = ({
+  active,
+  href,
+  title,
+  selectNavigationElement,
+}) => {
+  const navigationElement = { active, href, title, selectNavigationElement };
 
-export default NavigationElement
+  return (
+    <Link
+      to={href}
+      className={cn(styles.element, active && styles.active)}
+      onClick={() => selectNavigationElement(navigationElement)}
+    >
+      {title}
+    </Link>
+  );
+};
+
+export default NavigationElement;

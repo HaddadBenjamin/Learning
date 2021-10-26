@@ -1,3 +1,5 @@
-const CV = () => <div>Lazy CV Component</div>
+import React from 'react';
 
-export default CV
+const CV = () => <div>Lazy CV Component</div>;
+
+export default CV;

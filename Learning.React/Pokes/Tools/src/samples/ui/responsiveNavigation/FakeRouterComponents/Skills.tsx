@@ -1,3 +1,5 @@
-const Skills = () => <div>Lazy Skills Component</div>
+import React from 'react';
 
-export default Skills
+const Skills = () => <div>Lazy Skills Component</div>;
+
+export default Skills;

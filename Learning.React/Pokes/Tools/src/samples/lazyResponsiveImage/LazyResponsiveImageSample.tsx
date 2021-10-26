@@ -1,10 +1,14 @@
-import { responsiveImageDatasMock } from './lazyResponsiveImage.mock';
-import LazyResponsiveImage from "../../shared/domains/lazyLoad/lazyResponsiveImage/components/LazyResponsiveImage";
+import React from 'react';
+import responsiveImageDatasMock from './lazyResponsiveImage.mock';
+import LazyResponsiveImage from '../../shared/domains/lazyLoad/lazyResponsiveImage/components/LazyResponsiveImage';
 
-const LazyResponsiveImageSample = () =>
+const LazyResponsiveImageSample = () => (
   <div>
     <h2>Lazy Responsive Image</h2>
-    <div>To test : F12 / Network / Image, this image will only be loaded when it's visible by the user</div>
+    <div>
+      To test : F12 / Network / Image, this image will only be loaded when
+      it&apos;s visible by the user
+    </div>
 
     <LazyResponsiveImage
       images={responsiveImageDatasMock}
@@ -13,5 +17,6 @@ const LazyResponsiveImageSample = () =>
       height={788}
     />
   </div>
+);
 
-export default LazyResponsiveImageSample
+export default LazyResponsiveImageSample;
