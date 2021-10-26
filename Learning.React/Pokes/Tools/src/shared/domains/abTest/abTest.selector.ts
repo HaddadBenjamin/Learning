@@ -1,5 +1,7 @@
-import {ApplicationState} from "../../../samples/lazyRedux/root.state";
-import {AbTestState, initialAbTestsState} from "./abTest.state";
+import { ApplicationState } from "../../../samples/lazyRedux/root.state";
+import { AbTestState, initialAbTestsState } from "./abTest.state";
 
-export const selectAbTestsState = (state : ApplicationState) : AbTestState =>
-	state?.abTests ?? initialAbTestsState
+const selectAbTestsState = (state: ApplicationState): AbTestState =>
+  state?.abTests ?? initialAbTestsState;
+
+export default selectAbTestsState;

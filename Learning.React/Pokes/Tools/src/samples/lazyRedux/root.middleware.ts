@@ -1,7 +1,7 @@
-import {composeWithDevTools} from "redux-devtools-extension";
-import {applyMiddleware} from "redux";
-import {sagaMiddleware} from "./root.saga";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { applyMiddleware } from "redux";
+import { sagaMiddleware } from "./root.saga";
 
-const middlewares = composeWithDevTools({})(applyMiddleware(sagaMiddleware))
+const middlewares = composeWithDevTools({})(applyMiddleware(sagaMiddleware));
 
-export default middlewares
+export default middlewares;

@@ -1,3 +1,5 @@
-const Projects = () => <div>Lazy Projects Component</div>
+import React from "react";
 
-export default Projects
+const Projects = () => <div>Lazy Projects Component</div>;
+
+export default Projects;

@@ -1,6 +1,5 @@
-export interface FeatureFlag
-{
-	id : number
-	name : string
-	enable : boolean
+export interface FeatureFlag {
+  id: number;
+  name: string;
+  enable: boolean;
 }

@@ -1,9 +1,9 @@
-import createSagaMiddleware from 'redux-saga';
+import createSagaMiddleware from "redux-saga";
 
-export const sagaMiddleware = createSagaMiddleware()
+export const sagaMiddleware = createSagaMiddleware();
 
 export default function* rootSagas() {
-	yield [
-		//fork(watchTodosSagas),
-	]
+  yield [
+    // fork(watchTodosSagas),
+  ];
 }

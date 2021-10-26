@@ -1,6 +1,5 @@
-export interface AbTest
-{
-	id : number
-	name : string
-	enable : boolean
+export interface AbTest {
+  id: number;
+  name: string;
+  enable: boolean;
 }

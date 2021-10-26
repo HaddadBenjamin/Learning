@@ -1,39 +1,42 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from "react";
 
-export const useDoesElementIsVisible = (
-  getElement : () => any,
-  stopToObserveWhenElementIsVisible : boolean = true) : boolean =>
-{
+export default (
+  getElement: () => any,
+  stopToObserveWhenElementIsVisible: boolean = true
+): boolean => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const intersectionObserverCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) : void =>
-    entries.forEach(entry =>
-    {
-      const elementIsVisible = entry.isIntersecting || entry.intersectionRatio > 0
+  const intersectionObserverCallback = (
+    entries: IntersectionObserverEntry[],
+    observer: IntersectionObserver
+  ): void =>
+    entries.forEach((entry) => {
+      const elementIsVisible =
+        entry.isIntersecting || entry.intersectionRatio > 0;
 
-      if (elementIsVisible)
-      {
-        if (stopToObserveWhenElementIsVisible)
-          observer.unobserve(entry.target);
-        setIsVisible(true)
+      if (elementIsVisible) {
+        if (stopToObserveWhenElementIsVisible) observer.unobserve(entry.target);
+        setIsVisible(true);
       }
-    })
-  const intersectionObserverOptions : IntersectionObserverInit = { rootMargin: '50px', threshold: 0.01 }
+    });
 
-  useEffect(() =>
-  {
-    if (!getElement()) return
+  useEffect(() => {
+    if (!getElement()) return;
 
-    let intersectionObserver = new IntersectionObserver(intersectionObserverCallback, intersectionObserverOptions)
+    const intersectionObserver = new IntersectionObserver(
+      intersectionObserverCallback,
+      {
+        rootMargin: "50px",
+        threshold: 0.01,
+      }
+    );
 
     intersectionObserver.observe(getElement());
 
-    return () =>
-    {
-      if (getElement())
-        intersectionObserver.unobserve(getElement())
+    return (): void => {// eslint-disable-line
+      if (getElement()) intersectionObserver.unobserve(getElement());
     };
   }, []);
 
-  return isVisible
+  return isVisible;
 };

@@ -1,3 +1,5 @@
-const Home = () => <div>Lazy Home Component</div>
+import React from "react";
 
-export default Home
+const Home = () => <div>Lazy Home Component</div>;
+
+export default Home;

@@ -1,2 +1,1 @@
-export const removeHtmlTags = (text : string) : string =>
-  text.replace( /(<([^>]+)>)/ig, '')
+export default (text: string): string => text.replace(/(<([^>]+)>)/gi, "");
