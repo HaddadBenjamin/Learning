@@ -2,7 +2,9 @@
   "name": "lazyload",
   "version": "0.1.0",
   "private": true,
-  "engines" : { "node" : "14.17.0" },
+  "engines": {
+    "node": "14.17.0"
+  },
   "scripts": {
     "dev": "concurrently \"yarn dev:react\" \"yarn dev:apiMock\"",
     "dev:react": "react-scripts start",

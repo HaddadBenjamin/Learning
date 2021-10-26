@@ -1,7 +1,6 @@
-/* eslint-disable */
-import { useEffect, useState } from "react";
-import axios from "axios";
-import doesElementIsVisible from "../utils/doesElementIsVisible";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import doesElementIsVisible from '../utils/doesElementIsVisible';
 
 // Pour pouvoir faire de l'infinite scrolling, il est nécéssaire que votre endpoint en GET gère la pagination.
 export default (
@@ -16,6 +15,19 @@ export default (
   const [hasNextPage, setHasNextPage] = useState(true);
   const [mustFetch, setMustFetch] = useState(false);
 
+  const fetchItems = (): Promise<any> => {
+    if (!hasNextPage) return Promise.resolve();
+
+    return axios.get(computeFetchUrl(page, pageSize)).then((response: any) => {
+      const newPage: number = page + 1;
+
+      setItems([...items, ...response.data]);
+      setPage(newPage);
+
+      if (newPage > lastPage) setHasNextPage(false);
+    });
+  };
+
   useEffect(() => {
     async function asyncEffect() {
       await fetchItems();
@@ -24,13 +36,6 @@ export default (
 
     if (mustFetch) asyncEffect();
   }, [mustFetch]);
-
-  useEffect(() => {
-    fetchItems();
-    const timer = window.setInterval(computeIsFetching, updateDelay);
-
-    return () => clearInterval(timer);
-  }, []);
 
   const doesLastContainerChildIsVisible = (): boolean => {
     const lastChild = document.querySelector(
@@ -44,18 +49,12 @@ export default (
     if (doesLastContainerChildIsVisible()) setMustFetch(true);
   };
 
-  const fetchItems = (): Promise<any> => {
-    if (!hasNextPage) return Promise.resolve();
+  useEffect(() => {
+    fetchItems();
+    const timer = window.setInterval(computeIsFetching, updateDelay);
 
-    return axios.get(computeFetchUrl(page, pageSize)).then((response: any) => {
-      const newPage: number = page + 1;
-
-      setItems([...items, ...response.data]);
-      setPage(newPage);
-
-      if (newPage > lastPage) setHasNextPage(false);
-    });
-  };
+    return () => clearInterval(timer);
+  }, []);
 
   return { items, isFetching: !mustFetch } as const;
 };

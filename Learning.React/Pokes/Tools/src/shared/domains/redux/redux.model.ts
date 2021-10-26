@@ -1,8 +1,7 @@
-/* eslint-disable */
 export enum ActionStatus {
-  Loading = "Loading",
-  Loaded = " Loaded",
-  Failed = "Failed",
+  Loading = 'Loading',
+  Loaded = ' Loaded',
+  Failed = 'Failed',
 }
 
 export interface IActionMetadata {
