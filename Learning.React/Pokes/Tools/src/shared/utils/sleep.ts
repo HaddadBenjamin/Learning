@@ -1,2 +1,2 @@
 export default (milliseconds: number): Promise<any> =>
-  new Promise((resolve) => setTimeout(resolve, milliseconds));
+  new Promise(resolve => setTimeout(resolve, milliseconds));

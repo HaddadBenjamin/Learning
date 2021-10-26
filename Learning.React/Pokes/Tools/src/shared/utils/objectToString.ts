@@ -1,3 +1,3 @@
-import util from "util";
+import util from 'util';
 
 export default (object: any): string => util.inspect(object);

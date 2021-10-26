@@ -6,9 +6,9 @@ import {
   StoreEnhancer,
   PreloadedState,
   Store,
-} from "redux";
-import { Saga, SagaMiddleware, Task } from "redux-saga";
-import { ILazyStore } from "./lazyRedux.model";
+} from 'redux';
+import { Saga, SagaMiddleware, Task } from 'redux-saga';
+import { ILazyStore } from './lazyRedux.model';
 
 class LazyStore<TApplicationState> implements ILazyStore {
   store: Store;
@@ -39,7 +39,7 @@ class LazyStore<TApplicationState> implements ILazyStore {
     );
 
     this.injectedSagas = new Map<string, Task>([
-      ["root", sagaMiddleware.run(rootSagas)],
+      ['root', sagaMiddleware.run(rootSagas)],
     ]);
   }
 

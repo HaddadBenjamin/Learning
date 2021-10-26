@@ -1,8 +1,8 @@
-import { ApplicationState } from "../../../samples/lazyRedux/root.state";
+import { ApplicationState } from '../../../samples/lazyRedux/root.state';
 import {
   FeatureFlagState,
   initialFeatureFlagsState,
-} from "./featureFlag.state";
+} from './featureFlag.state';
 
 const selectFeatureFlagsState = (state: ApplicationState): FeatureFlagState =>
   state?.featureFlags ?? initialFeatureFlagsState;

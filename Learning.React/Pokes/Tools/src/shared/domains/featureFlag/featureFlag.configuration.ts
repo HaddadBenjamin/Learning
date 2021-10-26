@@ -1,6 +1,6 @@
 export const routes = {
-  api: "/featureflags",
+  api: '/featureflags',
 };
 
-export const featureFlagReducerKey = "featureFlags";
-export const featureFlagSagaKey = "featureFlags";
+export const featureFlagReducerKey = 'featureFlags';
+export const featureFlagSagaKey = 'featureFlags';

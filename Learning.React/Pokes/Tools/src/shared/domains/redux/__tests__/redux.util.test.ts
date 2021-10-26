@@ -2,11 +2,11 @@ import {
   failedActionMetadata,
   loadedActionMetadata,
   loadingActionMetadata,
-} from "../redux.util";
-import { ActionStatus } from "../redux.model";
+} from '../redux.util';
+import { ActionStatus } from '../redux.model';
 
-describe("redux.util", () => {
-  it("loadingActionMetadata should set status to loading and error to undefined", () => {
+describe('redux.util', () => {
+  it('loadingActionMetadata should set status to loading and error to undefined', () => {
     // Given & When
     const loadingState = loadingActionMetadata({});
 
@@ -19,7 +19,7 @@ describe("redux.util", () => {
     );
   });
 
-  it("loadedActionMetadata should set status to loaded and error to undefined", () => {
+  it('loadedActionMetadata should set status to loaded and error to undefined', () => {
     // Given & When
     const loadedState = loadedActionMetadata({});
 
@@ -32,9 +32,9 @@ describe("redux.util", () => {
     );
   });
 
-  it("failedActionMetadata should set status to failed and set the error", () => {
+  it('failedActionMetadata should set status to failed and set the error', () => {
     // Given & When
-    const errorMessage = "variable not defined";
+    const errorMessage = 'variable not defined';
     const loadedState = failedActionMetadata(errorMessage, {});
 
     // When

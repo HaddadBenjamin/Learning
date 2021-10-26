@@ -1,4 +1,4 @@
-import { ActionStatus, IActionMetadata } from "./redux.model";
+import { ActionStatus, IActionMetadata } from './redux.model';
 
 export const loadingActionMetadata = <State>(
   state: State

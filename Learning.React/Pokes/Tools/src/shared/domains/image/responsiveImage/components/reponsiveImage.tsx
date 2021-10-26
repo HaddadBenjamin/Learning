@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import { ResponsiveImageData } from "../responsiveImage.models";
-import useResponsiveImage from "../hooks/useResponsiveImage";
+import React, { FC } from 'react';
+import { ResponsiveImageData } from '../responsiveImage.models';
+import useResponsiveImage from '../hooks/useResponsiveImage';
 
 interface Props {
   images: ResponsiveImageData[];

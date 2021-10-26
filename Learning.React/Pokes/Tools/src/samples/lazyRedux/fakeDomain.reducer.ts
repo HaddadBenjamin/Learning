@@ -1,5 +1,5 @@
-import { FakeDomainState, initialFakeDomainState } from "./fakeDomain.state";
-import { FakeDomainAction, FakeDomainActions } from "./fakeDomain.action";
+import { FakeDomainState, initialFakeDomainState } from './fakeDomain.state';
+import { FakeDomainAction, FakeDomainActions } from './fakeDomain.action';
 
 const fakeDomainReducer = (
   state: FakeDomainState = initialFakeDomainState,
@@ -18,6 +18,6 @@ const fakeDomainReducer = (
   }
 };
 
-export const fakeDomainReducerKey = "fakeDomain";
+export const fakeDomainReducerKey = 'fakeDomain';
 
 export default fakeDomainReducer;

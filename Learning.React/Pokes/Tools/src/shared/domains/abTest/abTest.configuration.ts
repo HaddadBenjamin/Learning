@@ -1,6 +1,6 @@
 export const routes = {
-  api: "/abTests",
+  api: '/abTests',
 };
 
-export const abTestReducerKey = "abTests";
-export const abTestSagaKey = "abTests";
+export const abTestReducerKey = 'abTests';
+export const abTestSagaKey = 'abTests';

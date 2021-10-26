@@ -1,8 +1,8 @@
-import React, { FC } from "react";
-import cn from "classnames";
-import styles from "./LazyImage.module.scss";
-import { LazyImageData } from "../lazyImage.model";
-import useLazyImage from "../hooks/useLazyImage";
+import React, { FC } from 'react';
+import cn from 'classnames';
+import styles from './LazyImage.module.scss';
+import { LazyImageData } from '../lazyImage.model';
+import useLazyImage from '../hooks/useLazyImage';
 
 interface Props extends LazyImageData {
   className?: string;
@@ -28,7 +28,7 @@ const LazyImage: FC<Props> = ({
     <div
       className={cn(styles.container, className)}
       ref={imgRef}
-      style={{ paddingBottom: `${(height / width) * 100}%`, width: "100%" }}
+      style={{ paddingBottom: `${(height / width) * 100}%`, width: '100%' }}
     >
       {isVisible && (
         <img

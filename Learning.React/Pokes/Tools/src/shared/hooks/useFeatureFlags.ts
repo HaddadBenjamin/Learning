@@ -1,14 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import selectFeatureFlagsState from "../domains/featureFlag/featureFlag.selector";
-import useLazyReducer from "./useLazyReducer";
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import selectFeatureFlagsState from '../domains/featureFlag/featureFlag.selector';
+import useLazyReducer from './useLazyReducer';
 import {
   featureFlagReducerKey,
   featureFlagSagaKey,
-} from "../domains/featureFlag/featureFlag.configuration";
-import useLazySaga from "./useLazySaga";
-import { getFeatureFlagsAction } from "../domains/featureFlag/featureFlag.action";
-import { FeatureFlag } from "../domains/featureFlag/featureFlag.model";
+} from '../domains/featureFlag/featureFlag.configuration';
+import useLazySaga from './useLazySaga';
+import { getFeatureFlagsAction } from '../domains/featureFlag/featureFlag.action';
+import { FeatureFlag } from '../domains/featureFlag/featureFlag.model';
 
 export default (...featureFlagsIds: number[]): boolean[] => {
   const featureFlagsState = useSelector(selectFeatureFlagsState);
@@ -16,11 +16,11 @@ export default (...featureFlagsIds: number[]): boolean[] => {
 
   const reducerIsInjected = useLazyReducer(
     featureFlagReducerKey,
-    "shared/domains/featureFlag/featureFlag.reducer"
+    'shared/domains/featureFlag/featureFlag.reducer'
   );
   const sagaIsInjected = useLazySaga(
     featureFlagSagaKey,
-    "shared/domains/featureFlag/featureFlag.saga"
+    'shared/domains/featureFlag/featureFlag.saga'
   );
 
   const [isInitialized, setIsInitialized] = useState(false);
@@ -44,9 +44,9 @@ export default (...featureFlagsIds: number[]): boolean[] => {
   ]);
 
   const getFeatureFlagById = (ffId: number): FeatureFlag | undefined =>
-    featureFlagsState.featureFlags.find((ff) => ff.id === ffId);
+    featureFlagsState.featureFlags.find(ff => ff.id === ffId);
 
   return featureFlagsIds
     .filter(getFeatureFlagById)
-    .map((ffId) => getFeatureFlagById(ffId)?.enable as boolean);
+    .map(ffId => getFeatureFlagById(ffId)?.enable as boolean);
 };

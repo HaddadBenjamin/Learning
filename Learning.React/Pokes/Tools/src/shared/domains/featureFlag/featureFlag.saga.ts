@@ -1,12 +1,12 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
   FeatureFlagAction,
   getFeatureFlagsFailedAction,
   getFeatureFlagsSuccessAction,
-} from "./featureFlag.action";
-import { FeatureFlag } from "./featureFlag.model";
-import { getFeatureFlags } from "./featureFlag.api";
+} from './featureFlag.action';
+import { FeatureFlag } from './featureFlag.model';
+import { getFeatureFlags } from './featureFlag.api';
 
 export function* getFeatureFlagsSaga() {
   try {

@@ -1,10 +1,10 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from 'axios';
 import {
   backOfficeApiConfiguration,
   httpConfiguration,
-} from "../../shared.configuration";
-import { FeatureFlag } from "./featureFlag.model";
-import { routes } from "./featureFlag.configuration";
+} from '../../shared.configuration';
+import { FeatureFlag } from './featureFlag.model';
+import { routes } from './featureFlag.configuration';
 
 export const baseUrl = `${backOfficeApiConfiguration.baseUrl}${routes.api}`;
 

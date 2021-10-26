@@ -1,6 +1,6 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useState } from 'react';
 
-const LazyComponent = React.lazy(() => import("./LazyComponent"));
+const LazyComponent = React.lazy(() => import('./LazyComponent'));
 const LazyReduxSample = () => {
   const [componentIsVisible, setComponentIsVisible] = useState(false);
   const showComponent = () => setComponentIsVisible(true);
@@ -9,7 +9,7 @@ const LazyReduxSample = () => {
     <div>
       <h2>Lazy component with lazy reducer & saga & feature flag & ab test</h2>
       <div>
-        To test : F12 / Network / JS and see the chunks loading on click{" "}
+        To test : F12 / Network / JS and see the chunks loading on click{' '}
       </div>
       {!componentIsVisible ? (
         <button type="button" onClick={showComponent}>

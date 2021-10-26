@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import removeHtmlTags from "../../../../utils/removeHtmlTags";
+import React, { FC } from 'react';
+import removeHtmlTags from '../../../../utils/removeHtmlTags';
 
 interface Props {
   text: string;
@@ -9,8 +9,8 @@ interface Props {
 
 const Highlight: FC<Props> = ({ text, searchTerm, color }) => {
   const newText = removeHtmlTags(text).replaceAll(
-    new RegExp(searchTerm, "ig"),
-    (oldText) => `<span style="color :${color ?? "red"}">${oldText}</span>`
+    new RegExp(searchTerm, 'ig'),
+    oldText => `<span style="color :${color ?? 'red'}">${oldText}</span>`
   );
 
   return <div dangerouslySetInnerHTML={{ __html: newText }} />;// eslint-disable-line

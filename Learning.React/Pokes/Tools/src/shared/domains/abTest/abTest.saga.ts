@@ -1,12 +1,12 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
   AbTestAction,
   getAbTestsFailedAction,
   getAbTestsSuccessAction,
-} from "./abTest.action";
-import { AbTest } from "./abTest.model";
-import { getAbTests } from "./abTest.api";
+} from './abTest.action';
+import { AbTest } from './abTest.model';
+import { getAbTests } from './abTest.api';
 
 export function* getAbTestsSaga() {
   try {

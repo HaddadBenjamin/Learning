@@ -1,6 +1,6 @@
-import React from "react";
-import lazyImageDatas from "./lazyImage.mock";
-import LazyImage from "../../shared/domains/lazyLoad/lazyImage/components/LazyImage";
+import React from 'react';
+import lazyImageDatas from './lazyImage.mock';
+import LazyImage from '../../shared/domains/lazyLoad/lazyImage/components/LazyImage';
 
 const LazyImageSample = () => (
   <div>
@@ -11,7 +11,7 @@ const LazyImageSample = () => (
     </div>
 
     <section>
-      {lazyImageDatas.map((data) => (
+      {lazyImageDatas.map(data => (
         <LazyImage key={data.alt} {...data} />
       ))}
     </section>

@@ -1,21 +1,21 @@
-import React, { FC, lazy, ReactNode, useRef, useState } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import useToggle from "../../../../shared/hooks/useToggle";
-import useBreakpoints from "../../../../shared/hooks/useBreakpoints";
-import styles from "./ResponsiveNavigationSample.module.scss";
-import { INavigationElement } from "../responsiveNavigation.model";
-import NavigationElement from "../NavigationElement/NavigationElement";
+import React, { FC, lazy, ReactNode, useRef, useState } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import useToggle from '../../../../shared/hooks/useToggle';
+import useBreakpoints from '../../../../shared/hooks/useBreakpoints';
+import styles from './ResponsiveNavigationSample.module.scss';
+import { INavigationElement } from '../responsiveNavigation.model';
+import NavigationElement from '../NavigationElement/NavigationElement';
 import {
   initialNavigationElements,
   routes,
-} from "../responsiveNavigation.configuration";
-import useClickOutside from "../../../../shared/hooks/useClickOutside";
+} from '../responsiveNavigation.configuration';
+import useClickOutside from '../../../../shared/hooks/useClickOutside';
 
-const LazyHome = lazy(() => import("../FakeRouterComponents/Home"));
-const LazyAbout = lazy(() => import("../FakeRouterComponents/About"));
-const LazySkills = lazy(() => import("../FakeRouterComponents/Skills"));
-const LazyProjects = lazy(() => import("../FakeRouterComponents/Projects"));
-const LazyCV = lazy(() => import("../FakeRouterComponents/CV"));
+const LazyHome = lazy(() => import('../FakeRouterComponents/Home'));
+const LazyAbout = lazy(() => import('../FakeRouterComponents/About'));
+const LazySkills = lazy(() => import('../FakeRouterComponents/Skills'));
+const LazyProjects = lazy(() => import('../FakeRouterComponents/Projects'));
+const LazyCV = lazy(() => import('../FakeRouterComponents/CV'));
 
 const ResponsiveNavigationSample: FC = () => {
   const [navigationElements, setNavigationElements] = useState(
@@ -35,14 +35,14 @@ const ResponsiveNavigationSample: FC = () => {
 
   const selectNavigationElement = (navigationElement: INavigationElement) =>
     setNavigationElements(
-      navigationElements.map((e) => ({
+      navigationElements.map(e => ({
         ...e,
         active: e.title === navigationElement.title,
       }))
     );
 
   const showNavigationElements = (elements: INavigationElement[]): ReactNode =>
-    elements.map((n) => (
+    elements.map(n => (
       <NavigationElement
         key={n.title}
         {...n}
@@ -74,7 +74,7 @@ const ResponsiveNavigationSample: FC = () => {
 
               {!mobileNavigationIsVisible &&
                 showNavigationElements(
-                  navigationElements.filter((n) => n.active)
+                  navigationElements.filter(n => n.active)
                 )}
 
               {mobileNavigationIsVisible &&

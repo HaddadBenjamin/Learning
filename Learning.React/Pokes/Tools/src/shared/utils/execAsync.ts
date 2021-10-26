@@ -1,4 +1,4 @@
-import { exec } from "child_process";
+import { exec } from 'child_process';
 
 export default (command: string): Promise<string> =>
   new Promise<string>((resolve, reject) => {

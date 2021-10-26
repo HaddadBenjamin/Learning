@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import useDoesRefIsVisible from "../../../../hooks/useDoesRefIsVisible";
+import { useRef, useState } from 'react';
+import useDoesRefIsVisible from '../../../../hooks/useDoesRefIsVisible';
 
 const useLazyImage = (condition: boolean = true) => {
   const imgRef = useRef(null);

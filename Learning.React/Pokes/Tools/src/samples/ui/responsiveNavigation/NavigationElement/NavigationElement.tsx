@@ -1,8 +1,8 @@
-import React, { FC } from "react";
-import cn from "classnames";
-import { Link } from "react-router-dom";
-import styles from "./NavigationElement.module.scss";
-import { INavigationElement } from "../responsiveNavigation.model";
+import React, { FC } from 'react';
+import cn from 'classnames';
+import { Link } from 'react-router-dom';
+import styles from './NavigationElement.module.scss';
+import { INavigationElement } from '../responsiveNavigation.model';
 
 interface Props extends INavigationElement {
   selectNavigationElement: (navigationElement: INavigationElement) => void;

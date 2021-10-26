@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export default (
   getElement: () => any,
@@ -10,7 +10,7 @@ export default (
     entries: IntersectionObserverEntry[],
     observer: IntersectionObserver
   ): void =>
-    entries.forEach((entry) => {
+    entries.forEach(entry => {
       const elementIsVisible =
         entry.isIntersecting || entry.intersectionRatio > 0;
 
@@ -26,7 +26,7 @@ export default (
     const intersectionObserver = new IntersectionObserver(
       intersectionObserverCallback,
       {
-        rootMargin: "50px",
+        rootMargin: '50px',
         threshold: 0.01,
       }
     );

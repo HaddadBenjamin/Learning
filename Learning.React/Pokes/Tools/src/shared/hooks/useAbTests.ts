@@ -1,14 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import selectAbTestsState from "../domains/abTest/abTest.selector";
-import useLazyReducer from "./useLazyReducer";
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import selectAbTestsState from '../domains/abTest/abTest.selector';
+import useLazyReducer from './useLazyReducer';
 import {
   abTestReducerKey,
   abTestSagaKey,
-} from "../domains/abTest/abTest.configuration";
-import useLazySaga from "./useLazySaga";
-import { getAbTestsAction } from "../domains/abTest/abTest.action";
-import { AbTest } from "../domains/abTest/abTest.model";
+} from '../domains/abTest/abTest.configuration';
+import useLazySaga from './useLazySaga';
+import { getAbTestsAction } from '../domains/abTest/abTest.action';
+import { AbTest } from '../domains/abTest/abTest.model';
 
 export default (...abTestsIds: number[]): boolean[] => {
   const abTestsState = useSelector(selectAbTestsState);
@@ -16,11 +16,11 @@ export default (...abTestsIds: number[]): boolean[] => {
 
   const reducerIsInjected = useLazyReducer(
     abTestReducerKey,
-    "shared/domains/abTest/abTest.reducer"
+    'shared/domains/abTest/abTest.reducer'
   );
   const sagaIsInjected = useLazySaga(
     abTestSagaKey,
-    "shared/domains/abTest/abTest.saga"
+    'shared/domains/abTest/abTest.saga'
   );
 
   const [isInitialized, setIsInitialized] = useState(false);
@@ -44,9 +44,9 @@ export default (...abTestsIds: number[]): boolean[] => {
   ]);
 
   const getAbTestById = (atId: number): AbTest | undefined =>
-    abTestsState.abTests.find((at) => at.id === atId);
+    abTestsState.abTests.find(at => at.id === atId);
 
   return abTestsIds
     .filter(getAbTestById)
-    .map((atId) => getAbTestById(atId)?.enable as boolean);
+    .map(atId => getAbTestById(atId)?.enable as boolean);
 };

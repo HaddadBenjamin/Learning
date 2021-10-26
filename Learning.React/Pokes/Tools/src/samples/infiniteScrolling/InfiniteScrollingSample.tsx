@@ -1,5 +1,5 @@
-import React from "react";
-import useInfiniteScrolling from "../../shared/domains/lazyLoad/infiniteScrolling/hooks/useInfiniteScrolling";
+import React from 'react';
+import useInfiniteScrolling from '../../shared/domains/lazyLoad/infiniteScrolling/hooks/useInfiniteScrolling';
 
 // Pour pouvoir faire de l'infinite scrolling, il faut que votre endpoint en GET gère la pagination.
 const InfiniteScrollingSample = () => {
@@ -7,7 +7,7 @@ const InfiniteScrollingSample = () => {
     `https://jsonplaceholder.typicode.com/photos?_page=${page}&_limit=${pageSize}`;
 
   const { items, isFetching } = useInfiniteScrolling(
-    "#infiniteScrollContainerId",
+    '#infiniteScrollContainerId',
     computeFetchUrl
   );
 
@@ -20,7 +20,7 @@ const InfiniteScrollingSample = () => {
       </div>
 
       <div id="infiniteScrollContainerId">
-        {items.map((item) => (
+        {items.map(item => (
           <img
             key={item.id}
             src={item.url}

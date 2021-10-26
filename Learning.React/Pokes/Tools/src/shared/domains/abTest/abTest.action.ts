@@ -1,9 +1,9 @@
-import { AbTest } from "./abTest.model";
+import { AbTest } from './abTest.model';
 
 export enum AbTestAction {
-  GET_AB_TEST_REQUEST = "abTests/GET_AB_TEST_REQUEST",
-  GET_AB_TEST_SUCCESS = "abTests/GET_AB_TEST_SUCCESS",
-  GET_AB_TEST_FAILED = "abTests/GET_AB_TEST_FAILED",
+  GET_AB_TEST_REQUEST = 'abTests/GET_AB_TEST_REQUEST',
+  GET_AB_TEST_SUCCESS = 'abTests/GET_AB_TEST_SUCCESS',
+  GET_AB_TEST_FAILED = 'abTests/GET_AB_TEST_FAILED',
 }
 
 export interface GetAbTestsRequestAction {

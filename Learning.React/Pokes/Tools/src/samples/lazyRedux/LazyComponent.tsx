@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import useLazySaga from "../../shared/hooks/useLazySaga";
-import useLazyReducer from "../../shared/hooks/useLazyReducer";
-import { fakeDomainReducerKey } from "./fakeDomain.reducer";
-import { getMessageRequestAction } from "./fakeDomain.action";
-import selectMessage from "./fakeDomain.selector";
-import { fakeDomainSagaKey } from "./fakeDomain.saga";
-import useFeatureFlags from "../../shared/domains/featureFlag/hooks/useFeatureFlags";
-import { AbTestIds, FeatureFlagIds } from "./fakeDomain.configuration";
-import useAbTests from "../../shared/domains/abTest/hooks/useAbTests";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import useLazySaga from '../../shared/hooks/useLazySaga';
+import useLazyReducer from '../../shared/hooks/useLazyReducer';
+import { fakeDomainReducerKey } from './fakeDomain.reducer';
+import { getMessageRequestAction } from './fakeDomain.action';
+import selectMessage from './fakeDomain.selector';
+import { fakeDomainSagaKey } from './fakeDomain.saga';
+import useFeatureFlags from '../../shared/domains/featureFlag/hooks/useFeatureFlags';
+import { AbTestIds, FeatureFlagIds } from './fakeDomain.configuration';
+import useAbTests from '../../shared/domains/abTest/hooks/useAbTests';
 
 const LazyComponent = () => {
   const dispatch = useDispatch();
@@ -16,11 +16,11 @@ const LazyComponent = () => {
 
   const reducerIsInjected = useLazyReducer(
     fakeDomainReducerKey,
-    "samples/lazyRedux/fakeDomain.reducer"
+    'samples/lazyRedux/fakeDomain.reducer'
   );
   const sagaIsInjected = useLazySaga(
     fakeDomainSagaKey,
-    "samples/lazyRedux/fakeDomain.saga"
+    'samples/lazyRedux/fakeDomain.saga'
   );
   const [featureFlagIsEnabled] = useFeatureFlags(FeatureFlagIds.fakeDomain);
   const [abTestIsEnabled] = useAbTests(AbTestIds.fakeDomain);

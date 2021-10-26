@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { lazyStore } from "../../../../../samples/lazyRedux/root.store";
+import { useEffect, useState } from 'react';
+import { lazyStore } from '../../../../../samples/lazyRedux/root.store';
 
 const useLazyReducer = (
   key: string,

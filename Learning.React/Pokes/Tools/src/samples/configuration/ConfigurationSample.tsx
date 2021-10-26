@@ -1,5 +1,5 @@
-import React from "react";
-import useConfiguration from "../../shared/domains/configuration/hooks/useConfiguration";
+import React from 'react';
+import useConfiguration from '../../shared/domains/configuration/hooks/useConfiguration';
 
 const ConfigurationSample = () => {
   const configuration = useConfiguration();

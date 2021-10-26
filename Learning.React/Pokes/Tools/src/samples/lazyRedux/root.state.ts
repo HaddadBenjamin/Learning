@@ -1,6 +1,6 @@
-import { FakeDomainState } from "./fakeDomain.state";
-import { FeatureFlagState } from "../../shared/domains/featureFlag/featureFlag.state";
-import { AbTestState } from "../../shared/domains/abTest/abTest.state";
+import { FakeDomainState } from './fakeDomain.state';
+import { FeatureFlagState } from '../../shared/domains/featureFlag/featureFlag.state';
+import { AbTestState } from '../../shared/domains/abTest/abTest.state';
 
 export interface ApplicationState {
   fakeDomain?: FakeDomainState;

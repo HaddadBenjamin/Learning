@@ -1,9 +1,9 @@
-import { FeatureFlag } from "./featureFlag.model";
+import { FeatureFlag } from './featureFlag.model';
 
 export enum FeatureFlagAction {
-  GET_FEATURE_FLAG_REQUEST = "featureFlags/GET_FEATURE_FLAG_REQUEST",
-  GET_FEATURE_FLAG_SUCCESS = "featureFlags/GET_FEATURE_FLAG_SUCCESS",
-  GET_FEATURE_FLAG_FAILED = "featureFlags/GET_FEATURE_FLAG_FAILED",
+  GET_FEATURE_FLAG_REQUEST = 'featureFlags/GET_FEATURE_FLAG_REQUEST',
+  GET_FEATURE_FLAG_SUCCESS = 'featureFlags/GET_FEATURE_FLAG_SUCCESS',
+  GET_FEATURE_FLAG_FAILED = 'featureFlags/GET_FEATURE_FLAG_FAILED',
 }
 
 export interface GetFeatureFlagsRequestAction {

@@ -1,4 +1,4 @@
-import { useEffect, RefObject } from "react";
+import { useEffect, RefObject } from 'react';
 
 export default (ref: RefObject<HTMLElement>, callback: () => void): void => {
   useEffect(() => {
@@ -6,8 +6,8 @@ export default (ref: RefObject<HTMLElement>, callback: () => void): void => {
       if (ref.current && !ref.current.contains(event.target)) callback();
     };
 
-    window.addEventListener("mousedown", onClickAway);
+    window.addEventListener('mousedown', onClickAway);
 
-    return () => window.removeEventListener("mousedown", onClickAway);
+    return () => window.removeEventListener('mousedown', onClickAway);
   }, [ref]);
 };

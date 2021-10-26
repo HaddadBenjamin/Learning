@@ -1,8 +1,8 @@
 import {
   FeatureFlagState,
   initialFeatureFlagsState,
-} from "./featureFlag.state";
-import { FeatureFlagActions, FeatureFlagAction } from "./featureFlag.action";
+} from './featureFlag.state';
+import { FeatureFlagActions, FeatureFlagAction } from './featureFlag.action';
 
 const featureFlagReducer = (
   state: FeatureFlagState = initialFeatureFlagsState,

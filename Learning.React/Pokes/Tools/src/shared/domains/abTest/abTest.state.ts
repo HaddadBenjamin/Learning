@@ -1,5 +1,5 @@
-import { abTestsFrMock } from "./abTest.mock";
-import { AbTest } from "./abTest.model";
+import { abTestsFrMock } from './abTest.mock';
+import { AbTest } from './abTest.model';
 
 export interface AbTestState {
   abTests: AbTest[];
@@ -8,6 +8,6 @@ export interface AbTestState {
 }
 
 export const initialAbTestsState: AbTestState = {
-  abTests: abTestsFrMock.map((ab) => ({ ...ab, enable: false })),
+  abTests: abTestsFrMock.map(ab => ({ ...ab, enable: false })),
   initialized: false,
 };

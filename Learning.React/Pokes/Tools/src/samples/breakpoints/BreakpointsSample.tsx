@@ -1,5 +1,5 @@
-import React from "react";
-import useBreakpoints from "../../shared/hooks/useBreakpoints";
+import React from 'react';
+import useBreakpoints from '../../shared/hooks/useBreakpoints';
 
 const BreakpointsSample = () => {
   const breakpoints = useBreakpoints();

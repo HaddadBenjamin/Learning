@@ -1,5 +1,5 @@
-import { AbTestState, initialAbTestsState } from "./abTest.state";
-import { AbTestActions, AbTestAction } from "./abTest.action";
+import { AbTestState, initialAbTestsState } from './abTest.state';
+import { AbTestActions, AbTestAction } from './abTest.action';
 
 const abTestReducer = (
   state: AbTestState = initialAbTestsState,

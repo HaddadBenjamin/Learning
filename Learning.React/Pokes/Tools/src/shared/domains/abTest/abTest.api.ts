@@ -1,10 +1,10 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from 'axios';
 import {
   backOfficeApiConfiguration,
   httpConfiguration,
-} from "../../shared.configuration";
-import { AbTest } from "./abTest.model";
-import { routes } from "./abTest.configuration";
+} from '../../shared.configuration';
+import { AbTest } from './abTest.model';
+import { routes } from './abTest.configuration';
 
 export const baseUrl = `${backOfficeApiConfiguration.baseUrl}${routes.api}`;
 

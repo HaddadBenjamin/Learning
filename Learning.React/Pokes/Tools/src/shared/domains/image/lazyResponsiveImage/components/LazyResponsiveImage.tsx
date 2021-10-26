@@ -1,7 +1,7 @@
-import React, { FC } from "react";
-import useResponsiveImage from "../../responsiveImage/hooks/useResponsiveImage";
-import LazyImage from "../../lazyImage/components/LazyImage";
-import { ResponsiveImageData } from "../../responsiveImage/responsiveImage.models";
+import React, { FC } from 'react';
+import useResponsiveImage from '../../responsiveImage/hooks/useResponsiveImage';
+import LazyImage from '../../lazyImage/components/LazyImage';
+import { ResponsiveImageData } from '../../responsiveImage/responsiveImage.models';
 
 interface Props {
   images: ResponsiveImageData[];

@@ -1,5 +1,5 @@
-import { Reducer, ReducersMapObject, Store } from "redux";
-import { Saga, SagaMiddleware, Task } from "redux-saga";
+import { Reducer, ReducersMapObject, Store } from 'redux';
+import { Saga, SagaMiddleware, Task } from 'redux-saga';
 
 export interface ILazyStore {
   store: Store;

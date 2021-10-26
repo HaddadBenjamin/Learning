@@ -1,7 +1,7 @@
 import {
   getOrDefaultDataFromLocalStorage,
   setLocalStorageData,
-} from "../domains/localStorage/localStorage.util";
+} from '../domains/localStorage/localStorage.util';
 
 export default <T>(key: string, initialValue: T) => {
   const get = () => getOrDefaultDataFromLocalStorage(key, initialValue);
