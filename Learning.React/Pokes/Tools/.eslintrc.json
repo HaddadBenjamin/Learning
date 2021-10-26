@@ -1,40 +1,12 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "jest": true
-    },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb",
-        "prettier"
-    ],
+    "env": { "browser": true, "es2021": true, "jest": true },
+    "extends": ["plugin:react/recommended", "airbnb", "prettier"],
     "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint",
-        "prettier",
-        "import"
-    ],
+    "parserOptions": { "ecmaFeatures": { "jsx": true }, "ecmaVersion": 12, "sourceType": "module" },
+    "plugins": ["react", "@typescript-eslint", "prettier"],
     "rules": {
         "prettier/prettier": "error",
-        "import/extensions": [
-            "error",
-            "ignorePackages",
-            {
-                "js": "never",
-                "jsx": "never",
-                "ts": "never",
-                "tsx": "never"
-            }
-        ],
+        "import/extensions": ["error", "ignorePackages", { "js": "never", "jsx": "never", "ts": "never", "tsx": "never" }],
         "react/jsx-filename-extension": [2, { "extensions": [".js", ",.jsx", ",.ts", ".tsx"] }],
         "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
 
@@ -51,10 +23,6 @@
         "react/jsx-props-no-spreading" : "off"
     },
     "settings": {
-        "import/parsers": { "@typescript-eslint/parser": [".ts", ".tsx"] },
-        "import/resolver": {
-            "node": {"extensions": [".js", ".jsx", ".ts", ".tsx"] },
-            "typescript": { "alwaysTryTypes": true }
-        }
+        "import/resolver": { "node": {"extensions": [".js", ".jsx", ".ts", ".tsx"] } }
     }
 }
