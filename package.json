@@ -1,0 +1,9 @@
+{
+  "scripts" :
+  {
+    "updateGitHooks": "npx husky install .husky"
+  },
+  "devDependencies": {
+    "husky": "^7.0.4"
+  }
+}
