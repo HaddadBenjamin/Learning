@@ -2,10 +2,21 @@
   "name": "Front-end",
   "version": "0.1.0",
   "private": true,
+  "jest": {
+    "coverageThreshold": {
+      "global": { "branches": 0, "functions": 0, "lines": 0, "statements": 0 },
+      "./src/domains/todos" : { "branches": 90, "functions": 90, "lines": 90, "statements": 90 },
+      "./src/domains/root" : { "branches": 90, "functions": 90, "lines": 90, "statements": 90 },
+      "./src/devTools": { "branches": 90, "functions": 90, "lines": 90, "statements": 90 }
+    }
+  },
   "scripts": {
     "dev": "concurrently \"yarn dev:react\" \"yarn dev:apiMock\"",
     "dev:react": "react-scripts start",
     "dev:apiMock": "nodemon src/devTools/server/server.ts --config src/devTools/server/nodemon.json",
+    "test" : "npm test -- --watchAll=true --testPathPattern=src/domains/root/",
+    "test:coverage" : "npm test -- --watchAll=false --testPathPattern=src/domains/root/ --collectCoverageFrom='[\"src/domains/root/**\"]' --coverage",
+    "test:showConfig" : "npm test -- --showConfig",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
