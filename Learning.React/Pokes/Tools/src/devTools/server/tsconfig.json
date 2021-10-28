@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
     "target" : "ES2020",
-    "module" : "CommonJS",
-  },
-  "exclude": ["node_modules"],
-  "extends" : "../../../tsconfig.json",
+    "baseUrl": ".",
+    "esModuleInterop": true
+  }
 }

@@ -8,7 +8,5 @@
 
     "scss/operator-no-unspaced" : null
   },
-  "ignoreFiles": [
-    "coverage/**"
-  ]
+  "ignoreFiles": ["coverage/**", "build/**", "node_modules/**"]
 }
