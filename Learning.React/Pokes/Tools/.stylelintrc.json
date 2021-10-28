@@ -7,5 +7,8 @@
     "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$",
 
     "scss/operator-no-unspaced" : null
-  }
+  },
+  "ignoreFiles": [
+    "coverage/**"
+  ]
 }
