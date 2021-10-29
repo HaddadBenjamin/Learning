@@ -14,7 +14,6 @@
     "test": "react-scripts test",
     "test:coverage": "ts-node -r tsconfig-paths/register --project src/devTools/server/tsconfig.json --transpile-only scripts/jest/runCoverage.ts",
     "test:showConfig": "npm test -- --showConfig",
-    "test:arrayExtension": "ts-node -r tsconfig-paths/register --project src/devTools/server/tsconfig.json --transpile-only src/shared/extensions/arrayExtensions.ts",
     "build": "react-scripts build",
     "eject": "react-scripts eject"
   },
