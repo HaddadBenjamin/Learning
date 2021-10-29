@@ -9,6 +9,9 @@ on:
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
+    
+    env:
+      CI: false
 
     strategy:
       matrix:
