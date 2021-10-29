@@ -6,13 +6,13 @@ Ensemble de composants et de classes utilitaires telles que :
 - Un composant highlight pour faciliter vos filtres et vos recherches d'éléments
 - Quelques hooks qui permettent de déterminer si un élément ou une ref est visible, faciliter l'utilisation du local storage, redux, l'affichage d'éléments en fonction de breakpoints sur la largeur de l'écran, utiliser une configuration, être alerté quand on clic en dehors d'un composant, utiliser des ab tests ou des features flags.
 - > useConfiguration, useBreakpoints, useWhenElementIsVisible, useLazyReducer, useLazySaga, useAbTests, useFeatureFlags, useResponsiveImage, useToggle, useClickOutside, etc...
-- Quelques classes utiilitaires : newGuid, randomBetweenRange, removeHtmlTags, sleep, etc...
+- Quelques classes utiilitaires : newGuid, randomBetweenRange, removeHtmlTags, sleep, colorizedLog, deepMerge, etc...
+- Des extensions qui permettent d'enrichir les tableaux avec les méthodes de C#.
 > ![Image of Yaktocat](https://imgur.com/unknown.png)
 
 Autres particularités :
 - Des linters et un formatteur est configuré (Prettier, EsLint, Stylelint) qui sont lancé avant chaque commit via Husky.
 - Une CI est lancée sur Github Action et elle est configurée par le fichier .github/workflows/build_and_test_react.yml
-- 
 
 Prérequis pour lancer le projet :
 - Sélectionner la version de Node 14.17.0 : Installer NVM > nvm install 14.17.0 > nvm use 14.17.0
