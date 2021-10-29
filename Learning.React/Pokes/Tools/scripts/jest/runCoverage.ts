@@ -1,11 +1,16 @@
-// @ts-ignore
+import colorizedLog, {
+  LogType,
+  TextColor,
+} from '../../src/shared/utils/colorizedLog';
+
 const cmd = require('node-cmd');
 
 const commandParameters = process.argv.splice(2);
 
 if (commandParameters.length === 0)
-  console.error(
-    '\x1b[31m',
+  colorizedLog(
+    TextColor.Red,
+    LogType.Error,
     "runCoverage.ts need at least one parameter, the first parameter is the directory path to cover, ex: src/domains/todo\nAll other parameters should not start by '--'\nUsage example: npm run test:coverage shared/redux"
   );
 else {
@@ -21,10 +26,15 @@ else {
 
     cmd.runSync(commandWithParameters);
 
-    console.log('\x1b[36m', `Executed command: ${commandWithParameters}`);
+    colorizedLog(
+      TextColor.Cyan,
+      LogType.Log,
+      `Executed command: ${commandWithParameters}`
+    );
   } catch (error) {
-    console.error(
-      '\x1b[31m',
+    colorizedLog(
+      TextColor.Red,
+      LogType.Error,
       `runCoverage.js encounter the following error during parsing or executing the command ${error}`
     );
   }
