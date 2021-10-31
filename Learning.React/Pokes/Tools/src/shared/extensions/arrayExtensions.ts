@@ -93,7 +93,7 @@ if (!Array.prototype.skip) {
     this: T[],
     predicate?: (element: T) => boolean
   ): boolean {
-    return !predicate ? this.length > 0 : this.find(predicate) != undefined
+    return !predicate ? this.length > 0 : !!this.find(predicate)
   };
 
   Array.prototype.all = function <T>(
