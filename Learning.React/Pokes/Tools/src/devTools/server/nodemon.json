@@ -4,6 +4,6 @@
   "watch": ["./*", "../**/domains/**/*"],
   "ext": "apiMock.ts",
   "execMap": {
-    "ts": "ts-node -r tsconfig-paths/register --project src/devTools/server/tsconfig.json --transpile-only src/devTools/server/server.ts"
+    "ts": "ts-node -r tsconfig-paths/register --project src/shared/configuration/tsconfig.json --transpile-only src/devTools/server/server.ts"
   }
 }

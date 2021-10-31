@@ -58,26 +58,14 @@ if (!Array.prototype.skip) {
     this: T[],
     predicate: (element: T) => boolean
   ): T[] {
-    let numberOfElementsToTake = 0;
-
-    for (let index = 0; index < this.length; index++) {
-      if (predicate(this[index])) ++numberOfElementsToTake;
-      else break;
-    }
-    return this.take(numberOfElementsToTake);
+    return this.take(this.findIndex(element => !predicate(element)));
   };
 
   Array.prototype.skipWhen = function <T>(
     this: T[],
     predicate: (element: T) => boolean
   ): T[] {
-    let numberOfElementsToSkip = 0;
-
-    for (let index = 0; index < this.length; index++) {
-      if (predicate(this[index])) ++numberOfElementsToSkip;
-      else break;
-    }
-    return this.skip(numberOfElementsToSkip);
+    return this.skip(this.findIndex(element => !predicate(element)));
   };
 
   Array.prototype.where = function <T>(
@@ -105,20 +93,14 @@ if (!Array.prototype.skip) {
     this: T[],
     predicate?: (element: T) => boolean
   ): boolean {
-    if (!predicate) return this.length > 0;
-
-    for (const element of this) if (predicate(element)) return true;
-
-    return false;
+    return !predicate ? this.length > 0 : this.find(predicate) != undefined
   };
 
   Array.prototype.all = function <T>(
     this: T[],
     predicate: (element: T) => boolean
   ): any {
-    for (const element of this) if (!predicate(element)) return false;
-
-    return true;
+    return this.length === this.filter(predicate).length
   };
 
   Array.prototype.add = function <T>(this: T[], element: T): T[] {
@@ -183,42 +165,24 @@ if (!Array.prototype.skip) {
   }
   
   Array.prototype.countBy = function <T>(this : T[], predicate: (element: T) => boolean) : number {
-    let count = 0
-    
-    for (let element of this)
-      if (predicate(element))
-        ++count
-    
-    return count
+    return this.filter(predicate).length
   }
   
   Array.prototype.orderBy = function<T>(callback : (element : T) => string | number | Date) : T[] {
     return this.sort((a, b) => {
-      const left = callback(a)
-      const right = callback(b)
-    
+      const [left, right] = [callback(a), callback(b)]
+  
       // @ts-ignore
-      if (typeof left === "number") return left - right
-      // @ts-ignore
-      if (typeof left === "string") return left.localeCompare(right)
-    
-      // @ts-ignore
-      return left - right;
+      return typeof left === "string" ? left.localeCompare(right): left - right;
     })
   }
   
   Array.prototype.orderByDesc = function<T>(callback : (element : T) => string | number | Date) : T[] {
     return this.sort((a, b) => {
-      const left = callback(a)
-      const right = callback(b)
+      const [left, right] = [callback(a), callback(b)]
       
       // @ts-ignore
-      if (typeof left === "number") return right - left
-      // @ts-ignore
-      if (typeof left === "string") return right.localeCompare(left)
-      
-      // @ts-ignore
-      return right - left;
+      return typeof left === "string" ? right.localeCompare(left) : right - left;
     })
   }
 

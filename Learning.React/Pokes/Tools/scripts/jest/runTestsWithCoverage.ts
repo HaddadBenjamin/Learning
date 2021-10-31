@@ -11,7 +11,7 @@ if (commandParameters.length === 0)
   colorizedLog(
     TextColor.Red,
     LogType.Error,
-    "runCoverage.ts need at least one parameter, the first parameter is the directory path to cover, ex: src/domains/todo\nAll other parameters should not start by '--'\nUsage example: npm run test:coverage shared/redux"
+    "runTestsWithCoverage.ts need at least one parameter, the first parameter is the directory path to cover, ex: src/domains/todo\nAll other parameters should not start by '--'\nUsage example: npm run test:coverage shared/redux"
   );
 else {
   try {
