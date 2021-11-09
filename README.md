@@ -13,6 +13,8 @@ J'ai choisi une architecture découpée par domaines et par couches car pour l'a
 > ![Image of Yaktocat](https://imgur.com/ZhXJp81.png)
 > ![Image of Yaktocat](https://imgur.com/bBRa6Ft.png)
 
+Développement d'une boîte à outils que je réutilise dans chacune de mes missions qui permet notamment de réaliser du lazy loading de fichiers et d'images, d'utiliser des features flags, des ab tests, de l'infinite scrolling, simuler un faux back-end pour donner une expérience se rapprochant de la production lorsque l'on développe en localhost, un composant un highlight pour faciliter la recherche d'éléments, centraliser ma configuration prettier & eslint et l'automatiser à chaque commit, etc... https://github.com/HaddadBenjamin/Learning/tree/master/Learning.React/Pokes/Tools
+
 ## CSS
 Refaire à la main l'intégration HTML & CSS de Netflix en gérant également le responsive https://haddadflix.netlify.app/
 > ![Image of Yaktocat](https://imgur.com/dvHJHsH.png)
