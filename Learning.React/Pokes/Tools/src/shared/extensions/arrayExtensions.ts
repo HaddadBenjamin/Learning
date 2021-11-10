@@ -2,7 +2,7 @@
 export {};
 
 declare global {
-// All those methods are immutables
+// All those methods are totally immutables
   interface Array<T> {
     skip(n: number): ReadonlyArray<T>;
     skipWhen(predicate: (element: T) => boolean): ReadonlyArray<T>;
@@ -203,7 +203,7 @@ if (!Array.prototype.skip) {
     this: readonly T[],
     callback: (element: T) => string | number | Date
   ): readonly T[] {
-    return (this as T[]).slice().sort((a, b) => {
+    return this.slice().sort((a, b) => {
       const [left, right] = [callback(a), callback(b)];
 
       return typeof left === 'string'
@@ -218,7 +218,7 @@ if (!Array.prototype.skip) {
     this: readonly T[],
     callback: (element: T) => string | number | Date
   ): readonly T[] {
-    return (this as T[]).slice().sort((a, b) => {
+    return this.slice().sort((a, b) => {
       const [left, right] = [callback(a), callback(b)];
 
       return typeof left === 'string'
@@ -227,6 +227,13 @@ if (!Array.prototype.skip) {
         // @ts-ignore
         : right - left;
     });
+  };
+  
+  Array.prototype.inverse = function <T>(this: readonly T[]): readonly T[] {
+    return this.reduce<T[]>(
+      (accumulator, current) => [current, ...accumulator],
+      []
+    );
   };
 
   Array.prototype.toDictionary = function <T, K, V>(
@@ -239,13 +246,6 @@ if (!Array.prototype.skip) {
         getKey(element),
         getElement ? getElement(element) : element,
       ])
-    );
-  };
-
-  Array.prototype.inverse = function <T>(this: readonly T[]): readonly T[] {
-    return this.reduce<T[]>(
-      (accumulator, current) => [current, ...accumulator],
-      []
     );
   };
 }
