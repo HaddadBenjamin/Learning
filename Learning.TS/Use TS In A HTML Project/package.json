@@ -1,0 +1,12 @@
+{
+  "name": "html-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "ts": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.4"
+  }
+}
