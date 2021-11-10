@@ -41,7 +41,7 @@ describe("AddTodo", () => {
         expect(mockDispatch).toBeCalledWith(addTodoRequestAction(todoTitleMock))
     })
     
-    it("should call setTitle when input recieve a change event", () => {
+    it("should call setTitle when the input receive a change event", () => {
         // Given
         jest.spyOn(React, 'useState').mockImplementation(useStateMock);
         const {container} = render(<AddTodo/>)
