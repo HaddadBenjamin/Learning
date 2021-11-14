@@ -229,10 +229,7 @@ if (!Array.prototype.skip) {
   };
   
   Array.prototype.inverse = function <T>(this: readonly T[]): readonly T[] {
-    return this.reduce<T[]>(
-      (accumulator, current) => [current, ...accumulator],
-      []
-    );
+    return [...this].reverse()
   };
 
   Array.prototype.toDictionary = function <T, K, V>(
