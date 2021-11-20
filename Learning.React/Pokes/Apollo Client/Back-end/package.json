@@ -1,0 +1,13 @@
+{
+  "name": "Back-end",
+  "version": "1.0.0",
+  "main": "graphQLServer.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node graphQLServer.js"
+  },
+  "dependencies": {
+    "apollo-server": "^3.5.0",
+    "graphql": "^16.0.1"
+  }
+}

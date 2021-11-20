@@ -1,0 +1,1 @@
+export interface GraphqlResource { __typename : string; }
