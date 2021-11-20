@@ -1,0 +1,1 @@
+export interface GraphqlModel { __typename : string; }
