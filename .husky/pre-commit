@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-cd 'Learning.React/Pokes/Tools' && yarn lint:ts && yarn lint:sass
+cd 'Learning.React/Tools' && yarn lint:ts && yarn lint:sass
