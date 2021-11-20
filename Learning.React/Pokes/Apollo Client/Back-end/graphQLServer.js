@@ -2,26 +2,12 @@ const { ApolloServer, gql } = require("apollo-server");
 const { getTodos, getTodoById, addTodo, updateTodo, deleteTodo } = require("./todo.manager");
 
 const typeDefs = gql`
-    type Todo
-    {
-        id: ID!
-        title: String!
-        completed: Boolean!
-    }
+    type Todo { id: ID! title: String! completed: Boolean! }
+    type TodoId { id : ID! }
     
-    input AddTodoDto
-    {
-        id: ID!
-        title: String!
-        completed: Boolean!
-    }
-
-    input UpdateTodoDto
-    {
-        id: ID!
-        title: String!
-        completed: Boolean!
-    }
+    input AddTodoRequest { id: ID! title: String! completed: Boolean! }
+    input UpdateTodoRequest { id: ID! title: String! completed: Boolean! }
+    input DeleteTodoRequest { id: ID! }
     
     type Query
     {
@@ -31,9 +17,9 @@ const typeDefs = gql`
     
     type Mutation
     {
-        createTodo(todo: AddTodoDto): Todo
-        updateTodo(todo: UpdateTodoDto): Todo
-        deleteTodo(id: ID!): Todo
+        createTodo(todo: AddTodoRequest): Todo
+        updateTodo(todo: UpdateTodoRequest): Todo
+        deleteTodo(request: DeleteTodoRequest): TodoId
     }
 `;
 
@@ -49,7 +35,7 @@ const resolvers =
     {
         createTodo: (parent, { todo }) => addTodo(todo),
         updateTodo: (parent, { todo }) => updateTodo(todo),
-        deleteTodo: (parent, { id }) => deleteTodo(id)
+        deleteTodo: (parent, { request }) => deleteTodo(request)
     },
 };
 

@@ -1,4 +1,4 @@
-import {GraphqlModel} from "../../shared/domains/graphql/graphql.model";
+import {GraphqlResource} from "../../shared/domains/graphql/graphql.model";
 
 export interface Todo
 {
@@ -7,9 +7,24 @@ export interface Todo
 	completed : boolean
 }
 
-export type GraphQlTodo = Todo & GraphqlModel
+export type GraphQlTodo = Todo & GraphqlResource
 
-export interface GetTodos
+export interface GetTodosResponse
 {
 	getTodos : GraphQlTodo[]
+}
+
+export interface AddTodoRequest
+{
+	todo : Todo
+}
+
+export interface UpdateTodoRequest
+{
+	todo : Todo
+}
+
+export interface DeleteTodoRequest
+{
+	id : string
 }

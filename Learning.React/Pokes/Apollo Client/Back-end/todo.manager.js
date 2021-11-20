@@ -9,6 +9,6 @@ const getTodos = () => todos
 const getTodoById = id => todos.find(todo => todo.id === id)
 const addTodo = todo => { todos.push(todo); return todo; }
 const updateTodo = todo => { todos = todos.map(t => t.id === todo.id ? todo : t); return todo; }
-const deleteTodo = todo => { todos = todos.filter(t => t.id !== todo.id); return todo; }
+const deleteTodo = dto => { todos = todos.filter(t => t.id != dto.id); return dto; }
 
 module.exports = { getTodos, getTodoById, addTodo, updateTodo, deleteTodo }

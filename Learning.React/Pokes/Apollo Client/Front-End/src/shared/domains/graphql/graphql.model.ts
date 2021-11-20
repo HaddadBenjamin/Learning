@@ -1,1 +1,1 @@
-export interface GraphqlModel { __typename : string; }
+export interface GraphqlResource { __typename : string; }
