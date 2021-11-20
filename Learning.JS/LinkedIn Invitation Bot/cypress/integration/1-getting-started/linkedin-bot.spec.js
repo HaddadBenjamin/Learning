@@ -24,6 +24,9 @@ describe('LinkedIn Bot', () => {
           cy.wait(2000)
           cy.contains('Se connecter', {timeout: 30000}).first().click();
           cy.wait(2000)
+          cy.contains('Ajouter une note', {timeout: 30000}).first().click();
+          cy.wait(2000)
+          cy.get('textarea').type("Bonjour,\n\nJe vous informe que je suis à l'écoute du marché pour un poste en tant que développeur 𝐟𝐫𝐨𝐧𝐭-𝐞𝐧𝐝 𝐑𝐞𝐚𝐜𝐭 en 𝐟𝐫𝐞𝐞𝐥𝐚𝐧𝐜𝐞 avec un jour de présentiel par semaine, mon TJM est de 550€.\n\nVous trouverez également mon CV, portfolio, dossier de compétences sur mon profil.\n\nBien à vous,")
           cy.contains('Envoyer', {timeout: 30000}).first().click();
         }
         else
