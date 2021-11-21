@@ -55,7 +55,7 @@
 }
 
 .title-container {
-  transition: transform 1000ms;
+  transition: transform 1500ms;
   width: 100%;
   padding: 16px 8px;
 }
@@ -94,7 +94,7 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px);
-  transition: opacity 750ms linear, transform 750ms, visibility 750ms;
+  transition: opacity 1000ms linear, transform 1500ms, visibility 1000ms;
 
   display: flex;
   justify-content: center;
