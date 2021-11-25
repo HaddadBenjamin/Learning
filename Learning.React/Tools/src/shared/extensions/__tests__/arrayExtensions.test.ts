@@ -370,7 +370,7 @@ describe('arrayExtensions', () => {
 
     // When
     const actualValue = array.toDictionary(element => element.id);
-  
+
     // Then
     expect(array).toStrictEqual(expectedValue);
     expect(actualValue).toStrictEqual(
@@ -380,15 +380,17 @@ describe('arrayExtensions', () => {
       ])
     );
   });
-  
+
   it('mapWithPrevious should be immutable', () => {
     // Given
     const expectedValue = [1, 2, 3];
     const array = [1, 2, 3];
-    
+  
     // When
-    const actualValue = array.mapWithPrevious((previous, current) => previous ? previous + current : current);
-    
+    const actualValue = array.mapWithPrevious((previous, current) =>
+      previous ? previous + current : current
+    );
+  
     // Then
     expect(array).toStrictEqual(expectedValue);
     expect(actualValue).toStrictEqual([1, 3, 5]);
@@ -400,7 +402,9 @@ describe('arrayExtensions', () => {
     const array = [1, 2, 3];
     
     // When
-    const actualValue = array.filterWithPrevious((previous) => previous ? previous > 1 : false);
+    const actualValue = array.filterWithPrevious(previous =>
+      previous ? previous > 1 : false
+    );
     
     // Then
     expect(array).toStrictEqual(expectedValue);
@@ -413,8 +417,8 @@ describe('arrayExtensions', () => {
     const array = [1, 2, 3];
     
     // When
-    array.forEachWithPrevious((previous) => {
-      if (previous && previous > 1) expect(previous).toBe(2)
+    array.forEachWithPrevious(previous => {
+      if (previous && previous > 1) expect(previous).toBe(2);
     });
     
     // Then
