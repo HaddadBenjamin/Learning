@@ -4,10 +4,10 @@ describe('arrayHelper', () => {
   it('range should generate n value from 1 to n', () => {
     // Given
     const expectedValue = [1, 2, 3];
-    
+  
     // When
     const actualValue = range(3);
-    
+  
     // Then
     expect(actualValue).toStrictEqual(expectedValue);
   });
