@@ -5,8 +5,8 @@ import {selectMovies} from "../../movies.selector";
 import {MovieFilters} from "../MovieFilters/MovieFilters";
 import {filterMovies} from "../../movies.filter";
 import {MoviesList} from "../MoviesList/MoviesList";
-import {Pagination} from "../../../../shared/Pagination/pagination.model";
 import {PaginationButtons} from "../../../../shared/Pagination/components/PagnationButtons/PaginationButtons";
+import usePagination from "../../../../shared/Pagination/components/hooks/usePagination";
 
 export const MoviePage : FC = () =>
 {
@@ -31,10 +31,14 @@ export const MoviePage : FC = () =>
 	
 	// Pagination
 	const [pageSize, setPageSize] = useState(8)
-	const [pagination, setPagination] = useState(new Pagination(filteredMovies, 1, pageSize))
+	const pagination = usePagination(filteredMovies, 1, pageSize)
 	
-	useEffect(() => { setPagination(new Pagination(filteredMovies ?? movies, pagination.page, pageSize))},
-		[filteredMovies, pageSize])
+	useEffect(() => {
+		pagination.setElements(filteredMovies.length === 0 ? movies : filteredMovies)
+	}, [filteredMovies])
+	useEffect(() => {
+		pagination.setPageSize(pageSize)
+	}, [pageSize])
 	
 	return <>
 		<h1>Movie page</h1>
@@ -45,7 +49,7 @@ export const MoviePage : FC = () =>
 			pageSize={pageSize}
 			handlePageSizeChange={handlePageSizeChange}/>
 		<MoviesList movies={pagination.currentPage}/>
-		<PaginationButtons {...pagination } setPagination={setPagination} />
+		<PaginationButtons {...pagination} />
 	</>
 }
 
