@@ -12,12 +12,8 @@ const usePagination = <T>(iElements: T[], iPage: number = 1, iPageSize: number =
 	const [hasNextPage, setHasNextPage] = useState(false)
 	const [lastPage, setLastPage] = useState(1)
 	
-	useEffect(() => {
-		computePagination()
-	}, [])
-	useEffect(() => {
-		computePagination()
-	}, [page, pageSize, elements])
+	useEffect(() => computePagination(), [])
+	useEffect(() => computePagination(), [page, pageSize, elements])
 	
 	const computePagination = (): void => {
 		const cPageSize = pageSize > elements.length ? elements.length : pageSize
@@ -26,10 +22,10 @@ const usePagination = <T>(iElements: T[], iPage: number = 1, iPageSize: number =
 		
 		setLastPage(cLastPage)
 		
-		if (cPageSize != pageSize)
+		if (cPageSize !== pageSize)
 			setPageSize(cPageSize)
 		
-		if (page != cPage)
+		if (page !== cPage)
 			setPage(cPage)
 		
 		setCurrentPage(elements.slice(cPageSize * (cPage - 1)).slice(0, cPageSize))

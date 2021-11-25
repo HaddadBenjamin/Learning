@@ -22,7 +22,7 @@ export const MoviePage : FC = () =>
 		.map(m => m.category)
 		.filter((element, index, self) => self.indexOf(element) === index);
 	
-	useEffect(() => { setFilteredMovies(filterMovies(movies, selectedCategory))}, [selectedCategory, movies])
+	useEffect(() => setFilteredMovies(filterMovies(movies, selectedCategory)), [selectedCategory, movies])
 	
 	const handleCategoryChange = (event: ChangeEvent<HTMLSelectElement>) =>
 		setSelectedCategory(event.target.value === '' ? undefined : event.target.value)
@@ -33,12 +33,8 @@ export const MoviePage : FC = () =>
 	const [pageSize, setPageSize] = useState(8)
 	const pagination = usePagination(filteredMovies, 1, pageSize)
 	
-	useEffect(() => {
-		pagination.setElements(filteredMovies.length === 0 ? movies : filteredMovies)
-	}, [filteredMovies])
-	useEffect(() => {
-		pagination.setPageSize(pageSize)
-	}, [pageSize])
+	useEffect(() => pagination.setElements(filteredMovies.length === 0 ? movies : filteredMovies), [filteredMovies])
+	useEffect(() => pagination.setPageSize(pageSize), [pageSize])
 	
 	return <>
 		<h1>Movie page</h1>
