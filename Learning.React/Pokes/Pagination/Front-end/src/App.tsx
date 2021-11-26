@@ -1,10 +1,10 @@
 import store from "./domains/root/root.store";
 import { Provider } from "react-redux";
-import { MoviePage } from "./domains/movies/components/MoviePage/MoviePage";
+import { IdPage } from "./domains/ids/components/IdPage/IdPage";
 
 const App = () =>
   <Provider store={store}>
-    <MoviePage/>
+    <IdPage/>
   </Provider>
 
 export default App;

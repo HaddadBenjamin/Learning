@@ -1,11 +1,11 @@
-import {IMovieState, moviesInitialState} from "../movies/movies.state";
+import {IIdState, idsInitialState} from "../ids/ids.state";
 
 export interface ApplicationState
 {
-	movies : IMovieState
+	ids : IIdState
 }
 
 export const initialApplicationState : ApplicationState =
 {
-	movies : moviesInitialState
+	ids : idsInitialState
 }

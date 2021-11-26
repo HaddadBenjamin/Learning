@@ -1,109 +1,85 @@
 import {useEffect, useState} from "react";
+import {ApplicationState} from "../../../../domains/root/root.state";
+import {IPaginateResponse} from "../../pagination.model";
+import {useSelector} from "react-redux";
 
-export interface Pagination<T> {
-	items: T[]
-	currentPage: T[]
-	
-	page: number,
-	pageSize: number,
-	pageSizeInThisPage: number,
-	
-	hasPreviousPage: boolean
-	hasNextPage: boolean
-	lastPage: number
-	
-	setPage: (page: number) => void
-	setPageSize: (pageSize: number) => void
-	setItems: (items: T[]) => void
-	
-	goToPreviousPage: () => void
-	goToNextPage: () => void
-	
-	// Ces 2 champs sont nécéssaires quand on a besoin de faire des appels HTTP à chaque changement de page.
-	setLastPage: (lastPage: number) => void
-	setItemsCount: (itemsCount: number) => void
-	
-	itemsCount: number
+export interface Pagination<T> { items: T[], currentPage: T[], page: number, pageSize: number, pageSizeInThisPage: number, hasPreviousPage: boolean, hasNextPage: boolean, lastPage: number, itemsCount: number}
+export interface usePaginationResponse<T>
+{
+	pagination : Pagination<T>
+	setPagination : (pagination : Pagination<T>) => void
+	goToPreviousPage : () => void
+	goToNextPage : () => void
+	goToPage : (page : number) => void
 }
-
 const usePagination = <T>(
-	iItems: T[],
+	// Ces 3 champs sont nécéssaires quand on a besoin de faire des appels HTTP à chaque changement de page.
 	onPageChange: (page: number, pageSize: number) => void,
+	selectPaginateResponse: (state: ApplicationState) => IPaginateResponse<T>, // paginate response
+	callHttpOnSelectPage : boolean = true,
 	iPage: number = 1,
-	iPageSize: number = 10): Pagination<T> => {
-	const [items, setItems] = useState(iItems)
-	const [currentPage, setCurrentPage] = useState(iItems)
+	iPageSize: number = 10) : usePaginationResponse<T> =>
+{
+	// paginate response
+	const paginateResponse = useSelector(selectPaginateResponse)
 	
-	const [page, setPage] = useState(iPage)
-	const [pageSize, setPageSize] = useState(iPageSize)
-	const [pageSizeInThisPage, setPageSizeInThisPage] = useState(1)
+	useEffect(() => setPagination({
+		...pagination,
+		lastPage : paginateResponse.lastPage,
+		itemsCount : paginateResponse.itemsCount,
+		items : paginateResponse.items
+	}), [paginateResponse.lastPage, paginateResponse.itemsCount, paginateResponse.items])
 	
-	const [hasPreviousPage, setHasPreviousPage] = useState(false)
-	const [hasNextPage, setHasNextPage] = useState(false)
-	const [lastPage, setLastPage] = useState(1)
+	// pagination
+	const [pagination, setPagination] = useState({
+		items : [] as T[],
+		currentPage : [] as T[],
+		page : iPage,
+		pageSize : iPageSize,
+		pageSizeInThisPage : 1,
+		hasPreviousPage : false,
+		hasNextPage : false,
+		lastPage : 1,
+		itemsCount : iPageSize
+	})
 	
-	const [itemsCount, setItemsCount] = useState<number | undefined>()
+	useEffect(() => onPageChange(iPage, iPageSize), [])
+	useEffect(() => onPageChange(pagination.page, pagination.pageSize), [pagination.page, pagination.pageSize])
+	useEffect(() => computePagination(), [pagination.page, pagination.pageSize, pagination.items])
 	
-	useEffect(() => {
-		computePagination();
-		onPageChange(page, pageSize);
-	}, [])
-	useEffect(() => computePagination(), [page, pageSize, items])
-	
-	const computePagination = (): void => {
-		const cPageSize = pageSize > items.length ? items.length : pageSize
-		const cLastPage = cPageSize === 0 ? 1 : Math.floor(items.length / cPageSize) + 1;
-		const cPage = page > cLastPage ? cLastPage : page;
+	const computePagination = (): void =>
+	{
+		// Simplifier cette merde
+		const itemsCount = pagination.itemsCount ?? pagination.items.length
+		const pageSize = pagination.pageSize > itemsCount ? itemsCount: pagination.pageSize
+		const lastPage = pageSize === 0 ? 1 : Math.floor(itemsCount/ pageSize);
+		const page = pagination.page > lastPage ? lastPage : pagination.page;
 		
-		setLastPage(cLastPage)
-		
-		if (cPageSize !== pageSize) {
-			setPageSize(cPageSize)
-			onPageChange(page, pageSize)
-		}
-		if (page !== cPage) {
-			setPage(cPage)
-			onPageChange(page, pageSize)
-		}
-		
-		setCurrentPage(items.slice(cPageSize * (cPage - 1)).slice(0, cPageSize))
-		setHasPreviousPage(cPage - 1 > 0)
-		setHasNextPage(cPage < cLastPage)
-		setPageSizeInThisPage(cPage === cLastPage ? items.length % cPageSize : cPageSize)
+		setPagination({
+			...pagination,
+			pageSize : pageSize,
+			page : page,
+			lastPage : lastPage,
+			currentPage: callHttpOnSelectPage ? pagination.items : pagination.items.slice(pageSize * (page - 1)).slice(0, pageSize),
+			hasPreviousPage: page - 1 > 0,
+			hasNextPage: page < lastPage,
+			pageSizeInThisPage: callHttpOnSelectPage ? pageSize : page === lastPage ? itemsCount % pageSize : pageSize
+		})
 	}
 	
 	const goToPreviousPage = (): void => {
-		if (hasPreviousPage) setPage(page - 1);
+		if (pagination.hasPreviousPage) setPagination({...pagination, page : pagination.page - 1 });
 	}
 	const goToNextPage = (): void => {
-		if (hasNextPage) setPage(page + 1);
+		if (pagination.hasNextPage) setPagination({...pagination, page : pagination.page + 1 });
 	}
 	
-	return {
-		items,
-		currentPage,
-		
-		page,
-		pageSize,
-		pageSizeInThisPage,
-		
-		hasPreviousPage,
-		hasNextPage,
-		lastPage,
-		
-		setPage,
-		setPageSize,
-		setItems,
-		
-		goToPreviousPage,
-		goToNextPage,
-		
-		// Ces 2 champs sont nécéssaires quand on a besoin de faire des appels HTTP à chaque changement de page.
-		setLastPage,
-		setItemsCount,
-		
-		itemsCount: itemsCount ?? items.length
+	const goToPage = (page:  number) => {
+		if (page >= 1 && page <= pagination.lastPage)
+			setPagination({...pagination, page : page})
 	}
+	
+	return { pagination, setPagination, goToPreviousPage, goToNextPage, goToPage } as const
 }
 
 export default usePagination

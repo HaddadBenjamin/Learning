@@ -6,14 +6,18 @@ import {Pagination} from "./usePagination";
 
 export const usePaginateResponse = <T>(
 	selectPaginateResponse: (state: ApplicationState) => IPaginateResponse<T>,
-	pagination: Pagination<T>) => {
+	pagination : Pagination<T>,
+	setPagination : (pagination : Pagination<T>) => void) =>
+{
 	const paginateResponse = useSelector(selectPaginateResponse)
 	
-	useEffect(() => {
-			pagination.setLastPage(paginateResponse.lastPage)
-			pagination.setItemsCount(paginateResponse.itemsCount)
-		},
-		[paginateResponse.lastPage, paginateResponse.itemsCount])
+	useEffect(() => setPagination({
+		...pagination,
+		lastPage : paginateResponse.lastPage,
+		itemsCount : paginateResponse.itemsCount
+	}), [paginateResponse.lastPage, paginateResponse.itemsCount])
+	
+	useEffect(() => setPagination({ ...pagination, items : paginateResponse.items }), [paginateResponse.items])
 	
 	return paginateResponse
 }
