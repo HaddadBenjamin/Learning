@@ -1,14 +1,14 @@
 import {FC} from "react";
 import styles from './PaginationButtons.module.scss';
-import {Pagination} from "../../hooks/usePagination";
+import {IPagination} from "../../pagination.model";
 
 interface Props<T> {
 	showFirstAndLastButtons?: boolean
 	showPrevAndNextButtons?: boolean
 	showPageButtons?: boolean
 	
-	pagination : Pagination<T>
-	goToPreviousPage : () => void
+	pagination: IPagination<T>
+	goToPreviousPage: () => void
 	goToNextPage : () => void
 	goToPage : (page : number) => void
 }

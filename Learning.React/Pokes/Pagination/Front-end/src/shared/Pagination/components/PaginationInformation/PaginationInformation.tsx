@@ -1,15 +1,18 @@
-import {Pagination} from "../../hooks/usePagination";
 import {FC} from "react";
 import styles from './PaginationInformation.module.scss';
+import {IPagination} from "../../pagination.model";
 
-interface Props<T> {
-	pagination: Pagination<T>
-}
-
-const PaginationInformation: FC<Props<any>> = ({pagination}) => {
-	const {itemsCount, page, pageSize, hasPreviousPage, hasNextPage, lastPage, pageSizeInThisPage,} = pagination
-	
-	return <div className={styles.container}>
+const PaginationInformation: FC<IPagination<any>> = (
+	{
+		itemsCount,
+		page,
+		pageSize,
+		hasPreviousPage,
+		hasNextPage,
+		lastPage,
+		pageSizeInThisPage
+	}) =>
+	<div className={styles.container}>
 		<div>items count : {itemsCount}</div>
 		<div>page : {page}</div>
 		<div>pageSize : {pageSize}</div>
@@ -18,6 +21,5 @@ const PaginationInformation: FC<Props<any>> = ({pagination}) => {
 		<div>lastPage : {lastPage}</div>
 		<div>pageSizeInThisPage : {pageSizeInThisPage}</div>
 	</div>
-}
 
 export default PaginationInformation

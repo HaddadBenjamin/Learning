@@ -1,7 +1,7 @@
 import {ChangeEvent, FC} from "react";
 import {useDispatch} from "react-redux";
 import {selectPaginateResponse} from "../../ids.selector";
-import {IdFilters} from "../IdFilters/IdFilters";
+import {PaginationFilters} from "../../../../shared/Pagination/components/PaginationFilters/PaginationFilters";
 import {IdsList} from "../IdList/IdsList";
 import {PaginationButtons} from "../../../../shared/Pagination/components/PagnationButtons/PaginationButtons";
 import usePagination from "../../../../shared/Pagination/hooks/usePagination";
@@ -23,9 +23,9 @@ export const IdPage: FC = () => {
 	
 	return <>
 		<h1>Lazy pagination</h1>
-		<IdFilters pageSize={pagination.pageSize} handlePageSizeChange={handlePageSizeChange}/>
+		<PaginationFilters pageSize={pagination.pageSize} handlePageSizeChange={handlePageSizeChange}/>
 		<IdsList ids={pagination.currentPage}/>
-		<PaginationInformation pagination={pagination}/>
+		<PaginationInformation {...pagination}/>
 		<PaginationButtons
 			pagination={pagination}
 			goToPreviousPage={goToPreviousPage}
