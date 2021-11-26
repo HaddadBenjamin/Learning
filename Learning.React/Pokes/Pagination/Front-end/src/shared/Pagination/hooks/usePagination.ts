@@ -1,16 +1,26 @@
 import {useEffect, useState} from "react";
-import {ApplicationState} from "../../../../domains/root/root.state";
-import {IPaginateResponse} from "../../pagination.model";
+import {ApplicationState} from "../../../domains/root/root.state";
+import {IPaginateResponse} from "../pagination.model";
 import {useSelector} from "react-redux";
 
-export interface Pagination<T> { items: T[], currentPage: T[], page: number, pageSize: number, pageSizeInThisPage: number, hasPreviousPage: boolean, hasNextPage: boolean, lastPage: number, itemsCount: number}
-export interface usePaginationResponse<T>
-{
-	pagination : Pagination<T>
-	setPagination : (pagination : Pagination<T>) => void
-	goToPreviousPage : () => void
-	goToNextPage : () => void
-	goToPage : (page : number) => void
+export interface Pagination<T> {
+	items: T[],
+	currentPage: T[],
+	page: number,
+	pageSize: number,
+	pageSizeInThisPage: number,
+	hasPreviousPage: boolean,
+	hasNextPage: boolean,
+	lastPage: number,
+	itemsCount: number
+}
+
+export interface usePaginationResponse<T> {
+	pagination: Pagination<T>
+	setPagination: (pagination: Pagination<T>) => void
+	goToPreviousPage: () => void
+	goToNextPage: () => void
+	goToPage: (page: number) => void
 }
 const usePagination = <T>(
 	// Ces 3 champs sont nécéssaires quand on a besoin de faire des appels HTTP à chaque changement de page.
