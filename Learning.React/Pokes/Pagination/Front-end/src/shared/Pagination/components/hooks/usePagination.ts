@@ -1,8 +1,38 @@
 import {useEffect, useState} from "react";
 
-const usePagination = <T>(iElements: T[], iPage: number = 1, iPageSize: number = 10) => {
-	const [elements, setElements] = useState(iElements)
-	const [currentPage, setCurrentPage] = useState(iElements)
+export interface Pagination<T> {
+	items: T[]
+	currentPage: T[]
+	
+	page: number,
+	pageSize: number,
+	pageSizeInThisPage: number,
+	
+	hasPreviousPage: boolean
+	hasNextPage: boolean
+	lastPage: number
+	
+	setPage: (page: number) => void
+	setPageSize: (pageSize: number) => void
+	setItems: (items: T[]) => void
+	
+	goToPreviousPage: () => void
+	goToNextPage: () => void
+	
+	// Ces 2 champs sont nécéssaires quand on a besoin de faire des appels HTTP à chaque changement de page.
+	setLastPage: (lastPage: number) => void
+	setItemsCount: (itemsCount: number) => void
+	
+	itemsCount: number
+}
+
+const usePagination = <T>(
+	iItems: T[],
+	onPageChange: (page: number, pageSize: number) => void,
+	iPage: number = 1,
+	iPageSize: number = 10): Pagination<T> => {
+	const [items, setItems] = useState(iItems)
+	const [currentPage, setCurrentPage] = useState(iItems)
 	
 	const [page, setPage] = useState(iPage)
 	const [pageSize, setPageSize] = useState(iPageSize)
@@ -12,26 +42,34 @@ const usePagination = <T>(iElements: T[], iPage: number = 1, iPageSize: number =
 	const [hasNextPage, setHasNextPage] = useState(false)
 	const [lastPage, setLastPage] = useState(1)
 	
-	useEffect(() => computePagination(), [])
-	useEffect(() => computePagination(), [page, pageSize, elements])
+	const [itemsCount, setItemsCount] = useState<number | undefined>()
+	
+	useEffect(() => {
+		computePagination();
+		onPageChange(page, pageSize);
+	}, [])
+	useEffect(() => computePagination(), [page, pageSize, items])
 	
 	const computePagination = (): void => {
-		const cPageSize = pageSize > elements.length ? elements.length : pageSize
-		const cLastPage = cPageSize === 0 ? 1 : Math.floor(elements.length / cPageSize) + 1;
+		const cPageSize = pageSize > items.length ? items.length : pageSize
+		const cLastPage = cPageSize === 0 ? 1 : Math.floor(items.length / cPageSize) + 1;
 		const cPage = page > cLastPage ? cLastPage : page;
 		
 		setLastPage(cLastPage)
 		
-		if (cPageSize !== pageSize)
+		if (cPageSize !== pageSize) {
 			setPageSize(cPageSize)
-		
-		if (page !== cPage)
+			onPageChange(page, pageSize)
+		}
+		if (page !== cPage) {
 			setPage(cPage)
+			onPageChange(page, pageSize)
+		}
 		
-		setCurrentPage(elements.slice(cPageSize * (cPage - 1)).slice(0, cPageSize))
+		setCurrentPage(items.slice(cPageSize * (cPage - 1)).slice(0, cPageSize))
 		setHasPreviousPage(cPage - 1 > 0)
-		setHasNextPage((cPageSize * cPage) < elements.length)
-		setPageSizeInThisPage(cPage === lastPage ? elements.length % cPageSize : cPageSize)
+		setHasNextPage(cPage < cLastPage)
+		setPageSizeInThisPage(cPage === cLastPage ? items.length % cPageSize : cPageSize)
 	}
 	
 	const goToPreviousPage = (): void => {
@@ -42,7 +80,7 @@ const usePagination = <T>(iElements: T[], iPage: number = 1, iPageSize: number =
 	}
 	
 	return {
-		elements,
+		items,
 		currentPage,
 		
 		page,
@@ -55,10 +93,16 @@ const usePagination = <T>(iElements: T[], iPage: number = 1, iPageSize: number =
 		
 		setPage,
 		setPageSize,
-		setElements,
+		setItems,
 		
 		goToPreviousPage,
-		goToNextPage
+		goToNextPage,
+		
+		// Ces 2 champs sont nécéssaires quand on a besoin de faire des appels HTTP à chaque changement de page.
+		setLastPage,
+		setItemsCount,
+		
+		itemsCount: itemsCount ?? items.length
 	}
 }
 

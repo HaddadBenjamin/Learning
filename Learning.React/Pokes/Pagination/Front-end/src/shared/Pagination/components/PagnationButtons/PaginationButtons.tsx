@@ -7,6 +7,7 @@ interface Props {
 	showPrevAndNextButtons?: boolean
 	showPageButtons?: boolean
 	
+	itemsCount: number
 	page: number
 	pageSize: number
 	lastPage: number
@@ -39,11 +40,14 @@ export const PaginationButtons : FC<Props> = (
 		goToPreviousPage,
 		goToNextPage,
 		
-		setPage
+		setPage,
+		
+		itemsCount
 	}) =>
 	<>
 		{[undefined, true].includes(showInformation) &&
     <div>
+        <div>items count : {itemsCount}</div>
         <div>page : {page}</div>
         <div>pageSize : {pageSize}</div>
         <div>hasPreviousPage : {hasPreviousPage.toString()}</div>

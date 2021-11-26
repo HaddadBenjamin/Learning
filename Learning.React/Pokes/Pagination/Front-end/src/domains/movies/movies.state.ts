@@ -2,11 +2,15 @@ import { IMovie } from "./movies.model";
 
 export interface IMovieState
 {
-	movies : IMovie[]
-	error? : string
+	items: IMovie[]
+	lastPage: number
+	itemsCount: number
+	error?: string
 }
 
-export const moviesInitialState : IMovieState =
-{
-	movies : []
-}
+export const moviesInitialState: IMovieState =
+	{
+		items: [],
+		lastPage: 1,
+		itemsCount: 0
+	}

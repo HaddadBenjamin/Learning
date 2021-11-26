@@ -1,40 +1,38 @@
 import {ChangeEvent, FC, useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {getMoviesRequestAction} from "../../movies.action";
-import {selectMovies} from "../../movies.selector";
+import {useDispatch} from "react-redux";
+import {getPaginateMoviesRequestAction} from "../../movies.action";
+import {selectPaginateResponse} from "../../movies.selector";
 import {MovieFilters} from "../MovieFilters/MovieFilters";
 import {filterMovies} from "../../movies.filter";
 import {MoviesList} from "../MoviesList/MoviesList";
 import {PaginationButtons} from "../../../../shared/Pagination/components/PagnationButtons/PaginationButtons";
 import usePagination from "../../../../shared/Pagination/components/hooks/usePagination";
+import {IMovie} from "../../movies.model";
+import {usePaginateResponse} from "../../../../shared/Pagination/components/hooks/usePaginationResponse";
 
-export const MoviePage : FC = () =>
-{
+export const MoviePage: FC = () => {
+	// Pagination
 	const dispatch = useDispatch()
-	const movies = useSelector(selectMovies)
-	
-	useEffect(() => { dispatch(getMoviesRequestAction())}, [])
+	const pagination = usePagination<IMovie>(
+		[],
+		(page, pageSize) => dispatch(getPaginateMoviesRequestAction(page, pageSize)))
+	const paginateResponse = usePaginateResponse(selectPaginateResponse, pagination)
 	
 	// Filters
-	const [filteredMovies, setFilteredMovies] = useState(movies)
+	const [filteredItems, setFilteredItems] = useState(paginateResponse.items)
 	const [selectedCategory, setSelectedCategory] = useState<string | undefined>()
-	const uniqueCategories = movies
-		.map(m => m.category)
-		.filter((element, index, self) => self.indexOf(element) === index);
 	
-	useEffect(() => setFilteredMovies(filterMovies(movies, selectedCategory)), [selectedCategory, movies])
+	useEffect(() => setFilteredItems(filterMovies(paginateResponse.items, selectedCategory)), [selectedCategory, paginateResponse.items])
+	useEffect(() => pagination.setItems(filteredItems), [filteredItems])
 	
 	const handleCategoryChange = (event: ChangeEvent<HTMLSelectElement>) =>
 		setSelectedCategory(event.target.value === '' ? undefined : event.target.value)
 	const handlePageSizeChange = (event: ChangeEvent<HTMLSelectElement>) =>
-		setPageSize(Number(event.target.value))
+		pagination.setPageSize(Number(event.target.value))
 	
-	// Pagination
-	const [pageSize, setPageSize] = useState(8)
-	const pagination = usePagination(filteredMovies, 1, pageSize)
-	
-	useEffect(() => pagination.setElements(filteredMovies.length === 0 ? movies : filteredMovies), [filteredMovies])
-	useEffect(() => pagination.setPageSize(pageSize), [pageSize])
+	const uniqueCategories = paginateResponse.items
+		.map(m => m.category)
+		.filter((element, index, self) => self.indexOf(element) === index);
 	
 	return <>
 		<h1>Movie page</h1>
@@ -42,7 +40,7 @@ export const MoviePage : FC = () =>
 			categories={uniqueCategories}
 			selectedCategory={selectedCategory}
 			handleCategoryChange={handleCategoryChange}
-			pageSize={pageSize}
+			pageSize={pagination.pageSize}
 			handlePageSizeChange={handlePageSizeChange}/>
 		<MoviesList movies={pagination.currentPage}/>
 		<PaginationButtons {...pagination} />
