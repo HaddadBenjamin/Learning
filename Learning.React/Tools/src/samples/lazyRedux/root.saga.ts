@@ -1,9 +1,9 @@
 import createSagaMiddleware from 'redux-saga';
+import {all} from 'redux-saga/effects';
+import idsSaga from '../pagination/ids.saga';
 
 export const sagaMiddleware = createSagaMiddleware();
 
 export default function* rootSagas() {
-  yield [
-    // fork(watchTodosSagas),
-  ];
+	yield all([idsSaga()]);
 }

@@ -13,7 +13,7 @@ import { ILazyStore } from './lazyRedux.model';
 class LazyStore<TApplicationState> implements ILazyStore {
   store: Store;
 
-  defaultReducers: Reducer;
+  defaultReducers: any;
 
   sagaMiddleware: SagaMiddleware;
 
@@ -22,7 +22,7 @@ class LazyStore<TApplicationState> implements ILazyStore {
   injectedReducers: ReducersMapObject;
 
   constructor(
-    defaultReducers: Reducer,
+    defaultReducers: any,
     initialApplicationState: PreloadedState<TApplicationState>,
     middlewares: StoreEnhancer,
     sagaMiddleware: SagaMiddleware,
@@ -44,6 +44,7 @@ class LazyStore<TApplicationState> implements ILazyStore {
   }
 
   createRootReducer = (lazyReducers?: ReducersMapObject): Reducer =>
+    // @ts-ignore
     combineReducers({ ...this.defaultReducers, ...lazyReducers });
 
   injectReducer = (key: string, reducer: Reducer): void => {
