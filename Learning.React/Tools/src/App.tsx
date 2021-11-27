@@ -9,17 +9,21 @@ import LazyReduxSample from './samples/lazyRedux/LazyReduxSample';
 import BreakpointsSample from './samples/breakpoints/BreakpointsSample';
 import ConfigurationSample from './samples/configuration/ConfigurationSample';
 import ResponsiveNavigationSample from './samples/ui/responsiveNavigation/ResponsiveNavigationSample/ResponsiveNavigationSample';
+import LazyPaginationSample from './samples/pagination/components/LazyPaginationSample/LazyPaginationSample';
 import store from './samples/lazyRedux/root.store';
+import SimplePaginationSample from './samples/pagination/components/LazyPaginationSample/SimplePaginationSample';
 
 export default () => (
   <Provider store={store}>
     <ResponsiveNavigationSample />
     <HightlightSample />
     <ConfigurationSample />
+    <SimplePaginationSample />
+    <LazyPaginationSample />
     <LazyReduxSample />
-    <ResponsiveImageSample />
     <LazyImageSample />
     <LazyResponsiveImageSample />
+    <ResponsiveImageSample />
     <InfiniteScrollingSample />
     <BreakpointsSample />
   </Provider>

@@ -36,16 +36,24 @@ declare global {
     countBy(predicate: (element: T) => boolean): number;
 
     orderBy(callback: (element: T) => string | number | Date): ReadonlyArray<T>;
+  
     orderByDesc(
       callback: (element: T) => string | number | Date
     ): ReadonlyArray<T>;
-
+  
     inverse(): ReadonlyArray<T>;
-
+  
     toDictionary<K, V>(
       getKey: (element: T) => K,
       getElement?: (element: T) => V | T
     ): Map<K, V | T>;
+  
+    // Fait maison :
+    mapWithPrevious<Y>(callback: (previous: T | undefined, current: T) => Y): ReadonlyArray<Y>;
+  
+    filterWithPrevious(callback: (previous: T | undefined, current: T) => boolean): ReadonlyArray<T>;
+  
+    forEachWithPrevious(callback: (previous: T | undefined, current: T) => void): void;
   }
 }
 
@@ -244,6 +252,30 @@ if (!Array.prototype.skip) {
       ])
     );
   };
+  
+  Array.prototype.mapWithPrevious = function <T, Y>(
+    this: readonly T[],
+    callback: (previous: T | undefined, current: T) => Y
+  ): readonly Y[] {
+    return this.map((element, index) =>
+      callback(index > 0 ? this[index - 1] : undefined, element));
+  };
+  
+  Array.prototype.filterWithPrevious = function <T>(
+    this: readonly T[],
+    callback: (previous: T | undefined, current: T) => boolean
+  ): readonly T[] {
+    return this.filter((element, index) =>
+      callback(index > 0 ? this[index - 1] : undefined, element));
+  };
+  
+  Array.prototype.forEachWithPrevious = function <T>(
+    this: readonly T[],
+    callback: (previous: T | undefined, current: T) => void
+  ): void {
+    return this.forEach((element, index) =>
+      callback(index > 0 ? this[index - 1] : undefined, element));
+  };
 }
 
 // Exemples :
@@ -265,35 +297,37 @@ if (!Array.prototype.skip) {
   [1, 2, 2, 3].distinct(), // [1,2,3]
   [{ a : 1 }, { a : 2 }, { a: 2 }, { a : 3 }].distinctBy(element => element.a), // [1,2,3]
   [1, 2, 3].first(), // 1
-  ([] as number[]).firstOrDefault(2), // 2
-  [1, 2, 3].last(), // 3
-  ([] as number[]).lastOrDefault(2), // 2
-  [1, 2, 3].count(), // 3
-  [1, 2, 3, 4, 5, 6].countBy(element => element % 3 === 0), // 2
-  [4, 5, 6, 3, 2, 1].orderBy(element => element), // [1,2,3,4,5,6]
-  [
-    { d: Date.now(), index: 2 },
-    { d: Date.now() - 500, index: 1 },
-  ].orderBy(element => element.d), // [{index : 1}, { index : 2}]
-  [
-    { a: 2, b: '' },
-    { a: 3, b: '' },
-    { a: 1, b: '' },
-  ].orderBy(element => element.a), // [{ a : 1, b : '' }, { a : 2, b : '' }, { a : 3, b : '' }],
-  [4, 5, 6, 3, 2, 1].orderByDesc(element => element), // [6,5,4,3,2,1]
-  [
-    { d: Date.now(), index: 2 },
-    { d: Date.now() - 500, index: 1 },
-  ].orderByDesc(element => element.d), // [{index : 2}, { index : 1}]
-  [
-    { a: 2, b: '' },
-    { a: 3, b: '' },
-    { a: 1, b: '' },
-  ].orderByDesc(element => element.a), // [{ a : 3, b : '' }, { a : 2, b : '' }, { a : 1, b : '' }]
-  [1, 2, 3].inverse(), // [3, 2, 1]
-  [
-    { a: 1, id: 0 },
-    { a: 2, id: 1 },
-  ].toDictionary(element => element.id) // { 0 => { a: 1, id: 0 }, 1 => { a: 2, id: 1 } },
-]
+    ([] as number[]).firstOrDefault(2), // 2
+    [1, 2, 3].last(), // 3
+    ([] as number[]).lastOrDefault(2), // 2
+    [1, 2, 3].count(), // 3
+    [1, 2, 3, 4, 5, 6].countBy(element => element % 3 === 0), // 2
+    [4, 5, 6, 3, 2, 1].orderBy(element => element), // [1,2,3,4,5,6]
+    [
+      {d: Date.now(), index: 2},
+      {d: Date.now() - 500, index: 1},
+    ].orderBy(element => element.d), // [{index : 1}, { index : 2}]
+    [
+      {a: 2, b: ''},
+      {a: 3, b: ''},
+      {a: 1, b: ''},
+    ].orderBy(element => element.a), // [{ a : 1, b : '' }, { a : 2, b : '' }, { a : 3, b : '' }],
+    [4, 5, 6, 3, 2, 1].orderByDesc(element => element), // [6,5,4,3,2,1]
+    [
+      {d: Date.now(), index: 2},
+      {d: Date.now() - 500, index: 1},
+    ].orderByDesc(element => element.d), // [{index : 2}, { index : 1}]
+    [
+      {a: 2, b: ''},
+      {a: 3, b: ''},
+      {a: 1, b: ''},
+    ].orderByDesc(element => element.a), // [{ a : 3, b : '' }, { a : 2, b : '' }, { a : 1, b : '' }]
+    [1, 2, 3].inverse(), // [3, 2, 1]
+    [
+      {a: 1, id: 0},
+      {a: 2, id: 1},
+    ].toDictionary(element => element.id), // { 0 => { a: 1, id: 0 }, 1 => { a: 2, id: 1 } },
+    [1, 2, 3].mapWithPrevious((previous, current) => previous ? previous + current : current), // [1, 3, 5]
+    [1, 2, 3].filterWithPrevious((previous) => previous ? previous > 1 : false) // [3]
+  ]
 // );

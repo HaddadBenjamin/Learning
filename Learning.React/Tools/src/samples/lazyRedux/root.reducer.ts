@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux';
+import idsReducer from '../pagination/ids.reducer';
 
-const defaultReducers = combineReducers({
-  // todos : todoReducer,
-});
+const defaultReducers = {
+  idsState: idsReducer,
+};
 
 export default defaultReducers;
