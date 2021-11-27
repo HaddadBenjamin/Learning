@@ -35,7 +35,6 @@ const usePagination = <T>(
     itemsCount: iPageSize,
   });
 
-  if (!callHttpOnSelectPage) console.log(pagination);
   const computePagination = (): void => {
     const { itemsCount, items, pageSize } = pagination;
     const clampedPageSize = pageSize > itemsCount ? itemsCount : pageSize;
