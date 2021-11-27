@@ -21,10 +21,8 @@ const usePagination = <T>(
   ) => IPaginateResponse<T> = () => ({ items: [], lastPage: 1, itemsCount: 0 }),
   getPaginateResponse: (page: number, pageSize: number) => void = () => {}
 ): usePaginationResponse<T> => {
-  // paginate response
   const paginateResponse = useSelector(selectPaginateResponse);
 
-  // pagination
   const [pagination, setPagination] = useState({
     items: [] as T[],
     currentPage: [] as T[],
@@ -49,9 +47,9 @@ const usePagination = <T>(
       pageSize: clampedPageSize,
       page,
       lastPage,
-      currentPage: callHttpOnSelectPage
-        ? items
-        : items.slice(clampedPageSize * (page - 1)).slice(0, clampedPageSize),
+      currentPage: items
+        .slice(clampedPageSize * (page - 1))
+        .slice(0, clampedPageSize),
       hasPreviousPage: page - 1 > 0,
       hasNextPage: page < lastPage,
       pageSizeInThisPage:
