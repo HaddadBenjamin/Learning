@@ -426,7 +426,7 @@ describe('arrayExtensions', () => {
     expect(array).toStrictEqual(expectedValue);
   });
   
-  it('pagination should be immutable', () => {
+  it('paginate should be immutable', () => {
     // Given
     const expectedValue = [21, 22, 23, 24, 25];
     const array = range(501);

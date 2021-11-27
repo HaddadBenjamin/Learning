@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React, {FC} from 'react';
+import cn from 'classnames';
 import styles from './PaginationButtons.module.scss';
 import IPagination from '../../pagination.model';
 import computePageRange from '../../pagination.utils';
@@ -43,7 +44,7 @@ const PaginationButtons: FC<Props<any>> = ({
           <button
             type="button"
             onClick={() => goToPage(1)}
-            className={page === 1 ? styles.active : ''}
+            className={cn(page === 1 && styles.active)}
           >
             First
           </button>
@@ -70,7 +71,7 @@ const PaginationButtons: FC<Props<any>> = ({
                 type="button"
                 key={`PaginationButton-${pageNumber}`}
                 onClick={() => goToPage(pageNumber)}
-                className={pageNumber === page ? styles.active : ''}
+                className={cn(pageNumber === page && styles.active)}
               >
                 {pageNumber}
               </button>
@@ -90,7 +91,7 @@ const PaginationButtons: FC<Props<any>> = ({
           <button
             type="button"
             onClick={() => goToPage(lastPage)}
-            className={page === lastPage ? styles.active : ''}
+            className={cn(page === lastPage && styles.active)}
           >
             Last
           </button>
