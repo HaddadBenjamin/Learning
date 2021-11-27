@@ -1,4 +1,3 @@
-/* eslint no-nested-ternary: "warn" */
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import IPagination, { IPaginateResponse } from '../pagination.model';
