@@ -34,6 +34,6 @@ export default (app: Express) => {
     });
 
     res.status(200);
-    res.json(resources.slice(pageSize * (page - 1)).slice(0, pageSize));
+    res.json(resources.paginate(page, pageSize));
   });
 };
