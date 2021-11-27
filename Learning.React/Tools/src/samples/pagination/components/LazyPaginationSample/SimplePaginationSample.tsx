@@ -1,14 +1,14 @@
 import React, { ChangeEvent, FC } from 'react';
 import { useDispatch } from 'react-redux';
-import selectPaginateResponse from '../../ids.selector';
+import usePagination from '../../../../shared/domains/lazyLoad/pagination/hooks/usePagination';
 import PaginationFilters from '../../../../shared/domains/lazyLoad/pagination/components/PaginationFilters/PaginationFilters';
 import IdsList from '../IdList/IdsList';
-import PaginationButtons from '../../../../shared/domains/lazyLoad/pagination/components/PagnationButtons/PaginationButtons';
-import usePagination from '../../../../shared/domains/lazyLoad/pagination/hooks/usePagination';
-import { getPaginateIdsRequestAction } from '../../ids.action';
 import PaginationInformation from '../../../../shared/domains/lazyLoad/pagination/components/PaginationInformation/PaginationInformation';
+import PaginationButtons from '../../../../shared/domains/lazyLoad/pagination/components/PagnationButtons/PaginationButtons';
+import selectPaginateResponse from '../../ids.selector';
+import { getIdsRequestAction } from '../../ids.action';
 
-const LazyPaginationSample: FC = () => {
+const SimplePaginationSample: FC = () => {
   const dispatch = useDispatch();
   const {
     pagination,
@@ -16,12 +16,8 @@ const LazyPaginationSample: FC = () => {
     goToPreviousPage,
     goToPage,
     goToNextPage,
-  } = usePagination<number>(
-    true,
-    1,
-    10,
-    selectPaginateResponse,
-    (page, pageSize) => dispatch(getPaginateIdsRequestAction(page, pageSize))
+  } = usePagination<number>(false, 1, 10, selectPaginateResponse, () =>
+    dispatch(getIdsRequestAction())
   );
 
   const handlePageSizeChange = (event: ChangeEvent<HTMLSelectElement>) =>
@@ -29,10 +25,10 @@ const LazyPaginationSample: FC = () => {
 
   return (
     <>
-      <h1>Lazy pagination</h1>
+      <h1>Simple pagination</h1>
       <div>
-        To test: F12 &gt; Network &gt; XHR &gt; notice the new HTTP call when
-        the page or the page size is modified
+        Notice that none new HTTP call is done when the page or the page size is
+        modified
       </div>
       <PaginationFilters
         pageSize={pagination.pageSize}
@@ -50,4 +46,4 @@ const LazyPaginationSample: FC = () => {
   );
 };
 
-export default LazyPaginationSample;
+export default SimplePaginationSample;

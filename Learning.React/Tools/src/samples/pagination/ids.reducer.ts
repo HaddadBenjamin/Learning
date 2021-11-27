@@ -9,7 +9,11 @@ const idReducer = (
     case IdAction.GET_IDS_REQUEST:
       return { ...state, error: undefined };
     case IdAction.GET_IDS_SUCCESS:
-      return { ...state, items: action.payload };
+      return {
+        ...state,
+        items: action.payload,
+        itemsCount: action.payload.length,
+      };
     case IdAction.GET_IDS_FAILED:
       return { ...state, error: action.error };
 

@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import qs from 'qs';
 import { IPaginateResponse } from './pagination.model';
 import {
@@ -8,9 +8,6 @@ import {
 import routes from '../../../../samples/pagination/ids.configuration';
 
 export const baseUrl = `${apiConfiguration.baseUrl}${routes.api}`;
-
-export const getIds = async (): Promise<AxiosResponse<number[]>> =>
-  (await axios.get(baseUrl, httpConfiguration.default)).data;
 
 export const getPaginateIds = async (
   page: number,
@@ -27,3 +24,6 @@ export const getPaginateIds = async (
 
   return { items: response.data, lastPage, itemsCount };
 };
+
+export const getIds = async (): Promise<number[]> =>
+  (await getPaginateIds(1, Number.MAX_SAFE_INTEGER)).items;

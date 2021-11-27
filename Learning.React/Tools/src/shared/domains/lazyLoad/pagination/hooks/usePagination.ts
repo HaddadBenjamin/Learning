@@ -13,12 +13,13 @@ export interface usePaginationResponse<T> {
 }
 
 const usePagination = <T>(
-  // Ces 3 champs sont nécéssaires quand on a besoin de faire des appels HTTP à chaque changement de page.
-  onPageChange: (page: number, pageSize: number) => void,
-  selectPaginateResponse: (state: ApplicationState) => IPaginateResponse<T>, // paginate response
   callHttpOnSelectPage: boolean = true,
   iPage: number = 1,
-  iPageSize: number = 10
+  iPageSize: number = 10,
+  selectPaginateResponse: (
+    state: ApplicationState
+  ) => IPaginateResponse<T> = () => ({ items: [], lastPage: 1, itemsCount: 0 }),
+  getPaginateResponse: (page: number, pageSize: number) => void = () => {}
 ): usePaginationResponse<T> => {
   // paginate response
   const paginateResponse = useSelector(selectPaginateResponse);
@@ -37,12 +38,12 @@ const usePagination = <T>(
   });
 
   const computePagination = (): void => {
-    const {itemsCount, items, pageSize} = pagination;
+    const { itemsCount, items, pageSize } = pagination;
     const clampedPageSize = pageSize > itemsCount ? itemsCount : pageSize;
     const lastPage =
       clampedPageSize === 0 ? 1 : Math.ceil(itemsCount / clampedPageSize);
     const page = pagination.page > lastPage ? lastPage : pagination.page;
-  
+
     setPagination({
       ...pagination,
       pageSize: clampedPageSize,
@@ -73,11 +74,11 @@ const usePagination = <T>(
     ]
   );
 
-  useEffect(() => onPageChange(iPage, iPageSize), []);
-  useEffect(
-    () => onPageChange(pagination.page, pagination.pageSize),
-    [pagination.page, pagination.pageSize]
-  );
+  useEffect(() => getPaginateResponse(iPage, iPageSize), []);
+  useEffect(() => {
+    if (callHttpOnSelectPage)
+      getPaginateResponse(pagination.page, pagination.pageSize);
+  }, [pagination.page, pagination.pageSize]);
   useEffect(
     () => computePagination(),
     [pagination.page, pagination.pageSize, pagination.items]
