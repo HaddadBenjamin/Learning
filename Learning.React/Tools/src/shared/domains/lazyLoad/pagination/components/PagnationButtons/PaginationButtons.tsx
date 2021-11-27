@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import styles from './PaginationButtons.module.scss';
 import IPagination from '../../pagination.model';
 import computePageRange from '../../pagination.utils';
+import {range} from '../../../../../helpers/arrayHelper';
 
 interface Props<T> {
   showFirstAndLastButtons?: boolean;
@@ -59,9 +60,7 @@ const PaginationButtons: FC<Props<any>> = ({
         )}
 
         {[undefined, true].includes(showPageButtons) &&
-          new Array(lastPage)
-            .fill(0)
-            .map((e, i) => i + 1)
+        range(lastPage)
             .filter(
               pageNumber =>
                 pageNumber >= minimumPage && pageNumber <= maximumPage
