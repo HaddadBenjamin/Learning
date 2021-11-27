@@ -46,7 +46,9 @@ const usePagination = <T>(
       pageSize: clampedPageSize,
       page,
       lastPage,
-      currentPage: items.paginate(page, clampedPageSize) as T[],
+      currentPage: items
+        .slice(clampedPageSize * (page - 1))
+        .slice(0, clampedPageSize),
       hasPreviousPage: page - 1 > 0,
       hasNextPage: page < lastPage,
       pageSizeInThisPage:

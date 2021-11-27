@@ -2,7 +2,7 @@ import React, { ChangeEventHandler, FC } from 'react';
 
 interface Props {
   pageSize: number;
-  pageSizes: number[];
+  pageSizes?: number[];
   handlePageSizeChange: ChangeEventHandler<HTMLSelectElement>;
 }
 
