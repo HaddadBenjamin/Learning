@@ -54,7 +54,7 @@ const PaginationButtons: FC<Props<any>> = ({
           <button
             type="button"
             disabled={!hasPreviousPage}
-            onClick={() => goToPreviousPage()}
+            onClick={goToPreviousPage}
           >
             Previous
           </button>
@@ -78,11 +78,7 @@ const PaginationButtons: FC<Props<any>> = ({
             ))}
 
         {[undefined, true].includes(showPrevAndNextButtons) && (
-          <button
-            type="button"
-            disabled={!hasNextPage}
-            onClick={() => goToNextPage()}
-          >
+          <button type="button" disabled={!hasNextPage} onClick={goToNextPage}>
             Next
           </button>
         )}
