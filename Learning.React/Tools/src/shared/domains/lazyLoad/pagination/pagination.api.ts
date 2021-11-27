@@ -1,6 +1,6 @@
-import axios, {AxiosResponse} from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import qs from 'qs';
-import {IPaginateResponse} from './pagination.model';
+import { IPaginateResponse } from './pagination.model';
 import {
   apiConfiguration,
   httpConfiguration,
@@ -17,15 +17,13 @@ export const getPaginateIds = async (
   pageSize: number
 ): Promise<IPaginateResponse<number>> => {
   const response = await axios.get(
-    `${baseUrl}?${qs.stringify({page, limit: pageSize})}`,
+    `${baseUrl}?${qs.stringify({ page, limit: pageSize })}`,
     httpConfiguration.default
   );
-  console.log(response.headers);
-  const linkHeaders = response.headers.link;
-  const linkNumbers = linkHeaders.match(/\d+/g)!;
-  console.log(linkNumbers);
+  const linkHeader = response.headers.link;
+  const linkNumbers = linkHeader.match(/\d+/g)!;
   const lastPage = Number(linkNumbers[linkNumbers.length - 2]);
   const itemsCount = Number(response.headers['x-total-count']);
-  
-  return {items: response.data, lastPage, itemsCount};
+
+  return { items: response.data, lastPage, itemsCount };
 };

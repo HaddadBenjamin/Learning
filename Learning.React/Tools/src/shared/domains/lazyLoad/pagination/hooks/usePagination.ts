@@ -1,8 +1,8 @@
 /* eslint no-nested-ternary: "warn" */
-import {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
-import IPagination, {IPaginateResponse} from '../pagination.model';
-import {ApplicationState} from '../../../../../samples/lazyRedux/root.state';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import IPagination, { IPaginateResponse } from '../pagination.model';
+import { ApplicationState } from '../../../../../samples/lazyRedux/root.state';
 
 export interface usePaginationResponse<T> {
   pagination: IPagination<T>;
@@ -22,7 +22,7 @@ const usePagination = <T>(
 ): usePaginationResponse<T> => {
   // paginate response
   const paginateResponse = useSelector(selectPaginateResponse);
-  
+
   // pagination
   const [pagination, setPagination] = useState({
     items: [] as T[],
@@ -35,7 +35,7 @@ const usePagination = <T>(
     lastPage: 1,
     itemsCount: iPageSize,
   });
-  
+
   const computePagination = (): void => {
     // Simplifier cette merde
     const itemsCount = pagination.itemsCount ?? pagination.items.length;
@@ -43,7 +43,7 @@ const usePagination = <T>(
       pagination.pageSize > itemsCount ? itemsCount : pagination.pageSize;
     const lastPage = pageSize === 0 ? 1 : Math.floor(itemsCount / pageSize);
     const page = pagination.page > lastPage ? lastPage : pagination.page;
-    
+
     setPagination({
       ...pagination,
       pageSize,
@@ -57,11 +57,11 @@ const usePagination = <T>(
       pageSizeInThisPage: callHttpOnSelectPage
         ? pageSize
         : page === lastPage
-          ? itemsCount % pageSize
-          : pageSize,
+        ? itemsCount % pageSize
+        : pageSize,
     });
   };
-  
+
   useEffect(
     () =>
       setPagination({
@@ -76,7 +76,7 @@ const usePagination = <T>(
       paginateResponse.items,
     ]
   );
-  
+
   useEffect(() => onPageChange(iPage, iPageSize), []);
   useEffect(
     () => onPageChange(pagination.page, pagination.pageSize),
@@ -86,21 +86,21 @@ const usePagination = <T>(
     () => computePagination(),
     [pagination.page, pagination.pageSize, pagination.items]
   );
-  
+
   const goToPreviousPage = (): void => {
     if (pagination.hasPreviousPage)
-      setPagination({...pagination, page: pagination.page - 1});
+      setPagination({ ...pagination, page: pagination.page - 1 });
   };
   const goToNextPage = (): void => {
     if (pagination.hasNextPage)
-      setPagination({...pagination, page: pagination.page + 1});
+      setPagination({ ...pagination, page: pagination.page + 1 });
   };
-  
+
   const goToPage = (page: number) => {
     if (page >= 1 && page <= pagination.lastPage)
-      setPagination({...pagination, page});
+      setPagination({ ...pagination, page });
   };
-  
+
   return {
     pagination,
     setPagination,

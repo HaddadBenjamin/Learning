@@ -1,5 +1,5 @@
 const routes = {
-	api: '/ids',
+  api: '/ids',
 };
 
 export default routes;

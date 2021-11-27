@@ -1,7 +1,7 @@
-import {Express} from 'express';
+import { Express } from 'express';
 import qs from 'qs';
 import routes from '../../../../samples/pagination/ids.configuration';
-import {range} from '../../../helpers/arrayHelper';
+import { range } from '../../../helpers/arrayHelper';
 
 const resources = range(500);
 
@@ -27,12 +27,12 @@ export default (app: Express) => {
       _page: lastPage,
       _limit: pageSize,
     })}>; rel="lastPage"`;
-    
+
     res.set({
       'x-total-count': totalCount,
       link,
     });
-    
+
     res.status(200);
     res.json(resources.slice(pageSize * (page - 1)).slice(0, pageSize));
   });
