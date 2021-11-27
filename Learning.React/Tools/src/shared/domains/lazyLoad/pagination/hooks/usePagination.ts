@@ -37,28 +37,24 @@ const usePagination = <T>(
   });
 
   const computePagination = (): void => {
-    // Simplifier cette merde
-    const itemsCount = pagination.itemsCount ?? pagination.items.length;
-    const pageSize =
-      pagination.pageSize > itemsCount ? itemsCount : pagination.pageSize;
-    const lastPage = pageSize === 0 ? 1 : Math.floor(itemsCount / pageSize);
+    const {itemsCount, items, pageSize} = pagination;
+    const clampedPageSize = pageSize > itemsCount ? itemsCount : pageSize;
+    const lastPage =
+      clampedPageSize === 0 ? 1 : Math.ceil(itemsCount / clampedPageSize);
     const page = pagination.page > lastPage ? lastPage : pagination.page;
-
+  
     setPagination({
       ...pagination,
-      pageSize,
+      pageSize: clampedPageSize,
       page,
       lastPage,
       currentPage: callHttpOnSelectPage
-        ? pagination.items
-        : pagination.items.slice(pageSize * (page - 1)).slice(0, pageSize),
+        ? items
+        : items.slice(clampedPageSize * (page - 1)).slice(0, clampedPageSize),
       hasPreviousPage: page - 1 > 0,
       hasNextPage: page < lastPage,
-      pageSizeInThisPage: callHttpOnSelectPage
-        ? pageSize
-        : page === lastPage
-        ? itemsCount % pageSize
-        : pageSize,
+      pageSizeInThisPage:
+        page === lastPage ? itemsCount % clampedPageSize : clampedPageSize,
     });
   };
 

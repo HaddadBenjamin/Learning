@@ -3,7 +3,7 @@ import qs from 'qs';
 import routes from '../../../../samples/pagination/ids.configuration';
 import { range } from '../../../helpers/arrayHelper';
 
-const resources = range(500);
+const resources = range(501);
 
 export default (app: Express) => {
   app.route(routes.api).get((req, res) => {
