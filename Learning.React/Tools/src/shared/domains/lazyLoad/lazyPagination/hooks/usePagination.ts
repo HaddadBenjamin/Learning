@@ -22,12 +22,12 @@ const usePagination = <T>(
 ): usePaginationResponse<T> => {
   const paginateResponse = useSelector(selectPaginateResponse);
 
-  const [pagination, setPagination] = useState({
+  const [pagination, setPagination] = useState<IPagination<T>>({
     items: [] as T[],
     currentPage: [] as T[],
     page: iPage,
     pageSize: iPageSize,
-    pageSizeInThisPage: 1,
+    thisPageSize: 1,
     hasPreviousPage: false,
     hasNextPage: false,
     lastPage: 1,
@@ -35,24 +35,30 @@ const usePagination = <T>(
   });
 
   const computePagination = (): void => {
-    const { itemsCount, items, pageSize } = pagination;
+    const {itemsCount, items, pageSize} = pagination;
     const clampedPageSize = pageSize > itemsCount ? itemsCount : pageSize;
-    const lastPage =
+    const clampedLastPage =
       clampedPageSize === 0 ? 1 : Math.ceil(itemsCount / clampedPageSize);
-    const page = pagination.page > lastPage ? lastPage : pagination.page;
-
+    const clampedPage =
+      pagination.page > clampedLastPage ? clampedLastPage : pagination.page;
+  
+    const hasPreviousPage = clampedPage - 1 > 0;
+    const hasNextPage = clampedPage < clampedLastPage;
+  
     setPagination({
       ...pagination,
       pageSize: clampedPageSize,
-      page,
-      lastPage,
+      page: clampedPage,
+      lastPage: clampedLastPage,
       currentPage: items
-        .slice(clampedPageSize * (page - 1))
+        .slice(clampedPageSize * (clampedPage - 1))
         .slice(0, clampedPageSize),
-      hasPreviousPage: page - 1 > 0,
-      hasNextPage: page < lastPage,
-      pageSizeInThisPage:
-        page === lastPage ? itemsCount % clampedPageSize : clampedPageSize,
+      hasPreviousPage,
+      hasNextPage,
+      thisPageSize:
+        clampedPage === clampedLastPage
+          ? itemsCount % clampedPageSize
+          : clampedPageSize,
     });
   };
 

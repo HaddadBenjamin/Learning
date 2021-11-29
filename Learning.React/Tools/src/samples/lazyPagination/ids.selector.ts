@@ -1,5 +1,5 @@
-import { IPaginateResponse } from '../../shared/domains/lazyLoad/pagination/pagination.model';
-import { ApplicationState } from '../lazyRedux/root.state';
+import {IPaginateResponse} from '../../shared/domains/lazyLoad/lazyPagination/pagination.model';
+import {ApplicationState} from '../lazyRedux/root.state';
 
 const selectPaginateResponse = (
   state: ApplicationState

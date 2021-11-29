@@ -1,4 +1,4 @@
-import idsReducer from '../pagination/ids.reducer';
+import idsReducer from '../lazyPagination/ids.reducer';
 
 const defaultReducers = {
   idsState: idsReducer,

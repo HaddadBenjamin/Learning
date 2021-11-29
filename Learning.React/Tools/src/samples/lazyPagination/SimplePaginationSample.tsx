@@ -1,12 +1,15 @@
-import React, { ChangeEvent, FC } from 'react';
-import { useDispatch } from 'react-redux';
-import usePagination from '../../../../shared/domains/lazyLoad/pagination/hooks/usePagination';
-import PaginationFilters from '../../../../shared/domains/lazyLoad/pagination/components/PaginationFilters/PaginationFilters';
-import IdsList from '../IdList/IdsList';
-import PaginationInformation from '../../../../shared/domains/lazyLoad/pagination/components/PaginationInformation/PaginationInformation';
-import PaginationButtons from '../../../../shared/domains/lazyLoad/pagination/components/PagnationButtons/PaginationButtons';
-import selectPaginateResponse from '../../ids.selector';
-import { getIdsRequestAction } from '../../ids.action';
+import React, {ChangeEvent, FC} from 'react';
+import {useDispatch} from 'react-redux';
+import usePagination from '../../shared/domains/lazyLoad/lazyPagination/hooks/usePagination';
+import PaginationFilters
+  from '../../shared/domains/lazyLoad/lazyPagination/components/PaginationFilters/PaginationFilters';
+import IdsList from './components/IdList/IdsList';
+import PaginationInformation
+  from '../../shared/domains/lazyLoad/lazyPagination/components/PaginationInformation/PaginationInformation';
+import PaginationButtons
+  from '../../shared/domains/lazyLoad/lazyPagination/components/PagnationButtons/PaginationButtons';
+import selectPaginateResponse from './ids.selector';
+import {getIdsRequestAction} from './ids.action';
 
 const SimplePaginationSample: FC = () => {
   const dispatch = useDispatch();
@@ -26,10 +29,7 @@ const SimplePaginationSample: FC = () => {
   return (
     <>
       <h1>Simple pagination</h1>
-      <div>
-        Notice that none new HTTP call is done when the page or the page size is
-        modified
-      </div>
+      <div>To test: F12 &gt; Network &gt; XHR &gt; nothing happen</div>
       <PaginationFilters
         pageSize={pagination.pageSize}
         handlePageSizeChange={handlePageSizeChange}

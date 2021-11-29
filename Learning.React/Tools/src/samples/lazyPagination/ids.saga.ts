@@ -1,27 +1,27 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
-  getIdsFailedAction,
-  getIdsSuccessAction,
-  getPaginateIdsFailedAction,
-  GetPaginateIdsRequestAction,
-  getPaginateIdsSuccessAction,
-  IdAction,
+	getIdsFailedAction,
+	getIdsSuccessAction,
+	getPaginateIdsFailedAction,
+	GetPaginateIdsRequestAction,
+	getPaginateIdsSuccessAction,
+	IdAction,
 } from './ids.action';
 import {
-  getIds,
-  getPaginateIds,
-} from '../../shared/domains/lazyLoad/pagination/pagination.api';
-import { IPaginateResponse } from '../../shared/domains/lazyLoad/pagination/pagination.model';
+	getIds,
+	getPaginateIds,
+} from '../../shared/domains/lazyLoad/lazyPagination/pagination.api';
+import {IPaginateResponse} from '../../shared/domains/lazyLoad/lazyPagination/pagination.model';
 
 export function* getIdsSaga() {
-  try {
-    const movies: number[] = yield call(getIds);
-
-    yield put(getIdsSuccessAction(movies));
-  } catch (error: any) {
-    yield put(getIdsFailedAction(error.message));
-  }
+	try {
+		const movies: number[] = yield call(getIds);
+		
+		yield put(getIdsSuccessAction(movies));
+	} catch (error: any) {
+		yield put(getIdsFailedAction(error.message));
+	}
 }
 
 export function* getPaginateIdsSaga(action: GetPaginateIdsRequestAction) {

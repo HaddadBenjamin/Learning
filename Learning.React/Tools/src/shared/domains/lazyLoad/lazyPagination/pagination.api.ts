@@ -5,7 +5,7 @@ import {
   apiConfiguration,
   httpConfiguration,
 } from '../../../shared.configuration';
-import routes from '../../../../samples/pagination/ids.configuration';
+import routes from '../../../../samples/lazyPagination/ids.configuration';
 
 export const baseUrl = `${apiConfiguration.baseUrl}${routes.api}`;
 

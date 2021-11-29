@@ -8,10 +8,11 @@ import ResponsiveImageSample from './samples/responsiveImage/ResponsiveImageSamp
 import LazyReduxSample from './samples/lazyRedux/LazyReduxSample';
 import BreakpointsSample from './samples/breakpoints/BreakpointsSample';
 import ConfigurationSample from './samples/configuration/ConfigurationSample';
-import ResponsiveNavigationSample from './samples/ui/responsiveNavigation/ResponsiveNavigationSample/ResponsiveNavigationSample';
-import LazyPaginationSample from './samples/pagination/components/LazyPaginationSample/LazyPaginationSample';
+import ResponsiveNavigationSample
+    from './samples/ui/responsiveNavigation/ResponsiveNavigationSample/ResponsiveNavigationSample';
+import LazyPaginationSample from './samples/lazyPagination/LazyPaginationSample';
 import store from './samples/lazyRedux/root.store';
-import SimplePaginationSample from './samples/pagination/components/LazyPaginationSample/SimplePaginationSample';
+import SimplePaginationSample from './samples/lazyPagination/SimplePaginationSample';
 
 export default () => (
   <Provider store={store}>

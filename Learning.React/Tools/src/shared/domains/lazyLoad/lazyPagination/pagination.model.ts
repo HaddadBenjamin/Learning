@@ -3,7 +3,7 @@ export default interface IPagination<T> {
   currentPage: T[];
   page: number;
   pageSize: number;
-  pageSizeInThisPage: number;
+  thisPageSize: number;
   hasPreviousPage: boolean;
   hasNextPage: boolean;
   lastPage: number;
