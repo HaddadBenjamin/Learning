@@ -2,7 +2,7 @@ import {IPaginateResponse} from '../../shared/domains/lazyLoad/lazyPagination/pa
 import {ApplicationState} from '../lazyRedux/root.state';
 
 const selectPaginateResponse = (
-  state: ApplicationState
-): IPaginateResponse<number> => ({ ...state.idsState });
+	state: ApplicationState
+): IPaginateResponse<number> => ({...state.idsState});
 
 export default selectPaginateResponse;
