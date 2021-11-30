@@ -36,16 +36,16 @@ const usePagination = <T>(
 
   const computePagination = (): void => {
     const {itemsCount, items, pageSize} = pagination;
-    const clampedPageSize = pageSize > itemsCount ? itemsCount : pageSize;
+	  const clampedPageSize = pageSize > itemsCount ? itemsCount : pageSize;
     const clampedLastPage =
       clampedPageSize === 0 ? 1 : Math.ceil(itemsCount / clampedPageSize);
     const clampedPage =
       pagination.page > clampedLastPage ? clampedLastPage : pagination.page;
-  
-    const hasPreviousPage = clampedPage - 1 > 0;
+	
+	  const hasPreviousPage = clampedPage - 1 > 0;
     const hasNextPage = clampedPage < clampedLastPage;
-  
-    setPagination({
+	
+	  setPagination({
       ...pagination,
       pageSize: clampedPageSize,
       page: clampedPage,
