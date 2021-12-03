@@ -4,12 +4,12 @@ import {IdState, initialIdState} from '../lazyPagination/ids.state';
 import {FakeDomainState} from './fakeDomain.state';
 
 export interface ApplicationState {
-  idsState: IdState;
-  fakeDomain?: FakeDomainState;
-  featureFlags?: FeatureFlagState;
-  abTests?: AbTestState;
+	idsState: IdState;
+	fakeDomain?: FakeDomainState;
+	featureFlags?: FeatureFlagState;
+	abTests?: AbTestState;
 }
 
 export const initialApplicationState: ApplicationState = {
-  idsState: initialIdState,
+	idsState: initialIdState,
 };

@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "cypress:open": "cypress open",
+    "start": "cypress open",
     "cypress:run": "cypress run"
   },
 

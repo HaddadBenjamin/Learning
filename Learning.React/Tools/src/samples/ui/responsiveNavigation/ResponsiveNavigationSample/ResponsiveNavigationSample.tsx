@@ -1,15 +1,15 @@
-import React, { FC, lazy, ReactNode, useRef, useState } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import useToggle from '../../../../shared/hooks/useToggle';
-import useBreakpoints from '../../../../shared/hooks/useBreakpoints';
+import React, {FC, lazy, ReactNode, useRef, useState} from 'react';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import useToggle from '../../../../shared/hooks/utilities/useToggle';
+import useBreakpoints from '../../../../shared/hooks/styles/useBreakpoints';
 import styles from './ResponsiveNavigationSample.module.scss';
-import { INavigationElement } from '../responsiveNavigation.model';
+import {INavigationElement} from '../responsiveNavigation.model';
 import NavigationElement from '../NavigationElement/NavigationElement';
 import {
-  initialNavigationElements,
-  routes,
+	initialNavigationElements,
+	routes,
 } from '../responsiveNavigation.configuration';
-import useClickOutside from '../../../../shared/hooks/useClickOutside';
+import useClickOutside from '../../../../shared/hooks/utilities/useClickOutside';
 
 const LazyHome = lazy(() => import('../FakeRouterComponents/Home'));
 const LazyAbout = lazy(() => import('../FakeRouterComponents/About'));
