@@ -56,10 +56,10 @@ const usePagination = <T>(
 		  hasPreviousPage,
 		  hasNextPage,
 		  thisPageSize:
-        clampedPage === clampedLastPage
-          ? itemsCount % clampedPageSize
-          : clampedPageSize,
-    });
+			  clampedPage === clampedLastPage
+				  ? itemsCount % clampedPageSize
+				  : clampedPageSize,
+	  });
   };
 
   useEffect(

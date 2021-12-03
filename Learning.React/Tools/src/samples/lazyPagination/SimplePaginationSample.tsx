@@ -18,16 +18,16 @@ const SimplePaginationSample: FC = () => {
 		setPagination,
 		goToPreviousPage,
 		goToPage,
-    goToNextPage,
-  } = usePagination<number>(false, 1, 10, selectPaginateResponse, () =>
-    dispatch(getIdsRequestAction())
-  );
-
-  const handlePageSizeChange = (event: ChangeEvent<HTMLSelectElement>) =>
-    setPagination({ ...pagination, pageSize: Number(event.target.value) });
-
-  return (
-    <>
+		goToNextPage,
+	} = usePagination<number>(false, 1, 10, selectPaginateResponse, () =>
+		dispatch(getIdsRequestAction())
+	);
+	
+	const handlePageSizeChange = (event: ChangeEvent<HTMLSelectElement>) =>
+		setPagination({...pagination, pageSize: Number(event.target.value)});
+	
+	return (
+		<>
       <h1>Simple pagination</h1>
       <div>To test: F12 &gt; Network &gt; XHR &gt; nothing happen</div>
       <PaginationFilters

@@ -20,15 +20,15 @@ const LazyPaginationSample: FC = () => {
 		goToPage,
 		goToNextPage,
 	} = usePagination<number>(
-    true,
-    1,
-    10,
-    selectPaginateResponse,
-    (page, pageSize) => dispatch(getPaginateIdsRequestAction(page, pageSize))
-  );
-
-  const handlePageSizeChange = (event: ChangeEvent<HTMLSelectElement>) =>
-    setPagination({ ...pagination, pageSize: Number(event.target.value) });
+		true,
+		1,
+		10,
+		selectPaginateResponse,
+		(page, pageSize) => dispatch(getPaginateIdsRequestAction(page, pageSize))
+	);
+	
+	const handlePageSizeChange = (event: ChangeEvent<HTMLSelectElement>) =>
+		setPagination({...pagination, pageSize: Number(event.target.value)});
 
   return (
     <>

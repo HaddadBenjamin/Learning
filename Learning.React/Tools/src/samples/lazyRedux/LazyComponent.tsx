@@ -11,7 +11,7 @@ import {AbTestIds, FeatureFlagIds} from './fakeDomain.configuration';
 import useAbTests from '../../shared/domains/abTest/hooks/useAbTests';
 
 const LazyComponent = () => {
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const message = useSelector(selectMessage);
 
   const reducerIsInjected = useLazyReducer(

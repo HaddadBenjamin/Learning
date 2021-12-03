@@ -19,16 +19,16 @@ export default (...featureFlagsIds: number[]): boolean[] => {
 		'shared/domains/featureFlag/featureFlag.reducer'
 	);
 	const sagaIsInjected = useLazySaga(
-    featureFlagSagaKey,
-    'shared/domains/featureFlag/featureFlag.saga'
-  );
-
-  const [isInitialized, setIsInitialized] = useState(false);
-
-  useEffect(() => {
-    if (
-      reducerIsInjected &&
-      sagaIsInjected &&
+		featureFlagSagaKey,
+		'shared/domains/featureFlag/featureFlag.saga'
+	);
+	
+	const [isInitialized, setIsInitialized] = useState(false);
+	
+	useEffect(() => {
+		if (
+			reducerIsInjected &&
+			sagaIsInjected &&
       !featureFlagsState.initialized &&
       !isInitialized
     ) {

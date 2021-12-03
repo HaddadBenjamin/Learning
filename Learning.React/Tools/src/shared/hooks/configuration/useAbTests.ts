@@ -19,16 +19,16 @@ export default (...abTestsIds: number[]): boolean[] => {
 		'shared/domains/abTest/abTest.reducer'
 	);
 	const sagaIsInjected = useLazySaga(
-    abTestSagaKey,
-    'shared/domains/abTest/abTest.saga'
-  );
-
-  const [isInitialized, setIsInitialized] = useState(false);
-
-  useEffect(() => {
-    if (
-      reducerIsInjected &&
-      sagaIsInjected &&
+		abTestSagaKey,
+		'shared/domains/abTest/abTest.saga'
+	);
+	
+	const [isInitialized, setIsInitialized] = useState(false);
+	
+	useEffect(() => {
+		if (
+			reducerIsInjected &&
+			sagaIsInjected &&
       !abTestsState.initialized &&
       !isInitialized
     ) {
