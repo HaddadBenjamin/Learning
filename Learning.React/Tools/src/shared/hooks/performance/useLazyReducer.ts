@@ -19,14 +19,14 @@ const useLazyReducer = (
 					lazyStore.injectReducer(key, reducer);
 					
 					setReducerIsInjected(true);
-        }
-      };
-
-      asyncInjectReducer();
-    }, // eslint-disable-next-line
-	[condition, reducerIsInjected])
-
-  return reducerIsInjected;
+				}
+			};
+			
+			asyncInjectReducer();
+		}, // eslint-disable-next-line
+		[condition, reducerIsInjected])
+	
+	return reducerIsInjected;
 };
 
 export default useLazyReducer;

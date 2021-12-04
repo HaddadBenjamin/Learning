@@ -394,7 +394,7 @@ describe('arrayExtensions', () => {
       {a: 1, id: 1},
       {a: 2, id: 2},
     ];
-  
+
     // When
     const actualValue = array.groupBy(element => element.a);
   
@@ -410,6 +410,35 @@ describe('arrayExtensions', () => {
           ],
         ],
         [2, [{a: 2, id: 2}]],
+      ])
+    );
+  });
+  
+  it('groupBy with map should be immutable', () => {
+    // Given
+    const expectedValue = [
+      {a: 1, id: 0},
+      {a: 1, id: 1},
+      {a: 2, id: 2},
+    ];
+    const array = [
+      {a: 1, id: 0},
+      {a: 1, id: 1},
+      {a: 2, id: 2},
+    ];
+    
+    // When
+    const actualValue = array.groupBy(
+      element => element.a,
+      element => element.id
+    );
+    
+    // Then
+    expect(array).toStrictEqual(expectedValue);
+    expect(actualValue).toStrictEqual(
+      new Map([
+        [1, [0, 1]],
+        [2, [2]],
       ])
     );
   });

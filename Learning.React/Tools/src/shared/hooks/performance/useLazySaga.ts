@@ -19,14 +19,14 @@ const useLazySaga = (
 					lazyStore.injectSaga(key, saga);
 					
 					setSagaIsInjected(true);
-        }
-      };
-
-      asyncInjectSaga();
-    }, // eslint-disable-next-line
-	[condition, sagaIsInjected])
-
-  return sagaIsInjected;
+				}
+			};
+			
+			asyncInjectSaga();
+		}, // eslint-disable-next-line
+		[condition, sagaIsInjected])
+	
+	return sagaIsInjected;
 };
 
 export default useLazySaga;

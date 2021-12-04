@@ -6,8 +6,8 @@ import styles from './ResponsiveNavigationSample.module.scss';
 import {INavigationElement} from '../responsiveNavigation.model';
 import NavigationElement from '../NavigationElement/NavigationElement';
 import {
-  initialNavigationElements,
-  routes,
+	initialNavigationElements,
+	routes,
 } from '../responsiveNavigation.configuration';
 import useClickOutside from '../../../../shared/hooks/utilities/useClickOutside';
 

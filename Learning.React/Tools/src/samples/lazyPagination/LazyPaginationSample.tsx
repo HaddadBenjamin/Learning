@@ -49,8 +49,8 @@ const LazyPaginationSample: FC = () => {
 				goToPage={goToPage}
 				goToNextPage={goToNextPage}
 			/>
-    </>
-  );
+		</>
+	);
 };
 
 export default LazyPaginationSample;

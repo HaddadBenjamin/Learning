@@ -5,7 +5,7 @@ import highlightDatasMock from './highlight.mock';
 
 const HightlightSample = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  
+
   const onChangeSearchTerm = (event: ChangeEvent<HTMLInputElement>): void =>
     setSearchTerm(event.target.value);
   

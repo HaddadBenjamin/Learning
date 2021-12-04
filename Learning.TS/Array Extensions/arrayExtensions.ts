@@ -60,7 +60,7 @@ declare global {
       getElement?: (element: T) => V | T
     ): Map<K, V | T>;
   
-    groupBy<K>(getKey: (item: T) => K): Map<K, T[]>;
+    groupBy<K, V>(getKey: (item: T) => K, map?: (item: T) => V): Map<K, T[] | V[]>;
   
     // Fait maison :
     mapWithPrevious<Y>(callback: (previous: T | undefined, current: T) => Y): ReadonlyArray<Y>;
@@ -269,18 +269,21 @@ if (!Array.prototype.skip) {
     );
   };
   
-  Array.prototype.groupBy = function <T, K>(
+  Array.prototype.groupBy = function <T, K, V>(
     this: readonly T[],
-    getKey: (element: T) => K
-  ): Map<K, T[]> {
+    getKey: (element: T) => K,
+    map?: (item: T) => V
+  ): Map<K, (T | V)[]> {
     return this.reduce((groupedElements, element) => {
       const key = getKey(element)
+      const mappedElement = map ? map(element) : element
       
-      if (!groupedElements.has(key)) groupedElements.set(key, [element])
-      else groupedElements.get(key).push(element)
+      if (!groupedElements.has(key)) groupedElements.set(key, [mappedElement])
+      // @ts-ignore
+      else groupedElements.get(key).push(mappedElement)
       
       return groupedElements
-    }, new Map<K, T[]>())
+    }, new Map<K, (T | V)[]>())
   }
   
   Array.prototype.mapWithPrevious = function <T, Y>(
@@ -365,7 +368,12 @@ if (!Array.prototype.skip) {
     {a: 1, id: 0},
     {a: 1, id: 1},
     {a: 2, id: 2},
-  ].groupBy(element => element.a), // { 0 => [{ a: 1, id: 0 }, { a: 1, id: 1 }], 1 => { a: 2, id: 2 } },
+  ].groupBy(element => element.a), // { 0 => [{ a: 1, id: 0 }, { a: 1, id: 1 }], 1 => [{ a: 2, id: 2 } }],
+  [
+    {a: 1, id: 0},
+    {a: 1, id: 1},
+    {a: 2, id: 2},
+  ].groupBy(element => element.a, element => element.id), // { 0 => [0,1], 1 => [2] },
   [1, 2, 3].mapWithPrevious((previous, current) => previous ? previous + current : current), // [1, 3, 5]
   [1, 2, 3].filterWithPrevious((previous) => previous ? previous > 1 : false), // [3]
   range(501).paginate(5, 5) // [21, 22, 23, 24, 25]
