@@ -28,16 +28,16 @@ const SimplePaginationSample: FC = () => {
 	
 	return (
 		<>
-      <h1>Simple pagination</h1>
-      <div>To test: F12 &gt; Network &gt; XHR &gt; nothing happen</div>
-      <PaginationFilters
-        pageSize={pagination.pageSize}
-        handlePageSizeChange={handlePageSizeChange}
-      />
-      <IdsList ids={pagination.currentPage} />
-      <PaginationInformation {...pagination} />
-      <PaginationButtons
-        pagination={pagination}
+			<h1>Simple pagination</h1>
+			<div>To test: F12 &gt; Network &gt; XHR &gt; nothing happen</div>
+			<PaginationFilters
+				pageSize={pagination.pageSize}
+				handlePageSizeChange={handlePageSizeChange}
+			/>
+			<IdsList ids={pagination.currentPage}/>
+			<PaginationInformation {...pagination} />
+			<PaginationButtons
+				pagination={pagination}
         goToPreviousPage={goToPreviousPage}
         goToPage={goToPage}
         goToNextPage={goToNextPage}

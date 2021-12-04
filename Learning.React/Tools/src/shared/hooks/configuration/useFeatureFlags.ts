@@ -29,16 +29,16 @@ export default (...featureFlagsIds: number[]): boolean[] => {
 		if (
 			reducerIsInjected &&
 			sagaIsInjected &&
-      !featureFlagsState.initialized &&
-      !isInitialized
-    ) {
-      dispatch(getFeatureFlagsAction());
-      setIsInitialized(true);
-    }
-  }, [
-    reducerIsInjected,
-    sagaIsInjected,
-    featureFlagsState.initialized,
+			!featureFlagsState.initialized &&
+			!isInitialized
+		) {
+			dispatch(getFeatureFlagsAction());
+			setIsInitialized(true);
+		}
+	}, [
+		reducerIsInjected,
+		sagaIsInjected,
+		featureFlagsState.initialized,
     isInitialized,
     dispatch,
   ]);

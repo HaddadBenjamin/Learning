@@ -29,16 +29,16 @@ const LazyPaginationSample: FC = () => {
 	
 	const handlePageSizeChange = (event: ChangeEvent<HTMLSelectElement>) =>
 		setPagination({...pagination, pageSize: Number(event.target.value)});
-
-  return (
-    <>
-      <h1>Lazy pagination</h1>
-      <div>
-        To test: F12 &gt; Network &gt; XHR &gt; there are news HTTPs calls when
-        the page number of the number of elements is updated
-      </div>
-      <PaginationFilters
-        pageSize={pagination.pageSize}
+	
+	return (
+		<>
+			<h1>Lazy pagination</h1>
+			<div>
+				To test: F12 &gt; Network &gt; XHR &gt; there are news HTTPs calls when
+				the page number of the number of elements is updated
+			</div>
+			<PaginationFilters
+				pageSize={pagination.pageSize}
         handlePageSizeChange={handlePageSizeChange}
       />
       <IdsList ids={pagination.currentPage} />

@@ -29,16 +29,16 @@ export default (...abTestsIds: number[]): boolean[] => {
 		if (
 			reducerIsInjected &&
 			sagaIsInjected &&
-      !abTestsState.initialized &&
-      !isInitialized
-    ) {
-      dispatch(getAbTestsAction());
-      setIsInitialized(true);
-    }
-  }, [
-    reducerIsInjected,
-    sagaIsInjected,
-    abTestsState.initialized,
+			!abTestsState.initialized &&
+			!isInitialized
+		) {
+			dispatch(getAbTestsAction());
+			setIsInitialized(true);
+		}
+	}, [
+		reducerIsInjected,
+		sagaIsInjected,
+		abTestsState.initialized,
     isInitialized,
     dispatch,
   ]);

@@ -51,14 +51,16 @@ declare global {
       getKey: (element: T) => K,
       getElement?: (element: T) => V | T
     ): Map<K, V | T>;
-    
+  
+    groupBy<K>(getKey: (item: T) => K): Map<K, T[]>;
+  
     // Fait maison :
     mapWithPrevious<Y>(callback: (previous: T | undefined, current: T) => Y): ReadonlyArray<Y>;
-    
+  
     filterWithPrevious(callback: (previous: T | undefined, current: T) => boolean): ReadonlyArray<T>;
-    
+  
     forEachWithPrevious(callback: (previous: T | undefined, current: T) => void): void;
-    
+  
     paginate(page: number, pageSize: number): ReadonlyArray<T>;
   }
 }
@@ -262,6 +264,21 @@ if (!Array.prototype.skip) {
     );
   };
   
+  Array.prototype.groupBy = function <T, K>(
+    this: readonly T[],
+    getKey: (element: T) => K
+  ): Map<K, T[]> {
+    return this.reduce((groupedElements, element) => {
+      const key = getKey(element)
+      
+      if (!groupedElements.has(key)) groupedElements.set(key, [element])
+      // @ts-ignore
+      else groupedElements.get(key).push(element)
+      
+      return groupedElements
+    }, new Map<K, T[]>())
+  }
+  
   Array.prototype.mapWithPrevious = function <T, Y>(
     this: readonly T[],
     callback: (previous: T | undefined, current: T) => Y
@@ -340,6 +357,11 @@ if (!Array.prototype.skip) {
       {a: 1, id: 0},
       {a: 2, id: 1},
     ].toDictionary(element => element.id), // { 0 => { a: 1, id: 0 }, 1 => { a: 2, id: 1 } },
+    [
+      {a: 1, id: 0},
+      {a: 1, id: 1},
+      {a: 2, id: 2},
+    ].groupBy(element => element.a), // { 0 => [{ a: 1, id: 0 }, { a: 1, id: 1 }], 1 => { a: 2, id: 2 } },
     [1, 2, 3].mapWithPrevious((previous, current) => previous ? previous + current : current), // [1, 3, 5]
     [1, 2, 3].filterWithPrevious((previous) => previous ? previous > 1 : false), // [3]
     range(501).paginate(5, 5) // [21, 22, 23, 24, 25]

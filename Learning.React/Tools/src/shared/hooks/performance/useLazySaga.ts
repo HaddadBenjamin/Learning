@@ -2,13 +2,13 @@ import {useEffect, useState} from 'react';
 import {lazyStore} from '../../../samples/lazyRedux/root.store';
 
 const useLazySaga = (
-  key: string,
-  path: string,
-  condition: boolean = true
+	key: string,
+	path: string,
+	condition: boolean = true
 ): boolean => {
-  const [sagaIsInjected, setSagaIsInjected] = useState(
-    lazyStore.doesSagaHasBeenInjected(key)
-  );
+	const [sagaIsInjected, setSagaIsInjected] = useState(
+		lazyStore.doesSagaHasBeenInjected(key)
+	);
 
   useEffect(
     () => {
