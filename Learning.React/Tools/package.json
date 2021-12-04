@@ -9,8 +9,8 @@
     "dev": "concurrently \"yarn dev:react\" \"yarn dev:apiMock\"",
     "dev:react": "react-scripts start",
     "dev:apiMock": "nodemon src/devTools/server/server.ts --config src/devTools/server/nodemon.json",
-    "lint:ts": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix",
-    "lint:sass": "stylelint \"**/*.{css,scss,sass}\" --fix",
+    "lint:ts": "prettier-eslint \"**/*.{js,jsx,ts,tsx}\"",
+    "lint:sass": "stylelint \"**/*.{css,scss,sass}\"",
     "test": "react-scripts test",
     "test:coverage": "ts-node -r tsconfig-paths/register --project src/shared/configuration/tsconfig.json --transpile-only scripts/jest/runTestsWithCoverage.ts",
     "test:showConfig": "npm test -- --showConfig",
@@ -88,6 +88,7 @@
     "nodemon": "^2.0.12",
     "postcss": "^8.3.11",
     "postcss-scss": "^4.0.1",
+    "prettier-eslint-cli": "^5.0.1",
     "sass": "^1.42.1",
     "stylelint": "^14.0.0",
     "stylelint-config-standard-scss": "^2.0.0"
