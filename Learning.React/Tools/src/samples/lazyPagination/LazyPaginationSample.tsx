@@ -39,16 +39,16 @@ const LazyPaginationSample: FC = () => {
 			</div>
 			<PaginationFilters
 				pageSize={pagination.pageSize}
-        handlePageSizeChange={handlePageSizeChange}
-      />
-      <IdsList ids={pagination.currentPage} />
-      <PaginationInformation {...pagination} />
-      <PaginationButtons
-        pagination={pagination}
-        goToPreviousPage={goToPreviousPage}
-        goToPage={goToPage}
-        goToNextPage={goToNextPage}
-      />
+				handlePageSizeChange={handlePageSizeChange}
+			/>
+			<IdsList ids={pagination.currentPage}/>
+			<PaginationInformation {...pagination} />
+			<PaginationButtons
+				pagination={pagination}
+				goToPreviousPage={goToPreviousPage}
+				goToPage={goToPage}
+				goToNextPage={goToNextPage}
+			/>
     </>
   );
 };

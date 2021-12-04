@@ -38,12 +38,12 @@ const SimplePaginationSample: FC = () => {
 			<PaginationInformation {...pagination} />
 			<PaginationButtons
 				pagination={pagination}
-        goToPreviousPage={goToPreviousPage}
-        goToPage={goToPage}
-        goToNextPage={goToNextPage}
-      />
-    </>
-  );
+				goToPreviousPage={goToPreviousPage}
+				goToPage={goToPage}
+				goToNextPage={goToNextPage}
+			/>
+		</>
+	);
 };
 
 export default SimplePaginationSample;

@@ -9,16 +9,16 @@ const useLazySaga = (
 	const [sagaIsInjected, setSagaIsInjected] = useState(
 		lazyStore.doesSagaHasBeenInjected(key)
 	);
-
-  useEffect(
-    () => {
-      const asyncInjectSaga = async () => {
-        if (!sagaIsInjected && condition) {
-          const { default: saga } = await import(`../../${path}`);
-
-          lazyStore.injectSaga(key, saga);
-
-          setSagaIsInjected(true);
+	
+	useEffect(
+		() => {
+			const asyncInjectSaga = async () => {
+				if (!sagaIsInjected && condition) {
+					const {default: saga} = await import(`../../${path}`);
+					
+					lazyStore.injectSaga(key, saga);
+					
+					setSagaIsInjected(true);
         }
       };
 

@@ -9,16 +9,16 @@ const useLazyReducer = (
 	const [reducerIsInjected, setReducerIsInjected] = useState(
 		lazyStore.doesReducerHasBeenInjected(key)
 	);
-
-  useEffect(
-    () => {
-      const asyncInjectReducer = async () => {
-        if (!reducerIsInjected && condition) {
-          const { default: reducer } = await import(`../../${path}`);
-
-          lazyStore.injectReducer(key, reducer);
-
-          setReducerIsInjected(true);
+	
+	useEffect(
+		() => {
+			const asyncInjectReducer = async () => {
+				if (!reducerIsInjected && condition) {
+					const {default: reducer} = await import(`../../${path}`);
+					
+					lazyStore.injectReducer(key, reducer);
+					
+					setReducerIsInjected(true);
         }
       };
 

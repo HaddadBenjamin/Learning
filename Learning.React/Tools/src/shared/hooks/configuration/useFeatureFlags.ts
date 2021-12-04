@@ -39,14 +39,14 @@ export default (...featureFlagsIds: number[]): boolean[] => {
 		reducerIsInjected,
 		sagaIsInjected,
 		featureFlagsState.initialized,
-    isInitialized,
-    dispatch,
-  ]);
-
-  const getFeatureFlagById = (ffId: number): FeatureFlag | undefined =>
-    featureFlagsState.featureFlags.find(ff => ff.id === ffId);
-
-  return featureFlagsIds
-    .filter(getFeatureFlagById)
-    .map(ffId => getFeatureFlagById(ffId)?.enable as boolean);
+		isInitialized,
+		dispatch,
+	]);
+	
+	const getFeatureFlagById = (ffId: number): FeatureFlag | undefined =>
+		featureFlagsState.featureFlags.find(ff => ff.id === ffId);
+	
+	return featureFlagsIds
+		.filter(getFeatureFlagById)
+		.map(ffId => getFeatureFlagById(ffId)?.enable as boolean);
 };

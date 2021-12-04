@@ -39,14 +39,14 @@ export default (...abTestsIds: number[]): boolean[] => {
 		reducerIsInjected,
 		sagaIsInjected,
 		abTestsState.initialized,
-    isInitialized,
-    dispatch,
-  ]);
-
-  const getAbTestById = (atId: number): AbTest | undefined =>
-    abTestsState.abTests.find(at => at.id === atId);
-
-  return abTestsIds
-    .filter(getAbTestById)
-    .map(atId => getAbTestById(atId)?.enable as boolean);
+		isInitialized,
+		dispatch,
+	]);
+	
+	const getAbTestById = (atId: number): AbTest | undefined =>
+		abTestsState.abTests.find(at => at.id === atId);
+	
+	return abTestsIds
+		.filter(getAbTestById)
+		.map(atId => getAbTestById(atId)?.enable as boolean);
 };
