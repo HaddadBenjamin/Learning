@@ -8,7 +8,7 @@ const HightlightSample = () => {
 
   const onChangeSearchTerm = (event: ChangeEvent<HTMLInputElement>): void =>
     setSearchTerm(event.target.value);
-  
+
   return (
     <>
       <h2>Highlight</h2>
@@ -17,7 +17,7 @@ const HightlightSample = () => {
         elements
       </div>
       <input type="text" value={searchTerm} onChange={onChangeSearchTerm}/>
-      
+    
       {highlightDatasMock
         .filter(text => text.toLowerCase().includes(searchTerm.toLowerCase()))
         .map((text, index) => (

@@ -9,7 +9,7 @@ import LazyReduxSample from './samples/lazyRedux/LazyReduxSample';
 import BreakpointsSample from './samples/breakpoints/BreakpointsSample';
 import ConfigurationSample from './samples/configuration/ConfigurationSample';
 import ResponsiveNavigationSample
-	from './samples/ui/responsiveNavigation/ResponsiveNavigationSample/ResponsiveNavigationSample';
+    from './samples/ui/responsiveNavigation/ResponsiveNavigationSample/ResponsiveNavigationSample';
 import LazyPaginationSample from './samples/lazyPagination/LazyPaginationSample';
 import store from './samples/lazyRedux/root.store';
 import SimplePaginationSample from './samples/lazyPagination/SimplePaginationSample';
