@@ -1,1 +1,1 @@
-useEffect, useCallback, useMemo, useRef, React.memo
+Démonstration et explication sur l'utilisation de useEffect, useCallback, useMemo, useRef, React.memo

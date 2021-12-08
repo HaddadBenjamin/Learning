@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import UseCallbackAndReactMemo from "./useCallbackAndReactMemo/useCallbackAndReactMemo";
-import UseMemo from "./useMemo/useMemo";
+import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <UseCallbackAndReactMemo/>
-    <UseMemo/>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -11,7 +11,7 @@ const WithUseMemo = () =>
 
     const filteredTodos = useMemo(() =>
     {
-        console.log("filtered todos is computed ");
+        console.log("useMemo : filtered todos is computed ");
         return filterTodos(todos, term)
     }, [todos, term])
 

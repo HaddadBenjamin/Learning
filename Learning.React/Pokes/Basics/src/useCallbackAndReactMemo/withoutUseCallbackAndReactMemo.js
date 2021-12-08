@@ -5,7 +5,7 @@ import {useState} from 'react'
 // - PS : if we had a component AddTodo, the problem will not be here and only AddTodo will be rendered
 const WithoutUseCallbackAndReactMemo = () =>
 {
-    console.log("WithUseCallbackAndReactMemo rendering")
+    console.log("without useCallback & React.memo : WithUseCallbackAndReactMemo rendering")
 
     const [todos, setTodos] = useState([{id: 'todo-1',name: 'First Todo'}, {id: 'todo-2',name: 'Second Todo'}])
     const handleAddTodo = text => setTodos(todos.concat({ id: 'todo-'+ todos.length + 1, name: text }))
@@ -25,7 +25,7 @@ const WithoutUseCallbackAndReactMemo = () =>
 
 const TodoList = ({list, onRemove}) =>
 {
-    console.log('Todo List is Rendering');
+    console.log('without useCallback & React.memo : Todo List is Rendering');
 
     return <ul>
         {list.map((todo) => (<Todo item={todo} key={todo.id} onRemove={onRemove} />) )}
@@ -34,7 +34,7 @@ const TodoList = ({list, onRemove}) =>
 
 const Todo = ({ item, onRemove } ) =>
 {
-    console.log('Todo is Rendering');
+    console.log('without useCallback & React.memo : Todo is Rendering');
 
     return <li>
         {item.name}

@@ -11,7 +11,7 @@ const WithoutUseMemo = () =>
 
     const filteredTodos = (() =>
     {
-        console.log("filtered todos is computed ");
+        console.log("without useMemo : filtered todos is computed ");
         return filterTodos(todos, term)
     })()
 
