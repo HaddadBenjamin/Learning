@@ -1,7 +1,7 @@
 import { useEffect, useState} from "react";
 import styles from './useEffect.module.css'
 
-const UseEffect = () =>
+const UseEffectDemo = () =>
 {
     const [dependency, setDependency] = useState('')
     const [otherDependency, setOtherDependency] = useState('')
@@ -41,4 +41,4 @@ const UseEffect = () =>
     </>
 }
 
-export default UseEffect
+export default UseEffectDemo
