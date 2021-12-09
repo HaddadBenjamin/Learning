@@ -9,7 +9,7 @@ const WithLayoutEffect = () => {
 
     return <div>
         <h2>With useLayoutEffect</h2>
-        <div>The component is NOT blinking because 2 renders are done succesively</div>
+        <div>The component is NOT blinking and there are still 2 renders done succesively</div>
         <div>useLayoutEffect runs synchronously after a render but before the screen is updated.</div>
         <button onClick={() => setValue(0)}>click to update the value: {value}</button>
     </div>
