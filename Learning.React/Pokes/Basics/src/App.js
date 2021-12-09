@@ -2,10 +2,19 @@ import UseCallbackAndReactMemo from "./useCallbackAndReactMemo/useCallbackAndRea
 import UseMemo from "./useMemo/useMemo";
 import UseEffect from "./useEffect/useEffect";
 import UseRef from "./useRef/useRef";
+import UserContextProvider from "./useContextAndReducer/context";
+import UseContextAndReducer from "./useContextAndReducer/useContextAndReducer";
+import styles from './App.module.css'
 
 const App = () =>
     <>
-        <UseEffect/>
+        <div className={styles.container}>
+            <UseEffect/>
+            <UserContextProvider>
+                <UseContextAndReducer/>
+            </UserContextProvider>
+        </div>
+
         <UseRef/>
         <UseCallbackAndReactMemo/>
         <UseMemo/>
