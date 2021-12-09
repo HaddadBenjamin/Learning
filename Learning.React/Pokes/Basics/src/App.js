@@ -5,6 +5,7 @@ import UseRef from "./useRef/useRef";
 import UserContextProvider from "./useContextAndReducer/context";
 import UseContextAndReducer from "./useContextAndReducer/useContextAndReducer";
 import styles from './App.module.css'
+import UseLayoutEffect from "./useLayoutEffect/useLayoutEffect";
 
 const App = () =>
     <>
@@ -16,6 +17,7 @@ const App = () =>
         </div>
 
         <UseRef/>
+        <UseLayoutEffect/>
         <UseCallbackAndReactMemo/>
         <UseMemo/>
     </>

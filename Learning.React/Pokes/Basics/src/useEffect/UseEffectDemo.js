@@ -25,6 +25,7 @@ const UseEffectDemo = () =>
         <div>Use effect with an element in the array dependency is called when component is mounted and when is updated</div>
         <div>Use effect with none dependencies is called on each render (mounted & updated)</div>
         <div>When use effect return a function, that's mean it will be called when the component is unmounted</div>
+        <div>useEffect runs asynchronously and after a render is painted to the screen.</div>
 
         <div className={styles.inputs}>
             <input
