@@ -1,6 +1,7 @@
 import { deepMerge } from '../../../utils/deepMerge';
 import { Configuration } from '../configuration.model';
 
+// ITS UNSAFE DONT DO THAT
 let configuration: Configuration | undefined;
 export default (): Configuration => {
   if (!configuration)
