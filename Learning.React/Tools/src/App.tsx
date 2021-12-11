@@ -11,8 +11,8 @@ import ConfigurationSample from './samples/configuration/ConfigurationSample';
 import ResponsiveNavigationSample
     from './samples/ui/responsiveNavigation/ResponsiveNavigationSample/ResponsiveNavigationSample';
 import LazyPaginationSample from './samples/lazyPagination/LazyPaginationSample';
-import store from './samples/lazyRedux/root.store';
 import SimplePaginationSample from './samples/lazyPagination/SimplePaginationSample';
+import store from './samples/lazyRedux/root.store';
 
 export default () => (
   <Provider store={store}>
