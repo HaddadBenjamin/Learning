@@ -13,13 +13,15 @@ import ResponsiveNavigationSample
 import LazyPaginationSample from './samples/lazyPagination/LazyPaginationSample';
 import SimplePaginationSample from './samples/lazyPagination/SimplePaginationSample';
 import store from './samples/lazyRedux/root.store';
+import LocalizationSample from "./samples/localization/LocalizationSample";
 
 export default () => (
   <Provider store={store}>
     <ResponsiveNavigationSample />
     <HightlightSample />
-    <ConfigurationSample />
-    <SimplePaginationSample />
+      <ConfigurationSample/>
+      <LocalizationSample/>
+      <SimplePaginationSample/>
     <LazyPaginationSample />
     <LazyReduxSample />
     <LazyImageSample />
