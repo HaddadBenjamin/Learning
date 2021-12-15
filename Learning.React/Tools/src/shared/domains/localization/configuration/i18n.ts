@@ -8,10 +8,10 @@ i18n
 	.init(
 		{
 			resources:
-				{
-					en: {translation: englishTranslations},
-					fr: {translation: frenchTranslations}
-				},
+			{
+				en: {translation: englishTranslations},
+				fr: {translation: frenchTranslations}
+			},
 			lng: "en",
 			interpolation: {escapeValue: false}
 		});
