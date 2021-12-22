@@ -7,6 +7,9 @@
     "husky": "^7.0.4"
   },
   "dependencies": {
-    "apollo-server": "^3.5.0"
+    "@hookform/resolvers": "^2.8.5",
+    "apollo-server": "^3.5.0",
+    "react-hook-form": "^7.22.3",
+    "yup": "^0.32.11"
   }
 }
