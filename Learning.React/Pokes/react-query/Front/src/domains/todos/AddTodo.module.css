@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid;
+  border-radius: 4px;
+
+  width: calc(30% - 24px);
+  padding: 4px 8px;
+}
