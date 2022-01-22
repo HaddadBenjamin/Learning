@@ -1,0 +1,5 @@
+# Généré lorsque l'on package notre application avec rollup
+*dist/
+*build/
+# Généré lors d'un yarn build-storybook nécéssaire pour mettre notre SB sur une WebApp
+storybook-static
