@@ -1,2 +1,3 @@
-const Test = () => <div>Hello World</div>
-export default Test
+import React from 'react'
+
+export const Test = () => <div>Hello World</div>
