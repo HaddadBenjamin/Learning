@@ -22,9 +22,9 @@ const useIframe = (url : string, title : string) => {
   );
 
   const onIframeLoad = useCallback(() => {
-    const error = ref?.current?.contentDocument?.body?.getElementsByTagName('h1');
+    const error404 = ref?.current?.contentDocument?.body?.getElementsByTagName('h1');
 
-    if (error) {
+    if (error404) {
       if (ref?.current?.style) ref.current.style.display = 'none';
       setError(true);
     }
