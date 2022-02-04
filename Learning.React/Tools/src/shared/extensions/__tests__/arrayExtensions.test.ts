@@ -534,4 +534,16 @@ describe('arrayExtensions', () => {
     // Then
     expect(actualValue).toStrictEqual(expectedValue);
   })
+
+  it("chunk", () =>{
+    // Given
+    const expectedValue = [[1, 2], [3, 4], [5, 6], [7]];
+    const array = [1, 2, 3, 4, 5, 6, 7];
+
+    // When
+    const actualValue = array.chunk(2);
+
+    // Then
+    expect(actualValue).toStrictEqual(expectedValue);
+  })
 });

@@ -39,7 +39,6 @@ if (!String.prototype.toTitleCase) {
 [
   'blabla blabla'.toTitleCase(), // 'Blabla Blabla'
   'blabla blabla'.toCamelCase(), // 'blablaBlabla'
-  'blabla blabla'.toPascalCase(), // 'BlablaBlabla'
   'abcdefghij'.split(3), // ['abc', 'def', 'ghi', 'j']
 ]
 // );

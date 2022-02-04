@@ -1,4 +1,5 @@
-import {range} from "./arrayHelper";
+/* eslint-disable */
+import {range} from "../helpers/arrayHelper";
 
 export {};
 
@@ -6,75 +7,66 @@ declare global {
 // All those methods are totally immutables
   interface Array<T> {
     skip(n: number): ReadonlyArray<T>;
-    
+
     skipWhen(predicate: (element: T) => boolean): ReadonlyArray<T>;
-    
+
     take(n: number): ReadonlyArray<T>;
-    
     takeWhen(predicate: (element: T) => boolean): ReadonlyArray<T>;
-    
+
     select<Y>(callback: (element: T) => Y): ReadonlyArray<Y>;
-    
     selectMany<Y>(callback: (element: T) => Y[]): ReadonlyArray<Y>;
-    
+
     any(predicate?: (element: T) => boolean): boolean;
-    
     all(predicate: (element: T) => boolean): boolean;
-    
+
     add(element: T): ReadonlyArray<T>;
-    
     addRange(...elements: T[]): ReadonlyArray<T>;
-    
+
     remove(element: T): ReadonlyArray<T>;
-    
     removeWhen(predicate: (element: T) => boolean): ReadonlyArray<T>;
-    
+
     where(predicate: (element: T) => boolean): ReadonlyArray<T>;
-    
+
     distinct(): ReadonlyArray<T>;
-    
     distinctBy<Y>(getSubElement: (element: T) => Y): ReadonlyArray<T>;
-    
+
     first(): T;
-    
     firstOrDefault(value: T): T;
-    
+
     last(): T;
-    
     lastOrDefault(value: T): T;
-    
+
     count(): number;
-    
     countBy(predicate: (element: T) => boolean): number;
-    
+
     orderBy(callback: (element: T) => string | number | Date): ReadonlyArray<T>;
-  
+
     orderByDesc(
       callback: (element: T) => string | number | Date
     ): ReadonlyArray<T>;
-  
+
     inverse(): ReadonlyArray<T>;
-  
+
     toDictionary<K, V>(
       getKey: (element: T) => K,
       getElement?: (element: T) => V | T
     ): Map<K, V | T>;
-  
+
     groupBy<K, V>(getKey: (item: T) => K, map?: (item: T) => V): Map<K, T[] | V[]>;
-  
+
     // Fait maison :
     mapWithPrevious<Y>(callback: (previous: T | undefined, current: T) => Y): ReadonlyArray<Y>;
-  
     filterWithPrevious(callback: (previous: T | undefined, current: T) => boolean): ReadonlyArray<T>;
-  
     forEachWithPrevious(callback: (previous: T | undefined, current: T) => void): void;
-  
+
     paginate(page: number, pageSize: number): ReadonlyArray<T>;
 
     containsNullOrUndefined() : boolean;
     excludeNullOrUndefined(): ReadonlyArray<T>;
 
     exclude(predicate: (element: T) => boolean) : ReadonlyArray<T>;
+
+    chunk(chunkLenght : number) : T[][]
   }
 }
 
@@ -84,156 +76,156 @@ if (!Array.prototype.skip) {
   ): readonly T[] {
     return this.slice(n);
   };
-  
+
   Array.prototype.take = function <T>(
     this: readonly T[],
     n: number
   ): readonly T[] {
     return this.slice(0, n);
   };
-  
+
   Array.prototype.takeWhen = function <T>(
     this: readonly T[],
     predicate: (element: T) => boolean
   ): readonly T[] {
     return (this as T[]).take(this.findIndex(element => !predicate(element)));
   };
-  
+
   Array.prototype.skipWhen = function <T>(
     this: readonly T[],
     predicate: (element: T) => boolean
   ): readonly T[] {
     return (this as T[]).skip(this.findIndex(element => !predicate(element)));
   };
-  
+
   Array.prototype.where = function <T>(
     this: readonly T[],
     predicate: (element: T) => boolean
   ): readonly T[] {
     return this.filter(predicate);
   };
-  
+
   Array.prototype.select = function <T, Y>(
     this: readonly T[],
     callback: (element: T) => Y
   ): readonly Y[] {
     return this.map(callback);
   };
-  
+
   Array.prototype.selectMany = function <T, Y>(
     this: readonly T[],
     callback: (element: T) => Y[]
   ): readonly Y[] {
     return this.map(callback).flat();
   };
-  
+
   Array.prototype.any = function <T>(
     this: readonly T[],
     predicate?: (element: T) => boolean
   ): boolean {
     return !predicate ? this.length > 0 : !!this.find(predicate);
   };
-  
+
   Array.prototype.all = function <T>(
     this: readonly T[],
     predicate: (element: T) => boolean
   ): boolean {
     return this.length === this.filter(predicate).length;
   };
-  
+
   Array.prototype.add = function <T>(
     this: readonly T[],
     element: T
   ): readonly T[] {
     return [...this, element];
   };
-  
+
   Array.prototype.addRange = function <T>(
     this: readonly T[],
     ...elements: T[]
   ): readonly T[] {
     return [...this, ...elements];
   };
-  
+
   Array.prototype.remove = function <T>(
     this: readonly T[],
     element: T
   ): readonly T[] {
     return this.filter(item => !(item === element));
   };
-  
+
   Array.prototype.removeWhen = function <T>(
     this: readonly T[],
     predicate: (element: T) => boolean
   ): readonly T[] {
     return this.filter(element => !predicate(element));
   };
-  
+
   Array.prototype.distinct = function <T>(this: readonly T[]): readonly T[] {
     return this.filter(
       (element, index, self) => self.indexOf(element) === index
     );
   };
-  
+
   Array.prototype.distinctBy = function <T, Y>(
     this: readonly T[],
     getSubElement: (element: T) => Y
   ): readonly T[] {
     const distinctElements: T[] = [];
     const map = new Map();
-    
+
     for (const element of this) {
       const subElement = getSubElement(element);
-      
+
       if (!map.has(subElement)) {
         map.set(subElement, true);
         distinctElements.push(element);
       }
     }
-    
+
     return distinctElements;
   };
-  
+
   Array.prototype.first = function <T>(this: readonly T[]): T {
     return this[0];
   };
-  
+
   Array.prototype.firstOrDefault = function <T>(
     this: readonly T[],
     value: T
   ): T {
     return this.length === 0 ? value : this[0];
   };
-  
+
   Array.prototype.last = function <T>(this: readonly T[]): T {
     return this[this.length - 1];
   };
-  
+
   Array.prototype.lastOrDefault = function <T>(
     this: readonly T[],
     value: T
   ): T {
     return this.length === 0 ? value : this[this.length - 1];
   };
-  
+
   Array.prototype.count = function <T>(this: readonly T[]): number {
     return this.length;
   };
-  
+
   Array.prototype.countBy = function <T>(
     this: readonly T[],
     predicate: (element: T) => boolean
   ): number {
     return this.filter(predicate).length;
   };
-  
+
   Array.prototype.orderBy = function <T>(
     this: readonly T[],
     callback: (element: T) => string | number | Date
   ): readonly T[] {
     return [...this].sort((a, b) => {
       const [left, right] = [callback(a), callback(b)];
-      
+
       return typeof left === 'string'
         // @ts-ignore
         ? left.localeCompare(right)
@@ -241,14 +233,14 @@ if (!Array.prototype.skip) {
         : left - right;
     });
   };
-  
+
   Array.prototype.orderByDesc = function <T>(
     this: readonly T[],
     callback: (element: T) => string | number | Date
   ): readonly T[] {
     return [...this].sort((a, b) => {
       const [left, right] = [callback(a), callback(b)];
-      
+
       return typeof left === 'string'
         // @ts-ignore
         ? right.localeCompare(left)
@@ -256,11 +248,14 @@ if (!Array.prototype.skip) {
         : right - left;
     });
   };
-  
+
   Array.prototype.inverse = function <T>(this: readonly T[]): readonly T[] {
-    return [...this].reverse()
+    return this.reduce<T[]>(
+      (accumulator, current) => [current, ...accumulator],
+      []
+    );
   };
-  
+
   Array.prototype.toDictionary = function <T, K, V>(
     this: readonly T[],
     getKey: (element: T) => K,
@@ -273,7 +268,7 @@ if (!Array.prototype.skip) {
       ])
     );
   };
-  
+
   Array.prototype.groupBy = function <T, K, V>(
     this: readonly T[],
     getKey: (element: T) => K,
@@ -282,15 +277,15 @@ if (!Array.prototype.skip) {
     return this.reduce((groupedElements, element) => {
       const key = getKey(element)
       const mappedElement = map ? map(element) : element
-      
+
       if (!groupedElements.has(key)) groupedElements.set(key, [mappedElement])
       // @ts-ignore
       else groupedElements.get(key).push(mappedElement)
-      
+
       return groupedElements
     }, new Map<K, (T | V)[]>())
   }
-  
+
   Array.prototype.mapWithPrevious = function <T, Y>(
     this: readonly T[],
     callback: (previous: T | undefined, current: T) => Y
@@ -298,7 +293,7 @@ if (!Array.prototype.skip) {
     return this.map((element, index) =>
       callback(index > 0 ? this[index - 1] : undefined, element));
   };
-  
+
   Array.prototype.filterWithPrevious = function <T>(
     this: readonly T[],
     callback: (previous: T | undefined, current: T) => boolean
@@ -306,7 +301,7 @@ if (!Array.prototype.skip) {
     return this.filter((element, index) =>
       callback(index > 0 ? this[index - 1] : undefined, element));
   };
-  
+
   Array.prototype.forEachWithPrevious = function <T>(
     this: readonly T[],
     callback: (previous: T | undefined, current: T) => void
@@ -314,7 +309,7 @@ if (!Array.prototype.skip) {
     return this.forEach((element, index) =>
       callback(index > 0 ? this[index - 1] : undefined, element));
   };
-  
+
   Array.prototype.paginate = function <T>(this: readonly T[], page: number, pageSize: number): readonly T[] {
     return this.slice(pageSize * (page - 1)).slice(0, pageSize);
   };
@@ -330,6 +325,15 @@ if (!Array.prototype.skip) {
   Array.prototype.exclude = function <T>(this: readonly T[], predicate: (element: T) => boolean) : readonly T[] {
     return this.filter(element => !predicate(element));
   }
+
+  Array.prototype.chunk = function <T>(this: readonly T[], chunkLenght : number) : T[][] {
+    return this.reduce((all, one, i) => {
+      const chunkSize = Math.floor(i / chunkLenght);
+      // @ts-ignore
+      all[chunkSize] = [].concat((all[chunkSize] || []), one);
+      return all
+    }, [])
+  }
 }
 
 // Exemples :
@@ -341,15 +345,15 @@ if (!Array.prototype.skip) {
   [1, 2, 3, 4, 5, 6].takeWhen(element => element < 3), // [1,2]
   [{ a: 1 }, { a: 2 }].select(element => element.a), // [1, 2]
   [{ a: [1] }, { a: [2] }].selectMany(element => element.a), // [1, 2]
-  [{a: 1}, {a: 2}].any(element => element.a === 2), // true
-  [{a: 1}, {a: 2}].all(element => element.a === 2), // false
+  [{ a: 1 }, { a: 2 }].any(element => element.a === 2), // true
+  [{ a: 1 }, { a: 2 }].all(element => element.a === 2), // false
   [1, 2, 3].add(4), // [1,2,3,4]
   [1, 2, 3].addRange(4, 5, 6), // [1,2,3,4,5,6]
   [1, 2, 3].remove(2), // [1,3]
   [1, 2, 3, 4, 5, 6].removeWhen(element => element < 3), // [3,4,5,6]
   [1, 2, 2, 3].where(element => element > 2), // [3]
   [1, 2, 2, 3].distinct(), // [1,2,3]
-  [{a: 1}, {a: 2}, {a: 2}, {a: 3}].distinctBy(element => element.a), // [1,2,3]
+  [{ a : 1 }, { a : 2 }, { a: 2 }, { a : 3 }].distinctBy(element => element.a), // [1,2,3]
   [1, 2, 3].first(), // 1
   ([] as number[]).firstOrDefault(2), // 2
   [1, 2, 3].last(), // 3
@@ -393,9 +397,10 @@ if (!Array.prototype.skip) {
   ].groupBy(element => element.a, element => element.id), // { 0 => [0,1], 1 => [2] },
   [1, 2, 3].mapWithPrevious((previous, current) => previous ? previous + current : current), // [1, 3, 5]
   [1, 2, 3].filterWithPrevious((previous) => previous ? previous > 1 : false), // [3]
-  range(501).paginate(5, 5), // [21, 22, 23, 24, 25]
+  range(501).paginate(5, 5), // [21, 22, 23, 24, 25];
   [1, 2, 3, null].containsNullOrUndefined(), // true
   [1, 2, 3, null].excludeNullOrUndefined(), // [1, 2, 3]
   [1, 2, 3, 4].exclude(element => element > 2), // [1, 2]
+  [1, 2, 3, 4, 5, 6, 7].chunk(2), // [[1, 2], [3, 4], [5, 6], [7]]
 ]
 // );

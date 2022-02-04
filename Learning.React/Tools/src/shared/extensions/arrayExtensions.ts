@@ -65,6 +65,8 @@ declare global {
     excludeNullOrUndefined(): ReadonlyArray<T>;
 
     exclude(predicate: (element: T) => boolean) : ReadonlyArray<T>;
+
+    chunk(chunkLenght : number) : T[][]
   }
 }
 
@@ -323,6 +325,15 @@ if (!Array.prototype.skip) {
   Array.prototype.exclude = function <T>(this: readonly T[], predicate: (element: T) => boolean) : readonly T[] {
     return this.filter(element => !predicate(element));
   }
+
+  Array.prototype.chunk = function <T>(this: readonly T[], chunkLenght : number) : T[][] {
+    return this.reduce((all, one, i) => {
+      const chunkSize = Math.floor(i / chunkLenght);
+      // @ts-ignore
+      all[chunkSize] = [].concat((all[chunkSize] || []), one);
+      return all
+    }, [])
+  }
 }
 
 // Exemples :
@@ -390,5 +401,6 @@ if (!Array.prototype.skip) {
     [1, 2, 3, null].containsNullOrUndefined(), // true
     [1, 2, 3, null].excludeNullOrUndefined(), // [1, 2, 3]
     [1, 2, 3, 4].exclude(element => element > 2), // [1, 2]
+    [1, 2, 3, 4, 5, 6, 7].chunk(2), // [[1, 2], [3, 4], [5, 6], [7]]
   ]
 // );
