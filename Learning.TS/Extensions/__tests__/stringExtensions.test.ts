@@ -15,8 +15,8 @@ describe('stingExtensions', () => {
 
   it('toCamelCase', () => {
     // Given
-    const expectedValue = 'Blabla Blabla';
-    const value = 'blablaBlabla';
+    const value = 'Blabla Blabla';
+    const expectedValue = 'blablaBlabla';
 
     // When
     const actualValue = value.toCamelCase();
@@ -25,13 +25,13 @@ describe('stingExtensions', () => {
     expect(actualValue).toStrictEqual(expectedValue);
   });
 
-  it('toPascalCase', () => {
+  it('split', () => {
     // Given
-    const expectedValue = 'Blabla Blabla';
-    const value = 'BlablaBlabla';
+    const expectedValue = ['abc', 'def', 'ghi', 'j'];
+    const value = 'abcdefghij';
 
     // When
-    const actualValue = value.toPascalCase();
+    const actualValue = value.split(3);
 
     // Then
     expect(actualValue).toStrictEqual(expectedValue);

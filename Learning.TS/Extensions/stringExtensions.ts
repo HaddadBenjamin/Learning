@@ -6,7 +6,8 @@ declare global {
   interface String {
     toTitleCase() : string; // Title case
     toCamelCase() : string; // camelCase
-    toPascalCase() : string; // aka UpperCamelCase
+
+    split(chunkLength : number) : string[];
   }
 }
 
@@ -23,9 +24,13 @@ if (!String.prototype.toTitleCase) {
       index === 0 ? word.toLowerCase() : word.toUpperCase()).replace(/\s+/g, '');
   };
 
-  String.prototype.toPascalCase = function(this: string): string {
-    return this.replace(/\w+/g,
-      word => word[0].toUpperCase() + word.slice(1).toLowerCase())
+  String.prototype.split = function(this: string, chunkLength : number): string[] {
+    let chunks : string[] = [];
+
+    for (let i = 0; i < this.length; i += chunkLength)
+      chunks.push(this.substring(i, i + chunkLength));
+
+    return  chunks
   };
 }
 
@@ -33,5 +38,8 @@ if (!String.prototype.toTitleCase) {
 // console.log(
 [
   'blabla blabla'.toTitleCase(), // 'Blabla Blabla'
+  'blabla blabla'.toCamelCase(), // 'blablaBlabla'
+  'blabla blabla'.toPascalCase(), // 'BlablaBlabla'
+  'abcdefghij'.split(3), // ['abc', 'def', 'ghi', 'j']
 ]
 // );
