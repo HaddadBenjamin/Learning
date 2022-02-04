@@ -498,4 +498,40 @@ describe('arrayExtensions', () => {
     // Then
     expect(actualValue).toStrictEqual(expectedValue);
   });
+
+  it("containsNullOrUndefined", () =>{
+    // Given
+    const expectedValue = true;
+    const array = [1, 2, 3, null];
+
+    // When
+    const actualValue = array.containsNullOrUndefined();
+
+    // Then
+    expect(actualValue).toStrictEqual(expectedValue);
+  })
+
+  it("excludeNullOrUndefined should be immutable", () =>{
+    // Given
+    const expectedValue = [1, 2, 3];
+    const array = [1, 2, 3, null];
+
+    // When
+    const actualValue = array.excludeNullOrUndefined();
+
+    // Then
+    expect(actualValue).toStrictEqual(expectedValue);
+  })
+
+  it("exclude should be immutable", () =>{
+    // Given
+    const expectedValue = [1, 2];
+    const array = [1, 2, 3, 4];
+
+    // When
+    const actualValue = array.exclude(element => element > 2);
+
+    // Then
+    expect(actualValue).toStrictEqual(expectedValue);
+  })
 });

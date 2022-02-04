@@ -56,12 +56,15 @@ declare global {
   
     // Fait maison :
     mapWithPrevious<Y>(callback: (previous: T | undefined, current: T) => Y): ReadonlyArray<Y>;
-  
     filterWithPrevious(callback: (previous: T | undefined, current: T) => boolean): ReadonlyArray<T>;
-  
     forEachWithPrevious(callback: (previous: T | undefined, current: T) => void): void;
   
     paginate(page: number, pageSize: number): ReadonlyArray<T>;
+
+    containsNullOrUndefined() : boolean;
+    excludeNullOrUndefined(): ReadonlyArray<T>;
+
+    exclude(predicate: (element: T) => boolean) : ReadonlyArray<T>;
   }
 }
 
@@ -308,6 +311,18 @@ if (!Array.prototype.skip) {
   Array.prototype.paginate = function <T>(this: readonly T[], page: number, pageSize: number): readonly T[] {
     return this.slice(pageSize * (page - 1)).slice(0, pageSize);
   };
+
+  Array.prototype.containsNullOrUndefined = function <T>(this: readonly T[]) : boolean {
+    return this.some((element) => element === null || element === undefined);
+  }
+
+  Array.prototype.excludeNullOrUndefined = function <T>(this: readonly T[]) : readonly T[] {
+    return this.filter((element) => element !== null && element !== undefined);
+  }
+
+  Array.prototype.exclude = function <T>(this: readonly T[], predicate: (element: T) => boolean) : readonly T[] {
+    return this.filter(element => !predicate(element));
+  }
 }
 
 // Exemples :
@@ -371,6 +386,9 @@ if (!Array.prototype.skip) {
     ].groupBy(element => element.a, element => element.id), // { 0 => [0,1], 1 => [2] },
     [1, 2, 3].mapWithPrevious((previous, current) => previous ? previous + current : current), // [1, 3, 5]
     [1, 2, 3].filterWithPrevious((previous) => previous ? previous > 1 : false), // [3]
-    range(501).paginate(5, 5) // [21, 22, 23, 24, 25]
+    range(501).paginate(5, 5), // [21, 22, 23, 24, 25];
+    [1, 2, 3, null].containsNullOrUndefined(), // true
+    [1, 2, 3, null].excludeNullOrUndefined(), // [1, 2, 3]
+    [1, 2, 3, 4].exclude(element => element > 2), // [1, 2]
   ]
 // );

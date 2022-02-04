@@ -6,14 +6,18 @@ interface IUseGetParameters
   url: string,
   config?: AxiosRequestConfig,
   dependencies? : [],
+  // eslint-disable-next-line
   onSuccess? : (data : any) => void,
+  // eslint-disable-next-line
   onError? : (error : any) => void
 }
 
 interface IUseGetResponse
 {
+  // eslint-disable-next-line
   data? : any,
   isLoading : boolean,
+  // eslint-disable-next-line
   error?: any,
 }
 
@@ -60,6 +64,7 @@ const useGet = (
     };
 
     asyncGet();
+    // eslint-disable-next-line
   }, [...dependencies]);
 
   return response;
