@@ -9,7 +9,6 @@ import LazyResponsiveImageSample from './samples/lazyResponsiveImage/LazyRespons
 import ResponsiveImageSample from './samples/responsiveImage/ResponsiveImageSample';
 import LazyReduxSample from './samples/lazyRedux/LazyReduxSample';
 import BreakpointsSample from './samples/breakpoints/BreakpointsSample';
-import ConfigurationSample from './samples/configuration/ConfigurationSample';
 import ResponsiveNavigationSample
     from './samples/ui/responsiveNavigation/ResponsiveNavigationSample/ResponsiveNavigationSample';
 import LazyPaginationSample from './samples/lazyPagination/LazyPaginationSample';
@@ -25,7 +24,6 @@ export default () => (
         
         <ResponsiveNavigationSample />
         <HightlightSample />
-        <ConfigurationSample/>
         <LocalizationSample/>
         <SimplePaginationSample/>
         <LazyPaginationSample />
