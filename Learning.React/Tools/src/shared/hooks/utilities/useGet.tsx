@@ -19,6 +19,7 @@ interface IUseGetResponse
   isLoading : boolean,
   // eslint-disable-next-line
   error?: any,
+  refetch : () => void
 }
 
 const useGet = (
@@ -32,43 +33,44 @@ const useGet = (
 ) => {
   const [response, setResponse] = useState<IUseGetResponse>({
     isLoading: true,
+    refetch : () => {}
   });
 
-  useEffect(() => {
-    const asyncGet = async () => {
+  const asyncGet = async () => {
+    setResponse({
+      ...response,
+      error: undefined,
+      isLoading: true,
+    });
+
+    try {
+      const { data } = await axios.get(url, config);
+
+      onSuccess?.(data);
+
       setResponse({
         ...response,
-        error: undefined,
-        isLoading: true,
+        isLoading: false,
+        data,
       });
+    } catch (error) {
+      onError?.(error);
 
-      try {
-        const { data } = await axios.get(url, config);
+      setResponse({
+        ...response,
+        isLoading: false,
+        data: undefined,
+        error,
+      });
+    }
+  };
 
-        onSuccess?.(data);
-
-        setResponse({
-          ...response,
-          isLoading: false,
-          data,
-        });
-      } catch (error) {
-        onError?.(error);
-
-        setResponse({
-          ...response,
-          isLoading: false,
-          data: undefined,
-          error,
-        });
-      }
-    };
-
+  useEffect(() => {
     asyncGet();
     // eslint-disable-next-line
   }, [...dependencies]);
 
-  return response;
+  return { ...response, refetch : asyncGet };
 };
 
 export default useGet;
