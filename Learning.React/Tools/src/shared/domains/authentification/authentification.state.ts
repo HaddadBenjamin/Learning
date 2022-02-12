@@ -1,4 +1,4 @@
-/* eslint-disable semi */
+/* eslint-disable semi, camelcase */
 export default interface IAuthentificationState
 {
   connected : boolean

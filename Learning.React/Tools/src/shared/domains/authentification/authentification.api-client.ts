@@ -42,7 +42,7 @@ authenticatedApiClient.interceptors.response.use((axiosResponse) => axiosRespons
       try {
         store.dispatch(getRefreshTokenRequestAction());
         // eslint-disable-next-line
-        const jwtToken = await getRefreshToken({ refresh_token: selectRefreshToken()! });
+        const jwtToken = await getRefreshToken({ refreshToken: selectRefreshToken()! });
         store.dispatch(getRefreshTokenSuccessAction(jwtToken));
 
         return authenticatedApiClient(previousApiClientConfiguration);

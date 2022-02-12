@@ -3,6 +3,7 @@ const stringToFloat = (text: string) => {
   const WIDTH_SIZE_MATCHER = /[+-]?\d+(\.\d+)?/g;
   const regexArrayResult = text.match(WIDTH_SIZE_MATCHER);
   if (regexArrayResult) {
+    // @ts-ignore
     return `${text.match(WIDTH_SIZE_MATCHER).map((v: string) => parseFloat(v))[0]}%`;
   }
   return null;

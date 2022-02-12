@@ -1,7 +1,7 @@
 import React, {
   useCallback, useEffect, useRef, useState,
 } from 'react';
-import * as styles from './useIframe.module.scss';
+import styles from './useIframe.module.scss';
 
 const useIframe = (url : string, title : string) => {
   const [isLoading, setIsLoading] = useState(true);

@@ -10,5 +10,5 @@ const login = async ({ userName, password } : LoginActionPayload) : Promise<IJwt
 
 export default login;
 
-export const getRefreshToken = async ({ refresh_token } : IGetRefreshTokenPayload) : Promise<IJwtToken> =>
-  (await axios.get(`${GET_REFRESH_TOKEN_ENDPOINT}?${qs.stringify({ refresh_token })}`)).data
+export const getRefreshToken = async ({ refreshToken } : IGetRefreshTokenPayload) : Promise<IJwtToken> =>
+  (await axios.get(`${GET_REFRESH_TOKEN_ENDPOINT}?${qs.stringify({ refreshToken })}`)).data

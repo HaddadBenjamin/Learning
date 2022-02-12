@@ -5,7 +5,7 @@ interface LoginActionPayload {
 }
 
 export interface IGetRefreshTokenPayload {
-  refresh_token : string,
+  refreshToken : string,
 }
 
 export default LoginActionPayload;
