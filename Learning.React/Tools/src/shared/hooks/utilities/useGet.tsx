@@ -58,6 +58,7 @@ const useGet = (
         setResponse({
           ...response,
           isLoading: false,
+          data: undefined,
           error,
         });
       }

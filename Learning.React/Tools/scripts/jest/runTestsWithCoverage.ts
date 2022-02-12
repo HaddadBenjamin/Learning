@@ -1,7 +1,7 @@
 import colorizedLog, {
   LogType,
   TextColor,
-} from '../../src/shared/utils/colorizedLog';
+} from '../../src/shared/utilities/colorizedLog';
 
 const cmd = require('node-cmd');
 

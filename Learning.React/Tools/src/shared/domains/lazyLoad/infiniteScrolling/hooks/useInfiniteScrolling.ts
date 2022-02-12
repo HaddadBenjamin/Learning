@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import doesElementIsVisible from '../../../../utils/doesElementIsVisible';
+import doesElementIsVisible from '../../../../utilities/doesElementIsVisible';
 
 // Pour pouvoir faire de l'infinite scrolling, il est nécéssaire que votre endpoint en GET gère la pagination.
 export default (
