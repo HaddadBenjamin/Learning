@@ -22,11 +22,11 @@ interface IUsePutResponse
 }
 
 const usePut = ({
-  url,
-  body,
-  onSuccess,
-  onError,
-} : IUsePutRequest) => {
+                  url,
+                  body,
+                  onSuccess,
+                  onError,
+                } : IUsePutRequest) => {
   const [response, setResponse] = useState<IUsePutResponse>({
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     mutate: async () => { },
@@ -34,13 +34,13 @@ const usePut = ({
   });
 
   const mutate = async () => {
-    setResponse({
-      ...response,
-      error: undefined,
-      isLoading: true,
-    });
-
     try {
+      setResponse({
+        ...response,
+        error: undefined,
+        isLoading: true,
+      });
+
       const data = await axios.put(url, body);
 
       onSuccess?.(data);
@@ -51,7 +51,7 @@ const usePut = ({
         isLoading: false,
         error: false,
       });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       onError?.(error);
 

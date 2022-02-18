@@ -32,18 +32,19 @@ const useGet = (
   } : IUseGetParameters,
 ) => {
   const [response, setResponse] = useState<IUseGetResponse>({
-    isLoading: true,
-    refetch : () => {}
+    isLoading: false,
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    refetch: () => {},
   });
 
   const asyncGet = async () => {
-    setResponse({
-      ...response,
-      error: undefined,
-      isLoading: true,
-    });
-
     try {
+      setResponse({
+        ...response,
+        error: undefined,
+        isLoading: true,
+      });
+
       const { data } = await axios.get(url, config);
 
       onSuccess?.(data);
@@ -70,7 +71,7 @@ const useGet = (
     // eslint-disable-next-line
   }, [...dependencies]);
 
-  return { ...response, refetch : asyncGet };
+  return { ...response, refetch: asyncGet };
 };
 
 export default useGet;
