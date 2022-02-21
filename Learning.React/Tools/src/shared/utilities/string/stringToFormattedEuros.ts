@@ -1,10 +1,10 @@
 import stringToNumber from './stringToNumber';
-import numberWithSeparationEveryThousand from '../number/numberWithSpaceEveryThousand';
+import formatWithThousandsSeparator from '../number/formatWithThousandsSeparator';
 
 const stringToFormattedEuros = (text? : string) : string => {
   const textAsNumber = stringToNumber(text, 0) as number;
 
-  return textAsNumber > 1000 || textAsNumber < 1000 ? `${numberWithSeparationEveryThousand(Math.round(textAsNumber / 1000))} K€` : `${textAsNumber} €`;
+  return textAsNumber > 1000 || textAsNumber < -1000 ? `${formatWithThousandsSeparator(Math.round(textAsNumber / 1000))} K€` : `${textAsNumber} €`;
 };
 
 export default stringToFormattedEuros;

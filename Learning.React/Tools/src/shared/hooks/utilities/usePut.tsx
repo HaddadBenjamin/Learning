@@ -16,17 +16,18 @@ interface IUsePutResponse
   mutate : () => void
   // eslint-disable-next-line
   data? : any,
+  isCalled: boolean,
   isLoading : boolean,
   // eslint-disable-next-line
   error?: any,
 }
 
 const usePut = ({
-                  url,
-                  body,
-                  onSuccess,
-                  onError,
-                } : IUsePutRequest) => {
+  url,
+  body,
+  onSuccess,
+  onError,
+} : IUsePutRequest) => {
   const [response, setResponse] = useState<IUsePutResponse>({
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     mutate: async () => { },
@@ -39,6 +40,7 @@ const usePut = ({
         ...response,
         error: undefined,
         isLoading: true,
+        isCalled: false,
       });
 
       const data = await axios.put(url, body);
@@ -48,10 +50,11 @@ const usePut = ({
       setResponse({
         ...response,
         data,
+        isCalled: true,
         isLoading: false,
         error: false,
       });
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       onError?.(error);
 
