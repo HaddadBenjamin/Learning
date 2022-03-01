@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosInstance } from 'axios';
 
 interface IUseGetParameters<T>
 {
@@ -9,7 +9,9 @@ interface IUseGetParameters<T>
   // eslint-disable-next-line
   onSuccess? : (data : T) => void,
   // eslint-disable-next-line
-  onError? : (error : any) => void
+  onError? : (error : any) => void,
+  httpClient? : AxiosInstance,
+  enabled?: boolean
 }
 
 interface IUseGetResponse<T>
@@ -19,7 +21,7 @@ interface IUseGetResponse<T>
   isFetched: boolean,
   // eslint-disable-next-line
   error?: any,
-  refetch : () => void
+  refetch : () => void,
 }
 
 const useGet = <T, >(
@@ -29,6 +31,8 @@ const useGet = <T, >(
     dependencies = [],
     onSuccess,
     onError,
+    httpClient,
+    enabled = true,
   } : IUseGetParameters<T>,
 ) => {
   const [response, setResponse] = useState<IUseGetResponse<T>>({
@@ -39,39 +43,41 @@ const useGet = <T, >(
   });
 
   const asyncGet = async () => {
-    try {
-      setResponse({
-        ...response,
-        error: undefined,
-        isLoading: true,
-      });
+    if (enabled) {
+      try {
+        setResponse({
+          ...response,
+          error: undefined,
+          isLoading: true,
+        });
 
-      const { data } = await axios.get(url, config);
+        const { data } = await (httpClient ?? axios).get(url, config);
 
-      onSuccess?.(data);
+        onSuccess?.(data);
 
-      setResponse({
-        ...response,
-        isLoading: false,
-        data,
-        isFetched: true,
-      });
-    } catch (error) {
-      onError?.(error);
+        setResponse({
+          ...response,
+          isLoading: false,
+          data,
+          isFetched: true,
+        });
+      } catch (error) {
+        onError?.(error);
 
-      setResponse({
-        ...response,
-        isLoading: false,
-        data: undefined,
-        error,
-      });
+        setResponse({
+          ...response,
+          isLoading: false,
+          data: undefined,
+          error,
+        });
+      }
     }
   };
 
   useEffect(() => {
     asyncGet();
     // eslint-disable-next-line
-  }, [...dependencies]);
+  }, [enabled, ...dependencies]);
 
   return { ...response, refetch: asyncGet };
 };
