@@ -6,21 +6,16 @@ interface ElementSize {
 }
 
 export default (ref : MutableRefObject<HTMLElement>): ElementSize => {
+  const [elementSize, setElementSize] = useState<ElementSize>({ width: 0, height: 0 });
+
   const getElementSize = (): ElementSize => ({
     width: ref.current.offsetWidth,
     height: ref.current.offsetHeight,
   });
-
-  const [elementSize, setElementSize] = useState({ width: 0, height: 0 });
+  const handleResize = () => setElementSize(getElementSize());
 
   useEffect(() => {
-    const handleResize = () => {
-      setElementSize(getElementSize());
-    };
-
-    if (ref?.current) {
-      setElementSize(getElementSize());
-    }
+    if (ref?.current) handleResize();
 
     window.addEventListener('resize', handleResize);
 
