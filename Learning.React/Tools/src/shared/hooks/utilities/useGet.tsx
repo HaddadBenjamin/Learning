@@ -21,7 +21,8 @@ interface IUseGetResponse<T>
   isFetched: boolean,
   // eslint-disable-next-line
   error?: any,
-  refetch : () => void,
+  // eslint-disable-next-line
+  refetch : (url? : string, config? : AxiosRequestConfig) => void
 }
 
 const useGet = <T, >(
@@ -42,7 +43,7 @@ const useGet = <T, >(
     refetch: () => {},
   });
 
-  const asyncGet = async () => {
+  const asyncGet = async (refetchUrl?: string, refetchConfig?: AxiosRequestConfig) => {
     if (enabled) {
       try {
         setResponse({
@@ -51,7 +52,7 @@ const useGet = <T, >(
           isLoading: true,
         });
 
-        const { data } = await (httpClient ?? axios).get(url, config);
+        const { data } = await (httpClient ?? axios).get(refetchUrl ?? url, refetchConfig ?? config);
 
         onSuccess?.(data);
 
