@@ -43,7 +43,7 @@ const useGet = <T, >(
     refetch: () => {},
   });
 
-  const asyncGet = async (refetchUrl?: string, refetchConfig?: AxiosRequestConfig) => {
+  const refetch = async (refetchUrl?: string, refetchConfig?: AxiosRequestConfig) => {
     if (enabled) {
       try {
         setResponse({
@@ -76,11 +76,11 @@ const useGet = <T, >(
   };
 
   useEffect(() => {
-    asyncGet();
+    refetch();
     // eslint-disable-next-line
   }, [enabled, ...dependencies]);
 
-  return { ...response, refetch: asyncGet };
+  return { ...response, refetch };
 };
 
 export default useGet;
