@@ -1,18 +1,11 @@
-const distinctBy = <T, Y>(array: T[], getSubElement: (element: T) => Y) : T[] =>
+const distinctBy = <T>(array: T[], comparator: (a : T, b : T) => boolean) : T[] =>
 {
   const distinctElements: T[] = [];
-  const map = new Map();
 
   // eslint-disable-next-line no-restricted-syntax
   for (const element of array)
-  {
-    const subElement = getSubElement(element);
-
-    if (!map.has(subElement)) {
-      map.set(subElement, true);
-      distinctElements.push(element);
-    }
-  }
+    if (!distinctElements.find(distinctElement => comparator(element, distinctElement)))
+      distinctElements.push(element)
 
   return distinctElements;
 };

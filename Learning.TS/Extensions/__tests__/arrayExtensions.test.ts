@@ -1,5 +1,5 @@
 import {} from '../arrayExtensions';
-import { range } from '../../helpers/arrayHelper';
+import {range} from "../arrayHelper";
 
 describe('arrayExtensions', () => {
   it('skip should be immutable', () => {
@@ -190,7 +190,7 @@ describe('arrayExtensions', () => {
     const array = [{ a: 1 }, { a: 2 }, { a: 2 }, { a: 3 }];
 
     // When
-    const actualValue = array.distinctBy(element => element.a);
+    const actualValue = array.distinctBy(({a}, { a: b}) => a === b);
 
     // Then
     expect(array).toStrictEqual(expectedValue);
@@ -535,7 +535,7 @@ describe('arrayExtensions', () => {
     expect(actualValue).toStrictEqual(expectedValue);
   })
 
-  it("chunk", () =>{
+  it("chunk", () => {
     // Given
     const expectedValue = [[1, 2], [3, 4], [5, 6], [7]];
     const array = [1, 2, 3, 4, 5, 6, 7];
@@ -546,4 +546,16 @@ describe('arrayExtensions', () => {
     // Then
     expect(actualValue).toStrictEqual(expectedValue);
   })
+
+  it("addRangeWithoutDuplicate'", () => {
+    // Given & When
+    const array = [{a: 1, id: 1}]
+    const expectedValue = [{a: 1, id: 1}, {a: 2, id: 2} ];
+    const actualValue = array.addRangeWithoutDuplicate([
+      {a: 1, id: 1},
+      {a: 2, id: 2},
+    ], (a, b) => a.id === b.id)
+
+    expect(actualValue).toStrictEqual(expectedValue)
+  });
 });

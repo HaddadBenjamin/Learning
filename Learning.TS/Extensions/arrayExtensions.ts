@@ -28,7 +28,7 @@ declare global {
     where(predicate: (element: T) => boolean): ReadonlyArray<T>;
 
     distinct(): ReadonlyArray<T>;
-    distinctBy<Y>(getSubElement: (element: T) => Y): ReadonlyArray<T>;
+    distinctBy(comparator: (a: T, b: T) => boolean): ReadonlyArray<T>;
 
     first(): T;
     firstOrDefault(value: T): T;
@@ -54,7 +54,7 @@ declare global {
 
     groupBy<K, V>(getKey: (item: T) => K, map?: (item: T) => V): Map<K, T[] | V[]>;
 
-    // Fait maison :
+    // Ceux qui n'éxiste pas en C#:
     mapWithPrevious<Y>(callback: (previous: T | undefined, current: T) => Y): ReadonlyArray<Y>;
     filterWithPrevious(callback: (previous: T | undefined, current: T) => boolean): ReadonlyArray<T>;
     forEachWithPrevious(callback: (previous: T | undefined, current: T) => void): void;
@@ -67,6 +67,7 @@ declare global {
     exclude(predicate: (element: T) => boolean) : ReadonlyArray<T>;
 
     chunk(chunkLenght : number) : T[][]
+    addRangeWithoutDuplicate(elements: T[], comparator?: (a: T, b: T) => boolean): ReadonlyArray<T>;
   }
 }
 
@@ -167,21 +168,14 @@ if (!Array.prototype.skip) {
     );
   };
 
-  Array.prototype.distinctBy = function <T, Y>(
-    this: readonly T[],
-    getSubElement: (element: T) => Y
-  ): readonly T[] {
+  Array.prototype.distinctBy = function <T>(this: readonly T[], comparator: (a: T, b: T) => boolean)
+    : readonly T[] {
     const distinctElements: T[] = [];
-    const map = new Map();
 
-    for (const element of this) {
-      const subElement = getSubElement(element);
-
-      if (!map.has(subElement)) {
-        map.set(subElement, true);
-        distinctElements.push(element);
-      }
-    }
+    // eslint-disable-next-line no-restricted-syntax
+    for (const element of this)
+      if (!distinctElements.find(distinctElement => comparator(element, distinctElement)))
+        distinctElements.push(element)
 
     return distinctElements;
   };
@@ -334,6 +328,15 @@ if (!Array.prototype.skip) {
       return all
     }, [])
   }
+
+  Array.prototype.addRangeWithoutDuplicate = function <T>(this: readonly T[], elements: T[], comparator?: (a: T, b: T) => boolean)
+    : readonly T[] {
+    const result = [...this, ...elements];
+
+    if (!comparator) return result.distinct()
+    // @ts-ignore
+    return result.distinctBy(comparator)
+  }
 }
 
 // Exemples :
@@ -402,5 +405,9 @@ if (!Array.prototype.skip) {
   [1, 2, 3, null].excludeNullOrUndefined(), // [1, 2, 3]
   [1, 2, 3, 4].exclude(element => element > 2), // [1, 2]
   [1, 2, 3, 4, 5, 6, 7].chunk(2), // [[1, 2], [3, 4], [5, 6], [7]]
+  ([{a: 1, id: 1}] as any[]).addRangeWithoutDuplicate([
+    {a: 1, id: 1},
+    {a: 2, id: 2},
+  ]), // [{a: 1, id: 1}, {a: 2, id: 2} ])
 ]
 // );
