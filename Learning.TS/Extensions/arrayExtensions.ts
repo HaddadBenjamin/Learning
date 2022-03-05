@@ -16,6 +16,7 @@ declare global {
     select<Y>(callback: (element: T) => Y): ReadonlyArray<Y>;
     selectMany<Y>(callback: (element: T) => Y[]): ReadonlyArray<Y>;
 
+    contains(predicate?: (element: T) => boolean): boolean;
     any(predicate?: (element: T) => boolean): boolean;
     all(predicate: (element: T) => boolean): boolean;
 
@@ -118,6 +119,13 @@ if (!Array.prototype.skip) {
     callback: (element: T) => Y[]
   ): readonly Y[] {
     return this.map(callback).flat();
+  };
+
+  Array.prototype.contains = function <T>(
+    this: readonly T[],
+    predicate?: (element: T) => boolean
+  ): boolean {
+    return !predicate ? this.length > 0 : !!this.find(predicate);
   };
 
   Array.prototype.any = function <T>(
