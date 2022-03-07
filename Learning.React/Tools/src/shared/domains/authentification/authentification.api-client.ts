@@ -16,6 +16,10 @@ const selectJwtToken = () : IJwtToken | undefined => (store.getState()?.authenti
 const selectAccessToken = () : string | undefined => selectJwtToken()?.access_token;
 const selectRefreshToken = () : string | undefined => selectJwtToken()?.refresh_token;
 
+// Il aurait plutôt fallû exporter en default une fonction const createAuthentificatedApiClient = ({ baseURL, headers, onError, getJwtToken } : ICreateAuthentificationClient) : AxiosInstance =>
+// De sorte à pouvoir utiliser différents client en fonction de l'API et donc simplifier le code des calls HTTPS notamment :
+// - baseURL : axios.create({ baseURL })
+// - les headers par défaults : authenticatedApiClient.defaults.headers.common[headerKey] = headerValue
 const authenticatedApiClient = axios.create();
 
 authenticatedApiClient.interceptors.request.use((requestConfiguration : AxiosRequestConfig) => {
