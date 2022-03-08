@@ -22,7 +22,12 @@ interface IUseGetResponse<T>
   // eslint-disable-next-line
   error?: any,
   // eslint-disable-next-line
-  refetch : (url? : string, config? : AxiosRequestConfig) => void
+  refetch : (refetchParameters? : IRefetchParameters) => void
+}
+
+interface IRefetchParameters{
+  refetchUrl? : string,
+  refetchConfig? : AxiosRequestConfig
 }
 
 const useGet = <T, >(
@@ -43,40 +48,38 @@ const useGet = <T, >(
     refetch: () => {},
   });
 
-  const refetch = async (refetchUrl?: string, refetchConfig?: AxiosRequestConfig) => {
-    if (enabled) {
-      try {
-        setResponse({
-          ...response,
-          error: undefined,
-          isLoading: true,
-        });
+  const refetch = async (refetchParameters? : IRefetchParameters) => {
+    try {
+      setResponse({
+        ...response,
+        error: undefined,
+        isLoading: true,
+      });
 
-        const { data } = await (httpClient ?? axios).get(refetchUrl ?? url, refetchConfig ?? config);
+      const { data } = await (httpClient ?? axios).get(refetchParameters?.refetchUrl ?? url, refetchParameters?.refetchConfig ?? config);
 
-        onSuccess?.(data);
+      onSuccess?.(data);
 
-        setResponse({
-          ...response,
-          isLoading: false,
-          data,
-          isFetched: true,
-        });
-      } catch (error) {
-        onError?.(error);
+      setResponse({
+        ...response,
+        isLoading: false,
+        data,
+        isFetched: true,
+      });
+    } catch (error) {
+      onError?.(error);
 
-        setResponse({
-          ...response,
-          isLoading: false,
-          data: undefined,
-          error,
-        });
-      }
+      setResponse({
+        ...response,
+        isLoading: false,
+        data: undefined,
+        error,
+      });
     }
   };
 
   useEffect(() => {
-    refetch();
+    if (enabled) refetch();
     // eslint-disable-next-line
   }, [enabled, ...dependencies]);
 
