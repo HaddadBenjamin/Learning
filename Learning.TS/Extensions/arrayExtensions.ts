@@ -62,6 +62,7 @@ declare global {
 
     paginate(page: number, pageSize: number): ReadonlyArray<T>;
 
+    containsAll(otherArray : readonly T[]) : boolean;
     containsNullOrUndefined() : boolean;
     excludeNullOrUndefined(): ReadonlyArray<T>;
 
@@ -315,6 +316,10 @@ if (!Array.prototype.skip) {
   Array.prototype.paginate = function <T>(this: readonly T[], page: number, pageSize: number): readonly T[] {
     return this.slice(pageSize * (page - 1)).slice(0, pageSize);
   };
+
+  Array.prototype.containsAll = function <T>(this: readonly T[], otherArray : readonly T[]) : boolean {
+    return otherArray.every((v) => this.includes(v));
+  }
 
   Array.prototype.containsNullOrUndefined = function <T>(this: readonly T[]) : boolean {
     return this.some((element) => element === null || element === undefined);

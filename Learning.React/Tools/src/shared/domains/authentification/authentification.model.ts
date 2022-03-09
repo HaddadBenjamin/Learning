@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 interface LoginActionPayload {
   userName : string,
   password : string,
@@ -6,6 +5,12 @@ interface LoginActionPayload {
 
 export interface IGetRefreshTokenPayload {
   refreshToken : string,
+}
+
+export interface IGetUserInfoResponse {
+  nom? : string,
+  prenom? : string,
+  roles? : string[]
 }
 
 export default LoginActionPayload;
