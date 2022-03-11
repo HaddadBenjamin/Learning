@@ -13,8 +13,6 @@ const authentificationReducer = (
     };
 
     case AuthentificationAction.LOGIN_SUCCESS: {
-      console.log('login:success, user roles :', parseAccessToken(action.payload.access_token).extension_ROLE);
-
       const newAuthentificationState : IAuthentificationState = {
         ...state,
         connected: true,
@@ -28,8 +26,6 @@ const authentificationReducer = (
     }
 
     case AuthentificationAction.LOGIN_FAILED: {
-      console.log('login:failed', action.error);
-
       const newAuthentificationState : IAuthentificationState = {
         ...state,
         connected: false,
@@ -43,8 +39,6 @@ const authentificationReducer = (
     }
 
     case AuthentificationAction.GET_REFRESH_TOKEN_SUCCESS: {
-      console.log('get-refresh-token:success', action.payload);
-
       const newAuthentificationState : IAuthentificationState = {
         ...state,
         connected: true,
@@ -58,8 +52,6 @@ const authentificationReducer = (
     }
 
     case AuthentificationAction.GET_REFRESH_TOKEN_FAILED: {
-      console.log('get-refresh-token:failed', action.error);
-
       const newAuthentificationState : IAuthentificationState = {
         ...state,
         connected: false,

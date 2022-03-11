@@ -6,8 +6,6 @@ const getFromSessionStorage = <T>(key : string, initialState : T) : T => {
 
     return item ? JSON.parse(item) : initialState;
   } catch (error) {
-    console.log(error);
-
     return initialState;
   }
 };

@@ -14,9 +14,8 @@ const useLocalStorage = (key : string, initialValue : any) => {
       setStoredValue(valueToStore);
 
       setFromLocalStorage(key, valueToStore);
-    } catch (error) {
-      console.log(error);
-    }
+      // eslint-disable-next-line no-empty
+    } catch (error) { }
   };
 
   const removeValue = () : void => deleteFromLocalStorage(key);

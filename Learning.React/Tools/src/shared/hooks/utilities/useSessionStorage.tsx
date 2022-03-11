@@ -15,9 +15,8 @@ const useSessionStorage = (key : string, initialValue : any) => {
       setStoredValue(valueToStore);
 
       setFromSessionStorage(key, valueToStore);
-    } catch (error) {
-      console.log(error);
-    }
+      // eslint-disable-next-line no-empty
+    } catch (error) { }
   };
 
   const removeValue = () : void => removeFromSessionStorage(key);
