@@ -1,44 +1,48 @@
 import useScreenSize from './useScreenSize';
 
-interface Breakpoints {
-  xsOrBelow: boolean;
-  smOrBelow: boolean;
-  mdOrBelow: boolean;
-  lgOrBelow: boolean;
+export interface Breakpoints {
+  isMobile: boolean; // équivaut à un belowSm
+
+  belowXs: boolean;
+  belowSm: boolean;
+  belowMd: boolean;
+  belowLg: boolean;
 
   xs: boolean;
   sm: boolean;
   md: boolean;
   lg: boolean;
 
-  xsOrAbove: boolean;
-  smOrAbove: boolean;
-  mdOrAbove: boolean;
-  lgOrAbove: boolean;
+  aboveXs: boolean;
+  aboveSm: boolean;
+  aboveMd: boolean;
+  aboveLg: boolean;
 }
 
 const xsWidth = 360;
-const smWidth = 600;
-const mdWidth = 1024;
+const smWidth = 700;
+const mdWidth = 1240;
 const lgWidth = 1440;
 
 export default (): Breakpoints => {
   const { width: screenWidth } = useScreenSize();
 
   return {
-    xsOrBelow: screenWidth <= xsWidth,
-    smOrBelow: screenWidth <= smWidth,
-    mdOrBelow: screenWidth <= mdWidth,
-    lgOrBelow: screenWidth <= lgWidth,
+    isMobile: screenWidth <= smWidth, // équivaut à un belowSm
+
+    belowXs: screenWidth <= xsWidth,
+    belowSm: screenWidth <= smWidth,
+    belowMd: screenWidth <= mdWidth,
+    belowLg: screenWidth <= lgWidth,
 
     xs: screenWidth <= xsWidth,
     sm: screenWidth <= smWidth && screenWidth > xsWidth,
     md: screenWidth <= mdWidth && screenWidth > smWidth,
     lg: screenWidth <= lgWidth && screenWidth > mdWidth,
 
-    xsOrAbove: screenWidth >= xsWidth,
-    smOrAbove: screenWidth >= smWidth,
-    mdOrAbove: screenWidth >= mdWidth,
-    lgOrAbove: screenWidth >= lgWidth,
+    aboveXs: screenWidth >= xsWidth,
+    aboveSm: screenWidth >= smWidth,
+    aboveMd: screenWidth >= mdWidth,
+    aboveLg: screenWidth >= lgWidth,
   } as const;
 };

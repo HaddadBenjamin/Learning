@@ -53,7 +53,7 @@
   @if $gridGap != undefined { gap: $gridGap; }
 }
 
-@mixin gridElement(
+@mixin grid-element(
   $gridColumn : undefined,
   $gridRow : undefined,
   $justifySelf: undefined,
@@ -69,34 +69,34 @@
   @if $alignSelf != undefined { align-self: $alignSelf; }
 }
 
-@mixin widthHeight($width : undefined, $height : undefined) {
+@mixin width-height($width : undefined, $height : undefined) {
   @if $width != undefined { width: $width; }
 
   @if $height != undefined { height: $height; }
 }
 
-@mixin borderAndRadius($border: undefined, $radius : undefined) {
+@mixin border-and-radius($border: undefined, $radius : undefined) {
   @if $border != undefined { border: $border; }
 
   @if $radius != undefined { border-radius: $radius; }
 }
 
-@mixin marginPadding($marginAuto: undefined, $padding: undefined) {
+@mixin margin-padding($marginAuto: undefined, $padding: undefined) {
   @if $marginAuto != undefined { margin: $marginAuto; }
 
   @if $padding != undefined { padding: $padding; }
 }
 
-@mixin scaleWithoutModifyTheWidth($scale : 0.9, $widthPercent : 100%) {
+@mixin scale-withou-modify-width($scale : 0.9, $widthPercent : 100%) {
   transform: scale($scale);
   width: 1 / $scale * $widthPercent;
   margin-left: ($widthPercent - (1 / $scale) * $widthPercent) / 2;
 }
 
-@mixin belowXs { @media (max-width: $xsWidth) { @content; } }
+@mixin below-xs { @media (max-width: $xsWidth) { @content; } }
 
-@mixin belowSm { @media (max-width: $smWidth) { @content; } }
+@mixin below-sm { @media (max-width: $smWidth) { @content; } }
 
-@mixin belowMd { @media (max-width: $mdWidth) { @content; } }
+@mixin below-md { @media (max-width: $mdWidth) { @content; } }
 
-@mixin belowLg { @media (max-width: $ldWidth) { @content; } }
+@mixin below-lg { @media (max-width: $ldWidth) { @content; } }

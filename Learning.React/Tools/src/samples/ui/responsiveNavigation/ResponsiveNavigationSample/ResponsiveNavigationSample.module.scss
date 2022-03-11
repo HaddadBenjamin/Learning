@@ -7,7 +7,7 @@
 
   @include flex(undefined, undefined, undefined, $spacingMd);
 
-  @include belowSm { flex-direction: column; }
+  @include below-sm { flex-direction: column; }
 }
 
 .navigationButton {

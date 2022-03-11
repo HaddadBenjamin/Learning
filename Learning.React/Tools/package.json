@@ -11,6 +11,7 @@
     "dev:apiMock": "nodemon src/devTools/server/server.ts --config src/devTools/server/nodemon.json",
     "lint:ts": "prettier-eslint \"**/*.{js,jsx,ts,tsx}\"",
     "lint:sass": "stylelint \"**/*.{css,scss,sass}\"",
+    "lint": "npm run lint:ts && npm run lint:sass",
     "test": "react-scripts test",
     "test:coverage": "ts-node -r tsconfig-paths/register --project src/shared/configuration/tsconfig.json --transpile-only scripts/jest/runTestsWithCoverage.ts",
     "test:showConfig": "npm test -- --showConfig",

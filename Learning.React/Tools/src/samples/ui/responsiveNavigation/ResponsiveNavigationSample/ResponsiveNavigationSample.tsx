@@ -26,7 +26,7 @@ const ResponsiveNavigationSample: FC = () => {
     toggleMobileNavigation,
     setMobileNavigationIsVisible,
   ] = useToggle(false);
-  const { smOrBelow } = useBreakpoints();
+  const { belowSm } = useBreakpoints();
 
   const componentReference = useRef(null);
   useClickOutside(componentReference, () =>
@@ -59,10 +59,10 @@ const ResponsiveNavigationSample: FC = () => {
         </h2>
         <nav className={styles.container}>
           {/* Vue PC */}
-          {!smOrBelow && showNavigationElements(navigationElements)}
+          {!belowSm && showNavigationElements(navigationElements)}
 
           {/* Vue Mobile */}
-          {smOrBelow && (
+          {belowSm && (
             <>
               <button
                 type="button"

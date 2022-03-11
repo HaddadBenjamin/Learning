@@ -6,8 +6,11 @@ interface ScreenSize {
 }
 
 export default (): ScreenSize => {
+  // "window" is not available during server side rendering.
+  if (typeof window === 'undefined') return { width: 0, height: 0 };
+
   const getScreenSize = (): ScreenSize => ({
-    width: window.innerWidth,
+    width: window?.innerWidth,
     height: window.innerHeight,
   });
 

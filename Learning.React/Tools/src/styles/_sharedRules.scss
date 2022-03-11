@@ -1,3 +1,5 @@
+@import "./breakpoints";
+
 // box-sizing : border-box permet de ne pas prendre en compte
 // les margins, paddings, border lors du calcul de la hauteur ou de la largeur.
 // par défaut le choix pris par l'application était box-sizing : content-box ce qui ne les prend pas en compte.
@@ -10,7 +12,7 @@
 }
 
 %sub-container {
-  width: $md-width;
+  width: $mdWidth;
   margin: auto;
 
   @include below-md {

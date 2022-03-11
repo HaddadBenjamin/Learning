@@ -5,7 +5,7 @@
 
   @include text($textH5FontSize, $secondaryColor, undefined, $fontWeightSemiBold, $textH5LineHeight);
 
-  @include belowSm { width: 100%; text-align: center; }
+  @include below-sm { width: 100%; text-align: center; }
 }
 .element:hover { color: pink; }
 
