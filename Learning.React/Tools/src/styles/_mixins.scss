@@ -92,11 +92,3 @@
   width: 1 / $scale * $widthPercent;
   margin-left: ($widthPercent - (1 / $scale) * $widthPercent) / 2;
 }
-
-@mixin below-xs { @media (max-width: $xsWidth) { @content; } }
-
-@mixin below-sm { @media (max-width: $smWidth) { @content; } }
-
-@mixin below-md { @media (max-width: $mdWidth) { @content; } }
-
-@mixin below-lg { @media (max-width: $ldWidth) { @content; } }
