@@ -35,7 +35,7 @@ authenticatedApiClient.interceptors.request.use((requestConfiguration : AxiosReq
 
 authenticatedApiClient.interceptors.response.use((axiosResponse) => axiosResponse,
   async (previousError) => {
-    const previousApiClientConfiguration = previousError.config;
+    const previousApiClientConfiguration = previousError.config; // ne pas mettre baseURL, ça fera crash
     const shouldGetRefreshToken = !previousApiClientConfiguration.url.includes(`${process.env.API_ACCOUNT}${LOGIN_ENDPOINT}`)
       && previousError.response?.status === 401
       && !previousApiClientConfiguration._retry;

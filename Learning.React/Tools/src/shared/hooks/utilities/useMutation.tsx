@@ -53,7 +53,8 @@ const UseMutation = <T, >({
         {
           ...config,
           ...mutateParameters?.config,
-          baseURL: mutateParameters?.url ?? mutateParameters?.config?.baseURL ?? config?.baseURL,
+          // on met url à la place de baseURL pour éviter un crash dans mon authenticatedClient
+          url: mutateParameters?.url ?? mutateParameters?.config?.url ?? config?.url,
         },
       );
 
