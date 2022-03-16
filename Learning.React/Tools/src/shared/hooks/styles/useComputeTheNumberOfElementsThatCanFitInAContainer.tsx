@@ -7,8 +7,8 @@ interface IUseComputeTheNumberOfElementsThatCanFitInAContainerResponse
   containerReference : MutableRefObject<HTMLElement>
 }
 
-const useComputeTheNumberOfElementsThatCanFitInAContainer = (elementWidth : number) : IUseComputeTheNumberOfElementsThatCanFitInAContainerResponse => {
-  const containerReference = useRef() as MutableRefObject<HTMLElement>;
+const useComputeTheNumberOfElementsThatCanFitInAContainer = <T extends HTMLElement, >(elementWidth : number) : IUseComputeTheNumberOfElementsThatCanFitInAContainerResponse => {
+  const containerReference = useRef() as MutableRefObject<T>;
   const { width: containerWidth } = useElementSize(containerReference);
   // eslint-disable-next-line
   const numberOfElementsThatCanFitInAContainer = useMemo(() => Math.floor(containerWidth / elementWidth), [containerWidth]);

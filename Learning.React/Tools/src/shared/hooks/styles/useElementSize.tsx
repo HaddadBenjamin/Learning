@@ -5,7 +5,7 @@ interface ElementSize {
   height: number;
 }
 
-export default (ref : MutableRefObject<HTMLElement>): ElementSize => {
+export default <T extends HTMLElement>(ref : MutableRefObject<T>): ElementSize => {
   const [elementSize, setElementSize] = useState<ElementSize>({ width: 0, height: 0 });
 
   const getElementSize = (): ElementSize => ({

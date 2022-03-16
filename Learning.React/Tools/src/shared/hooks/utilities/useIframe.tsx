@@ -7,6 +7,7 @@ const useIframe = (url : string, title : string) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const ref = useRef<HTMLIFrameElement>(null);
+
   const iframe = (
     <div className={styles.iframeContainer}>
       <iframe
