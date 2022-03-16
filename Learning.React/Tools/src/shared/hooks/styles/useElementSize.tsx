@@ -1,21 +1,29 @@
-import { useEffect, useState, MutableRefObject } from 'react';
+import {
+  useEffect, useState, MutableRefObject, useRef,
+} from 'react';
 
 interface ElementSize {
   width: number;
   height: number;
 }
 
-export default <T extends HTMLElement>(ref : MutableRefObject<T>): ElementSize => {
+interface useElementSizeResponse<T> {
+  elementSize : ElementSize,
+  elementReference : MutableRefObject<T>
+}
+
+export default <T extends HTMLElement>(): useElementSizeResponse<T> => {
   const [elementSize, setElementSize] = useState<ElementSize>({ width: 0, height: 0 });
+  const elementReference = useRef<T>() as MutableRefObject<T>;
 
   const getElementSize = (): ElementSize => ({
-    width: ref.current.offsetWidth,
-    height: ref.current.offsetHeight,
+    width: elementReference?.current?.offsetWidth ?? 0,
+    height: elementReference?.current?.offsetHeight ?? 0,
   });
   const handleResize = () => setElementSize(getElementSize());
 
   useEffect(() => {
-    if (ref?.current) handleResize();
+    if (elementReference?.current) handleResize();
 
     window.addEventListener('resize', handleResize);
 
@@ -23,7 +31,7 @@ export default <T extends HTMLElement>(ref : MutableRefObject<T>): ElementSize =
       window.removeEventListener('resize', handleResize);
     };
     // eslint-disable-next-line
-  }, [ref?.current]);
+  }, [elementReference?.current]);
 
-  return elementSize;
+  return { elementSize, elementReference };
 };

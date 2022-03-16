@@ -1,4 +1,4 @@
-import { MutableRefObject, useMemo, useRef } from 'react';
+import { MutableRefObject, useMemo } from 'react';
 import useElementSize from './useElementSize';
 
 interface IUseComputeTheNumberOfElementsThatCanFitInAContainerResponse
@@ -8,8 +8,7 @@ interface IUseComputeTheNumberOfElementsThatCanFitInAContainerResponse
 }
 
 const useComputeTheNumberOfElementsThatCanFitInAContainer = <T extends HTMLElement, >(elementWidth : number) : IUseComputeTheNumberOfElementsThatCanFitInAContainerResponse => {
-  const containerReference = useRef() as MutableRefObject<T>;
-  const { width: containerWidth } = useElementSize(containerReference);
+  const { elementSize: { width: containerWidth }, elementReference: containerReference } = useElementSize<T>();
   // eslint-disable-next-line
   const numberOfElementsThatCanFitInAContainer = useMemo(() => Math.floor(containerWidth / elementWidth), [containerWidth]);
 
