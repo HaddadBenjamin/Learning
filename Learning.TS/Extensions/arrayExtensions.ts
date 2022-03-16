@@ -60,7 +60,7 @@ declare global {
     filterWithPrevious(callback: (previous: T | undefined, current: T) => boolean): ReadonlyArray<T>;
     forEachWithPrevious(callback: (previous: T | undefined, current: T) => void): void;
 
-    paginate(page: number, pageSize: number): ReadonlyArray<T>;
+    paginate(page: number, pageSize: number, moveSize?: number): ReadonlyArray<T>;
 
     containsAll(otherArray : readonly T[]) : boolean;
     containsNullOrUndefined() : boolean;
@@ -313,8 +313,8 @@ if (!Array.prototype.skip) {
       callback(index > 0 ? this[index - 1] : undefined, element));
   };
 
-  Array.prototype.paginate = function <T>(this: readonly T[], page: number, pageSize: number): readonly T[] {
-    return this.slice(pageSize * (page - 1)).slice(0, pageSize);
+  Array.prototype.paginate = function <T>(this: readonly T[], page: number, pageSize: number, moveSize?: number): readonly T[] {
+    return this.slice((page - 1) * (moveSize ?? pageSize)).slice(0, pageSize);
   };
 
   Array.prototype.containsAll = function <T>(this: readonly T[], otherArray : readonly T[]) : boolean {

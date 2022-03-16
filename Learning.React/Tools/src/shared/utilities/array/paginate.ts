@@ -1,4 +1,3 @@
-const paginate = <T, >(array: T[], page: number, pageSize: number) : T[] =>
-  array.slice(pageSize * (page - 1)).slice(0, pageSize);
+const paginate = <T, >(array : readonly T[], page : number, pageSize : number, moveSize?: number) : T[] => array.slice((page - 1) * (moveSize ?? pageSize)).slice(0, pageSize);
 
 export default paginate;
