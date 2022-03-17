@@ -28,7 +28,7 @@ const SimplePaginationSample: FC = () => {
 	
 	return (
 		<>
-			<h1>Simple pagination</h1>
+			<h1>Pagination Front (utiliser plutôt mon nouveau hook usePagination)</h1>
 			<div>To test: F12 &gt; Network &gt; XHR &gt; nothing happen</div>
 			<PaginationFilters
 				pageSize={pagination.pageSize}

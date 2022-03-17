@@ -32,7 +32,7 @@ const LazyPaginationSample: FC = () => {
 	
 	return (
 		<>
-			<h1>Lazy pagination</h1>
+			<h1>Pagination back (utiliser plutôt mon nouveau hook usePagination)</h1>
 			<div>
 				To test: F12 &gt; Network &gt; XHR &gt; there are news HTTPs calls when
 				the page number of the number of elements is updated
