@@ -64,6 +64,19 @@ const authentificationReducer = (
       return newAuthentificationState;
     }
 
+    case AuthentificationAction.LOGOUT: {
+      const newAuthentificationState : IAuthentificationState = {
+        ...state,
+        connected: false,
+        jwtToken: undefined,
+        parsedAccessToken: undefined,
+      };
+
+      setAuthenticationFromLocalStorage(newAuthentificationState);
+
+      return newAuthentificationState;
+    }
+
     default: return state;
   }
 };

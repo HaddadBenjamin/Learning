@@ -7,7 +7,7 @@ const useAuthentification = () : IAuthentificationState => {
   const authentificationFromStore = useSelector(selectAuthentification);
   const [authentificationFromLocalStorage] = useLocalStorage('authentification', authentificationInitialState);
 
-  return authentificationFromStore.parsedAccessToken !== undefined ? authentificationFromStore : authentificationFromLocalStorage as IAuthentificationState;
+  return authentificationFromStore.parsedAccessToken !== undefined ? authentificationFromStore : authentificationFromLocalStorage();
 };
 
 export default useAuthentification;

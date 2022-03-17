@@ -8,7 +8,9 @@ export enum AuthentificationAction {
 
   GET_REFRESH_TOKEN_REQUEST = 'authentification/GET_REFRESH_TOKEN_REQUEST',
   GET_REFRESH_TOKEN_SUCCESS = 'authentification/GET_REFRESH_TOKEN_SUCCESS',
-  GET_REFRESH_TOKEN_FAILED = 'authentification/GET_REFRESH_TOKEN_FAILED'
+  GET_REFRESH_TOKEN_FAILED = 'authentification/GET_REFRESH_TOKEN_FAILED',
+
+  LOGOUT = 'authentification/LOGOUT',
 }
 
 export interface LoginRequestAction {
@@ -37,6 +39,10 @@ export interface GetRefreshTokenSuccessAction {
 export interface GetRefreshTokenFailedAction {
   type : AuthentificationAction.GET_REFRESH_TOKEN_FAILED,
   error : string
+}
+
+export interface LogoutAction {
+  type : AuthentificationAction.LOGOUT
 }
 
 export const loginRequestAction = () : LoginRequestAction => ({
@@ -68,6 +74,10 @@ export const getRefreshTokenFailedAction = (error : string) : GetRefreshTokenFai
   error,
 });
 
+export const logoutAction = () : LogoutAction => ({
+  type : AuthentificationAction.LOGOUT
+})
+
 export type AuthentificationActions =
   LoginRequestAction |
   LoginSuccessAction |
@@ -75,4 +85,6 @@ export type AuthentificationActions =
 
   GetRefreshTokenRequestAction |
   GetRefreshTokenSuccessAction |
-  GetRefreshTokenFailedAction
+  GetRefreshTokenFailedAction |
+
+  LogoutAction

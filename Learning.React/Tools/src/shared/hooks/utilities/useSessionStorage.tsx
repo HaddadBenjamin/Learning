@@ -1,27 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import getFromSessionStorage from "../../utilities/sessionStorage/getFromSessionStorage";
-import setFromSessionStorage from "../../utilities/sessionStorage/setFromSessionStorage";
 import removeFromSessionStorage from "../../utilities/sessionStorage/removeFromSessionStorage";
+import setFromSessionStorage from "../../utilities/sessionStorage/setFromSessionStorage";
+
+// eslint-disable-next-line no-unused-vars
+type UseSessionStorageResponse<T> = [() => T, (value : T) => void, () => void]
 
 // Équivalent à useState pour l'état partagé, équivalent à Redux en une ligne
-const useSessionStorage = (key : string, initialValue : any) => {
-  const [storedValue, setStoredValue] = useState(() => getFromSessionStorage(key, initialValue));
+const useSessionStorage = <T, >(key : string, initialValue : T) : UseSessionStorageResponse<T> => {
+  const get = () :T => getFromSessionStorage(key, initialValue);
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  const set = (value: T) : void => { setValue(value); setFromSessionStorage(key, value); };
+  const remove = (): void => removeFromSessionStorage(key);
 
-  const setValue = (value : any) => {
-    try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
+  // Permet juste pour rerendre le composant lors d'un appel à setValueFromSessionStorage
+  const [, setValue] = useState(get());
 
-      setStoredValue(valueToStore);
-
-      setFromSessionStorage(key, valueToStore);
-      // eslint-disable-next-line no-empty
-    } catch (error) { }
-  };
-
-  const removeValue = () : void => removeFromSessionStorage(key);
-
-  return [storedValue, setValue, removeValue];
+  return [get, set, remove];
 };
 
 export default useSessionStorage;

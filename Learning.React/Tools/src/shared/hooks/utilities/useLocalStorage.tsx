@@ -4,23 +4,20 @@ import getFromLocalStorage from "../../utilities/localStorage/getFromLocalStorag
 import setFromLocalStorage from "../../utilities/localStorage/setFromLocalStorage";
 import deleteFromLocalStorage from "../../utilities/localStorage/deleteFromLocalStorage";
 
-const useLocalStorage = (key : string, initialValue : any) => {
-  const [storedValue, setStoredValue] = useState(() => getFromLocalStorage(key, initialValue));
+// eslint-disable-next-line no-unused-vars
+type UseLocalStorageResponse<T> = [() => T, (value : T) => void, () => void]
 
-  const setValue = (value : any) => {
-    try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
+// Équivalent à useState pour l'état partagé, équivalent à Redux en une ligne
+const useLocalStorage = <T, >(key : string, initialValue : T) : UseLocalStorageResponse<T> => {
+  const get = () :T => getFromLocalStorage(key, initialValue);
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  const set = (value: T) : void => { setValue(value); setFromLocalStorage(key, value); };
+  const remove = (): void => deleteFromLocalStorage(key);
 
-      setStoredValue(valueToStore);
+  // Permet juste pour rerendre le composant lors d'un appel à setValueFromLocalStorage
+  const [, setValue] = useState(get());
 
-      setFromLocalStorage(key, valueToStore);
-      // eslint-disable-next-line no-empty
-    } catch (error) { }
-  };
-
-  const removeValue = () : void => deleteFromLocalStorage(key);
-
-  return [storedValue, setValue, removeValue];
+  return [get, set, remove];
 };
 
 export default useLocalStorage;
