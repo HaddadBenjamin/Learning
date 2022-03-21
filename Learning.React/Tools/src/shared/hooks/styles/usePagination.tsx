@@ -3,6 +3,14 @@ import {
 } from 'react';
 import paginate from "../../utilities/array/paginate";
 
+interface IUsePaginationParameters<T>
+{
+  items : T[],
+  defaultPageSize? : number
+  defaultMoveSize?: number
+  shouldComputePageOnPageSizeChange? : boolean
+}
+
 interface IUsePaginationResponse<T>
 {
   paginatedItems : T[]
@@ -26,7 +34,19 @@ interface IUsePaginationResponse<T>
   setMoveSize : (moveSize : number) => void
 }
 
-const usePagination = <T, >(items : T[], defaultPageSize = 1, defaultMoveSize?: number) : IUsePaginationResponse<T> => {
+export const computePageOnPageSizeChange = (pageSize : number, page: number, newPageSize : number) : number => {
+  const firstItemIndexOfCurrentPage = pageSize * page;
+  const newPage = Math.floor(firstItemIndexOfCurrentPage / newPageSize);
+
+  return newPage;
+};
+
+const usePagination = <T, >({
+                              items,
+                              defaultPageSize = 1,
+                              defaultMoveSize,
+                              shouldComputePageOnPageSizeChange,
+                            } : IUsePaginationParameters<T>) : IUsePaginationResponse<T> => {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(defaultPageSize);
   const [paginatedItems, setPaginatedItems] = useState<T[]>(items);
@@ -46,8 +66,13 @@ const usePagination = <T, >(items : T[], defaultPageSize = 1, defaultMoveSize?: 
 
   useEffect(() => {
     setPaginatedItems(paginate(items, page, pageSize, moveSize));
-    // eslint-disable-next-line
   }, [pageSize, page, moveSize]);
+
+  const setPageSizeAndComputePageOnPageSizeChange = useCallback((newPageSize : number) => {
+    if (shouldComputePageOnPageSizeChange) setPage(computePageOnPageSizeChange(pageSize, page, newPageSize));
+
+    setPageSize(newPageSize);
+  }, [pageSize, page, shouldComputePageOnPageSizeChange]);
 
   return {
     paginatedItems,
@@ -63,7 +88,7 @@ const usePagination = <T, >(items : T[], defaultPageSize = 1, defaultMoveSize?: 
     goToPreviousPage,
     goToNextPage,
 
-    setPageSize,
+    setPageSize: setPageSizeAndComputePageOnPageSizeChange,
     setPage,
     setMoveSize,
   };
