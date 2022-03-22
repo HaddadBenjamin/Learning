@@ -35,8 +35,8 @@ interface IUsePaginationResponse<T>
 }
 
 export const computePageOnPageSizeChange = (pageSize : number, page: number, newPageSize : number) : number => {
-  const firstItemIndexOfCurrentPage = pageSize * page;
-  const newPage = Math.floor(firstItemIndexOfCurrentPage / newPageSize);
+  const itemsCount = pageSize * page;
+  const newPage = Math.floor(itemsCount / newPageSize);
 
   return newPage;
 };
