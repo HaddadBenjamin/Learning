@@ -8,7 +8,7 @@ declare global {
       getElement?: (element: V) => V | T
     ): Map<K, V | T>;
 
-    groupBy<K, V, T>(getKey: (item: T) => K, map?: (item: T) => V): Map<K, T[] | V[]>;
+    groupBy<K, V, T>(getKey: (item: T) => K, map?: (item: T) => V): { key : K, value : (T | V)[] }[];
 
     mapToArray<K, V>(map : Map<K, V>) : { key : K, value : V }[];
   }

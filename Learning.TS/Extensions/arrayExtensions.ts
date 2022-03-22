@@ -1,5 +1,5 @@
 /* eslint-disable */
-import {range} from "../helpers/arrayHelper";
+import {range} from "./arrayHelper";
 
 export {};
 
@@ -53,7 +53,7 @@ declare global {
       getElement?: (element: T) => V | T
     ): Map<K, V | T>;
 
-    groupBy<K, V>(getKey: (item: T) => K, map?: (item: T) => V): Map<K, T[] | V[]>;
+    groupBy<K, V>(getKey: (item: T) => K, map?: (item: T) => V): { key : K, value : (T | V)[] }[];
 
     // Ceux qui n'éxiste pas en C#:
     mapWithPrevious<Y>(callback: (previous: T | undefined, current: T) => Y): ReadonlyArray<Y>;
@@ -276,17 +276,21 @@ if (!Array.prototype.skip) {
     this: readonly T[],
     getKey: (element: T) => K,
     map?: (item: T) => V
-  ): Map<K, (T | V)[]> {
-    return this.reduce((groupedElements, element) => {
-      const key = getKey(element)
-      const mappedElement = map ? map(element) : element
+  ): { key : K, value : (T | V)[] }[] {
+    const group = this.reduce((groupedElements, element) => {
+      const key = getKey(element);
+      const mappedElement = map ? map(element) : element;
 
-      if (!groupedElements.has(key)) groupedElements.set(key, [mappedElement])
+      if (!groupedElements.has(key)) groupedElements.set(key, [mappedElement]);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      else groupedElements.get(key).push(mappedElement)
+      else groupedElements.get(key).push(mappedElement);
 
-      return groupedElements
-    }, new Map<K, (T | V)[]>())
+      return groupedElements;
+      // eslint-disable-next-line comma-spacing
+    }, new Map<K,(T | V)[]>());
+
+    return group.mapToArray(group);
   }
 
   Array.prototype.mapWithPrevious = function <T, Y>(
