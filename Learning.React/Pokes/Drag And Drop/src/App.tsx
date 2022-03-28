@@ -1,10 +1,14 @@
 import React from 'react';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import DragAndDropWithoutLibrary from "./components/DragAndDropWithDnd/DragAndDropWithoutLibrary";
+import DragAndDropWithDnd from "./components/DragAndDropWithDnd/DragAndDropWithDnd";
+import DragAndDropWithoutAnyLibrary from "./components/DragAndDropWithoutAnyLibrary/DragAndDropWithoutAnyLibrary";
 
 const App = () => <DndProvider backend={HTML5Backend}>
-  <DragAndDropWithoutLibrary/>
+  <div style={{ display : 'flex', gap : '12px' }}>
+    <DragAndDropWithDnd/>
+    <DragAndDropWithoutAnyLibrary/>
+  </div>
 </DndProvider>
 
 export default App;
