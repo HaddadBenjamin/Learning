@@ -1,14 +1,20 @@
 import Dropzone from "./Dropzone/Dropzone";
-import Draggable from "./Draggable/Draggable";
+import {dropzonesMock} from "../mock";
+import {useState} from "react";
 
-const DragAndDropWithoutLibrary = () => <div>
-  <Dropzone>
-    <Draggable/>
-  </Dropzone>
+const DragAndDropWithoutLibrary = () => {
+  const [dropzones, setDropzones] = useState(dropzonesMock)
 
-  <Dropzone/>
-  <Dropzone/>
-  <Dropzone/>
-</div>
+  return <div>
+    {
+      dropzones.map(dropzone =>
+        <Dropzone
+          key={`dropzone-${dropzone.id}`}
+          {...dropzone}
+          dropzones={dropzones}
+          setDropzones={setDropzones}/>)
+    }
+  </div>;
+}
 
 export default DragAndDropWithoutLibrary

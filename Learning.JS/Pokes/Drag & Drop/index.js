@@ -30,7 +30,7 @@ document.addEventListener("dragleave", event => {
 document.addEventListener("drop", event => {
     if (event.target.className == "dropzone") {
         event.target.style.background = ""; // draggableElement
-        draggedElement.parentNode.removeChild(dragged); // oldDropzone
-        event.target.appendChild(dragged); // dropzone
+        draggedElement.parentNode.removeChild(draggedElement); // oldDropzone
+        event.target.appendChild(draggedElement); // dropzone
     }
 });
