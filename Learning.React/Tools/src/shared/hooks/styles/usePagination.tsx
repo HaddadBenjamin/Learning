@@ -5,7 +5,7 @@ import paginate from "../../utilities/array/paginate";
 
 interface IUsePaginationParameters<T>
 {
-  items : T[],
+  defaultItems : T[],
   defaultPageSize? : number
   defaultMoveSize?: number
   shouldComputePageOnPageSizeChange? : boolean
@@ -32,6 +32,8 @@ interface IUsePaginationResponse<T>
   setPageSize : (pageSize : number) => void
   // eslint-disable-next-line no-unused-vars
   setMoveSize : (moveSize : number) => void
+  // eslint-disable-next-line no-unused-vars
+  setItems : (items : T[]) => void
 }
 
 export const computePageOnPageSizeChange = (pageSize : number, page: number, newPageSize : number) : number => {
@@ -42,11 +44,12 @@ export const computePageOnPageSizeChange = (pageSize : number, page: number, new
 };
 
 const usePagination = <T, >({
-                              items,
+                              defaultItems,
                               defaultPageSize = 1,
                               defaultMoveSize,
                               shouldComputePageOnPageSizeChange,
                             } : IUsePaginationParameters<T>) : IUsePaginationResponse<T> => {
+  const [items, setItems] = useState<T[]>(defaultItems);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(defaultPageSize);
   const [paginatedItems, setPaginatedItems] = useState<T[]>(items);
@@ -66,7 +69,7 @@ const usePagination = <T, >({
 
   useEffect(() => {
     setPaginatedItems(paginate(items, page, pageSize, moveSize));
-  }, [pageSize, page, moveSize]);
+  }, [pageSize, page, moveSize, items]);
 
   const setPageSizeAndComputePageOnPageSizeChange = useCallback((newPageSize : number) => {
     if (shouldComputePageOnPageSizeChange) setPage(computePageOnPageSizeChange(pageSize, page, newPageSize));
@@ -91,6 +94,7 @@ const usePagination = <T, >({
     setPageSize: setPageSizeAndComputePageOnPageSizeChange,
     setPage,
     setMoveSize,
+    setItems,
   };
 };
 
