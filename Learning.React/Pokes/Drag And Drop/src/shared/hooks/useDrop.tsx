@@ -25,8 +25,8 @@ const useDrop = <T extends HTMLElement>({
   const [isOver, setIsOver] = useState(false);
 
   const drop = useCallback((event: Event) => onDrop?.(event), []);
-  const dragEnter = useCallback((event: Event) => { setIsOver(true); onDragEnter?.(event); }, []);
-  const dragOver = useCallback((event: Event) => { event.preventDefault(); onDragOver?.(event); }, []);
+  const dragEnter = useCallback((event: Event) => { setIsOver(true); onDragEnter?.(event) }, []);
+  const dragOver = useCallback((event: Event) => { event.stopPropagation(); event.preventDefault(); onDragOver?.(event) }, []);
   const dragLeave = useCallback((event: Event) => { setIsOver(false); onDragLeave?.(event); }, []);
 
   useEventListener('drop', drop, dropReference);
