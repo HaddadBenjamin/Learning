@@ -12,13 +12,13 @@ interface Props {
 }
 
 const Dropzone : FC<IDropzone & Props> = ({ id, draggables, dropzones, setDropzones }) => {
-  const { draggedElement } = useContext(DragAndDropContext)
+  const { getDraggedElement } = useContext(DragAndDropContext)
   const {isOver, dropReference} = useDrop<HTMLDivElement>({
     onDrop: () => {
       let newDropzones: IDropzone[] = dropzones.map(dropzone => ({
         ...dropzone,
-        draggables: (id === dropzone.id ? distinctBy([...dropzone.draggables, draggedElement()], (a, b) => a?.id === b?.id) :
-          dropzone.draggables.filter(d => draggedElement()?.id !== d.id)) as IDraggable[]
+        draggables: (id === dropzone.id ? distinctBy([...dropzone.draggables, getDraggedElement()], (a, b) => a?.id === b?.id) :
+          dropzone.draggables.filter(d => getDraggedElement()?.id !== d.id)) as IDraggable[]
       }))
 
       setDropzones(newDropzones)
