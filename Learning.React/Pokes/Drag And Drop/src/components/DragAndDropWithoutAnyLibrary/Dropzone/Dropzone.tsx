@@ -12,7 +12,6 @@ interface Props {
 
 const Dropzone : FC<IDropzone & Props> = ({ id, draggables, dropzones, setDropzones }) => {
   const { isOver, dropReference } = useDrop<HTMLDivElement, IDraggable>({
-    draggedElementKey : DraggableTypes.DRAGGABLE_TEXT,
     onDrop: (draggedElementsProps) => {
       let newDropzones: IDropzone[] = dropzones.map(dropzone => ({
         ...dropzone,

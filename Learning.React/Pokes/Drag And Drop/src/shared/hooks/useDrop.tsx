@@ -3,7 +3,6 @@ import useEventListener from "./useEventListener";
 import useSessionStorage from "./useSessionStorage";
 
 interface IUseDragParameters<T> {
-  draggedElementKey : string,
   onDrop : (draggedElementsProps : T, event?: Event) => void
   onDragEnter? : (event?: Event) => void
   onDragOver? : (event?: Event) => void
@@ -16,14 +15,13 @@ interface IUseDragResponse<T extends HTMLElement> {
 }
 
 const useDrop = <T extends HTMLElement, Y>({
-  draggedElementKey,
   onDrop,
   onDragEnter,
   onDragOver,
   onDragLeave
  } : IUseDragParameters<Y>) : IUseDragResponse<T> =>
 {
-  const [getDraggedElementProps, setDraggedElementProps] = useSessionStorage<Y | undefined>(`DRAGGED_ELEMENT_${draggedElementKey}`, undefined)
+  const [getDraggedElementProps, setDraggedElementProps] = useSessionStorage<Y | undefined>(`DRAGGED_ELEMENT_`, undefined)
 
   const dropReference = useRef() as MutableRefObject<T>;
   const [isOver, setIsOver] = useState(false);
