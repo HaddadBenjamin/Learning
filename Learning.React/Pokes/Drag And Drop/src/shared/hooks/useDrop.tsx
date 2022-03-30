@@ -1,7 +1,6 @@
 import { MutableRefObject, useCallback, useRef, useState } from "react";
 import useEventListener from "./useEventListener";
 import useSessionStorage from "./useSessionStorage";
-import {IDraggable} from "../../components/model";
 
 interface IUseDragParameters<T> {
   draggedElementKey : string,
@@ -25,12 +24,17 @@ const useDrop = <T extends HTMLElement, Y>({
   onDragLeave
  } : IUseDragParameters<Y>) : IUseDragResponse<T> =>
 {
-  const [getDraggedElementProps] = useSessionStorage<Y | undefined>(`DRAGGED_ELEMENT_${draggedElementKey}`, undefined)
+  const [getDraggedElementProps, setDraggedElementProps] = useSessionStorage<Y | undefined>(`DRAGGED_ELEMENT_${draggedElementKey}`, undefined)
 
   const dropReference = useRef() as MutableRefObject<T>;
   const [isOver, setIsOver] = useState(false);
 
-  const drop = (event: Event) => onDrop?.(getDraggedElementProps()!, event) // Pour que ça fonctionne, pas de useCallback ici
+  const drop = (event: Event) => // Pour que ça fonctionne, pas de useCallback ici
+  {
+    setIsOver(false);
+    onDrop?.(getDraggedElementProps()!, event);
+    setDraggedElementProps(undefined)
+  }
   const dragEnter = useCallback((event: Event) => { setIsOver(true); onDragEnter?.(event) }, []);
   const dragOver = useCallback((event: Event) => { event.stopPropagation(); event.preventDefault(); onDragOver?.(event) }, []);
   const dragLeave = useCallback((event: Event) => { setIsOver(false); onDragLeave?.(event); }, []);

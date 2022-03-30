@@ -1,6 +1,6 @@
 import styles from "./Dropzone.module.css";
-import {FC, useContext} from "react";
-import {DraggableTypes, IDraggable, IDropzone} from "../../model";
+import { FC } from "react";
+import { DraggableTypes, IDraggable, IDropzone } from "../../model";
 import Draggable from "../Draggable/Draggable";
 import distinctBy from "../../../shared/utilities/array/distinctBy";
 import useDrop from "../../../shared/hooks/useDrop";

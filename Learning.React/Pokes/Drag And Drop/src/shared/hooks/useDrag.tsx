@@ -1,7 +1,6 @@
 import { MutableRefObject, useCallback, useRef, useState } from "react";
 import useEventListener from "./useEventListener";
 import useSessionStorage from "./useSessionStorage";
-import {IDraggable} from "../../components/model";
 
 interface IUseDragParameters<T> {
   draggedElementKey : string,
