@@ -1,5 +1,9 @@
 import moment from 'moment';
 
-const formatDate = (date? : string) : string | undefined => (date ? moment(date).format('DD / MM / YYYY') : undefined);
+const formatDate = (date? : string, separator : string = ' / ') : string | undefined => {
+  const formattedDate = (date ? moment(date).format(`DD${separator}MM${separator}YYYY`) : undefined);
+
+  return formattedDate;
+};
 
 export default formatDate;

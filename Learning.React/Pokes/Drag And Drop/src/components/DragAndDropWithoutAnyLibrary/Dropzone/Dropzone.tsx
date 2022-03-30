@@ -1,10 +1,9 @@
 import styles from "./Dropzone.module.css";
 import {FC, useContext} from "react";
-import { IDraggable, IDropzone } from "../../model";
+import {DraggableTypes, IDraggable, IDropzone} from "../../model";
 import Draggable from "../Draggable/Draggable";
 import distinctBy from "../../../shared/utilities/array/distinctBy";
 import useDrop from "../../../shared/hooks/useDrop";
-import { DragAndDropContext } from "../context";
 
 interface Props {
   dropzones : IDropzone[]
@@ -12,13 +11,13 @@ interface Props {
 }
 
 const Dropzone : FC<IDropzone & Props> = ({ id, draggables, dropzones, setDropzones }) => {
-  const { getDraggedElement } = useContext(DragAndDropContext)
-  const {isOver, dropReference} = useDrop<HTMLDivElement>({
-    onDrop: () => {
+  const { isOver, dropReference } = useDrop<HTMLDivElement, IDraggable>({
+    draggedElementKey : DraggableTypes.DRAGGABLE_TEXT,
+    onDrop: (draggedElementsProps) => {
       let newDropzones: IDropzone[] = dropzones.map(dropzone => ({
         ...dropzone,
-        draggables: (id === dropzone.id ? distinctBy([...dropzone.draggables, getDraggedElement()], (a, b) => a?.id === b?.id) :
-          dropzone.draggables.filter(d => getDraggedElement()?.id !== d.id)) as IDraggable[]
+        draggables: (id === dropzone.id ? distinctBy([...dropzone.draggables, draggedElementsProps], (a, b) => a?.id === b?.id) :
+          dropzone.draggables.filter(d => draggedElementsProps?.id !== d.id)) as IDraggable[]
       }))
 
       setDropzones(newDropzones)

@@ -1,14 +1,13 @@
 import styles from "./Draggable.module.css";
-import { IDraggable} from "../../model";
+import {DraggableTypes, IDraggable} from "../../model";
 import {FC, useContext} from "react";
 import useDrag from "../../../shared/hooks/useDrag";
-import { DragAndDropContext } from "../context";
 
 const Draggable : FC<IDraggable> = (props) => {
-  const { setDraggedElement } = useContext(DragAndDropContext)
   const { text } = props
-  const { dragReference, isDragging } = useDrag<HTMLDivElement>({
-    onDragStart : () => setDraggedElement?.(props)
+  const { dragReference, isDragging } = useDrag<HTMLDivElement, IDraggable>({
+    draggedElementKey : DraggableTypes.DRAGGABLE_TEXT,
+    getDraggedElementProps : () => props
   })
 
   return <div ref={dragReference}
