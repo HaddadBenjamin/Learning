@@ -15,7 +15,6 @@ interface IUseDragResponse<T extends HTMLElement> {
   isOver : boolean
 }
 
-// Nécéssite d'être wrapper par un <DragAndDropContextProvider>
 const useDrop = <T extends HTMLElement, Y>({
   draggedElementKey,
   onDrop,

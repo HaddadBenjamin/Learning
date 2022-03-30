@@ -15,7 +15,6 @@ interface IUseDragResponse<T extends HTMLElement> {
   isDragging : boolean
 }
 
-// Nécéssite d'être wrapper par un <DragAndDropContextProvider>
 const useDrag = <T extends HTMLElement, Y>({
   draggedElementKey,
   getDraggedElementProps,

@@ -6,7 +6,7 @@ import DragAndDropWithoutAnyLibrary from "./components/DragAndDropWithoutAnyLibr
 
 const App = () => <DndProvider backend={HTML5Backend}>
   <div style={{ display : 'flex', gap : '12px' }}>
-    <DragAndDropWithDnd/>
+    <DragAndDropWithDnd/> { /* Provoque des erreurs dans la console */ }
     <DragAndDropWithoutAnyLibrary/>
   </div>
 </DndProvider>
