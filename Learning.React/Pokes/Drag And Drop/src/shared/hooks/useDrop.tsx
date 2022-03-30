@@ -2,10 +2,10 @@ import { MutableRefObject, useCallback, useRef, useState } from "react";
 import useEventListener from "./useEventListener";
 
 interface IUseDragParameters {
-  onDrop : () => void
-  onDragEnter? : () => void
-  onDragOver? : () => void
-  onDragLeave? : () => void
+  onDrop : (event?: Event) => void
+  onDragEnter? : (event?: Event) => void
+  onDragOver? : (event?: Event) => void
+  onDragLeave? : (event?: Event) => void
 }
 
 interface IUseDragResponse<T extends HTMLElement> {
@@ -24,10 +24,10 @@ const useDrop = <T extends HTMLElement>({
   const dropReference = useRef() as MutableRefObject<T>;
   const [isOver, setIsOver] = useState(false);
 
-  const drop = useCallback(() => onDrop?.(), []);
-  const dragEnter = useCallback(() => { setIsOver(true); onDragEnter?.(); }, []);
-  const dragOver = useCallback((event: Event) => { event.preventDefault(); onDragOver?.(); }, []);
-  const dragLeave = useCallback(() => { setIsOver(false); onDragLeave?.(); }, []);
+  const drop = useCallback((event: Event) => onDrop?.(event), []);
+  const dragEnter = useCallback((event: Event) => { setIsOver(true); onDragEnter?.(event); }, []);
+  const dragOver = useCallback((event: Event) => { event.preventDefault(); onDragOver?.(event); }, []);
+  const dragLeave = useCallback((event: Event) => { setIsOver(false); onDragLeave?.(event); }, []);
 
   useEventListener('drop', drop, dropReference);
   useEventListener('dragenter', dragEnter, dropReference);
