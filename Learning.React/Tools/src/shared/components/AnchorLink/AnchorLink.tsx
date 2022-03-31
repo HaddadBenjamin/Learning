@@ -10,7 +10,7 @@ interface Props
   text : string,
   offsetY? : number,
   className? : string,
-  scrollOnMouth?: boolean
+  scrollOnMount?: boolean
 }
 
 // Redirige vers une ancre de façon fluide.
@@ -19,25 +19,51 @@ const AnchorLink : FC<Props> = ({
   text,
   offsetY = 0,
   className,
-  scrollOnMouth,
+  scrollOnMount,
 }) => {
-  const [anchorTarget, setAnchorTarget] = useState<HTMLElement | null>(null);
+  const [clicked, setClicked] = useState(false);
+  const [targetPositionY, setTargetPositionY] = useState<number | null>(null);
+
+  const getTargetPositionY = () : number | null => {
+    if (!document || !window) return null;
+
+    const targetHtmlElement = document.getElementById(anchor);
+
+    if (!targetHtmlElement) return null;
+
+    return targetHtmlElement.getBoundingClientRect().top + window.pageYOffset + offsetY;
+  };
 
   const onClick = (event? : React.MouseEvent<HTMLAnchorElement>) : void => {
     event?.preventDefault();
 
-    if (!anchorTarget) return;
+    const newTargetPositionY = getTargetPositionY();
 
-    const positionY = anchorTarget!.getBoundingClientRect().top + window.pageYOffset + offsetY;
+    if (!newTargetPositionY) return;
 
-    window.scrollTo({ top: positionY, behavior: 'smooth' });
+    window.scrollTo({ top: newTargetPositionY, behavior: 'smooth' });
+
+    setClicked(true);
+    setTargetPositionY(newTargetPositionY);
   };
 
-  useEffect(() => setAnchorTarget(document.getElementById(anchor)), [anchor]);
   useEffect(() => {
-    if (scrollOnMouth && anchorTarget) onClick();
-  }, [scrollOnMouth, anchorTarget]);
+    if (scrollOnMount) onClick();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scrollOnMount]);
 
+  useEffect(() => {
+    if (clicked && targetPositionY && scrollOnMount) onClick();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [targetPositionY, clicked, scrollOnMount]);
+
+  useEffect(() => {
+    const updateTargetPositionY = () => setTargetPositionY(getTargetPositionY());
+    const updateTargetPositionYInterval = setInterval(() => updateTargetPositionY(), 1000);
+
+    return () => clearInterval(updateTargetPositionYInterval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <a
