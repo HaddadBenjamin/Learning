@@ -53,7 +53,7 @@ describe('arrayExtension', () => {
   it("swap", () => {
     // Given & When
     const result = swap([1, 2, 3,  4, 5], 1, 5)
-    const expected = [5, 1,  2, 3, 4]
+    const expected = [5, 2, 3, 4, 1]
 
     expect(result).toStrictEqual(expected)
   });
@@ -61,7 +61,7 @@ describe('arrayExtension', () => {
   it("swapIndex", () => {
     // Given & When
     const result = swapIndex([1, 2, 3,  4, 5], 0, 4)
-    const expected = [5, 1,  2, 3, 4]
+    const expected = [5, 2, 3, 4, 1]
 
     expect(result).toStrictEqual(expected)
   });
