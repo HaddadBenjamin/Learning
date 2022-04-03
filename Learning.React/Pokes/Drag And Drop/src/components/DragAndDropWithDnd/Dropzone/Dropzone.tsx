@@ -32,7 +32,8 @@ const Dropzone : FC<IDropzone & Props> = ({ id, draggables, dropzones, setDropzo
               style={{
                 background: isOver ? 'red' : '',
                 border : isOver ? '2px black dashed' : '',
-                margin : isOver ? '6px -6px' : ''
+                margin : isOver ? '6px 0' : '',
+                width :  isOver ? '196px' : ''
   }}>
     {draggables.map(draggable => <Draggable {...draggable} key={`draggable-${draggable.id}`}/>) }
   </div>;

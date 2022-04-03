@@ -1,12 +1,12 @@
 import Dropzone from "./Dropzone/Dropzone";
-import {dropzonesMock} from "../mock";
 import {useState} from "react";
+import {dropzonesMock2} from "../mock";
 
-const DragAndDropWithoutAnyLibrary = () => {
-  const [dropzones, setDropzones] = useState(dropzonesMock)
+const DragAndDropWithoutAnyLibrary2 = () => {
+  const [dropzones, setDropzones] = useState(dropzonesMock2)
 
   return <div>
-    <h2>Without Library</h2>
+    <h2>Without Library Advanced</h2>
     {
       dropzones.map(dropzone =>
         <Dropzone
@@ -18,4 +18,4 @@ const DragAndDropWithoutAnyLibrary = () => {
   </div>
 }
 
-export default DragAndDropWithoutAnyLibrary
+export default DragAndDropWithoutAnyLibrary2

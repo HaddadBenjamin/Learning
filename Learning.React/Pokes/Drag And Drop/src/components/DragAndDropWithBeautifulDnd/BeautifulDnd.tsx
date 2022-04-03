@@ -44,17 +44,18 @@ const QuoteList = React.memo(function QuoteList({ quotes }: any) {
 function BeautifulDnd() {
     const [items, setItems] = useState<IItem[]>(initialItems);
 
-    const reorder = (items : IItem[], dragIndex : number, dropIndex : number) =>
-        items.map((e, i) =>
-            i === dragIndex ? items[dropIndex] :
-                i === dropIndex ? items[dragIndex] :
-                    e
-        );
+    const reorderItemsOnDrag = (items : IItem[], dragIndex : number, dropIndex : number) =>
+    {
+        const [removed] = items.splice(dragIndex, 1);
+        items.splice(dropIndex, 0, removed);
+
+        return items;
+    }
 
     function onDragEnd(result : any) {
         if (!result.destination || result.destination.index === result.source.index) return;
 
-        const ordonnedItems = reorder(items, result.source.index, result.destination.index);
+        const ordonnedItems = reorderItemsOnDrag(items, result.source.index, result.destination.index);
 
         setItems(ordonnedItems);
     }

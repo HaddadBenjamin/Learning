@@ -9,3 +9,13 @@ export interface IDropzone {
   id : string
   draggables : IDraggable[]
 }
+
+export interface IDropzoneWithSingleDraggable {
+  id : string
+  draggable? : IDraggable
+}
+
+export interface IDraggedElementProps {
+  dropzoneId : string,
+  draggable : IDraggable
+}
