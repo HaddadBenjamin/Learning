@@ -2,6 +2,8 @@ import addRangeWithoutDuplicate from '../array/addRangeWithoutDuplicate';
 import distinctBy from "../array/distinctBy";
 import containsAll from "../array/containsAll";
 import groupBy from "../array/groupBy";
+import swap from "../array/swap";
+import swapIndex from "../array/swapIndex";
 
 describe('arrayExtension', () => {
   it("addRangeWithoutDuplicate'", () => {
@@ -44,6 +46,22 @@ describe('arrayExtension', () => {
       { key : 1, value : [{a: 1, id: 1}, {a: 2, id: 1}] },
       { key : 2, value : [{a: 3, id: 2}] },
     ];
+
+    expect(result).toStrictEqual(expected)
+  });
+
+  it("swap", () => {
+    // Given & When
+    const result = swap([1, 2, 3,  4, 5], 1, 5)
+    const expected = [5, 1,  2, 3, 4]
+
+    expect(result).toStrictEqual(expected)
+  });
+
+  it("swapIndex", () => {
+    // Given & When
+    const result = swapIndex([1, 2, 3,  4, 5], 0, 4)
+    const expected = [5, 1,  2, 3, 4]
 
     expect(result).toStrictEqual(expected)
   });

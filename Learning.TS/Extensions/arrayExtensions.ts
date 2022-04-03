@@ -70,6 +70,9 @@ declare global {
 
     chunk(chunkLenght : number) : T[][]
     addRangeWithoutDuplicate(elements: T[], comparator?: (a: T, b: T) => boolean): ReadonlyArray<T>;
+
+    swap(source : T, destination : T) : ReadonlyArray<T>
+    swapIndex(sourceIndex : number, destinationIndex : number) : ReadonlyArray<T>
   }
 }
 
@@ -354,6 +357,22 @@ if (!Array.prototype.skip) {
     // @ts-ignore
     return result.distinctBy(comparator)
   }
+
+  Array.prototype.swap = function <T>(this: readonly T[], source : T, destination : T  ) : readonly T[] {
+    return this.map(element =>
+        element === source ? destination :
+            element === destination ? source :
+                element
+    )
+  }
+
+  Array.prototype.swapIndex = function <T>(this: readonly T[], sourceIndex : number, destinationIndex : number) : readonly T[] {
+    return this.map((element, index) =>
+        index === sourceIndex ? this[destinationIndex] :
+            index === destinationIndex ? this[sourceIndex] :
+                element
+    )
+  }
 }
 
 // Exemples :
@@ -426,5 +445,7 @@ if (!Array.prototype.skip) {
     {a: 1, id: 1},
     {a: 2, id: 2},
   ]), // [{a: 1, id: 1}, {a: 2, id: 2} ])
+  [1, 2, 3, 4, 5].swap(1,5), //[5, 1, 2, 3, 4]
+  [1, 2, 3, 4, 5].swapIndex(0,4), //[5, 1, 2, 3, 4]
 ]
 // );
