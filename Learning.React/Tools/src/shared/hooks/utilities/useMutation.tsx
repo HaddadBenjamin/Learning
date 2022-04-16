@@ -9,6 +9,8 @@ interface IUseMutationRequest
   onSuccess? : (data : any) => void,
   // eslint-disable-next-line
   onError? : (error : any) => void
+  // Utile pour réaliser de l’optimistique UI : c'est à dire partir du principe que votre requête va fonctionner et la rollback en cas d’erreur, cela permet de mettre à jour votre UI tout de suite sans devoir à attendre que votre requête se termine
+  onBeforeMutate?: ()  => void
 }
 
 interface IUseMutationResponse<T>
@@ -29,11 +31,12 @@ interface IMutateParameters {
 }
 
 const UseMutation = <T, >({
-                            config,
-                            onSuccess,
-                            onError,
-                            httpClient,
-                          } : IUseMutationRequest) => {
+  config,
+  onSuccess,
+  onError,
+  onBeforeMutate,
+  httpClient,
+} : IUseMutationRequest) => {
   const [response, setResponse] = useState<IUseMutationResponse<T>>({
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     mutate: () => {},
@@ -43,6 +46,8 @@ const UseMutation = <T, >({
 
   const mutate = async (mutateParameters? : IMutateParameters) => {
     try {
+      onBeforeMutate?.();
+
       setResponse({
         ...response,
         error: undefined,

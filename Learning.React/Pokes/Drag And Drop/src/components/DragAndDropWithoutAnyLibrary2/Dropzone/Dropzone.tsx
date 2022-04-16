@@ -33,8 +33,8 @@ const Dropzone : FC<IDropzoneWithSingleDraggable & Props> = ({ id, draggable, dr
                 background: isOver ? 'red' : '',
                 border : isOver ? '2px black dashed' : '',
                 margin : isOver ? '6px 0' : '',
-                width :  isOver ? '196px' : ''
-  }}>
+                width :  isOver ? '196px' : ''}}
+  >
     {!isOver && draggable &&
         <Draggable dropzoneId={id} draggable={draggable} key={`draggable-${draggable.id}`}/> }
   </div>;

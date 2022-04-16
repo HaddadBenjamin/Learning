@@ -10,6 +10,8 @@ interface IUseGetParameters<T>
   onSuccess? : (data : T) => void,
   // eslint-disable-next-line
   onError? : (error : any) => void,
+  // Utile pour réaliser de l’optimistique UI : c'est à dire partir du principe que votre requête va fonctionner et la rollback en cas d’erreur, cela permet de mettre à jour votre UI tout de suite sans devoir à attendre que votre requête se termine
+  onBeforeGet?: ()  => void
   httpClient? : AxiosInstance,
   enabled?: boolean
 }
@@ -37,6 +39,7 @@ const useGet = <T, >(
     dependencies = [],
     onSuccess,
     onError,
+    onBeforeGet,
     httpClient,
     enabled = true,
   } : IUseGetParameters<T>,
@@ -50,6 +53,8 @@ const useGet = <T, >(
 
   const refetch = async (refetchParameters? : IRefetchParameters) => {
     try {
+      onBeforeGet?.()
+      
       setResponse({
         ...response,
         error: undefined,

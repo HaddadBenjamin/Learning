@@ -15,11 +15,11 @@ interface IUseDragResponse<T extends HTMLElement> {
 }
 
 const useDrop = <T extends HTMLElement, Y>({
-                                             onDrop,
-                                             onDragEnter,
-                                             onDragOver,
-                                             onDragLeave
-                                           } : IUseDragParameters<Y>) : IUseDragResponse<T> =>
+   onDrop,
+   onDragEnter,
+   onDragOver,
+   onDragLeave
+ } : IUseDragParameters<Y>) : IUseDragResponse<T> =>
 {
   const [getDraggedElementProps, setDraggedElementProps] = useSessionStorage<Y | undefined>(`DRAGGED_ELEMENT`, undefined)
 
