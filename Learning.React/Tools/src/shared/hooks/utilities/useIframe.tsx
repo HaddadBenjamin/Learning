@@ -21,6 +21,7 @@ const useIframe = (url : string, title : string) => {
       />
     </div>
   );
+  
 
   const onIframeLoad = useCallback(() => {
     const error404 = ref?.current?.contentDocument?.body?.getElementsByTagName('h1');

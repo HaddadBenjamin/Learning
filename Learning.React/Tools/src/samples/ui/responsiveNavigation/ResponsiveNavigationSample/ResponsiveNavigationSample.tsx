@@ -9,7 +9,7 @@ import {
   initialNavigationElements,
   routes,
 } from '../responsiveNavigation.configuration';
-import useClickOutside from '../../../../shared/hooks/utilities/useClickOutside';
+import useClickOutside from '../../../../shared/hooks/events/useClickOutside';
 
 const LazyHome = lazy(() => import('../FakeRouterComponents/Home'));
 const LazyAbout = lazy(() => import('../FakeRouterComponents/About'));
