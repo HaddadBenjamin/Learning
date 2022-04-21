@@ -5,7 +5,7 @@ interface IUseGetParameters<T>
 {
   url: string,
   config?: AxiosRequestConfig,
-  dependencies? : [],
+  dependencies? : any[],
   // eslint-disable-next-line
   onSuccess? : (data : T) => void,
   // eslint-disable-next-line
