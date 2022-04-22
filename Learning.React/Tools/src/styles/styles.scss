@@ -6,3 +6,7 @@
 @import "./borders";
 @import "./sharedRules";
 @import "./animations";
+
+* { /* stylelint-disable-line */
+  font-smooth: always; /* stylelint-disable-line property-no-unknown */
+}

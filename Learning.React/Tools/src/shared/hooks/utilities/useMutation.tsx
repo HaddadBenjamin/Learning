@@ -1,52 +1,50 @@
 import { useState } from 'react';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-interface IUseMutationRequest
+interface IUseMutationRequest<TData, TOnFinishGetParameters = void>
 {
   httpClient? : AxiosInstance,
   config?: AxiosRequestConfig,
-  // eslint-disable-next-line
-  onSuccess? : (data : any) => void,
-  // eslint-disable-next-line
-  onError? : (error : any) => void
-  // Utile pour réaliser de l’optimistique UI : c'est à dire partir du principe que votre requête va fonctionner et la rollback en cas d’erreur, cela permet de mettre à jour votre UI tout de suite sans devoir à attendre que votre requête se termine
-  onBeforeMutate?: ()  => void
+  onSuccess? : (data?: TData, parameters?: TOnFinishGetParameters) => void,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onError? : (error : any, parameters?: TOnFinishGetParameters) => void,
+  // Nécéssaire pour réaliser de l'UI optimiste : c’est à dire partir du principe que votre requête va fonctionner et la rollback en cas d’erreur, cela permet de mettre à jour votre UI tout de suite sans devoir à attendre que votre requête se termine. On peut utiliser de l’UI optimiste que dans les cas on peut prévoir à l’avance le résultat de la réponse de succès.
+  onBeforeMutate? : (parameters?: TOnFinishGetParameters) => void,
 }
 
-interface IUseMutationResponse<T>
+interface IUseMutationResponse<TData, TOnFinishGetParameters>
 {
-  // eslint-disable-next-line
-  mutate : (mutateParameters?: IMutateParameters) => T | void
-  // eslint-disable-next-line
-  data? : any,
+  mutate : (mutateParameters?: IMutateParameters<TOnFinishGetParameters>) => TData | void
+  data? : TData,
   isCalled: boolean,
   isLoading : boolean,
   // eslint-disable-next-line
   error?: any,
 }
 
-interface IMutateParameters {
+export interface IMutateParameters<TOnFinishGetParameters = void> {
   config?: AxiosRequestConfig,
   url? : string,
+  parameters?: TOnFinishGetParameters // paramètres applicable à onSuccess, onError, onBeforeMutate
 }
 
-const UseMutation = <T, >({
-  config,
-  onSuccess,
-  onError,
-  onBeforeMutate,
-  httpClient,
-} : IUseMutationRequest) => {
-  const [response, setResponse] = useState<IUseMutationResponse<T>>({
+const UseMutation = <TData, TOnFinishGetParameters = void>({
+                                                             config,
+                                                             onSuccess,
+                                                             onError,
+                                                             onBeforeMutate,
+                                                             httpClient,
+                                                           } : IUseMutationRequest<TData, TOnFinishGetParameters>) => {
+  const [response, setResponse] = useState<IUseMutationResponse<TData, TOnFinishGetParameters>>({
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     mutate: () => {},
     isCalled: false,
     isLoading: false,
   });
 
-  const mutate = async (mutateParameters? : IMutateParameters) => {
+  const mutate = async (mutateParameters? : IMutateParameters<TOnFinishGetParameters>) => {
     try {
-      onBeforeMutate?.();
+      onBeforeMutate?.(mutateParameters?.parameters);
 
       setResponse({
         ...response,
@@ -54,27 +52,29 @@ const UseMutation = <T, >({
         isLoading: true,
         isCalled: false,
       });
+
+      onSuccess?.(data?.data, mutateParameters?.parameters);
+
       const data = await (httpClient ?? axios).request(
-        {
-          ...config,
-          ...mutateParameters?.config,
-          // on met url à la place de baseURL pour éviter un crash dans mon authenticatedClient
-          url: mutateParameters?.url ?? mutateParameters?.config?.url ?? config?.url,
-        },
+          {
+            ...config,
+            ...mutateParameters?.config,
+            url: mutateParameters?.url ?? mutateParameters?.config?.url ?? config?.url,
+          },
       );
 
-      onSuccess?.(data);
+      onSuccess?.(data?.data, mutateParameters?.parameters);
 
       setResponse({
         ...response,
-        data,
+        data: data?.data,
         isCalled: true,
         isLoading: false,
         error: false,
       });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      onError?.(error);
+      onError?.(error, mutateParameters?.parameters);
 
       setResponse({
         ...response,

@@ -52,7 +52,7 @@ const usePagination = <T, >({
   const [moveSize, setMoveSize] = useState(defaultMoveSize ?? defaultPageSize);
 
   const hasPreviousPage = useMemo(() => page > 1, [page]);
-  // eslint-disable-next-line
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const hasNextPage = useMemo(() => ((page - 1) * moveSize) + pageSize < items.length, [page, moveSize, pageSize]);
   const offset = useMemo(() => (page === 1 ? 0 : (page - 1) * moveSize), [page, moveSize]);
 
