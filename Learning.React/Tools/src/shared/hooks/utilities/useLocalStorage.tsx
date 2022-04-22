@@ -4,7 +4,6 @@ import getFromLocalStorage from "../../utilities/localStorage/getFromLocalStorag
 import setFromLocalStorage from "../../utilities/localStorage/setFromLocalStorage";
 import deleteFromLocalStorage from "../../utilities/localStorage/deleteFromLocalStorage";
 
-// eslint-disable-next-line no-unused-vars
 type UseLocalStorageResponse<T> = [() => T, (value : T) => void, () => void]
 
 // Équivalent à useState pour l'état partagé, équivalent à Redux en une ligne

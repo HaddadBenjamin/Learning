@@ -2,9 +2,7 @@ import mapToArray from './mapToArray';
 
 const groupBy = <T, K, V>(
   array: T[],
-  // eslint-disable-next-line no-unused-vars
   getKey: (element: T) => K,
-  // eslint-disable-next-line no-unused-vars
   map?: (item: T) => V,
 ) : { key : K, value : (T | V)[] }[] => {
     const group = array.reduce((groupedElements, element) => {

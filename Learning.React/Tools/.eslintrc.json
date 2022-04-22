@@ -16,8 +16,8 @@
         "no-shadow": "off",
         "@typescript-eslint/no-shadow" : "error",
 
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": "error",
+        // fix le fait de devoir ajouter eslint-disable-next-line au dessus de nos interfaces.
+        "no-unused-vars": "off", "@typescript-eslint/no-unused-vars": "error",
 
         "react/require-default-props": "off",
         "react/jsx-props-no-spreading" : "off"

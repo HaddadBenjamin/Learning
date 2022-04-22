@@ -26,13 +26,9 @@ interface IUsePaginationResponse<T>
   goToPreviousPage : () => void
   goToNextPage : () => void
 
-  // eslint-disable-next-line no-unused-vars
   setPage : (page : number) => void
-  // eslint-disable-next-line no-unused-vars
   setPageSize : (pageSize : number) => void
-  // eslint-disable-next-line no-unused-vars
   setMoveSize : (moveSize : number) => void
-  // eslint-disable-next-line no-unused-vars
   setItems : (items : T[]) => void
 }
 
