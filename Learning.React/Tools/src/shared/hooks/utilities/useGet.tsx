@@ -10,7 +10,7 @@ interface IUseGetParameters<TData, TOnFinishGetParameters = void>
   onSuccess? : (data : TData, parameters?: TOnFinishGetParameters) => void,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onError? : (error : any, parameters?: TOnFinishGetParameters) => void,
-  // Nécéssaire pour réaliser de l'UI optimiste : c’est à dire partir du principe que votre requête va fonctionner et la rollback en cas d’erreur, cela permet de mettre à jour votre UI tout de suite sans devoir à attendre que votre requête se termine. On peut utiliser de l’UI optimiste que dans les cas on peut prévoir à l’avance le résultat de la réponse de succès.
+  // Nécéssaire pour réaliser de l'UI optimiste : c’est à dire partir du principe que votre requête va fonctionner et la rollback en cas d’erreur, cela permet de mettre à jour votre UI tout de suite sans devoir à attendre que votre requête se termine. On peut utiliser de l’UI optimiste que dans les cas on peut prévoir à l’avance le résultat de la réponse de succès. C’est également une alternative à ajouter des loadeurs lorsque la requête est entrain de se lancer.
   onBeforeGet? : (parameters?: TOnFinishGetParameters) => void,
   httpClient? : AxiosInstance,
   enabled?: boolean
