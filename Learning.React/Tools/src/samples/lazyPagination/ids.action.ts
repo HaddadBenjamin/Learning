@@ -1,4 +1,4 @@
-import {IPaginateResponse} from '../../shared/domains/lazyLoad/lazyPagination/pagination.model';
+import { IPaginateResponse } from '../../shared/domains/lazyLoad/lazyPagination/pagination.model';
 
 export enum IdAction {
   GET_IDS_REQUEST = 'ids/GET_IDS_REQUEST',
@@ -44,7 +44,7 @@ export const getIdsRequestAction = (): GetIdsRequestAction => ({
 });
 
 export const getIdsSuccessAction = (
-  payload: number[]
+  payload: number[],
 ): GetIdsSuccessAction => ({
   type: IdAction.GET_IDS_SUCCESS,
   payload,
@@ -57,21 +57,21 @@ export const getIdsFailedAction = (error: string): GetIdsFailedAction => ({
 
 export const getPaginateIdsRequestAction = (
   page: number,
-  pageSize: number
+  pageSize: number,
 ): GetPaginateIdsRequestAction => ({
   type: IdAction.GET_PAGINATE_IDS_REQUEST,
   payload: { page, pageSize },
 });
 
 export const getPaginateIdsSuccessAction = (
-  payload: IPaginateResponse<number>
+  payload: IPaginateResponse<number>,
 ): GetPaginateIdsSuccessAction => ({
   type: IdAction.GET_PAGINATE_IDS_SUCCESS,
   payload,
 });
 
 export const getPaginateIdsFailedAction = (
-  error: string
+  error: string,
 ): GetPaginateIdsFailedAction => ({
   type: IdAction.GET_PAGINATE_IDS_FAILED,
   error,

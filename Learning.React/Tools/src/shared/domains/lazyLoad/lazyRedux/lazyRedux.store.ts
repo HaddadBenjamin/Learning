@@ -26,7 +26,7 @@ class LazyStore<TApplicationState> implements ILazyStore {
     initialApplicationState: PreloadedState<TApplicationState>,
     middlewares: StoreEnhancer,
     sagaMiddleware: SagaMiddleware,
-    rootSagas: Saga
+    rootSagas: Saga,
   ) {
     this.defaultReducers = defaultReducers;
     this.sagaMiddleware = sagaMiddleware;
@@ -35,7 +35,7 @@ class LazyStore<TApplicationState> implements ILazyStore {
     this.store = createStore(
       this.createRootReducer(),
       initialApplicationState,
-      middlewares
+      middlewares,
     );
 
     this.injectedSagas = new Map<string, Task>([
@@ -43,8 +43,7 @@ class LazyStore<TApplicationState> implements ILazyStore {
     ]);
   }
 
-  createRootReducer = (lazyReducers?: ReducersMapObject): Reducer =>
-    combineReducers({ ...this.defaultReducers, ...lazyReducers });
+  createRootReducer = (lazyReducers?: ReducersMapObject): Reducer => combineReducers({ ...this.defaultReducers, ...lazyReducers });
 
   injectReducer = (key: string, reducer: Reducer): void => {
     if (this.doesReducerHasBeenInjected(key)) return;
@@ -61,11 +60,9 @@ class LazyStore<TApplicationState> implements ILazyStore {
     this.injectedSagas.set(key, task);
   };
 
-  doesReducerHasBeenInjected = (key: string): boolean =>
-    Object.hasOwnProperty.call(this.injectedReducers, key);
+  doesReducerHasBeenInjected = (key: string): boolean => Object.hasOwnProperty.call(this.injectedReducers, key);
 
-  doesSagaHasBeenInjected = (key: string): boolean =>
-    this.injectedSagas.has(key);
+  doesSagaHasBeenInjected = (key: string): boolean => this.injectedSagas.has(key);
 }
 
 export default LazyStore;

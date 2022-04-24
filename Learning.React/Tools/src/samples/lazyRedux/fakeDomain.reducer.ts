@@ -3,7 +3,7 @@ import { FakeDomainAction, FakeDomainActions } from './fakeDomain.action';
 
 const fakeDomainReducer = (
   state: FakeDomainState = initialFakeDomainState,
-  action: FakeDomainActions
+  action: FakeDomainActions,
 ): FakeDomainState => {
   switch (action.type) {
     case FakeDomainAction.GET_MESSAGE_REQUEST:

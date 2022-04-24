@@ -14,7 +14,7 @@ const PaginationFilters: FC<Props> = ({
   <>
     <span>select page size : </span>
     <select value={pageSize} onChange={handlePageSizeChange}>
-      {pageSizes.map(newPageSize => (
+      {pageSizes.map((newPageSize) => (
         <option
           key={`PaginationFilterButton-${newPageSize}`}
           value={newPageSize}

@@ -1,9 +1,11 @@
-import React, {FC, lazy, ReactNode, useRef, useState} from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import React, {
+  FC, lazy, ReactNode, useRef, useState,
+} from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import useToggle from '../../../../shared/hooks/utilities/useToggle';
 import useBreakpoints from '../../../../shared/hooks/styles/useBreakpoints';
 import styles from './ResponsiveNavigationSample.module.scss';
-import {INavigationElement} from '../responsiveNavigation.model';
+import { INavigationElement } from '../responsiveNavigation.model';
 import NavigationElement from '../NavigationElement/NavigationElement';
 import {
   initialNavigationElements,
@@ -19,7 +21,7 @@ const LazyCV = lazy(() => import('../FakeRouterComponents/CV'));
 
 const ResponsiveNavigationSample: FC = () => {
   const [navigationElements, setNavigationElements] = useState(
-    initialNavigationElements
+    initialNavigationElements,
   );
   const [
     mobileNavigationIsVisible,
@@ -29,26 +31,23 @@ const ResponsiveNavigationSample: FC = () => {
   const { belowSm } = useBreakpoints();
 
   const componentReference = useRef(null);
-  useClickOutside(componentReference, () =>
-    setMobileNavigationIsVisible(false)
+  useClickOutside(componentReference, () => setMobileNavigationIsVisible(false),
   );
 
-  const selectNavigationElement = (navigationElement: INavigationElement) =>
-    setNavigationElements(
-      navigationElements.map(e => ({
-        ...e,
-        active: e.title === navigationElement.title,
-      }))
-    );
+  const selectNavigationElement = (navigationElement: INavigationElement) => setNavigationElements(
+    navigationElements.map((e) => ({
+      ...e,
+      active: e.title === navigationElement.title,
+    })),
+  );
 
-  const showNavigationElements = (elements: INavigationElement[]): ReactNode =>
-    elements.map(n => (
-      <NavigationElement
-        key={n.title}
-        {...n}
-        selectNavigationElement={selectNavigationElement}
-      />
-    ));
+  const showNavigationElements = (elements: INavigationElement[]): ReactNode => elements.map((n) => (
+    <NavigationElement
+      key={n.title}
+      {...n}
+      selectNavigationElement={selectNavigationElement}
+    />
+  ));
 
   return (
     <BrowserRouter>
@@ -65,20 +64,20 @@ const ResponsiveNavigationSample: FC = () => {
           {belowSm && (
             <>
               <button
-                type="button"
+                type='button'
                 className={styles.navigationButton}
                 onClick={toggleMobileNavigation}
               >
                 Navigation button
               </button>
 
-              {!mobileNavigationIsVisible &&
-                showNavigationElements(
-                  navigationElements.filter(n => n.active)
+              {!mobileNavigationIsVisible
+                && showNavigationElements(
+                  navigationElements.filter((n) => n.active),
                 )}
 
-              {mobileNavigationIsVisible &&
-                showNavigationElements(navigationElements)}
+              {mobileNavigationIsVisible
+                && showNavigationElements(navigationElements)}
             </>
           )}
         </nav>

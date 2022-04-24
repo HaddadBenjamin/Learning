@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/prefer-default-export
-import {Breakpoints} from "../hooks/styles/useBreakpoints";
+import { Breakpoints } from '../hooks/styles/useBreakpoints';
 
 export const useBreakpointsForMobileMock : Breakpoints = {
   isMobile: true,

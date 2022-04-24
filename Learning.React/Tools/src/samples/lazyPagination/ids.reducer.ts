@@ -3,7 +3,7 @@ import { IdAction, IdActions } from './ids.action';
 
 const idReducer = (
   state: IdState = initialIdState,
-  action: IdActions
+  action: IdActions,
 ): IdState => {
   switch (action.type) {
     case IdAction.GET_IDS_REQUEST:

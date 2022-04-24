@@ -9,7 +9,7 @@ export const lazyStore = new LazyStore(
   initialApplicationState,
   middlewares,
   sagaMiddleware,
-  rootSagas
+  rootSagas,
 );
 
 const { store } = lazyStore;

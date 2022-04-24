@@ -5,17 +5,17 @@ const useOnClickOutside = <T extends HTMLElement>(
   onClickOutside: () => void,
 ) => {
   useEffect(() => {
-      const onMouseDown = (event: MouseEvent): void => {
-        if (!onClickOutsideReference.current || onClickOutsideReference.current.contains(event.target as T)) return;
+    const onMouseDown = (event: MouseEvent): void => {
+      if (!onClickOutsideReference.current || onClickOutsideReference.current.contains(event.target as T)) return;
 
-        onClickOutside();
-      };
+      onClickOutside();
+    };
 
-      document.addEventListener('mousedown', onMouseDown);
+    document.addEventListener('mousedown', onMouseDown);
 
-      return () => document.removeEventListener('mousedown', onMouseDown);
-    },
-    [onClickOutsideReference, onClickOutside]);
+    return () => document.removeEventListener('mousedown', onMouseDown);
+  },
+  [onClickOutsideReference, onClickOutside]);
 };
 
 export default useOnClickOutside;

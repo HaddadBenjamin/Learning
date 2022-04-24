@@ -4,12 +4,12 @@ import useDoesElementIsVisible from './useDoesElementIsVisible';
 export default (
   getElement: () => any,
   onElementIsVisible: () => void,
-  stopToObserveWhenElementIsVisible: boolean = true
+  stopToObserveWhenElementIsVisible = true,
 ): boolean => {
   const [elementIsVisible, setElementIsVisible] = useState(false);
   const isVisible = useDoesElementIsVisible(
     getElement,
-    stopToObserveWhenElementIsVisible
+    stopToObserveWhenElementIsVisible,
   );
 
   if (isVisible && !elementIsVisible) {

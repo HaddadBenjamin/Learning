@@ -2,23 +2,21 @@ import { useEffect, useState } from 'react';
 
 export default (
   getElement: () => any,
-  stopToObserveWhenElementIsVisible: boolean = true
+  stopToObserveWhenElementIsVisible = true,
 ): boolean => {
   const [isVisible, setIsVisible] = useState(false);
 
   const intersectionObserverCallback = (
     entries: IntersectionObserverEntry[],
-    observer: IntersectionObserver
-  ): void =>
-    entries.forEach(entry => {
-      const elementIsVisible =
-        entry.isIntersecting || entry.intersectionRatio > 0;
+    observer: IntersectionObserver,
+  ): void => entries.forEach((entry) => {
+    const elementIsVisible = entry.isIntersecting || entry.intersectionRatio > 0;
 
-      if (elementIsVisible) {
-        if (stopToObserveWhenElementIsVisible) observer.unobserve(entry.target);
-        setIsVisible(true);
-      }
-    });
+    if (elementIsVisible) {
+      if (stopToObserveWhenElementIsVisible) observer.unobserve(entry.target);
+      setIsVisible(true);
+    }
+  });
 
   useEffect(() => {
     if (!getElement()) return;
@@ -28,7 +26,7 @@ export default (
       {
         rootMargin: '50px',
         threshold: 0.01,
-      }
+      },
     );
 
     intersectionObserver.observe(getElement());

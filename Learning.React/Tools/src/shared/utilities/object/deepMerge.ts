@@ -1,5 +1,4 @@
-const isObject = (item: any): boolean =>
-  item && typeof item === 'object' && !Array.isArray(item);
+const isObject = (item: any): boolean => item && typeof item === 'object' && !Array.isArray(item);
 
 export const deepMerge = (target: any, ...sources: any): any => {
   if (!sources.length) return target;

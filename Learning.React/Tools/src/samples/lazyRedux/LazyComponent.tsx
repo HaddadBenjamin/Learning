@@ -1,26 +1,26 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import useLazySaga from '../../shared/hooks/performance/useLazySaga';
 import useLazyReducer from '../../shared/hooks/performance/useLazyReducer';
-import {fakeDomainReducerKey} from './fakeDomain.reducer';
-import {getMessageRequestAction} from './fakeDomain.action';
+import { fakeDomainReducerKey } from './fakeDomain.reducer';
+import { getMessageRequestAction } from './fakeDomain.action';
 import selectMessage from './fakeDomain.selector';
-import {fakeDomainSagaKey} from './fakeDomain.saga';
+import { fakeDomainSagaKey } from './fakeDomain.saga';
 import useFeatureFlags from '../../shared/domains/featureFlag/hooks/useFeatureFlags';
-import {AbTestIds, FeatureFlagIds} from './fakeDomain.configuration';
+import { AbTestIds, FeatureFlagIds } from './fakeDomain.configuration';
 import useAbTests from '../../shared/domains/abTest/hooks/useAbTests';
 
 const LazyComponent = () => {
   const dispatch = useDispatch();
   const message = useSelector(selectMessage);
-  
+
   const reducerIsInjected = useLazyReducer(
     fakeDomainReducerKey,
-    'samples/lazyRedux/fakeDomain.reducer'
+    'samples/lazyRedux/fakeDomain.reducer',
   );
   const sagaIsInjected = useLazySaga(
     fakeDomainSagaKey,
-    'samples/lazyRedux/fakeDomain.saga'
+    'samples/lazyRedux/fakeDomain.saga',
   );
   const [featureFlagIsEnabled] = useFeatureFlags(FeatureFlagIds.fakeDomain);
   const [abTestIsEnabled] = useAbTests(AbTestIds.fakeDomain);
@@ -28,11 +28,11 @@ const LazyComponent = () => {
 
   useEffect(() => {
     if (
-      sagaIsInjected &&
-      reducerIsInjected &&
-      featureFlagIsEnabled &&
-      abTestIsEnabled &&
-      !isInitialized
+      sagaIsInjected
+      && reducerIsInjected
+      && featureFlagIsEnabled
+      && abTestIsEnabled
+      && !isInitialized
     ) {
       dispatch(getMessageRequestAction());
       setIsInitialized(true);
@@ -57,13 +57,27 @@ const LazyComponent = () => {
         (fr, en, it, ...) or a part of your users or some buisness condition and
         by environments
       </div>
-      <div>Does reducer has been injected : {reducerIsInjected.toString()}</div>
-      <div>Does saga has been injected : {sagaIsInjected.toString()}</div>
       <div>
-        Does feature flag is enabled : {featureFlagIsEnabled.toString()}
+        Does reducer has been injected :
+        {reducerIsInjected.toString()}
       </div>
-      <div>Does ab test is enabled : {abTestIsEnabled.toString()}</div>
-      <div>Message from the store lazy loaded : {message}</div>
+      <div>
+        Does saga has been injected :
+        {sagaIsInjected.toString()}
+      </div>
+      <div>
+        Does feature flag is enabled :
+        {' '}
+        {featureFlagIsEnabled.toString()}
+      </div>
+      <div>
+        Does ab test is enabled :
+        {abTestIsEnabled.toString()}
+      </div>
+      <div>
+        Message from the store lazy loaded :
+        {message}
+      </div>
     </div>
   );
 };

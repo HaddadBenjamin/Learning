@@ -46,7 +46,6 @@ const useIdle = (minutesToBeIdle : number) => {
     // eslint-disable-next-line guard-for-in,no-restricted-syntax
     events.forEach((event) => window.addEventListener(event, onActive));
 
-
     return () => {
       clearInterval(idleInterval);
 

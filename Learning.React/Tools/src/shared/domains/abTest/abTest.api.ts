@@ -8,5 +8,4 @@ import { routes } from './abTest.configuration';
 
 export const baseUrl = `${backOfficeApiConfiguration.baseUrl}${routes.api}`;
 
-export const getAbTests = async (): Promise<AxiosResponse<AbTest[]>> =>
-  (await axios.get(baseUrl, httpConfiguration.platform)).data;
+export const getAbTests = async (): Promise<AxiosResponse<AbTest[]>> => (await axios.get(baseUrl, httpConfiguration.platform)).data;

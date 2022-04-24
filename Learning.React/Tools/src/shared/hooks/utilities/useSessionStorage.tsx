@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
-import getFromSessionStorage from "../../utilities/sessionStorage/getFromSessionStorage";
-import removeFromSessionStorage from "../../utilities/sessionStorage/removeFromSessionStorage";
-import setFromSessionStorage from "../../utilities/sessionStorage/setFromSessionStorage";
+import getFromSessionStorage from '../../utilities/sessionStorage/getFromSessionStorage';
+import removeFromSessionStorage from '../../utilities/sessionStorage/removeFromSessionStorage';
+import setFromSessionStorage from '../../utilities/sessionStorage/setFromSessionStorage';
 
 type UseSessionStorageResponse<T> = [() => T, (value : T) => void, () => void]
 

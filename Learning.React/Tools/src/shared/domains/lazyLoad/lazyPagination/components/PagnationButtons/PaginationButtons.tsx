@@ -3,7 +3,7 @@ import cn from 'classnames';
 import styles from './PaginationButtons.module.scss';
 import IPagination from '../../pagination.model';
 import computePageRange from '../../pagination.utils';
-import range from "../../../../../utilities/array/range";
+import range from '../../../../../utilities/array/range';
 
 interface Props<T> {
   showFirstAndLastButtons?: boolean;
@@ -30,11 +30,13 @@ const PaginationButtons: FC<Props<any>> = ({
   goToPage,
   goToNextPage,
 }) => {
-  const { page, hasPreviousPage, hasNextPage, lastPage } = pagination;
+  const {
+    page, hasPreviousPage, hasNextPage, lastPage,
+  } = pagination;
   const [minimumPage, maximumPage] = computePageRange(
     page,
     numberOfPageToDisplay,
-    lastPage
+    lastPage,
   );
 
   return (
@@ -42,7 +44,7 @@ const PaginationButtons: FC<Props<any>> = ({
       <div>
         {[undefined, true].includes(showFirstAndLastButtons) && (
           <button
-            type="button"
+            type='button'
             onClick={() => goToPage(1)}
             className={cn(page === 1 && styles.active)}
           >
@@ -52,7 +54,7 @@ const PaginationButtons: FC<Props<any>> = ({
 
         {[undefined, true].includes(showPrevAndNextButtons) && (
           <button
-            type="button"
+            type='button'
             disabled={!hasPreviousPage}
             onClick={goToPreviousPage}
           >
@@ -60,15 +62,14 @@ const PaginationButtons: FC<Props<any>> = ({
           </button>
         )}
 
-        {[undefined, true].includes(showPageButtons) &&
-          range(lastPage)
+        {[undefined, true].includes(showPageButtons)
+          && range(lastPage)
             .filter(
-              pageNumber =>
-                pageNumber >= minimumPage && pageNumber <= maximumPage
+              (pageNumber) => pageNumber >= minimumPage && pageNumber <= maximumPage,
             )
-            .map(pageNumber => (
+            .map((pageNumber) => (
               <button
-                type="button"
+                type='button'
                 key={`PaginationButton-${pageNumber}`}
                 onClick={() => goToPage(pageNumber)}
                 className={cn(pageNumber === page && styles.active)}
@@ -78,14 +79,14 @@ const PaginationButtons: FC<Props<any>> = ({
             ))}
 
         {[undefined, true].includes(showPrevAndNextButtons) && (
-          <button type="button" disabled={!hasNextPage} onClick={goToNextPage}>
+          <button type='button' disabled={!hasNextPage} onClick={goToNextPage}>
             Next
           </button>
         )}
 
         {[undefined, true].includes(showFirstAndLastButtons) && (
           <button
-            type="button"
+            type='button'
             onClick={() => goToPage(lastPage)}
             className={cn(page === lastPage && styles.active)}
           >

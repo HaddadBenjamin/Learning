@@ -6,7 +6,7 @@ import { FeatureFlagActions, FeatureFlagAction } from './featureFlag.action';
 
 const featureFlagReducer = (
   state: FeatureFlagState = initialFeatureFlagsState,
-  action: FeatureFlagActions
+  action: FeatureFlagActions,
 ): FeatureFlagState => {
   switch (action.type) {
     case FeatureFlagAction.GET_FEATURE_FLAG_REQUEST:

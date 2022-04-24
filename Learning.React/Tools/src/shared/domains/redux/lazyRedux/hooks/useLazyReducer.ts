@@ -4,10 +4,10 @@ import { lazyStore } from '../../../../../samples/lazyRedux/root.store';
 const useLazyReducer = (
   key: string,
   path: string,
-  condition: boolean = true
+  condition = true,
 ) => {
   const [reducerIsInjected, setReducerIsInjected] = useState(
-    lazyStore.doesReducerHasBeenInjected(key)
+    lazyStore.doesReducerHasBeenInjected(key),
   );
 
   useEffect(

@@ -8,7 +8,7 @@ interface Props {
 
 const IdsList: FC<Props> = ({ ids }) => (
   <div className={styles.container}>
-    {ids.map(id => (
+    {ids.map((id) => (
       <Id key={id} id={id} />
     ))}
   </div>

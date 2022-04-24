@@ -21,8 +21,9 @@ const LazyImage: FC<Props> = ({
   srcSet,
   sizes,
 }) => {
-  const { imgRef, isVisible, imageIsLoaded, onImageLoad } =
-    useLazyImage(condition);
+  const {
+    imgRef, isVisible, imageIsLoaded, onImageLoad,
+  } = useLazyImage(condition);
 
   return (
     <div

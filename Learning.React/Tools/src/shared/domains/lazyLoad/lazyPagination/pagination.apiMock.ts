@@ -1,7 +1,7 @@
 import { Express } from 'express';
 import qs from 'qs';
 import routes from '../../../../samples/lazyPagination/ids.configuration';
-import range from "../../../utilities/array/range";
+import range from '../../../utilities/array/range';
 
 const resources = range(501);
 

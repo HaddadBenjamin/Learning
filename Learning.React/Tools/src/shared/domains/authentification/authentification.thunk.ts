@@ -13,7 +13,6 @@ const loginThunk = (payload : LoginActionPayload) => async (dispatch : ThunkDisp
 
     const jwtToken = await login(payload);
     dispatch(loginSuccessAction(jwtToken));
-
   } catch (error: any) {
     dispatch(loginFailedAction(error.message));
   }

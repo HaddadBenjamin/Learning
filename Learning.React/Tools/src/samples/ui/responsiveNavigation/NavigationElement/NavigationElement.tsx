@@ -14,7 +14,9 @@ const NavigationElement: FC<Props> = ({
   title,
   selectNavigationElement,
 }) => {
-  const navigationElement = { active, href, title, selectNavigationElement };
+  const navigationElement = {
+    active, href, title, selectNavigationElement,
+  };
 
   return (
     <Link

@@ -13,21 +13,21 @@ export default (...abTestsIds: number[]): boolean[] => {
 
   const reducerIsInjected = useLazyReducer(
     abTestReducerKey,
-    'shared/domains/abTest/abTest.reducer'
+    'shared/domains/abTest/abTest.reducer',
   );
   const sagaIsInjected = useLazySaga(
     abTestSagaKey,
-    'shared/domains/abTest/abTest.saga'
+    'shared/domains/abTest/abTest.saga',
   );
 
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
     if (
-      reducerIsInjected &&
-      sagaIsInjected &&
-      !abTestsState.initialized &&
-      !isInitialized
+      reducerIsInjected
+      && sagaIsInjected
+      && !abTestsState.initialized
+      && !isInitialized
     ) {
       dispatch(getAbTestsAction());
       setIsInitialized(true);
@@ -40,10 +40,9 @@ export default (...abTestsIds: number[]): boolean[] => {
     dispatch,
   ]);
 
-  const getAbTestById = (atId: number): AbTest | undefined =>
-    abTestsState.abTests.find(at => at.id === atId);
+  const getAbTestById = (atId: number): AbTest | undefined => abTestsState.abTests.find((at) => at.id === atId);
 
   return abTestsIds
     .filter(getAbTestById)
-    .map(atId => getAbTestById(atId)?.enable as boolean);
+    .map((atId) => getAbTestById(atId)?.enable as boolean);
 };

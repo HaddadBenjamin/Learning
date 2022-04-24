@@ -1,7 +1,7 @@
-import {FeatureFlagState} from '../../shared/domains/featureFlag/featureFlag.state';
-import {AbTestState} from '../../shared/domains/abTest/abTest.state';
-import {IdState, initialIdState} from '../lazyPagination/ids.state';
-import {FakeDomainState} from './fakeDomain.state';
+import { FeatureFlagState } from '../../shared/domains/featureFlag/featureFlag.state';
+import { AbTestState } from '../../shared/domains/abTest/abTest.state';
+import { IdState, initialIdState } from '../lazyPagination/ids.state';
+import { FakeDomainState } from './fakeDomain.state';
 
 export interface ApplicationState {
 	idsState: IdState;
@@ -11,5 +11,5 @@ export interface ApplicationState {
 }
 
 export const initialApplicationState: ApplicationState = {
-	idsState: initialIdState,
+  idsState: initialIdState,
 };

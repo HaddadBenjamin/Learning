@@ -11,11 +11,11 @@ export const baseUrl = `${apiConfiguration.baseUrl}${routes.api}`;
 
 export const getPaginateIds = async (
   page: number,
-  pageSize: number
+  pageSize: number,
 ): Promise<IPaginateResponse<number>> => {
   const response = await axios.get(
     `${baseUrl}?${qs.stringify({ page, limit: pageSize })}`,
-    httpConfiguration.default
+    httpConfiguration.default,
   );
   const linkHeader = response.headers.link;
   const linkNumbers = linkHeader.match(/\d+/g)!;
@@ -25,5 +25,4 @@ export const getPaginateIds = async (
   return { items: response.data, lastPage, itemsCount };
 };
 
-export const getIds = async (): Promise<number[]> =>
-  (await getPaginateIds(1, Number.MAX_SAFE_INTEGER)).items;
+export const getIds = async (): Promise<number[]> => (await getPaginateIds(1, Number.MAX_SAFE_INTEGER)).items;

@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import selectAuthentification from '../authentification.selector';
 import IAuthentificationState, { authentificationInitialState } from '../authentification.state';
-import useLocalStorage from "../../../hooks/utilities/useLocalStorage";
+import useLocalStorage from '../../../hooks/utilities/useLocalStorage';
 
 const useAuthentification = () : IAuthentificationState => {
   const authentificationFromStore = useSelector(selectAuthentification);

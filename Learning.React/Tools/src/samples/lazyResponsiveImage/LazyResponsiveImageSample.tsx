@@ -12,7 +12,7 @@ const LazyResponsiveImageSample = () => (
 
     <LazyResponsiveImage
       images={responsiveImageDatasMock}
-      alt="diablo background"
+      alt='diablo background'
       width={1400}
       height={788}
     />

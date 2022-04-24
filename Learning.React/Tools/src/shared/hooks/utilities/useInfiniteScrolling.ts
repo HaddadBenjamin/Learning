@@ -6,9 +6,9 @@ import doesElementIsVisible from '../../utilities/doesElementIsVisible';
 export default (
   containerSelector: string,
   computeFetchUrl: (page: number, pageSize: number) => string,
-  updateDelay: number = 500,
-  pageSize: number = 1,
-  lastPage: number = 100
+  updateDelay = 500,
+  pageSize = 1,
+  lastPage = 100,
 ) => {
   const [items, setItems] = useState<any[]>([]);
   const [page, setPage] = useState(1);
@@ -39,7 +39,7 @@ export default (
 
   const doesLastContainerChildIsVisible = (): boolean => {
     const lastChild = document.querySelector(
-      `${containerSelector} :last-child`
+      `${containerSelector} :last-child`,
     );
 
     return doesElementIsVisible(lastChild);

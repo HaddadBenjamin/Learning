@@ -29,12 +29,12 @@ export interface IMutateParameters<TOnFinishGetParameters = void> {
 }
 
 const UseMutation = <TData, TOnFinishGetParameters = void>({
-                                                             config,
-                                                             onSuccess,
-                                                             onError,
-                                                             onBeforeMutate,
-                                                             httpClient,
-                                                           } : IUseMutationRequest<TData, TOnFinishGetParameters>) => {
+  config,
+  onSuccess,
+  onError,
+  onBeforeMutate,
+  httpClient,
+} : IUseMutationRequest<TData, TOnFinishGetParameters>) => {
   const [response, setResponse] = useState<IUseMutationResponse<TData, TOnFinishGetParameters>>({
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     mutate: () => {},

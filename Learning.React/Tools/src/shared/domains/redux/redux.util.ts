@@ -1,35 +1,34 @@
 import { ActionStatus, IActionMetadata } from './redux.model';
 
 export const loadingActionMetadata = <State>(
-  state: State
+  state: State,
 ): State & IActionMetadata => ({
-  ...state,
-  error: undefined,
-  status: ActionStatus.Loading,
-});
+    ...state,
+    error: undefined,
+    status: ActionStatus.Loading,
+  });
 
 export const loadedActionMetadata = <State>(
-  state: State
+  state: State,
 ): State & IActionMetadata => ({
-  ...state,
-  error: undefined,
-  status: ActionStatus.Loaded,
-});
+    ...state,
+    error: undefined,
+    status: ActionStatus.Loaded,
+  });
 
 export const failedActionMetadata = <State>(
   error: string,
-  state: State
+  state: State,
 ): State & IActionMetadata => ({
-  ...state,
-  error,
-  status: ActionStatus.Failed,
-});
-
-export const excludeSagaPayloadFn = (saga: any) =>
-  expect.objectContaining({
-    ...saga,
-    payload: {
-      ...saga.payload,
-      fn: undefined,
-    },
+    ...state,
+    error,
+    status: ActionStatus.Failed,
   });
+
+export const excludeSagaPayloadFn = (saga: any) => expect.objectContaining({
+  ...saga,
+  payload: {
+    ...saga.payload,
+    fn: undefined,
+  },
+});

@@ -1,15 +1,15 @@
 const computePageRange = (
   page: number,
   numberOfPageToDisplay: number,
-  lastPage: number
+  lastPage: number,
 ) => {
   const clampedNumberOfPageToDisplay =
     // eslint-disable-next-line no-nested-ternary
     numberOfPageToDisplay < 0
       ? 1
       : numberOfPageToDisplay > lastPage
-      ? lastPage
-      : numberOfPageToDisplay;
+        ? lastPage
+        : numberOfPageToDisplay;
   const numberOfPageToDisplayIsEven = clampedNumberOfPageToDisplay % 2 === 0;
 
   let minimumPageRange = page - Math.floor(clampedNumberOfPageToDisplay / 2);
@@ -17,10 +17,8 @@ const computePageRange = (
 
   minimumPageRange += minimumPageOffset;
 
-  let maximumPageRange =
-    page + Math.floor(clampedNumberOfPageToDisplay / 2) + minimumPageOffset;
-  const maximumPageRangeOffset =
-    maximumPageRange > lastPage ? maximumPageRange - lastPage : 0;
+  let maximumPageRange = page + Math.floor(clampedNumberOfPageToDisplay / 2) + minimumPageOffset;
+  const maximumPageRangeOffset = maximumPageRange > lastPage ? maximumPageRange - lastPage : 0;
 
   if (maximumPageRangeOffset) {
     minimumPageRange -= maximumPageRangeOffset - minimumPageOffset;

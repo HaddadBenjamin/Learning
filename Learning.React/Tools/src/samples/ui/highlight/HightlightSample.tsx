@@ -6,8 +6,7 @@ import highlightDatasMock from './highlight.mock';
 const HightlightSample = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const onChangeSearchTerm = (event: ChangeEvent<HTMLInputElement>): void =>
-    setSearchTerm(event.target.value);
+  const onChangeSearchTerm = (event: ChangeEvent<HTMLInputElement>): void => setSearchTerm(event.target.value);
 
   return (
     <>
@@ -16,15 +15,15 @@ const HightlightSample = () => {
         This component search elements by a text and highlight this text in your
         elements
       </div>
-      <input type="text" value={searchTerm} onChange={onChangeSearchTerm}/>
-  
+      <input type='text' value={searchTerm} onChange={onChangeSearchTerm} />
+
       {highlightDatasMock
-        .filter(text => text.toLowerCase().includes(searchTerm.toLowerCase()))
+        .filter((text) => text.toLowerCase().includes(searchTerm.toLowerCase()))
         .map((text, index) => (
           <Highlight
             searchTerm={searchTerm}
             text={text}
-            color="blue"
+            color='blue'
             key={`Highlight${index}`}
           />
         ))}

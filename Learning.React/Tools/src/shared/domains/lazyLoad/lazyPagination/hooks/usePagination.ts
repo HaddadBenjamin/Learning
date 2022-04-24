@@ -12,13 +12,13 @@ export interface usePaginationResponse<T> {
 }
 
 const usePagination = <T>(
-  callHttpOnSelectPage: boolean = true,
-  iPage: number = 1,
-  iPageSize: number = 10,
+  callHttpOnSelectPage = true,
+  iPage = 1,
+  iPageSize = 10,
   selectPaginateResponse: (
     state: ApplicationState
   ) => IPaginateResponse<T> = () => ({ items: [], lastPage: 1, itemsCount: 0 }),
-  getPaginateResponse: (page: number, pageSize: number) => void = () => {}
+  getPaginateResponse: (page: number, pageSize: number) => void = () => {},
 ): usePaginationResponse<T> => {
   const paginateResponse = useSelector(selectPaginateResponse);
 
@@ -35,16 +35,14 @@ const usePagination = <T>(
   });
 
   const computePagination = (): void => {
-	  const {itemsCount, items, pageSize} = pagination;
+	  const { itemsCount, items, pageSize } = pagination;
 	  const clampedPageSize = pageSize > itemsCount ? itemsCount : pageSize;
-	  const clampedLastPage =
-		  clampedPageSize === 0 ? 1 : Math.ceil(itemsCount / clampedPageSize);
-	  const clampedPage =
-		  pagination.page > clampedLastPage ? clampedLastPage : pagination.page;
-	
+	  const clampedLastPage = clampedPageSize === 0 ? 1 : Math.ceil(itemsCount / clampedPageSize);
+	  const clampedPage = pagination.page > clampedLastPage ? clampedLastPage : pagination.page;
+
 	  const hasPreviousPage = clampedPage - 1 > 0;
 	  const hasNextPage = clampedPage < clampedLastPage;
-	
+
 	  setPagination({
 		  ...pagination,
 		  pageSize: clampedPageSize,
@@ -63,42 +61,37 @@ const usePagination = <T>(
   };
 
   useEffect(
-    () =>
-      setPagination({
-        ...pagination,
-        lastPage: paginateResponse.lastPage,
-        itemsCount: paginateResponse.itemsCount,
-        items: paginateResponse.items,
-      }),
+    () => setPagination({
+      ...pagination,
+      lastPage: paginateResponse.lastPage,
+      itemsCount: paginateResponse.itemsCount,
+      items: paginateResponse.items,
+    }),
     [
       paginateResponse.lastPage,
       paginateResponse.itemsCount,
       paginateResponse.items,
-    ]
+    ],
   );
 
   useEffect(() => getPaginateResponse(iPage, iPageSize), []);
   useEffect(() => {
-    if (callHttpOnSelectPage)
-      getPaginateResponse(pagination.page, pagination.pageSize);
+    if (callHttpOnSelectPage) { getPaginateResponse(pagination.page, pagination.pageSize); }
   }, [pagination.page, pagination.pageSize]);
   useEffect(
     () => computePagination(),
-    [pagination.page, pagination.pageSize, pagination.items]
+    [pagination.page, pagination.pageSize, pagination.items],
   );
 
   const goToPreviousPage = (): void => {
-    if (pagination.hasPreviousPage)
-      setPagination({ ...pagination, page: pagination.page - 1 });
+    if (pagination.hasPreviousPage) { setPagination({ ...pagination, page: pagination.page - 1 }); }
   };
   const goToNextPage = (): void => {
-    if (pagination.hasNextPage)
-      setPagination({ ...pagination, page: pagination.page + 1 });
+    if (pagination.hasNextPage) { setPagination({ ...pagination, page: pagination.page + 1 }); }
   };
 
   const goToPage = (page: number) => {
-    if (page >= 1 && page <= pagination.lastPage)
-      setPagination({ ...pagination, page });
+    if (page >= 1 && page <= pagination.lastPage) { setPagination({ ...pagination, page }); }
   };
 
   return {

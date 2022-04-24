@@ -1,7 +1,7 @@
 import {
   useCallback, useEffect, useMemo, useState,
 } from 'react';
-import paginate from "../../utilities/array/paginate";
+import paginate from '../../utilities/array/paginate';
 
 interface IUsePaginationParameters<T>
 {
@@ -40,11 +40,11 @@ export const computePageOnPageSizeChange = (pageSize : number, page: number, new
 };
 
 const usePagination = <T, >({
-    defaultItems,
-    defaultPageSize = 1,
-    defaultMoveSize,
-    shouldComputePageOnPageSizeChange,
-  } : IUsePaginationParameters<T>) : IUsePaginationResponse<T> => {
+  defaultItems,
+  defaultPageSize = 1,
+  defaultMoveSize,
+  shouldComputePageOnPageSizeChange,
+} : IUsePaginationParameters<T>) : IUsePaginationResponse<T> => {
   const [items, setItems] = useState<T[]>(defaultItems);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(defaultPageSize);

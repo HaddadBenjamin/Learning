@@ -3,7 +3,7 @@ import { AbTestActions, AbTestAction } from './abTest.action';
 
 const abTestReducer = (
   state: AbTestState = initialAbTestsState,
-  action: AbTestActions
+  action: AbTestActions,
 ): AbTestState => {
   switch (action.type) {
     case AbTestAction.GET_AB_TEST_REQUEST:

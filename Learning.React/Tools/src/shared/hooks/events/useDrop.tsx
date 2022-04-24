@@ -1,6 +1,8 @@
-import { MutableRefObject, useCallback, useRef, useState } from "react";
-import useEventListener from "./useEventListener";
-import useSessionStorage from "../utilities/useSessionStorage";
+import {
+  MutableRefObject, useCallback, useRef, useState,
+} from 'react';
+import useEventListener from './useEventListener';
+import useSessionStorage from '../utilities/useSessionStorage';
 
 interface IUseDragParameters<T> {
   onDrop? : (draggedElementsProps : T, event?: Event) => void
@@ -15,13 +17,12 @@ interface IUseDragResponse<T extends HTMLElement> {
 }
 
 const useDrop = <T extends HTMLElement, Y>({
-   onDrop,
-   onDragEnter,
-   onDragOver,
-   onDragLeave
- } : IUseDragParameters<Y>) : IUseDragResponse<T> =>
-{
-  const [getDraggedElementProps, setDraggedElementProps] = useSessionStorage<Y | undefined>(`DRAGGED_ELEMENT`, undefined)
+  onDrop,
+  onDragEnter,
+  onDragOver,
+  onDragLeave,
+} : IUseDragParameters<Y>) : IUseDragResponse<T> => {
+  const [getDraggedElementProps, setDraggedElementProps] = useSessionStorage<Y | undefined>('DRAGGED_ELEMENT', undefined);
 
   const dropReference = useRef() as MutableRefObject<T>;
   const [isOver, setIsOver] = useState(false);
@@ -30,10 +31,10 @@ const useDrop = <T extends HTMLElement, Y>({
   {
     setIsOver(false);
     onDrop?.(getDraggedElementProps()!, event);
-    setDraggedElementProps(undefined)
-  }
-  const dragEnter = useCallback((event: Event) => { setIsOver(true); onDragEnter?.(getDraggedElementProps()!, event) }, []);
-  const dragOver = useCallback((event: Event) => { event.stopPropagation(); event.preventDefault(); onDragOver?.(getDraggedElementProps()!, event) }, []);
+    setDraggedElementProps(undefined);
+  };
+  const dragEnter = useCallback((event: Event) => { setIsOver(true); onDragEnter?.(getDraggedElementProps()!, event); }, []);
+  const dragOver = useCallback((event: Event) => { event.stopPropagation(); event.preventDefault(); onDragOver?.(getDraggedElementProps()!, event); }, []);
   const dragLeave = useCallback((event: Event) => { setIsOver(false); onDragLeave?.(getDraggedElementProps()!, event); }, []);
 
   useEventListener('drop', drop, dropReference);
@@ -41,7 +42,7 @@ const useDrop = <T extends HTMLElement, Y>({
   useEventListener('dragover', dragOver, dropReference);
   useEventListener('dragleave', dragLeave, dropReference);
 
-  return { dropReference, isOver }
-}
+  return { dropReference, isOver };
+};
 
-export default useDrop
+export default useDrop;

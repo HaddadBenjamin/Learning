@@ -10,7 +10,7 @@ interface Props {
 const Highlight: FC<Props> = ({ text, searchTerm, color }) => {
   const newText = removeHtmlTags(text).replaceAll(
     new RegExp(searchTerm, 'ig'),
-    oldText => `<span style="color :${color ?? 'red'}">${oldText}</span>`
+    (oldText) => `<span style="color :${color ?? 'red'}">${oldText}</span>`,
   );
 
   return <div dangerouslySetInnerHTML={{ __html: newText }} />;// eslint-disable-line

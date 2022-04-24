@@ -4,7 +4,6 @@ import {
   initialFeatureFlagsState,
 } from './featureFlag.state';
 
-const selectFeatureFlagsState = (state: ApplicationState): FeatureFlagState =>
-  state?.featureFlags ?? initialFeatureFlagsState;
+const selectFeatureFlagsState = (state: ApplicationState): FeatureFlagState => state?.featureFlags ?? initialFeatureFlagsState;
 
 export default selectFeatureFlagsState;

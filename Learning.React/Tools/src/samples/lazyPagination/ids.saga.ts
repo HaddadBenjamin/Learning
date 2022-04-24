@@ -12,12 +12,12 @@ import {
   getIds,
   getPaginateIds,
 } from '../../shared/domains/lazyLoad/lazyPagination/pagination.api';
-import {IPaginateResponse} from '../../shared/domains/lazyLoad/lazyPagination/pagination.model';
+import { IPaginateResponse } from '../../shared/domains/lazyLoad/lazyPagination/pagination.model';
 
 export function* getIdsSaga() {
   try {
     const movies: number[] = yield call(getIds);
-  
+
     yield put(getIdsSuccessAction(movies));
   } catch (error: any) {
     yield put(getIdsFailedAction(error.message));
@@ -30,7 +30,7 @@ export function* getPaginateIdsSaga(action: GetPaginateIdsRequestAction) {
     const paginateResponse: IPaginateResponse<number> = yield call(
       getPaginateIds,
       page,
-      pageSize
+      pageSize,
     );
     yield put(getPaginateIdsSuccessAction(paginateResponse));
   } catch (error: any) {

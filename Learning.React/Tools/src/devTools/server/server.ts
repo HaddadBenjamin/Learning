@@ -11,7 +11,7 @@ app.use(
     origin: '*',
     methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
     exposedHeaders: ['link', 'x-total-count'],
-  })
+  }),
 );
 
 const generateSwaggerOpenApi = require('express-oas-generator');
@@ -21,7 +21,7 @@ generateSwaggerOpenApi.init(app, {});
 app.listen(PORT, async () => {
   console.log( // eslint-disable-line
     `%c API mocks listening http://localhost:${PORT}/api-docs/`,
-    'background: #222; color: #bada55'
+    'background: #222; color: #bada55',
   );
   await loadApiMocks(app);
 });

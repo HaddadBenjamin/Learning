@@ -12,7 +12,7 @@ const ResponsiveImageSample = () => (
 
     <ResponsiveImage
       images={responsiveImageDatasMock}
-      alt="diablo background"
+      alt='diablo background'
     />
   </div>
 );

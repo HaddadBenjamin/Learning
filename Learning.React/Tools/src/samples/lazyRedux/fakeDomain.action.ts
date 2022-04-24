@@ -23,14 +23,14 @@ export const getMessageRequestAction = (): GetMessageRequestAction => ({
 });
 
 export const getMessageSuccessAction = (
-  payload: string
+  payload: string,
 ): GetMessageSuccessAction => ({
   type: FakeDomainAction.GET_MESSAGE_SUCCESS,
   payload,
 });
 
 export const getMessageFailedAction = (
-  error: string
+  error: string,
 ): GetMessageFailedAction => ({
   type: FakeDomainAction.GET_MESSAGE_FAILED,
   error,

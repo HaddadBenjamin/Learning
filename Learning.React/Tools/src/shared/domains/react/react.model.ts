@@ -4,5 +4,4 @@ interface ClassNameProps {
   className?: string;
 }
 
-export default interface FCWithClassName<Props = {}>
-  extends FC<ClassNameProps & Props> {}
+export default type FCWithClassName<Props = {}> = FC<ClassNameProps & Props>

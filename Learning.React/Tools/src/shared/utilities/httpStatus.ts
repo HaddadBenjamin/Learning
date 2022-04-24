@@ -57,4 +57,4 @@ enum HttpStatus {
   MISDIRECTED_REQUEST = 421
 }
 
-export default HttpStatus
+export default HttpStatus;

@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 interface ClassNameProps
 {
 	className?: string
 }
 
-export default interface FCClassName<Props = {}>  extends React.FC<ClassNameProps & Props> { }
+export default type FCClassName<Props = {}> = React.FC<ClassNameProps & Props>

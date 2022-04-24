@@ -20,6 +20,6 @@ export function* getFeatureFlagsSaga() {
 export default function* todoSaga(): Generator {
   yield takeLatest(
     FeatureFlagAction.GET_FEATURE_FLAG_REQUEST,
-    getFeatureFlagsSaga
+    getFeatureFlagsSaga,
   );
 }

@@ -9,10 +9,11 @@ const LazyReduxSample = () => {
     <div>
       <h2>Lazy component with lazy reducer & saga & feature flag & ab test</h2>
       <div>
-        To test : F12 / Network / JS and see the chunks loading on click{' '}
+        To test : F12 / Network / JS and see the chunks loading on click
+        {' '}
       </div>
       {!componentIsVisible ? (
-        <button type="button" onClick={showComponent}>
+        <button type='button' onClick={showComponent}>
           Click to display id
         </button>
       ) : (

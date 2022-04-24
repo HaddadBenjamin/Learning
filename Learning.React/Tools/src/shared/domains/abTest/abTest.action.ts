@@ -25,14 +25,14 @@ export const getAbTestsAction = (): GetAbTestsRequestAction => ({
 });
 
 export const getAbTestsSuccessAction = (
-  payload: AbTest[]
+  payload: AbTest[],
 ): GetAbTestsSuccessAction => ({
   type: AbTestAction.GET_AB_TEST_SUCCESS,
   payload,
 });
 
 export const getAbTestsFailedAction = (
-  error: string
+  error: string,
 ): GetAbTestsFailedAction => ({
   type: AbTestAction.GET_AB_TEST_FAILED,
   error,

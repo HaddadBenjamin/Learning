@@ -25,14 +25,14 @@ export const getFeatureFlagsAction = (): GetFeatureFlagsRequestAction => ({
 });
 
 export const getFeatureFlagsSuccessAction = (
-  payload: FeatureFlag[]
+  payload: FeatureFlag[],
 ): GetFeatureFlagsSuccessAction => ({
   type: FeatureFlagAction.GET_FEATURE_FLAG_SUCCESS,
   payload,
 });
 
 export const getFeatureFlagsFailedAction = (
-  error: string
+  error: string,
 ): GetFeatureFlagsFailedAction => ({
   type: FeatureFlagAction.GET_FEATURE_FLAG_FAILED,
   error,

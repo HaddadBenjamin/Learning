@@ -75,8 +75,8 @@ export const getRefreshTokenFailedAction = (error : string) : GetRefreshTokenFai
 });
 
 export const logoutAction = () : LogoutAction => ({
-  type : AuthentificationAction.LOGOUT
-})
+  type: AuthentificationAction.LOGOUT,
+});
 
 export type AuthentificationActions =
   LoginRequestAction |

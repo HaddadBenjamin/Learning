@@ -8,6 +8,6 @@ export interface AbTestState {
 }
 
 export const initialAbTestsState: AbTestState = {
-  abTests: abTestsFrMock.map(ab => ({ ...ab, enable: false })),
+  abTests: abTestsFrMock.map((ab) => ({ ...ab, enable: false })),
   initialized: false,
 };

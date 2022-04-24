@@ -11,7 +11,7 @@ const LazyImageSample = () => (
     </div>
 
     <section>
-      {lazyImageDatas.map(data => (
+      {lazyImageDatas.map((data) => (
         <LazyImage key={data.alt} {...data} />
       ))}
     </section>

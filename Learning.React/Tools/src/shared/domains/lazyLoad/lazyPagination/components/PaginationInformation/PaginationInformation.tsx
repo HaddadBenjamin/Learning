@@ -10,16 +10,37 @@ const PaginationInformation: FC<IPagination<any>> = ({
 	                                                     hasNextPage,
 	                                                     lastPage,
 	                                                     thisPageSize,
-                                                     }) => (
-	<div className={styles.container}>
-		<div>items count : {itemsCount}</div>
-		<div>page : {page}</div>
-		<div>page size : {pageSize}</div>
-		<div>has previous page : {hasPreviousPage.toString()}</div>
-		<div>has next page : {hasNextPage.toString()}</div>
-		<div>last page : {lastPage}</div>
-		<div>this page size : {thisPageSize}</div>
-	</div>
+}) => (
+  <div className={styles.container}>
+    <div>
+      items count :
+      {itemsCount}
+    </div>
+    <div>
+      page :
+      {page}
+    </div>
+    <div>
+      page size :
+      {pageSize}
+    </div>
+    <div>
+      has previous page :
+      {hasPreviousPage.toString()}
+    </div>
+    <div>
+      has next page :
+      {hasNextPage.toString()}
+    </div>
+    <div>
+      last page :
+      {lastPage}
+    </div>
+    <div>
+      this page size :
+      {thisPageSize}
+    </div>
+  </div>
 );
 
 export default PaginationInformation;
