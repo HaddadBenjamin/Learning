@@ -30,20 +30,20 @@ interface IUseGetResponse<TOnFinishGetParameters = void>
 interface IRefetchParameters<TOnFinishGetParameters = void> {
   refetchUrl? : string,
   refetchConfig? : AxiosRequestConfig
-  parameters?: TOnFinishGetParameters // paramètres applicable à onSuccess, onError, onBeforeGet
+  callbacksParameters?: TOnFinishGetParameters // paramètres applicable à onSuccess, onError, onBeforeGet
 }
 
 const useGet = <TData, TOnFinishGetParameters = void>(
-    {
-      url,
-      config,
-      dependencies = [],
-      onSuccess,
-      onError,
-      onBeforeGet,
-      httpClient,
-      enabled = true,
-    } : IUseGetParameters<TData, TOnFinishGetParameters>,
+  {
+    url,
+    config,
+    dependencies = [],
+    onSuccess,
+    onError,
+    onBeforeGet,
+    httpClient,
+    enabled = true,
+  } : IUseGetParameters<TData, TOnFinishGetParameters>,
 ) => {
   const [response, setResponse] = useState<IUseGetResponse<TOnFinishGetParameters>>({
     isLoading: false,
@@ -54,7 +54,7 @@ const useGet = <TData, TOnFinishGetParameters = void>(
 
   const refetch = async (refetchParameters? : IRefetchParameters<TOnFinishGetParameters>) => {
     try {
-      onBeforeGet?.(refetchParameters?.parameters);
+      onBeforeGet?.(refetchParameters?.callbacksParameters);
 
       setResponse({
         ...response,
@@ -65,7 +65,7 @@ const useGet = <TData, TOnFinishGetParameters = void>(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const { data } = await (httpClient ?? axios).get((refetchParameters?.refetchUrl ?? url)!, refetchParameters?.refetchConfig ?? config);
 
-      onSuccess?.(data, refetchParameters?.parameters);
+      onSuccess?.(data, refetchParameters?.callbacksParameters);
 
       setResponse({
         ...response,
@@ -74,7 +74,7 @@ const useGet = <TData, TOnFinishGetParameters = void>(
         isFetched: true,
       });
     } catch (error) {
-      onError?.(error, refetchParameters?.parameters);
+      onError?.(error, refetchParameters?.callbacksParameters);
 
       setResponse({
         ...response,

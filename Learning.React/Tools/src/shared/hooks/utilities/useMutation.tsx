@@ -25,7 +25,7 @@ interface IUseMutationResponse<TData, TOnFinishGetParameters>
 export interface IMutateParameters<TOnFinishGetParameters = void> {
   config?: AxiosRequestConfig,
   url? : string,
-  parameters?: TOnFinishGetParameters // paramètres applicable à onSuccess, onError, onBeforeMutate
+  callbacksParameters?: TOnFinishGetParameters // paramètres applicable à onSuccess, onError, onBeforeMutate
 }
 
 const UseMutation = <TData, TOnFinishGetParameters = void>({
@@ -44,7 +44,7 @@ const UseMutation = <TData, TOnFinishGetParameters = void>({
 
   const mutate = async (mutateParameters? : IMutateParameters<TOnFinishGetParameters>) => {
     try {
-      onBeforeMutate?.(mutateParameters?.parameters);
+      onBeforeMutate?.(mutateParameters?.callbacksParameters);
 
       setResponse({
         ...response,
@@ -53,17 +53,17 @@ const UseMutation = <TData, TOnFinishGetParameters = void>({
         isCalled: false,
       });
 
-      onSuccess?.(data?.data, mutateParameters?.parameters);
+      onSuccess?.(data?.data, mutateParameters?.callbacksParameters);
 
       const data = await (httpClient ?? axios).request(
-          {
-            ...config,
-            ...mutateParameters?.config,
-            url: mutateParameters?.url ?? mutateParameters?.config?.url ?? config?.url,
-          },
+        {
+          ...config,
+          ...mutateParameters?.config,
+          url: mutateParameters?.url ?? mutateParameters?.config?.url ?? config?.url,
+        },
       );
 
-      onSuccess?.(data?.data, mutateParameters?.parameters);
+      onSuccess?.(data?.data, mutateParameters?.callbacksParameters);
 
       setResponse({
         ...response,
@@ -74,7 +74,7 @@ const UseMutation = <TData, TOnFinishGetParameters = void>({
       });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      onError?.(error, mutateParameters?.parameters);
+      onError?.(error, mutateParameters?.callbacksParameters);
 
       setResponse({
         ...response,
