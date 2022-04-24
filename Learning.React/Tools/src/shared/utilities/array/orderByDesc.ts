@@ -2,9 +2,11 @@ const orderByDesc = <T, >(array: T[], callback: (element: T) => string | number 
   const [left, right] = [callback(a), callback(b)];
 
   return typeof left === 'string'
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
     ? right.localeCompare(left)
-  // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     : right - left;
 });
 

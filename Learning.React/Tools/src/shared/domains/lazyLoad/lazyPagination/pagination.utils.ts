@@ -3,6 +3,7 @@ const computePageRange = (
   numberOfPageToDisplay: number,
   lastPage: number,
 ) => {
+  // eslint-disable-next-line operator-linebreak
   const clampedNumberOfPageToDisplay =
     // eslint-disable-next-line no-nested-ternary
     numberOfPageToDisplay < 0

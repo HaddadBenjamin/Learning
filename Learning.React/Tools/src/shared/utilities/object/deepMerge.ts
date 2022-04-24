@@ -1,5 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const isObject = (item: any): boolean => item && typeof item === 'object' && !Array.isArray(item);
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const deepMerge = (target: any, ...sources: any): any => {
   if (!sources.length) return target;
 

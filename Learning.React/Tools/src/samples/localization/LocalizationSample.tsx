@@ -13,6 +13,7 @@ const LocalizationSample: FC = () => {
   const { title, description } = translationKeys;
   const { data: localizedString, refetch } = useQuery('localizedString', async () => (await getLocalizedString(currentLanguage)).data);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { refetch(); }, [currentLanguage]);
   const onCurrentLanguageChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const newLanguage = event.target.value;

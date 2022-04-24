@@ -4,6 +4,7 @@ import {
 import useEventListener from './useEventListener';
 import useSessionStorage from '../utilities/useSessionStorage';
 
+/* eslint-disable */
 interface IUseDragParameters<T> {
   onDrop? : (draggedElementsProps : T, event?: Event) => void
   onDragEnter? : (draggedElementsProps : T, event?: Event) => void
@@ -27,9 +28,10 @@ const useDrop = <T extends HTMLElement, Y>({
   const dropReference = useRef() as MutableRefObject<T>;
   const [isOver, setIsOver] = useState(false);
 
-  const drop = (event: Event) => // Pour que ça fonctionne, pas de useCallback ici
-  {
+  // Pour que ça fonctionne, pas de useCallback ici
+  const drop = (event: Event) => {
     setIsOver(false);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     onDrop?.(getDraggedElementProps()!, event);
     setDraggedElementProps(undefined);
   };

@@ -12,6 +12,7 @@ export function* getMessageSaga() {
         'Ce message a été chargé via un lazy réduceur et une lazy saga',
       ),
     );
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     yield put(getMessageFailedAction('Houston nous avons un problème !'));
   }

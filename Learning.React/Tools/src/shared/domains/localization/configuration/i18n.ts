@@ -3,6 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import frenchTranslations from './fr.json';
 import englishTranslations from './en.json';
 
+/* eslint-disable no-mixed-spaces-and-tabs, no-tabs */
 i18n
   .use(initReactI18next)
   .init(

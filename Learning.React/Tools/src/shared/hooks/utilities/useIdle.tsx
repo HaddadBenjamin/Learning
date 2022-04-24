@@ -12,7 +12,9 @@ const useIdle = (minutesToBeIdle : number) => {
   // window is not defined using server side rendering
   if (typeof window === 'undefined') return false;
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const secondsToBeConsideredAsIdle = useMemo(() => (MILLISECONDS_IN_ONE_MINUTE * minutesToBeIdle) / 1000, [minutesToBeIdle]);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [getIdleState, setIdleState] = useSessionStorage('idleState', {
     secondsToBeIdle: 0,
     isIdle: false,
@@ -28,6 +30,7 @@ const useIdle = (minutesToBeIdle : number) => {
     });
   };
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const idleInterval = setInterval(updateIdleState, 1000);
 
@@ -52,6 +55,7 @@ const useIdle = (minutesToBeIdle : number) => {
       // eslint-disable-next-line guard-for-in,no-restricted-syntax
       events.forEach((event) => window.removeEventListener(event, onActive));
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return getIdleState().isIdle;

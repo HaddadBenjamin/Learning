@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import IPagination, { IPaginateResponse } from '../pagination.model';
 import { ApplicationState } from '../../../../../samples/lazyRedux/root.state';
 
+/* eslint-disable */
 export interface usePaginationResponse<T> {
   pagination: IPagination<T>;
   setPagination: (pagination: IPagination<T>) => void;

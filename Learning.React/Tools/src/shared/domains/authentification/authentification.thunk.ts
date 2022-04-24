@@ -13,6 +13,7 @@ const loginThunk = (payload : LoginActionPayload) => async (dispatch : ThunkDisp
 
     const jwtToken = await login(payload);
     dispatch(loginSuccessAction(jwtToken));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     dispatch(loginFailedAction(error.message));
   }

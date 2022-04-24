@@ -14,10 +14,12 @@ app.use(
   }),
 );
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const generateSwaggerOpenApi = require('express-oas-generator');
 
 generateSwaggerOpenApi.init(app, {});
 
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 app.listen(PORT, async () => {
   console.log( // eslint-disable-line
     `%c API mocks listening http://localhost:${PORT}/api-docs/`,

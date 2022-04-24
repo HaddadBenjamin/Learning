@@ -18,6 +18,7 @@ export const getPaginateIds = async (
     httpConfiguration.default,
   );
   const linkHeader = response.headers.link;
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const linkNumbers = linkHeader.match(/\d+/g)!;
   const lastPage = Number(linkNumbers[linkNumbers.length - 2]);
   const itemsCount = Number(response.headers['x-total-count']);

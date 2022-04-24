@@ -10,14 +10,17 @@ export default (
   pageSize = 1,
   lastPage = 100,
 ) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [items, setItems] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(true);
   const [mustFetch, setMustFetch] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const fetchItems = (): Promise<any> => {
     if (!hasNextPage) return Promise.resolve();
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return axios.get(computeFetchUrl(page, pageSize)).then((response: any) => {
       const newPage: number = page + 1;
 
@@ -35,6 +38,7 @@ export default (
     }
 
     if (mustFetch) asyncEffect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mustFetch]);
 
   const doesLastContainerChildIsVisible = (): boolean => {
@@ -54,6 +58,7 @@ export default (
     const timer = window.setInterval(computeIsFetching, updateDelay);
 
     return () => clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { items, isFetching: !mustFetch } as const;

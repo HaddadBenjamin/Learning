@@ -27,10 +27,7 @@ export default (...abTestsIds: number[]): boolean[] => {
 
   useEffect(() => {
     if (
-      reducerIsInjected
-			&& sagaIsInjected
-			&& !abTestsState.initialized
-			&& !isInitialized
+      reducerIsInjected && sagaIsInjected && !abTestsState.initialized && !isInitialized
     ) {
       dispatch(getAbTestsAction());
       setIsInitialized(true);

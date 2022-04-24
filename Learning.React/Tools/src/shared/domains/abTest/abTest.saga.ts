@@ -12,6 +12,7 @@ export function* getAbTestsSaga() {
   try {
     const abTests: AbTest[] = yield call(getAbTests);
     yield put(getAbTestsSuccessAction(abTests));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     yield put(getAbTestsFailedAction(error.message));
   }

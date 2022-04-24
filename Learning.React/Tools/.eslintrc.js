@@ -47,6 +47,7 @@ module.exports = {
         '@typescript-eslint/no-floating-promises' : 'off',
         'default-param-last' : 'off',
         'function-paren-newline' : 'off',
+        'import/no-extraneous-dependencies' : 'off',
 
         semi: ['error', 'always'],
         'jsx-quotes': [2, 'prefer-single'],

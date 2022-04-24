@@ -25,6 +25,7 @@ export const failedActionMetadata = <State>(
     status: ActionStatus.Failed,
   });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const excludeSagaPayloadFn = (saga: any) => expect.objectContaining({
   ...saga,
   payload: {

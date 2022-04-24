@@ -2,6 +2,7 @@ import { useState } from 'react';
 import useDoesElementIsVisible from './useDoesElementIsVisible';
 
 export default (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getElement: () => any,
   onElementIsVisible: () => void,
   stopToObserveWhenElementIsVisible = true,

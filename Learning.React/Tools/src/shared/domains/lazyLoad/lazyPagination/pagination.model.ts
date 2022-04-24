@@ -8,6 +8,7 @@ export default interface IPagination<T> {
   hasNextPage: boolean;
   lastPage: number;
   itemsCount: number;
+  // eslint-disable-next-line
 }
 
 export interface IPaginateResponse<T> {

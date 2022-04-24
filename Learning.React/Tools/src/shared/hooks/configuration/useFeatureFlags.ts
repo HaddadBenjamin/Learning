@@ -27,10 +27,7 @@ export default (...featureFlagsIds: number[]): boolean[] => {
 
   useEffect(() => {
     if (
-      reducerIsInjected
-			&& sagaIsInjected
-			&& !featureFlagsState.initialized
-			&& !isInitialized
+      reducerIsInjected && sagaIsInjected && !featureFlagsState.initialized && !isInitialized
     ) {
       dispatch(getFeatureFlagsAction());
       setIsInitialized(true);

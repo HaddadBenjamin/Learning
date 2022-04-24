@@ -12,6 +12,7 @@ export function* getFeatureFlagsSaga() {
   try {
     const featureFlags: FeatureFlag[] = yield call(getFeatureFlags);
     yield put(getFeatureFlagsSuccessAction(featureFlags));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     yield put(getFeatureFlagsFailedAction(error.message));
   }

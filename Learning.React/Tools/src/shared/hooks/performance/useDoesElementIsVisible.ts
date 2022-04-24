@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export default (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getElement: () => any,
   stopToObserveWhenElementIsVisible = true,
 ): boolean => {
@@ -34,6 +35,7 @@ export default (
     return (): void => {// eslint-disable-line
       if (getElement()) intersectionObserver.unobserve(getElement());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return isVisible;

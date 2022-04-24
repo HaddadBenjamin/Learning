@@ -9,6 +9,7 @@ const useLogoutThenNIdleMinutes = (minutesToBeIdle = 30) => {
 
   useEffect(() => {
     if (isIdle) dispatch(logoutAction());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isIdle]);
 };
 

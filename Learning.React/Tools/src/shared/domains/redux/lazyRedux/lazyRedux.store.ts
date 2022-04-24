@@ -13,6 +13,7 @@ import { ILazyStore } from './lazyRedux.model';
 class LazyStore<TApplicationState> implements ILazyStore {
   store: Store;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   defaultReducers: any;
 
   sagaMiddleware: SagaMiddleware;
@@ -22,6 +23,7 @@ class LazyStore<TApplicationState> implements ILazyStore {
   injectedReducers: ReducersMapObject;
 
   constructor(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     defaultReducers: any,
     initialApplicationState: PreloadedState<TApplicationState>,
     middlewares: StoreEnhancer,
@@ -44,7 +46,9 @@ class LazyStore<TApplicationState> implements ILazyStore {
   }
 
   createRootReducer = (lazyReducers?: ReducersMapObject): Reducer =>
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
+    // eslint-disable-next-line implicit-arrow-linebreak
     combineReducers({ ...this.defaultReducers, ...lazyReducers });
 
   injectReducer = (key: string, reducer: Reducer): void => {

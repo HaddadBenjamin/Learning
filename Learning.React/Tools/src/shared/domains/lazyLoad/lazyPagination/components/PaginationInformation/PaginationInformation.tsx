@@ -2,14 +2,15 @@ import React, { FC } from 'react';
 import styles from './PaginationInformation.module.scss';
 import IPagination from '../../pagination.model';
 
+/* eslint-disable */
 const PaginationInformation: FC<IPagination<any>> = ({
-	                                                     itemsCount,
-	                                                     page,
-	                                                     pageSize,
-	                                                     hasPreviousPage,
-	                                                     hasNextPage,
-	                                                     lastPage,
-	                                                     thisPageSize,
+   itemsCount,
+   page,
+   pageSize,
+   hasPreviousPage,
+   hasNextPage,
+   lastPage,
+   thisPageSize,
 }) => (
   <div className={styles.container}>
     <div>

@@ -17,6 +17,7 @@ interface Props<T> {
   goToPage: (page: number) => void;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const PaginationButtons: FC<Props<any>> = ({
   showFirstAndLastButtons,
   showPrevAndNextButtons,
@@ -40,29 +41,28 @@ const PaginationButtons: FC<Props<any>> = ({
   );
 
   return (
-    <>
-      <div>
-        {[undefined, true].includes(showFirstAndLastButtons) && (
-          <button
-            type='button'
-            onClick={() => goToPage(1)}
-            className={cn(page === 1 && styles.active)}
-          >
-            First
-          </button>
-        )}
+    <div>
+      {[undefined, true].includes(showFirstAndLastButtons) && (
+      <button
+        type='button'
+        onClick={() => goToPage(1)}
+        className={cn(page === 1 && styles.active)}
+      >
+        First
+      </button>
+      )}
 
-        {[undefined, true].includes(showPrevAndNextButtons) && (
-          <button
-            type='button'
-            disabled={!hasPreviousPage}
-            onClick={goToPreviousPage}
-          >
-            Previous
-          </button>
-        )}
+      {[undefined, true].includes(showPrevAndNextButtons) && (
+      <button
+        type='button'
+        disabled={!hasPreviousPage}
+        onClick={goToPreviousPage}
+      >
+        Previous
+      </button>
+      )}
 
-        {[undefined, true].includes(showPageButtons)
+      {[undefined, true].includes(showPageButtons)
           && range(lastPage)
             .filter(
               (pageNumber) => pageNumber >= minimumPage && pageNumber <= maximumPage,
@@ -78,23 +78,22 @@ const PaginationButtons: FC<Props<any>> = ({
               </button>
             ))}
 
-        {[undefined, true].includes(showPrevAndNextButtons) && (
-          <button type='button' disabled={!hasNextPage} onClick={goToNextPage}>
-            Next
-          </button>
-        )}
+      {[undefined, true].includes(showPrevAndNextButtons) && (
+      <button type='button' disabled={!hasNextPage} onClick={goToNextPage}>
+        Next
+      </button>
+      )}
 
-        {[undefined, true].includes(showFirstAndLastButtons) && (
-          <button
-            type='button'
-            onClick={() => goToPage(lastPage)}
-            className={cn(page === lastPage && styles.active)}
-          >
-            Last
-          </button>
-        )}
-      </div>
-    </>
+      {[undefined, true].includes(showFirstAndLastButtons) && (
+      <button
+        type='button'
+        onClick={() => goToPage(lastPage)}
+        className={cn(page === lastPage && styles.active)}
+      >
+        Last
+      </button>
+      )}
+    </div>
   );
 };
 

@@ -19,6 +19,7 @@ export function* getIdsSaga() {
     const movies: number[] = yield call(getIds);
 
     yield put(getIdsSuccessAction(movies));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     yield put(getIdsFailedAction(error.message));
   }
@@ -33,6 +34,7 @@ export function* getPaginateIdsSaga(action: GetPaginateIdsRequestAction) {
       pageSize,
     );
     yield put(getPaginateIdsSuccessAction(paginateResponse));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     yield put(getPaginateIdsFailedAction(error.message));
   }

@@ -31,12 +31,14 @@ const useDrag = <T extends HTMLElement, Y>({
     event.stopPropagation();
     setIsDragging(true);
     onDragStart?.(event);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const dragging = useCallback((event: Event) => {
     event.stopPropagation();
     event.preventDefault();
     onDragging?.(event);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const stopDragging = useCallback((event: Event) => {
@@ -44,6 +46,7 @@ const useDrag = <T extends HTMLElement, Y>({
     setIsDragging(false);
     setDraggedElementProps(getDraggedElementProps());
     onDragEnd?.(event);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEventListener('dragstart', startDragging, dragReference);
