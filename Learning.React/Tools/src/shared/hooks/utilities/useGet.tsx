@@ -16,10 +16,10 @@ interface IUseGetParameters<TData, TOnFinishGetParameters = void>
   enabled?: boolean
 }
 
-interface IUseGetResponse<TOnFinishGetParameters = void>
+interface IUseGetResponse<TData, TOnFinishGetParameters = void>
 {
   // eslint-disable-next-line
-  data? : any,
+  data? : TData,
   isLoading : boolean,
   isFetched: boolean,
   // eslint-disable-next-line
@@ -45,7 +45,7 @@ const useGet = <TData, TOnFinishGetParameters = void>(
     enabled = true,
   } : IUseGetParameters<TData, TOnFinishGetParameters>,
 ) => {
-  const [response, setResponse] = useState<IUseGetResponse<TOnFinishGetParameters>>({
+  const [response, setResponse] = useState<IUseGetResponse<TData, TOnFinishGetParameters>>({
     isLoading: false,
     isFetched: false,
     // eslint-disable-next-line @typescript-eslint/no-empty-function

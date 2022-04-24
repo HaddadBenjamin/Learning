@@ -4,7 +4,7 @@ const getFromLocalStorage = <T>(key : string, initialState : T) : T => {
   try {
     const item = window.localStorage.getItem(key);
 
-    return item ? JSON.parse(item) : initialState;
+    return item ? JSON.parse(item) as T : initialState;
   } catch (error) {
     console.log(error);
 

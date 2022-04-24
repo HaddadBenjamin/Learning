@@ -4,7 +4,7 @@ const getFromSessionStorage = <T>(key : string, initialState : T) : T => {
   try {
     const item = window.sessionStorage.getItem(key);
 
-    return item ? JSON.parse(item) : initialState;
+    return item ? JSON.parse(item) as T : initialState;
   } catch (error) {
     return initialState;
   }

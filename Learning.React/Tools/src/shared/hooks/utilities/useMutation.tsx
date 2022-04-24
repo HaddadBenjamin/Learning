@@ -53,8 +53,6 @@ const UseMutation = <TData, TOnFinishGetParameters = void>({
         isCalled: false,
       });
 
-      onSuccess?.(data?.data, mutateParameters?.callbacksParameters);
-
       const data = await (httpClient ?? axios).request(
         {
           ...config,

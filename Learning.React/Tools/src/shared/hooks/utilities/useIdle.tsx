@@ -44,13 +44,14 @@ const useIdle = (minutesToBeIdle : number) => {
     ];
 
     // eslint-disable-next-line guard-for-in,no-restricted-syntax
-    for (const i in events) window.addEventListener(events[i], onActive);
+    events.forEach((event) => window.addEventListener(event, onActive));
+
 
     return () => {
       clearInterval(idleInterval);
 
       // eslint-disable-next-line guard-for-in,no-restricted-syntax
-      for (const i in events) window.removeEventListener(events[i], onActive);
+      events.forEach((event) => window.removeEventListener(event, onActive));
     };
   }, []);
 
