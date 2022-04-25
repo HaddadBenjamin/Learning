@@ -20,7 +20,7 @@ const RestrictedPage : FC<Props> = ({
   const { connected } = useAuthentification();
   const userInfo = useUserInfo(connected);
 
-  return (connected && !roles) || (connected && roles && userInfo?.roles && containsAll(roles, userInfo.roles)) ? { children } : (
+  return (connected && !roles) || (connected && roles && userInfo?.roles && containsAll(roles, userInfo.roles)) ? <div>{ children }</div> : (
     <div className={styles.container}>
       <div className={styles.subContainer}>
         <h2 className={styles.title}>{message ?? 'Cette page est restreinte aux utilisateurs connectés'}</h2>
