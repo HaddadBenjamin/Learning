@@ -1,7 +1,6 @@
 import React, {
   FC,
   useEffect,
-  useState,
 } from 'react';
 
 interface Props
@@ -21,9 +20,6 @@ const AnchorLink : FC<Props> = ({
   className,
   scrollOnMount,
 }) => {
-  const [clicked, setClicked] = useState(false);
-  const [targetPositionY, setTargetPositionY] = useState<number | null>(null);
-
   const getTargetPositionY = () : number | null => {
     if (!document || !window) return null;
 
@@ -42,28 +38,17 @@ const AnchorLink : FC<Props> = ({
     if (!newTargetPositionY) return;
 
     window.scrollTo({ top: newTargetPositionY, behavior: 'smooth' });
-
-    setClicked(true);
-    setTargetPositionY(newTargetPositionY);
   };
 
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
-    if (scrollOnMount) onClick();
+    if (scrollOnMount) {
+      const timeOutId = setTimeout(() => onClick(), 3000); // 3 secondes correspond au temps théorique pour que la page se charge
+
+      return () => clearTimeout(timeOutId);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollOnMount]);
-
-  useEffect(() => {
-    if (clicked && targetPositionY && scrollOnMount) onClick();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [targetPositionY, clicked, scrollOnMount]);
-
-  useEffect(() => {
-    const updateTargetPositionY = () => setTargetPositionY(getTargetPositionY());
-    const updateTargetPositionYInterval = setInterval(() => updateTargetPositionY(), 1000);
-
-    return () => clearInterval(updateTargetPositionYInterval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <a
