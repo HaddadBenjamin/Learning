@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 interface IUseWebSocket<T>
 {
   url : string,
+  connectOnMount?: boolean,
 
   onOpen?: (event: Event) => any;
   onMessage?: (event : MessageEvent, message : IWebSocketMessage<T>) => void;
@@ -16,11 +17,13 @@ interface IWebSocketMessage<T> {
 }
 
 interface IUseWebSocketResponse<T> {
-  isConnected : boolean;
-  messages : T[]
   websocket : WebSocket | undefined;
+  isConnected : boolean;
+  messages : T[];
+
+  connect: () => void;
   sendMessage: (message : string | ArrayBufferLike | Blob | ArrayBufferView) => void;
-  closeConnexion: (code?: number, reason?: string) => void;
+  disconnect: (code?: number, reason?: string) => void;
 }
 
 const useWebSocket = <T, >({
@@ -29,12 +32,17 @@ const useWebSocket = <T, >({
   onMessage,
   onClose,
   onError,
+  connectOnMount = true,
 } : IUseWebSocket<T>) : IUseWebSocketResponse<T> => {
   const [isConnected, setIsConnected] = useState(false);
   const [messages, setMessages] = useState<T[]>([]);
   const [websocket, setWebsocket] = useState<WebSocket | undefined>();
 
   useEffect(() => {
+    if (connectOnMount) connect();
+  }, [connectOnMount]);
+
+  const connect = () => {
     const ws = new WebSocket(url);
 
     ws.onopen = (event) => { setIsConnected(true); onOpen?.(event); };
@@ -43,18 +51,17 @@ const useWebSocket = <T, >({
     ws.onerror = (event) => onError?.(event);
 
     setWebsocket(ws);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  };
   const sendMessage = (message: string | ArrayBufferLike | Blob | ArrayBufferView): void => websocket?.send(message);
-  const closeConnexion = (code?: number, reason?: string): void => websocket?.close(code, reason);
+  const disconnect = (code?: number, reason?: string): void => websocket?.close(code, reason);
 
   return {
     websocket,
     messages,
     isConnected,
+    connect,
     sendMessage,
-    closeConnexion,
+    disconnect,
   };
 };
 

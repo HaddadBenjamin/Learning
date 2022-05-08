@@ -4,7 +4,11 @@ import styles from './WebSocketSample.module.scss';
 
 const WebSocketSample = () => {
   const {
-    messages, isConnected, sendMessage, closeConnexion,
+    messages,
+    isConnected,
+    connect,
+    sendMessage,
+    disconnect,
   } = useWebSocket<string>({
     url: 'wss://demo.piesocket.com/v3/channel_1?api_key=VCXCEuvhGcBDP7XhiJJUDvR1e1D3eiVjgZ9VRiaV&notify_self',
     onOpen: (event) => console.log('Websocket : onopen', event),
@@ -24,7 +28,7 @@ const WebSocketSample = () => {
       </div>
       <input value={newMessage} placeholder='new message' onChange={(event) => setNewMessage(event.target.value)} />
       <button type='button' onClick={() => sendMessage(newMessage)}>Send message</button>
-      <button type='button' onClick={() => closeConnexion()}>Close websocket connexion</button>
+      <button type='button' onClick={() => (isConnected ? disconnect() : connect())}>{`${isConnected ? 'Close' : 'Open'} websocket connexion`}</button>
     </>
   );
 };
