@@ -18,7 +18,7 @@ const useIdle = (minutesToBeIdle : number) => {
   const [getIdleState, setIdleState] = useSessionStorage('idleState', {
     secondsToBeIdle: 0,
     isIdle: false,
-    secondsToBeConsideredAsIdle
+    secondsToBeConsideredAsIdle,
   } as IIdleState);
 
   const updateIdleState = () => {
@@ -28,7 +28,7 @@ const useIdle = (minutesToBeIdle : number) => {
     setIdleState({
       secondsToBeIdle: idleState.secondsToBeIdle + 1,
       isIdle,
-      secondsToBeConsideredAsIdle
+      secondsToBeConsideredAsIdle,
     });
   };
 
@@ -38,7 +38,7 @@ const useIdle = (minutesToBeIdle : number) => {
     const onActive = () => setIdleState({
       isIdle: false,
       secondsToBeIdle: 0,
-      secondsToBeConsideredAsIdle
+      secondsToBeConsideredAsIdle,
     });
 
     const events = [

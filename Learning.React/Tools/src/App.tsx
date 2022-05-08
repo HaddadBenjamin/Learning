@@ -15,6 +15,7 @@ import LazyPaginationSample from './samples/lazyPagination/LazyPaginationSample'
 import SimplePaginationSample from './samples/lazyPagination/SimplePaginationSample';
 import store from './samples/lazyRedux/root.store';
 import LocalizationSample from './samples/localization/LocalizationSample';
+import WebSocketSample from './samples/websocket/WebSocketSample';
 
 const queryClient = new QueryClient();
 export default () => (
@@ -22,6 +23,7 @@ export default () => (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
 
+      <WebSocketSample />
       <ResponsiveNavigationSample />
       <HightlightSample />
       <LocalizationSample />

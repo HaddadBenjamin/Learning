@@ -48,6 +48,7 @@ module.exports = {
         'default-param-last' : 'off',
         'function-paren-newline' : 'off',
         'import/no-extraneous-dependencies' : 'off',
+        'react-hooks/exhaustive-deps' :'off',
 
         semi: ['error', 'always'],
         'jsx-quotes': [2, 'prefer-single'],
