@@ -12,30 +12,31 @@ interface IUseWebSocket<T>
   onError?: (event: Event) => any;
 }
 
-interface IWebSocketMessage<T> {
-  data : T
+interface IWebSocketMessage<TMessage> {
+  data : TMessage
 }
 
-interface IUseWebSocketResponse<T> {
-  websocket : WebSocket | undefined;
+interface IUseWebSocketResponse<TMessage> {
+  messages : TMessage[];
   isConnected : boolean;
-  messages : T[];
+  websocket? : WebSocket;
 
   connect: () => void;
   sendMessage: (message : string | ArrayBufferLike | Blob | ArrayBufferView) => void;
   disconnect: (code?: number, reason?: string) => void;
 }
 
-const useWebSocket = <T, >({
+const useWebSocket = <TMessage, >({
   url,
+  connectOnMount = true,
+
   onOpen,
   onMessage,
   onClose,
   onError,
-  connectOnMount = true,
-} : IUseWebSocket<T>) : IUseWebSocketResponse<T> => {
+} : IUseWebSocket<TMessage>) : IUseWebSocketResponse<TMessage> => {
   const [isConnected, setIsConnected] = useState(false);
-  const [messages, setMessages] = useState<T[]>([]);
+  const [messages, setMessages] = useState<TMessage[]>([]);
   const [websocket, setWebsocket] = useState<WebSocket | undefined>();
 
   useEffect(() => {

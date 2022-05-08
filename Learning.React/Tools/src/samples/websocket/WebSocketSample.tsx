@@ -11,12 +11,7 @@ const WebSocketSample = () => {
     disconnect,
   } = useWebSocket<string>({
     url: 'wss://demo.piesocket.com/v3/channel_1?api_key=VCXCEuvhGcBDP7XhiJJUDvR1e1D3eiVjgZ9VRiaV&notify_self',
-    onOpen: (event) => console.log('Websocket : onopen', event),
-    onMessage: (event, message) => console.log('Websocket : onmessage', message),
-    onClose: (event) => console.log('Websocket : onclose', event),
-    onError: (event) => console.log('Websocket : error', event),
   });
-  // eslint-disable-next-line no-undef
   const [newMessage, setNewMessage] = useState('');
 
   return (
