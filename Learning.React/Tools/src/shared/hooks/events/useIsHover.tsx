@@ -1,6 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import {
+  useEffect, useRef, useState, RefObject,
+} from 'react';
 
-const useIsHover = <T extends HTMLElement, >() => {
+interface IUseHoverResponse<T extends HTMLElement> {
+  hoveredReference : RefObject<T>,
+  isHover : boolean
+}
+
+const useHover = <T extends HTMLElement, >() : IUseHoverResponse<T> => {
   const [isHover, setIsHover] = useState(false);
   const hoveredReference = useRef<T>(null);
 
@@ -22,11 +29,10 @@ const useIsHover = <T extends HTMLElement, >() => {
         };
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [hoveredReference.current], // Recall only if ref changes
   );
 
   return { hoveredReference, isHover };
 };
 
-export default useIsHover;
+export default useHover;

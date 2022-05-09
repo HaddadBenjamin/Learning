@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
 
-interface IUseWebSocket<T>
+interface IUseWebSocket<TMessage>
 {
   url : string,
   connectOnMount?: boolean,
 
   onOpen?: (event: Event) => any;
-  onMessage?: (event : MessageEvent, message : IWebSocketMessage<T>) => void;
+  onMessage?: (event : MessageEvent, message : IWebSocketMessage<TMessage>) => void;
   onClose?: (event: CloseEvent) => any;
   onError?: (event: Event) => any;
 }
