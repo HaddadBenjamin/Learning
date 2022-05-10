@@ -3,8 +3,8 @@ import React, {
 } from 'react';
 import classNames from 'classnames/bind';
 import cn from 'classnames';
-import styles from './tooltip.module.scss';
-import useHover from "../../hooks/events/useIsHover";
+import styles from './Tooltip.module.scss';
+import useHover from '../../hooks/events/useIsHover';
 
 interface Props {
   text : string,
@@ -16,7 +16,7 @@ interface Props {
   isAlwaysShown? : boolean
 }
 
-export const Tooltip : FC<Props> = ({
+const Tooltip : FC<Props> = ({
   children,
   width = 218,
   backgroundColor = 'blue_dark',
@@ -76,3 +76,5 @@ export const Tooltip : FC<Props> = ({
     </div>
   );
 };
+
+export default Tooltip;
