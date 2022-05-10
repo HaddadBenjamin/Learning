@@ -1,0 +1,32 @@
+@import "src/styles/styles";
+
+.mainContainer {
+  @extend %border-box-container;
+
+  .container {
+    position: relative;
+
+    .subContainer {
+      position: absolute;
+      padding: 17px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 18px;
+      text-align: justify;
+    }
+
+    .arrow {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+    }
+  }
+}
+
+@each $colorName, $color in $colors {
+  .color-#{$colorName} { color: $color; }
+  .background-color-#{$colorName} { background-color: $color; }
+  .border-color-#{$colorName} { border-top: 10px solid $color; }
+}
