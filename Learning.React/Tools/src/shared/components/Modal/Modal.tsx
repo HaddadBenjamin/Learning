@@ -3,12 +3,22 @@ import React, {
 } from 'react';
 import cn from 'classnames';
 import styles from './Modal.module.scss';
-import useOnClickOutside from "../../hooks/styles/useOnClickOutside";
-import useLockBodyScroll from "../../hooks/utilities/useLockBodyScroll";
-import useElementSize from "../../hooks/styles/useElementSize";
+import useOnClickOutside from '../../hooks/styles/useOnClickOutside';
+import useElementSize from '../../hooks/styles/useElementSize';
+import useLockBodyScroll from '../../hooks/utilities/useLockBodyScroll';
 
 interface ModalLineProps {
   lineNumber: number
+}
+
+interface Props {
+  setShowModal: (showModal : boolean) => void,
+  title? : string,
+  className?: string,
+  lockScrollWhenOpen?: boolean,
+  closeOnClickOutside?: boolean,
+  fixedContainer?: boolean,
+  addCloseButton?: boolean,
 }
 
 const MODAL_LINE_HEIGHT = 38;
@@ -22,14 +32,6 @@ const ModalLine : FC<ModalLineProps> = ({ lineNumber }) => {
   return <div className={styles.titleLine} ref={reference} />;
 };
 
-interface Props {
-  title : string,
-  setShowModal: (showModal : boolean) => void,
-  className?: string,
-  lockScrollWhenOpen?: boolean,
-  closeOnClickOutside?: boolean,
-}
-
 const Modal : FC<Props> = ({
   children,
   setShowModal,
@@ -37,6 +39,8 @@ const Modal : FC<Props> = ({
   title,
   lockScrollWhenOpen = true,
   closeOnClickOutside = true,
+  fixedContainer = true,
+  addCloseButton = true,
 }) => {
   const modalReference = useRef() as MutableRefObject<HTMLDivElement>;
   const { elementReference: titleReference, elementSize: { height: titleHeight } } = useElementSize<HTMLDivElement>();
@@ -46,14 +50,17 @@ const Modal : FC<Props> = ({
   useLockBodyScroll(lockScrollWhenOpen);
 
   return (
-    <div className={cn(styles.container, className)}>
+    <div className={cn(styles.container, !fixedContainer && styles.absoluteContainer, fixedContainer && styles.fixedContainer, className)}>
       <div className={styles.subContainer} ref={modalReference}>
-        <div className={styles.closeButton} onClick={() => setShowModal(false)}>X</div>
+        {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+        { addCloseButton && <div className={styles.closeButton} role='button' tabIndex={0} onKeyPress={() => setShowModal(false)} onClick={() => setShowModal(false)} /> }
         <div className={styles.contentContainer}>
-          <div className={styles.title} ref={titleReference}>
-            { Array(numberOfTitleLine).fill(0).map((n, lineNumber) => <ModalLine lineNumber={lineNumber} key={`modal-line-${lineNumber}`} />) }
-            {title}
-          </div>
+          { title && (
+            <div className={styles.title} ref={titleReference}>
+              { Array(numberOfTitleLine).fill(0).map((n, lineNumber) => <ModalLine lineNumber={lineNumber} key={`modal-line-${lineNumber}`} />) }
+              {title}
+            </div>
+          ) }
           {children}
         </div>
       </div>
@@ -61,4 +68,4 @@ const Modal : FC<Props> = ({
   );
 };
 
-export default Modal
+export default Modal;
