@@ -1,0 +1,10 @@
+/* Ajouter du gap entre vos éléments */
+.slick-list { margin: 0 -7px !important; }
+.slick-slide > div { padding: 0 7px !important; }
+
+/* Afficher les flèches */
+.slick-prev { left: 16px !important; z-index: 1; }
+.slick-next { right: 16px !important; z-index: 1; }
+
+/* Centrer verticalement le conteneur */
+.slick-list { top: 50%; transform: translateY(-50%) !important; }

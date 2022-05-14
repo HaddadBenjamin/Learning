@@ -1,21 +1,23 @@
 import React, {FC} from "react";
 // @ts-ignore
-import styles from './ReactSlickHorizontalSwipe.module.scss'
+import styles from './HorizontalSlider.module.scss'
 import Slider from "react-slick";
 import Card from "../../Custom/Card/Card";
-import './ReactSlick.css'
+import './HorizontalSlider.css'
 import useElementSize from "../../../shared/hooks/useElementSize";
+import useBreakpoints from "../../../shared/hooks/useBreakpoints";
 
+const CARD_GAP = 16
 const CARD_SIZE = 295
 const ReactSlickHorizontalSwipe : FC = () => {
   const { elementReference , elementSize : { width : containerWidth }} = useElementSize<HTMLDivElement>()
+  const { isMobile } = useBreakpoints()
   const settings = {
-    dots: true,
-    infinite: true,
-    accessibility : true,
-    speed: 500,
-    slidesToShow: Math.floor(containerWidth / CARD_SIZE),
-    slidesToScroll: Math.floor(containerWidth / CARD_SIZE),
+    dots: isMobile,
+    infinite: false,
+    speed: 1000,
+    slidesToShow: Math.floor(containerWidth / (CARD_SIZE + CARD_GAP)),
+    slidesToScroll: Math.floor(containerWidth / (CARD_SIZE + CARD_GAP)),
   };
 
   return (
