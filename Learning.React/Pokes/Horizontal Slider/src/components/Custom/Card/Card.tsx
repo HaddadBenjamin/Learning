@@ -14,7 +14,7 @@ const Card : FC<Props> = ({className, width = 295}) => {
 
   useEffect(() => {
     ref.current.style.minWidth = width + 'px';
-  }, [ref?.current])
+  }, [ref?.current, width])
   return <div className={cn(styles.container, className)} ref={ref}/>;
 }
 
