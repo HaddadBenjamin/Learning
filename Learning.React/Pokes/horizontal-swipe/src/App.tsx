@@ -1,8 +1,10 @@
 import React, {FC} from 'react';
-import HorizontalSwipe from "./components/HorizontalSwipe/HorizontalSwipe";
+import ReactSlickHorizontalSwipe from "./components/ReactSlick/ReactSlickHorizotanlSwipe/ReactSlickHorizotanlSwipe";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const App : FC = () => <div>
-  <HorizontalSwipe/>
+  <ReactSlickHorizontalSwipe/>
 </div>
 
 export default App;
