@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
-import ReactSlickHorizontalSwipe from "./components/ReactSlick/HorizontalSlider/HorizontalSlider";
+import HorizontalSliderWithReactSlider from "./components/ReactSlick/HorizontalSlider/HorizontalSlider";
+import HorizontalSliderCustom from "./components/Custom/HorizontalSlider/HorizontalSlider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -13,7 +14,8 @@ const App : FC = () => <div>
     <li>Afficher des points pours les parcourir uniquement sur mobile.</li>
     <li>Centrer verticalement les éléments dans le conteneur et avoir un léger gap entre vos éléments.</li>
   </ul>
-  <ReactSlickHorizontalSwipe/>
+  <HorizontalSliderWithReactSlider/>
+  <HorizontalSliderCustom/>
 </div>
 
 export default App;

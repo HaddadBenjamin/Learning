@@ -1,11 +1,15 @@
 .container {
   height : 380px;
+
   border: 1px solid #E5ECEF;
   border-radius: 8px;
+  background-color: lightgray;
+  overflow: hidden;
+
   display : flex;
-  gap : 18px;
+  gap : 12px;
   align-items: center;
+
   padding-left: 18px;
   padding-right: 18px;
-  overflow: hidden;
 }

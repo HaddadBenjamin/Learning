@@ -1,3 +1,4 @@
+/* eslint-disable */
 import useScreenSize from './useScreenSize';
 
 export interface Breakpoints {
@@ -24,7 +25,7 @@ const smWidth = 700;
 const mdWidth = 1240;
 const lgWidth = 1440;
 
-export default (): Breakpoints => {
+const useBreakpoints = () : Breakpoints => {
   const { width: screenWidth } = useScreenSize();
 
   return {
@@ -46,3 +47,5 @@ export default (): Breakpoints => {
     aboveLg: screenWidth >= lgWidth,
   } as const;
 };
+
+export default useBreakpoints

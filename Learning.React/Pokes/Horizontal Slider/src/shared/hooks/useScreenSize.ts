@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useEffect, useState } from 'react';
 
 interface ScreenSize {
@@ -5,7 +6,7 @@ interface ScreenSize {
   height: number;
 }
 
-export default (): ScreenSize => {
+const useSreenSize = (): ScreenSize => {
   // "window" is not available during server side rendering.
   if (typeof window === 'undefined') return { width: 0, height: 0 };
 
@@ -28,3 +29,5 @@ export default (): ScreenSize => {
 
   return windowSize;
 };
+
+export default useSreenSize

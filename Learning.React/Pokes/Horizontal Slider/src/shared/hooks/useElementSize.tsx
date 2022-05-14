@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
   useEffect, useState, MutableRefObject, useRef,
 } from 'react';
@@ -12,7 +13,7 @@ interface useElementSizeResponse<T> {
   elementReference : MutableRefObject<T>
 }
 
-export default <T extends HTMLElement>(): useElementSizeResponse<T> => {
+const useElementSize = <T extends HTMLElement>(): useElementSizeResponse<T> => {
   const [elementSize, setElementSize] = useState<ElementSize>({ width: 0, height: 0 });
   const elementReference = useRef<T>() as MutableRefObject<T>;
 
@@ -35,3 +36,5 @@ export default <T extends HTMLElement>(): useElementSizeResponse<T> => {
 
   return { elementSize, elementReference };
 };
+
+export default useElementSize
