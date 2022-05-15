@@ -2,7 +2,7 @@ import React, {FC} from "react";
 // @ts-ignore
 import styles from './HorizontalSlider.module.scss'
 import Slider from "react-slick";
-import Card from "../../Custom/Card/Card";
+import Card from "../../Custom/components/Card/Card";
 import './HorizontalSlider.css'
 import useElementSize from "../../../shared/hooks/useElementSize";
 import useBreakpoints from "../../../shared/hooks/useBreakpoints";

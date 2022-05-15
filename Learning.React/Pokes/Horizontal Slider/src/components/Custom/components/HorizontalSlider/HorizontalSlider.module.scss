@@ -13,13 +13,12 @@
   display : flex;
   align-items: center;
 
-  .subContainer {
+  .sliderContainer {
+    transition : left 1s;
     position: absolute;
-    left : -649.6px;
 
     display : flex;
     gap : 14px;
     align-items: center;
-
   }
 }

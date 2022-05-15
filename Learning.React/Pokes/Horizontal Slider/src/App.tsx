@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import HorizontalSliderWithReactSlider from "./components/ReactSlick/HorizontalSlider/HorizontalSlider";
-import HorizontalSliderCustom from "./components/Custom/HorizontalSlider/HorizontalSlider";
+import HorizontalSliderCustom from "./components/Custom/components/HorizontalSlider/HorizontalSlider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 

@@ -1,0 +1,26 @@
+@keyframes slide-right {
+  from { left : -0px; }
+  to { left : -330px; }
+}
+
+%arrow {
+  background-color: rgba(white, 0.6);
+  border-radius: 50%;
+
+  width: 20px;
+  height: 20px;
+
+  color : #002c75;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 16px;
+  text-align: center;
+
+  z-index: 2;
+  position: absolute;
+  cursor: pointer;
+}
+
+.leftArrow, .rightArrow { @extend %arrow; }
+.leftArrow { left : 18px;}
+.rightArrow { right: 12px; }
