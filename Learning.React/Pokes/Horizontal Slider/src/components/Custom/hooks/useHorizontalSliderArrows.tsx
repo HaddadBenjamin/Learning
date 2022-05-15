@@ -19,9 +19,6 @@ interface IUseHorizontalSliderArrowsResponse
   rightArrow : ReactNode
 }
 
-// Ce qu'il manque
-// - ne pas utiliser de valeur en dur notamment SLIDER_ITEM_SLIDE_SIZE
-// - pouvoir décaler de n en n sur les flèches
 const useHorizontalSliderArrows = ({
   sliderIndex,
   setSliderIndex,
@@ -32,9 +29,7 @@ const useHorizontalSliderArrows = ({
   sliderElementsCountDisplayed
 } : IUseHorizontalSliderArrowsParameters) : IUseHorizontalSliderArrowsResponse => {
   useEffect(() => {
-    if (sliderReference?.current) {
-      sliderReference.current.style.left = `-${(sliderIndex * slideWidth) - sliderContainerLeftPadding}px`
-    }
+    if (sliderReference?.current) sliderReference.current.style.left = `-${(sliderIndex * slideWidth) - sliderContainerLeftPadding}px`
   }, [sliderReference, sliderIndex, slideWidth, sliderElementsCountDisplayed])
 
   const canScrollLeft = sliderIndex > 0
