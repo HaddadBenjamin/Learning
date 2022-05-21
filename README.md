@@ -1,7 +1,7 @@
 # Learning-project
 **Année de développement :** 2019-2021.</br>
 
-Projet d'apprentissage que j'utilise pour appréhender et tester de nouvelles notions.
+Projet d'apprentissage que j'utilise pour me perfectionner et pousser de nouvelles technologies (React, SASS, TS, JS).
 
 
 ## CSS
