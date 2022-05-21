@@ -19,7 +19,7 @@ const WebSocketSample = () => {
       <h2>Websocket : useWebSocket</h2>
       <div>{`Is Connected : ${isConnected}`}</div>
       <div className={styles.messagesContainer}>
-        {messages.map((message) => <div className={styles.message}>{message}</div>)}
+        {messages.map((message, index) => <div key={`websocket-message-${index}`} className={styles.message}>{message}</div>)}
       </div>
       <input value={newMessage} placeholder='new message' onChange={(event) => setNewMessage(event.target.value)} />
       <button type='button' onClick={() => sendMessage(newMessage)}>Send message</button>

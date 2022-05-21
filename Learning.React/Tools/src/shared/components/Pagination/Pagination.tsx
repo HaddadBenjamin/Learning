@@ -4,10 +4,28 @@ import cn from 'classnames';
 import styles from './Pagination.module.scss';
 import clamp from '../../utilities/number/clamp';
 
+const computeButtonsPageRange = (
+  page : number,
+  pageSize : number,
+  lastPage : number,
+  numberOfPageToDisplay : number) : [number, number] => {
+  let minimumPageRange = Math.ceil(page - (numberOfPageToDisplay / 2));
+  let maximumPageRange = minimumPageRange + numberOfPageToDisplay - 1;
+  const minimumOffset = minimumPageRange < 1 ? minimumPageRange - 1 : 0;
+  const maximumOfsset = maximumPageRange > lastPage ? maximumPageRange - lastPage : 0;
+
+  maximumPageRange = clamp(maximumPageRange - minimumOffset + maximumOfsset, 1, lastPage);
+  minimumPageRange = minimumPageRange - minimumOffset + maximumOfsset;
+  minimumPageRange = maximumPageRange - minimumPageRange + 1 < numberOfPageToDisplay ? maximumPageRange - numberOfPageToDisplay + 1 : minimumPageRange;
+  minimumPageRange = clamp(minimumPageRange, 1, lastPage);
+
+  return [minimumPageRange, maximumPageRange];
+};
+
 interface Props
 {
   pageSize: number,
-  paginationButtonsCount?: number,
+  numberOfPageToDisplay?: number,
 
   // Props nécéssaires pour gérer une pagination côté client
   items? : any[],
@@ -20,7 +38,7 @@ interface Props
 
 const Pagination : FC<Props> = ({
   pageSize = 5,
-  paginationButtonsCount = 6,
+  numberOfPageToDisplay = 6,
 
   items,
   onPaginatedItemsChange = () => {},
@@ -35,19 +53,13 @@ const Pagination : FC<Props> = ({
   useEffect(() => { onPaginatedItemsChange(paginatedItems!); }, [paginatedItems]);
   useEffect(() => { onPageChange(page); }, [page]);
 
-  // compute page button range
-  let minimumPageRange = Math.ceil(page - (paginationButtonsCount / 2));
-  let maximumPageRange = minimumPageRange + paginationButtonsCount;
-  const lastPage = Math.ceil(items?.length ?? count / pageSize);
-  minimumPageRange = clamp(minimumPageRange, 1, lastPage);
-  maximumPageRange = clamp(maximumPageRange, 1, lastPage);
-  const pageRangeLength = maximumPageRange - minimumPageRange + 1;
-  maximumPageRange = pageRangeLength < paginationButtonsCount ? lastPage : maximumPageRange;
+  const lastPage = Math.ceil((items?.length ?? count) / pageSize);
+  const [minimumPageRange, maximumPageRange] = computeButtonsPageRange(page, pageSize, lastPage, numberOfPageToDisplay);
 
   return (
     <div className={styles.container}>
       <button onClick={() => setPage(page > 1 ? page - 1 : page)}>{'<'}</button>
-      { new Array(clamp(maximumPageRange - minimumPageRange + 1, 1, paginationButtonsCount)).fill(minimumPageRange).map((p, pageIndex) => <div className={cn(styles.page, page === p + pageIndex && styles.currentPage)} key={`page-button-${p + pageIndex}`} onClick={() => setPage(p + pageIndex)}>{p + pageIndex}</div>) }
+      { new Array(maximumPageRange - minimumPageRange + 1).fill(minimumPageRange).map((p, pageIndex) => <div className={cn(styles.page, page === p + pageIndex && styles.currentPage)} key={`page-button-${p + pageIndex}`} onClick={() => setPage(p + pageIndex)}>{p + pageIndex}</div>) }
       <button onClick={() => setPage(page < lastPage ? page + 1 : page)}>{'>'}</button>
     </div>
   );

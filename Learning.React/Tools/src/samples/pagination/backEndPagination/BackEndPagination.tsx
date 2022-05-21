@@ -20,7 +20,7 @@ const BackEndPaginationSample : FC = () => {
       <h2>New pagination back end</h2>
       <Pagination
         pageSize={5}
-        count={100} /* le nombre total d'éléments, soit count, doit être renvoyé par l'API */
+        count={100} /* le nombre total d'éléments doit être renvoyé par l'API */
         onPageChange={setPage}
       />
       { JSON.stringify(paginatedItems?.map((e : any) => e.id)) }
