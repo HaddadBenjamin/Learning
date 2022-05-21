@@ -1,5 +1,5 @@
 # Learning-project
-**Année de développement :** 2019-2021.</br>
+**Année de développement :** 2019-2022.</br>
 
 Projet d'apprentissage que j'utilise pour me perfectionner et pousser de nouvelles technologies (React, SASS, TS, JS).
 
