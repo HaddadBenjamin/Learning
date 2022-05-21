@@ -36,12 +36,12 @@
       top: 40px;
       cursor: pointer;
       fill: $blue_dark;
-      font-size : 24px;
+      font-size: 24px;
 
       @include below-md {
         right: 16px;
         top: 16px;
-        font-size : 16px;
+        font-size: 16px;
       }
     }
 

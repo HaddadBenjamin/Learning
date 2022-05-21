@@ -19,10 +19,11 @@ const BackEndPaginationSample : FC = () => {
     <>
       <h2>New pagination back end</h2>
       <Pagination
-        pageSize={5}
+        pageSize={PAGE_SIZE}
         count={100} /* le nombre total d'éléments doit être renvoyé par l'API */
         onPageChange={setPage}
       />
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       { JSON.stringify(paginatedItems?.map((e : any) => e.id)) }
     </>
   );

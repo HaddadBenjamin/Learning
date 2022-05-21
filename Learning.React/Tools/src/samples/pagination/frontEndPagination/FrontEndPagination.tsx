@@ -10,7 +10,7 @@ const FrontEndPaginationSample : FC = () => {
       <Pagination
         items={new Array(100).fill(0).map((e, i) => i + 1)}
         pageSize={5}
-        onPaginatedItemsChange={(newPaginatedItems) => setPaginatedItems(newPaginatedItems)}
+        onPaginatedItemsChange={setPaginatedItems}
       />
       { JSON.stringify(paginatedItems) }
     </>
