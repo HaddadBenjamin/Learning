@@ -25,8 +25,8 @@
   }
 }
 
-@each $colorName, $color in $colors {
-  .color-#{$colorName} { color: $color; }
-  .background-color-#{$colorName} { background-color: $color; }
-  .border-color-#{$colorName} { border-top: 10px solid $color; }
-}
+//@each $colorName, $color in $colors {
+//  .color-#{$colorName} { color: $color; }
+//  .background-color-#{$colorName} { background-color: $color; }
+//  .border-color-#{$colorName} { border-top: 10px solid $color; }
+//}

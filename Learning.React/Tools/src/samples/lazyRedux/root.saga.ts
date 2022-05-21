@@ -1,6 +1,6 @@
 import createSagaMiddleware from 'redux-saga';
 import { all } from 'redux-saga/effects';
-import idsSaga from '../lazyPagination/ids.saga';
+import idsSaga from '../pagination/lazyPagination/ids.saga';
 
 export const sagaMiddleware = createSagaMiddleware();
 
