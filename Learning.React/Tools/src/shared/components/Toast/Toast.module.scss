@@ -1,0 +1,66 @@
+@import "src/styles/styles";
+
+@mixin set-backgrounds($backgroundColor) {
+  background-color: rgba($backgroundColor, 0.3);
+
+  .regressionBar { background-color: $backgroundColor; }
+}
+
+.container {
+  @extend %border-box-container;
+
+  min-width: 271px;
+  height: 50px;
+  background-color: $white;
+  border-radius: 8px;
+}
+
+.alert {
+  @include square(100%);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 20px;
+  position: relative;
+  border-radius: 8px;
+  color: $blue_dark;
+  overflow: hidden;
+  font-family: roboto-bold;
+  font-size: $font-size-4;
+  background-color: $white;
+
+  svg { fill: $blue_dark; }
+}
+
+.regressionBar {
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.success {
+  @include set-backgrounds($green_light);
+
+  svg { @include square(22px); }
+}
+
+.warning {
+  @include set-backgrounds($yellow);
+
+  svg { @include square(35px); }
+}
+
+.error {
+  @include set-backgrounds($red);
+
+  svg { @include square(25px); }
+}
+
+.cross {
+  cursor: pointer;
+
+  svg { @include square(12px); }
+}
