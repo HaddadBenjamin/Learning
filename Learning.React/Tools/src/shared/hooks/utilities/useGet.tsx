@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosRequestConfig, AxiosInstance } from 'axios';
+import HttpStatus from '../constants/httpStatus';
 
 interface IUseGetParameters<TData, TOnFinishGetParameters = void>
 {
@@ -7,9 +8,10 @@ interface IUseGetParameters<TData, TOnFinishGetParameters = void>
   config?: AxiosRequestConfig,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dependencies? : any[],
-  onSuccess? : (data : TData, parameters?: TOnFinishGetParameters) => void,
+  /// TODO: il aurait fallu que onSuccess et onError prennent un objet en paramètre
+  onSuccess? : (data : TData, parameters?: TOnFinishGetParameters, status?: HttpStatus) => void,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onError? : (error : any, parameters?: TOnFinishGetParameters) => void,
+  onError? : (error : any, parameters?: TOnFinishGetParameters, status?: HttpStatus) => void,
   // Nécéssaire pour réaliser de l'UI optimiste : c’est à dire partir du principe que votre requête va fonctionner et la rollback en cas d’erreur, cela permet de mettre à jour votre UI tout de suite sans devoir à attendre que votre requête se termine. On peut utiliser de l’UI optimiste que dans les cas on peut prévoir à l’avance le résultat de la réponse de succès. C’est également une alternative à ajouter des loadeurs lorsque la requête est entrain de se lancer.
   onBeforeGet? : (parameters?: TOnFinishGetParameters) => void,
   httpClient? : AxiosInstance,
@@ -24,6 +26,8 @@ interface IUseGetResponse<TData, TOnFinishGetParameters = void>
   isFetched: boolean,
   // eslint-disable-next-line
   error?: any,
+  isNotFound: boolean,
+  status?: HttpStatus,
   refetch : (refetchParameters? : IRefetchParameters<TOnFinishGetParameters>) => void
 }
 
@@ -48,6 +52,7 @@ const useGet = <TData, TOnFinishGetParameters = void>(
   const [response, setResponse] = useState<IUseGetResponse<TData, TOnFinishGetParameters>>({
     isLoading: false,
     isFetched: false,
+    isNotFound: false,
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     refetch: () => {},
   });
@@ -63,22 +68,28 @@ const useGet = <TData, TOnFinishGetParameters = void>(
       });
 
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const { data } = await (httpClient ?? axios).get((refetchParameters?.refetchUrl ?? url)!, refetchParameters?.refetchConfig ?? config);
+      const { data, status } = await (httpClient ?? axios).get((refetchParameters?.refetchUrl ?? url)!, refetchParameters?.refetchConfig ?? config);
 
-      onSuccess?.(data, refetchParameters?.callbacksParameters);
+      onSuccess?.(data, refetchParameters?.callbacksParameters, status);
 
       setResponse({
         ...response,
         isLoading: false,
+        status,
+        isNotFound: false,
         data,
         isFetched: true,
       });
-    } catch (error) {
-      onError?.(error, refetchParameters?.callbacksParameters);
+    } catch (error : any) {
+      const status = error?.response?.status;
+
+      onError?.(error, refetchParameters?.callbacksParameters, status);
 
       setResponse({
         ...response,
         isLoading: false,
+        isNotFound: status === HttpStatus.NOT_FOUND,
+        status,
         data: undefined,
         error,
       });
