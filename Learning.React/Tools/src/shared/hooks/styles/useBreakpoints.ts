@@ -17,6 +17,12 @@ export interface Breakpoints {
   aboveSm: boolean;
   aboveMd: boolean;
   aboveLg: boolean;
+
+  isBelow: (screenWidth: number) => boolean
+  isAbove: (screenWidth: number) => boolean
+
+  isBelowOrEqual: (screenWidth: number) => boolean
+  isAboveOrEqual: (screenWidth: number) => boolean
 }
 
 const xsWidth = 360;
@@ -44,5 +50,11 @@ export default (): Breakpoints => {
     aboveSm: screenWidth >= smWidth,
     aboveMd: screenWidth >= mdWidth,
     aboveLg: screenWidth >= lgWidth,
+
+    isAbove: (width) => screenWidth > width,
+    isBelow: (width) => screenWidth < width,
+
+    isBelowOrEqual: (width) => screenWidth >= width,
+    isAboveOrEqual: (width) => screenWidth <= width,
   } as const;
 };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-import HttpStatus from '../constants/httpStatus';
+import HttpStatus from '../../constants/httpStatus';
 
 interface IUseMutationRequest<TData, TOnFinishGetParameters = void>
 {

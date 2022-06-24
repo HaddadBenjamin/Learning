@@ -22,6 +22,14 @@ const computeButtonsPageRange = (
   return [minimumPageRange, maximumPageRange];
 };
 
+// quand la page size change : setPage({ page : computePageNumberOnPageSizeChange(pageSize, page, newPageSize)
+export const computePageNumberOnPageSizeChange = (pageSize : number, pageNumber: number, newPageSize : number) : number => {
+  const itemsCount = pageSize * pageNumber;
+  const newPageNumber = Math.floor(itemsCount / newPageSize);
+
+  return newPageNumber;
+};
+
 interface Props<TItem>
 {
   pageSize: number,

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosRequestConfig, AxiosInstance } from 'axios';
-import HttpStatus from '../constants/httpStatus';
+import HttpStatus from '../../constants/httpStatus';
 
 interface IUseGetParameters<TData, TOnFinishGetParameters = void>
 {
