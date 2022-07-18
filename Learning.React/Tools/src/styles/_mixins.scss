@@ -101,3 +101,8 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
+
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
