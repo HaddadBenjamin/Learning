@@ -1,14 +1,21 @@
 import React, {
+  ReactElement,
   useCallback, useEffect, useRef, useState,
 } from 'react';
 import styles from './useIframe.module.scss';
 
-const useIframe = (url : string, title : string) => {
+interface IUseIframeResponse {
+  iframe : ReactElement,
+  error : boolean,
+  isLoading : boolean
+}
+
+const useIframe = (url : string, title : string) : IUseIframeResponse => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const ref = useRef<HTMLIFrameElement>(null);
 
-  const iframe = (
+  const iframe : ReactElement = (
     <div className={styles.iframeContainer}>
       <iframe
         className={styles.iframe}

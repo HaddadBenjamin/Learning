@@ -1,6 +1,6 @@
 import { useLayoutEffect } from 'react';
 
-const useLockBodyScroll = (lock = true) => {
+const useLockBodyScroll = (lock = true) : void => {
   if (typeof window === 'undefined') return;
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

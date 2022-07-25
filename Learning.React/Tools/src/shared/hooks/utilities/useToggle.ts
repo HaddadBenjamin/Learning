@@ -1,6 +1,10 @@
 import { useState } from 'react';
 
-const useToggle = (initialValue = true) => {
+const useToggle = (initialValue = true) : readonly [
+  boolean, // isToggled
+  () => void, // toggle
+  (toggled : boolean) => void // setIsToggled
+] => {
   const [value, setValue] = useState(initialValue);
   const toggle = (): void => setValue(!value);
 

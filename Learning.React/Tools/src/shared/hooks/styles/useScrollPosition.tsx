@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function useScrollPosition() {
+export default () : number => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const handleScroll = () => setScrollPosition(window.pageYOffset);
@@ -12,4 +12,4 @@ export default function useScrollPosition() {
   }, []);
 
   return scrollPosition;
-}
+};

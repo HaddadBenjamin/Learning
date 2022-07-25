@@ -10,7 +10,7 @@ interface IIdleState {
   secondsToBeConsideredAsIdle : number
 }
 
-const useIdle = (minutesToBeIdle : number) => {
+const useIdle = (minutesToBeIdle : number) : boolean => {
   // window is not defined using server side rendering
   if (typeof window === 'undefined') return false;
 

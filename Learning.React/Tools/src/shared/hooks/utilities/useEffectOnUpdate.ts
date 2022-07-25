@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 // S'execute lors du componentDidUpdate.
 // Ne s'éxécute pas lors du componentDidMount.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const useEffectOnUpdate = (callback : () => void, ...dependencies : any[]) => {
+const useEffectOnUpdate = (callback : () => void, ...dependencies : any[]) : void => {
   const hasBeenMounted = useRef(true);
 
   useEffect(() => {

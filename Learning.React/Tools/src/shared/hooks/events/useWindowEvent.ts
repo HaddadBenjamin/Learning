@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const useWindowEvent = (event: string, callback: () => void) => {
+const useWindowEvent = (event: string, callback: () => void) : void => {
   useEffect(() => {
     window.addEventListener(event, callback);
     return () => window.removeEventListener(event, callback);

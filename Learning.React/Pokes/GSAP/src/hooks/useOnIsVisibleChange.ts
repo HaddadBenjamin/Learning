@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import {MutableRefObject, useEffect, useState} from 'react';
 
-export default (
+const useOnVisibleChange = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getElement: () => any,
+  ref: MutableRefObject<any>,
   stopToObserveWhenElementIsVisible = true,
 ): boolean => {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,10 +17,11 @@ export default (
       if (stopToObserveWhenElementIsVisible) observer.unobserve(entry.target);
       setIsVisible(true);
     }
+    else setIsVisible(false);
   });
 
   useEffect(() => {
-    if (!getElement()) return;
+    if (!ref.current) return;
 
     const intersectionObserver = new IntersectionObserver(
       intersectionObserverCallback,
@@ -30,13 +31,15 @@ export default (
       },
     );
 
-    intersectionObserver.observe(getElement());
+    intersectionObserver.observe(ref.current);
 
     return (): void => {// eslint-disable-line
-      if (getElement()) intersectionObserver.unobserve(getElement());
+      if (ref.current) intersectionObserver.unobserve(ref.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return isVisible;
 };
+
+export default useOnVisibleChange

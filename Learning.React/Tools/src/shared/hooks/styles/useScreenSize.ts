@@ -5,7 +5,7 @@ interface ScreenSize {
   height: number;
 }
 
-export default (): ScreenSize => {
+export default () : ScreenSize => {
   // "window" is not available during server side rendering.
   if (typeof window === 'undefined') return { width: 0, height: 0 };
 
