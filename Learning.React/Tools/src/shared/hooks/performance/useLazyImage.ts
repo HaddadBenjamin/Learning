@@ -1,12 +1,19 @@
-import { useRef, useState } from 'react';
+import { MutableRefObject, useRef, useState } from 'react';
 import useOnVisibleChange from '../styles/useOnIsVisibleChange';
 
-const useLazyImage = (condition?: boolean) => {
-  const imgRef = useRef();
+interface IUseLazyImageResponse {
+  imgRef: MutableRefObject<HTMLElement>,
+  isVisible: boolean,
+  imageIsLoaded : boolean
+  onImageLoad : () => void
+}
+
+const useLazyImage = (condition?: boolean) : IUseLazyImageResponse => {
+  const imgRef = useRef() as MutableRefObject<HTMLElement>;
   const isVisible = useOnVisibleChange(imgRef, true);
   const [imageIsLoaded, setImageIsLoaded] = useState(false);
 
-  const onImageLoad = () => setImageIsLoaded(true);
+  const onImageLoad = () : void => setImageIsLoaded(true);
 
   return {
     imgRef,
