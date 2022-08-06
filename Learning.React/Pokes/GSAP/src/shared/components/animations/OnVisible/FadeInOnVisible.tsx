@@ -10,7 +10,7 @@ interface Props {
 const OnVisible : FC<Props> = ({ children, vars }) => {
   const ref = useRef() as MutableRefObject<HTMLDivElement>
 
-  useOnVisible(ref, () => gsap.from(ref.current, { ...vars }));
+  useOnVisible(ref, () => gsap.from(ref.current.children, { ...vars }));
 
   return <span ref={ref}>{children}</span>;
 }

@@ -6,12 +6,12 @@ import FadeInOnVisibleFirstTime from "../../shared/components/animations/FadeInO
 const App = () => <>
   <div className={styles.red}>Bloc présent pour montrer que les bloc suivants s'animent correctement</div>
 
-  <FadeInOnVisibleFirstTime vars={{ x: 100, rotation: "+=360" }}>
+  <FadeInOnVisibleFirstTime vars={{ x: 400 }}>
     <div className={styles.onVisibleFirstTime}>Animation déclenché une fois lorsque l'élément est visible</div>
   </FadeInOnVisibleFirstTime>
 
-  <FadeInOnVisible vars={{ x: -100, rotation: "+=360" }}>
-    <div className={styles.onVisible}>Animation relancer à chaque fois que l'élément est visible</div>
+  <FadeInOnVisible vars={{ x: -400 }}>
+    <div className={styles.onVisible}>Animation déclenché à chaque fois que l'élément est visible</div>
   </FadeInOnVisible>
 </>
 

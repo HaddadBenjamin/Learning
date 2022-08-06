@@ -10,7 +10,7 @@ interface Props {
 const OnVisibleFirstTime : FC<Props> = ({ children, vars }) => {
   const ref = useRef() as MutableRefObject<HTMLDivElement>
 
-  useOnVisibleFirstTime(ref, () => gsap.from(ref.current, { ...vars }));
+  useOnVisibleFirstTime(ref, () => gsap.from(ref.current.children, { ...vars }));
 
   return <span ref={ref}>{children}</span>;
 }
