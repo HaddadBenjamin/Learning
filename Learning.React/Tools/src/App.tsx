@@ -18,6 +18,7 @@ import LocalizationSample from './samples/localization/LocalizationSample';
 import WebSocketSample from './samples/websocket/WebSocketSample';
 import FrontEndPaginationSample from './samples/pagination/frontEndPagination/FrontEndPagination';
 import BackEndPaginationSample from './samples/pagination/backEndPagination/BackEndPagination';
+import AnimationSample from './samples/animations/AnimationSample';
 
 const queryClient = new QueryClient();
 export default () => (
@@ -32,6 +33,7 @@ export default () => (
       <ResponsiveNavigationSample />
       <HightlightSample />
       <LocalizationSample />
+      <AnimationSample />
       <SimplePaginationSample />
       <LazyPaginationSample />
       <LazyReduxSample />

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import styles from './Pagination.module.scss';
-import clamp from '../../utilities/number/clamp';
+import clamp from '../../../utilities/number/clamp';
 
 const computeButtonsPageRange = (
   page : number,

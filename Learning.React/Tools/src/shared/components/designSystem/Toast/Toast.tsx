@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import cn from 'classnames';
 import styles from './Toast.module.scss';
-import ClickableDiv from '../ClickableDiv/ClickableDiv';
+import ClickableDiv from '../../utilities/ClickableDiv/ClickableDiv';
 
 interface Props {
   type?: 'success' | 'warning' | 'error'

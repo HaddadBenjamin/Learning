@@ -1,6 +1,6 @@
 /* eslint-disable  react/no-array-index-key */
 import React, { ChangeEvent, useState } from 'react';
-import Highlight from '../../../shared/components/Highlight/Highlight';
+import Highlight from '../../../shared/components/designSystem/Highlight/Highlight';
 import highlightDatasMock from './highlight.mock';
 
 const HightlightSample = () => {

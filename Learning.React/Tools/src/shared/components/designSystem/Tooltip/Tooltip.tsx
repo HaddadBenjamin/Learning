@@ -4,7 +4,7 @@ import React, {
 import classNames from 'classnames/bind';
 import cn from 'classnames';
 import styles from './Tooltip.module.scss';
-import useHover from '../../hooks/events/useIsHover';
+import useHover from '../../../hooks/events/useIsHover';
 
 interface Props {
   text : string,

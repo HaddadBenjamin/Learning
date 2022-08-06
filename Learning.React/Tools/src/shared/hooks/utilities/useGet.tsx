@@ -80,6 +80,7 @@ const useGet = <TData, TOnFinishGetParameters = void>(
         data,
         isFetched: true,
       });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error : any) {
       const status = error?.response?.status;
 

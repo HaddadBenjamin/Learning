@@ -3,9 +3,9 @@ import React, {
 } from 'react';
 import cn from 'classnames';
 import styles from './Modal.module.scss';
-import useOnClickOutside from '../../hooks/styles/useOnClickOutside';
-import useElementSize from '../../hooks/styles/useElementSize';
-import useLockBodyScroll from '../../hooks/utilities/useLockBodyScroll';
+import useOnClickOutside from '../../../hooks/styles/useOnClickOutside';
+import useElementSize from '../../../hooks/styles/useElementSize';
+import useLockBodyScroll from '../../../hooks/utilities/useLockBodyScroll';
 
 interface ModalLineProps {
   lineNumber: number

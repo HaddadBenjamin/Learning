@@ -1,8 +1,8 @@
 import { MutableRefObject, useEffect } from 'react';
 import useOnIsVisibleChange from './useOnIsVisibleChange';
 
-const useOnVisibleFirstTime = (
-  ref: MutableRefObject<any>,
+const useOnVisibleFirstTime = <THtmlElement extends HTMLElement>(
+  ref: MutableRefObject<THtmlElement>,
   onFirstTimeVisible: () => void,
 ) : void => {
   const isVisible = useOnIsVisibleChange(ref, true);

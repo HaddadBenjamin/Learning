@@ -1,8 +1,8 @@
 import { MutableRefObject, useEffect, useState } from 'react';
 
-const useOnVisibleChange = (
+const useOnVisibleChange = <THtmlElement extends HTMLElement>(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ref: MutableRefObject<any>,
+  ref: MutableRefObject<THtmlElement>,
   stopToObserveWhenElementIsVisible = true,
 ): boolean => {
   const [isVisible, setIsVisible] = useState(false);

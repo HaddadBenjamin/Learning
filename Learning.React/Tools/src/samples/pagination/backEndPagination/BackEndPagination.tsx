@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import axios from 'axios';
-import Pagination from '../../../shared/components/Pagination/Pagination';
+import Pagination from '../../../shared/components/designSystem/Pagination/Pagination';
 
 const PAGE_SIZE = 5;
 const BackEndPaginationSample : FC = () => {

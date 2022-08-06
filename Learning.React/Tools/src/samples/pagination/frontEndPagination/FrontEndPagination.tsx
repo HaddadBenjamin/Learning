@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import Pagination from '../../../shared/components/Pagination/Pagination';
+import Pagination from '../../../shared/components/designSystem/Pagination/Pagination';
 
 const FrontEndPaginationSample : FC = () => {
   const [paginatedItems, setPaginatedItems] = useState<number[]>([]);

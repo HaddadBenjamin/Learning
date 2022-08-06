@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import gsap from 'gsap';
-import OnVisible from "../OnVisible/FadeInOnVisible";
+import OnVisible from "../OnVisible/OnVisible";
 
 interface Props {
   fromVars?: gsap.TweenVars
