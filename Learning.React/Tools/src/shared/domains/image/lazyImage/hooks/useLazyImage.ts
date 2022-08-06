@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react';
+import { MutableRefObject, useRef, useState } from 'react';
 import useOnVisibleChange from '../../../../hooks/styles/useOnIsVisibleChange';
 
 const useLazyImage = (condition?: boolean) => {
-  const imgRef = useRef();
+  const imgRef = useRef() as MutableRefObject<HTMLDivElement>;
   const isVisible = useOnVisibleChange(imgRef, true);
   const [imageIsLoaded, setImageIsLoaded] = useState(false);
 
