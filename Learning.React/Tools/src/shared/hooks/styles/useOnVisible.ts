@@ -1,16 +1,15 @@
-import useOnIsVisibleChange from "./useOnIsVisibleChange";
-import {MutableRefObject, useEffect} from "react";
+import { MutableRefObject, useEffect } from 'react';
+import useOnIsVisibleChange from './useOnIsVisibleChange';
 
 const useOnVisible = (
   ref: MutableRefObject<any>,
-  onVisible: () => void
-) : void =>
-{
+  onVisible: () => void,
+) : void => {
   const isVisible = useOnIsVisibleChange(ref, false);
 
   useEffect(() => {
     if (isVisible) onVisible();
-  }, [isVisible])
-}
+  }, [isVisible]);
+};
 
-export default useOnVisible
+export default useOnVisible;

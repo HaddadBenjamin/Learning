@@ -1,4 +1,4 @@
-import {MutableRefObject, useEffect, useState} from 'react';
+import { MutableRefObject, useEffect, useState } from 'react';
 
 const useOnVisibleChange = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -16,8 +16,7 @@ const useOnVisibleChange = (
     if (elementIsVisible) {
       if (stopToObserveWhenElementIsVisible) observer.unobserve(entry.target);
       setIsVisible(true);
-    }
-    else setIsVisible(false);
+    } else setIsVisible(false);
   });
 
   useEffect(() => {
@@ -42,4 +41,4 @@ const useOnVisibleChange = (
   return isVisible;
 };
 
-export default useOnVisibleChange
+export default useOnVisibleChange;

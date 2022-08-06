@@ -1,16 +1,15 @@
-import useOnIsVisibleChange from "./useOnIsVisibleChange";
-import {MutableRefObject, useEffect} from "react";
+import { MutableRefObject, useEffect } from 'react';
+import useOnIsVisibleChange from './useOnIsVisibleChange';
 
 const useOnVisibleFirstTime = (
   ref: MutableRefObject<any>,
-  onFirstTimeVisible: () => void
-) : void =>
-{
+  onFirstTimeVisible: () => void,
+) : void => {
   const isVisible = useOnIsVisibleChange(ref, true);
 
   useEffect(() => {
     if (isVisible) onFirstTimeVisible();
-  }, [isVisible])
-}
+  }, [isVisible]);
+};
 
-export default useOnVisibleFirstTime
+export default useOnVisibleFirstTime;
