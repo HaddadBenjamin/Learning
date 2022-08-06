@@ -3,14 +3,15 @@ import useOnVisible from "../../../hooks/useOnVisible";
 import gsap from 'gsap';
 
 interface Props {
-  vars?: gsap.TweenVars
+  fromVars: gsap.TweenVars
+  toVars: gsap.TweenVars
   children?: React.ReactNode
 }
 
-const OnVisible : FC<Props> = ({ children, vars }) => {
+const OnVisible : FC<Props> = ({ children, fromVars, toVars }) => {
   const ref = useRef() as MutableRefObject<HTMLDivElement>
 
-  useOnVisible(ref, () => gsap.from(ref.current.children, { ...vars }));
+  useOnVisible(ref, () => gsap.fromTo(ref.current.children, fromVars, toVars));
 
   return <span ref={ref}>{children}</span>;
 }

@@ -10,7 +10,7 @@ const App = () => <>
     <div className={styles.onVisibleFirstTime}>Animation déclenché une fois lorsque l'élément est visible</div>
   </FadeInOnVisibleFirstTime>
 
-  <FadeInOnVisible vars={{ x: -400 }}>
+  <FadeInOnVisible fromVars={{ x: -400 }} toVars={{ x: 0 }}>
     <div className={styles.onVisible}>Animation déclenché à chaque fois que l'élément est visible</div>
   </FadeInOnVisible>
 </>
