@@ -1,5 +1,23 @@
-.container {
+%base {
   height : 1000px;
   width : 100%;
+  color: white;
+  text-align: center;
+  font-size:30px;
+  padding-top:100px;
+}
+
+.red {
+  @extend %base;
   background-color: red;
+}
+
+.onVisible {
+  @extend %base;
+  background-color: blue;
+}
+
+.onVisibleFirstTime {
+  @extend %base;
+  background-color: green;
 }
