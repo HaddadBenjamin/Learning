@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
-import useDoesRefIsVisible from '../../../../hooks/styles/useDoesRefIsVisible';
+import useOnVisibleChange from '../../../../hooks/styles/useOnIsVisibleChange';
 
 const useLazyImage = (condition = true) => {
-  const imgRef = useRef(null);
-  const isVisible = useDoesRefIsVisible(imgRef);
+  const imgRef = useRef();
+  const isVisible = useOnVisibleChange(imgRef, true);
   const [imageIsLoaded, setImageIsLoaded] = useState(false);
 
   const onImageLoad = () => setImageIsLoaded(true);
