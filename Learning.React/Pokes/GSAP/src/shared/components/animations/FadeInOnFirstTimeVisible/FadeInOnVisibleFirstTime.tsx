@@ -8,6 +8,6 @@ interface Props {
 }
 
 const FadeInOnVisibleFirstTime : FC<Props> = ({ children, vars }) =>
-  <OnVisibleFirstTime vars={{ opacity: 0, duration : 2, ...vars }}>{children}</OnVisibleFirstTime>
+  <OnVisibleFirstTime vars={{ opacity: 0, duration : 1, ...vars }}>{children}</OnVisibleFirstTime>
 
 export default FadeInOnVisibleFirstTime;

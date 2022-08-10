@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import doesElementIsVisible from '../../utilities/doesElementIsVisible';
+import doesElementIsVisible from '../../utilities/domainsHttpAndHtmlElement/doesElementIsVisible';
 
 interface IUseInfiniteScrollingResponse<T> {
   items : T[],

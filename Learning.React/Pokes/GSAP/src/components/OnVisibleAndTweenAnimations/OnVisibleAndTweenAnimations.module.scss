@@ -1,0 +1,26 @@
+%base {
+  height : 1000px;
+
+  color: white;
+  text-align: center;
+  font-size:30px;
+  padding : 50px;
+}
+
+.gridWith2Elements {
+  display : grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap : 20px;
+  background-color: #002c75;
+  padding : 20px;
+}
+
+.onVisibleFirstTime {
+  @extend %base;
+  background-color: green;
+}
+
+.onVisible {
+  @extend %base;
+  background-color: red;
+}

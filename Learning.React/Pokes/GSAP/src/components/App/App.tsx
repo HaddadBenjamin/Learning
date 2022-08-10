@@ -1,20 +1,31 @@
-import React from 'react';
-import styles from './App.module.scss';
+import React, {useState} from 'react';
 import MacbookOutsideToInsideAnimation from "../MacbookOutsideToInsideAnimation/MacbookOutsideToInsideAnimation";
-// import FadeInOnVisible from "../../shared/components/animations/FadeInOnVisible/FadeInOnVisible";
-// import FadeInOnVisibleFirstTime from "../../shared/components/animations/FadeInOnFirstTimeVisible/FadeInOnVisibleFirstTime";
+import OnVisibleAndTweenAnimations from "../OnVisibleAndTweenAnimations/OnVisibleAndTweenAnimations";
+import styles from './App.module.scss'
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import TimelineAnimations from "../TimelineAnimations/TimelineAnimations";
 
-const App = () => <>
-  <div className={styles.red}>Bloc présent pour montrer que les bloc suivants s'animent correctement</div>
+gsap.registerPlugin(ScrollTrigger);
 
-  <MacbookOutsideToInsideAnimation/>
-  {/*<FadeInOnVisibleFirstTime vars={{ x: 400 }}>*/}
-  {/*  <div className={styles.onVisibleFirstTime}>Animation qui se déclenche la première fois qu'un élément est visible</div>*/}
-  {/*</FadeInOnVisibleFirstTime>*/}
+type Tab = 'tween' | 'onVisible[FirstTime]' | 'timeline & enchainement danimation' | 'scroll & slider & carrousel'
+const App = () => {
+  const [tabVisible, setTabVisible] = useState<Tab>('onVisible[FirstTime]')
 
-  {/*<FadeInOnVisible fromVars={{ x: -400 }} toVars={{ x: 0 }}>*/}
-  {/*  <div className={styles.onVisible}>Animation qui se déclenche à chaque fois qu'un élément est visible</div>*/}
-  {/*</FadeInOnVisible>*/}
-</>
+  return <>
+    <h2>Animation choisi : {tabVisible}</h2>
+    <div className={styles.container}>
+      <button onClick={() => setTabVisible('tween')}>Les tweens</button>
+      <button onClick={() => setTabVisible('onVisible[FirstTime]')}>Déclencher une animation quand un élément est visible</button>
+      <button onClick={() => setTabVisible('timeline & enchainement danimation')}>Timelines : enchainer les animations</button>
+      <button onClick={() => setTabVisible('scroll & slider & carrousel')}>Gestion du scroll ave ScrollTrigger : slider & carrousel</button>
+    </div>
+
+    {/*{ tabVisible === 'onVisible[FirstTime]' && <OnVisibleAndTweenAnimations/> }*/}
+    { tabVisible === 'onVisible[FirstTime]' && <OnVisibleAndTweenAnimations/> }
+    { tabVisible === 'timeline & enchainement danimation' && <TimelineAnimations/> }
+    { tabVisible === 'scroll & slider & carrousel' && <MacbookOutsideToInsideAnimation/> }
+  </>;
+}
 
 export default App;

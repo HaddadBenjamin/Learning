@@ -1,4 +1,4 @@
-import newGuid from '../newGuid';
+import newGuid from '../string/newGuid';
 
 describe('newGuid', () => {
   it("length should be 36 and text should contains 5 '-'", () => {

@@ -1,5 +1,5 @@
 import { Configuration } from '../../domains/configuration/configuration.model';
-import { deepMerge } from '../../utilities/object/deepMerge';
+import { deepMerge } from '../../utilities/any/deepMerge';
 
 let configuration: Configuration | undefined;
 export default (): Configuration => {

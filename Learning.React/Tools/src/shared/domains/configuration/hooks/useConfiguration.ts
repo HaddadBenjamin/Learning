@@ -1,4 +1,4 @@
-import { deepMerge } from '../../../utilities/object/deepMerge';
+import { deepMerge } from '../../../utilities/any/deepMerge';
 import { Configuration } from '../configuration.model';
 
 // ITS UNSAFE DONT DO THAT

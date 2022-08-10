@@ -1,4 +1,4 @@
-import mapToArray from './mapToArray';
+import mapToArray from '../map/mapToArray';
 
 const groupBy = <T, K, V>(
   array: T[],
