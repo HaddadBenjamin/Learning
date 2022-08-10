@@ -1,0 +1,23 @@
+$macbookImageHeight : 75px;
+
+.otherContainer {
+  background-color: #1C78D8;
+  height : 400px;
+}
+
+.container {
+  position: relative;
+  overflow: hidden;
+  height : 266px;
+  background-color: #002c75;
+  padding-top: 200px;
+
+  .image {
+    position: absolute;
+    height:$macbookImageHeight;
+  }
+
+  .rightImage {
+    right : 0;
+  }
+}

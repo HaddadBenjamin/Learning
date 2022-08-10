@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './OnVisibleAndTweenAnimations.module.scss';
+import styles from './OnVisibleAnimations.module.scss';
 import FadeInOnVisible from "../../shared/components/animations/FadeInOnVisible/FadeInOnVisible";
 import FadeInOnVisibleFirstTime from "../../shared/components/animations/FadeInOnFirstTimeVisible/FadeInOnVisibleFirstTime";
 import FadeInOnVisibleFirstTimeWithGsap
@@ -7,7 +7,7 @@ import FadeInOnVisibleFirstTimeWithGsap
 import FadeInOnVisibleWithGsap
   from "../../shared/components/animations/FadeInOnVisibleWithGsap/FadeInOnVisibleWithGsap";
 
-const OnVisibleAndTweenAnimations = () => <>
+const OnVisibleAnimations = () => <>
   <h2>Animation qui se déclenche la première fois qu'un élément est visible</h2>
   <div className={styles.gridWith2Elements}>
     <FadeInOnVisibleFirstTimeWithGsap fromVars={{ x: 400 }} toVars={{ x: 0 }}>
@@ -31,4 +31,4 @@ const OnVisibleAndTweenAnimations = () => <>
   </div>
 </>
 
-export default OnVisibleAndTweenAnimations;
+export default OnVisibleAnimations;
