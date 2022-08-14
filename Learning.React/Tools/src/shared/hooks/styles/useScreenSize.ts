@@ -5,6 +5,7 @@ interface ScreenSize {
   height: number;
 }
 
+// Optimisation possible : passer en paramètre un throttleValue, valeur par défault = 300, mais créera une dépendance à Lodash.
 export default () : ScreenSize => {
   // "window" is not available during server side rendering.
   if (typeof window === 'undefined') return { width: 0, height: 0 };

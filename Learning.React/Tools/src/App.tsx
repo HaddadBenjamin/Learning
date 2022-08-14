@@ -19,6 +19,7 @@ import WebSocketSample from './samples/websocket/WebSocketSample';
 import FrontEndPaginationSample from './samples/pagination/frontEndPagination/FrontEndPagination';
 import BackEndPaginationSample from './samples/pagination/backEndPagination/BackEndPagination';
 import AnimationSample from './samples/animations/AnimationSample';
+import ThrottleAndDebounceSample from './samples/throttleAndDebounce/ThrottleAndDebounceSample';
 
 const queryClient = new QueryClient();
 export default () => (
@@ -26,10 +27,11 @@ export default () => (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
 
+      <ThrottleAndDebounceSample />
+
       <FrontEndPaginationSample />
       <BackEndPaginationSample />
 
-      <WebSocketSample />
       <ResponsiveNavigationSample />
       <HightlightSample />
       <LocalizationSample />
@@ -42,6 +44,8 @@ export default () => (
       <ResponsiveImageSample />
       <InfiniteScrollingSample />
       <BreakpointsSample />
+
+      <WebSocketSample />
     </QueryClientProvider>
   </Provider>
 );
