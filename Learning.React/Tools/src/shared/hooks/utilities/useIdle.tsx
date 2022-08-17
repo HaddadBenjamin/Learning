@@ -10,6 +10,7 @@ interface IIdleState {
   secondsToBeConsideredAsIdle : number
 }
 
+// Optimisation possible : passer en paramètre un throttleValue, valeur par défault = 300, mais créera une dépendance à Lodash.
 const useIdle = (minutesToBeIdle : number) : boolean => {
   // window is not defined using server side rendering
   if (typeof window === 'undefined') return false;

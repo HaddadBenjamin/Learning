@@ -1,14 +1,13 @@
-import React, { FC, KeyboardEventHandler, MouseEventHandler } from 'react';
+import React, { FC, PointerEventHandler } from 'react';
 
 interface Props {
-  onClick: MouseEventHandler<HTMLDivElement> | undefined,
+  onClick: PointerEventHandler<HTMLDivElement> | undefined,
   className?: string,
 }
 
 const ClickableDiv : FC<Props> = ({ onClick, className, children }) => (
   <div
-    onClick={onClick}
-    onKeyPress={onClick as KeyboardEventHandler<HTMLDivElement> | undefined}
+    onPointerDown={onClick} // Gère le click, le touch mobile et au pinceau, évite de définir onClick & onKeyDown.
     role='button'
     tabIndex={0}
     className={className}
