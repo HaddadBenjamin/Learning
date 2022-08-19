@@ -41,6 +41,10 @@ const ThrottleAndDebounceSample = () => {
         </div>
 
         <div>
+          <p>Avec useDefferedValue: équivalent à un debounce de 100ms, voir mes notes</p>
+        </div>
+
+        <div>
           <p>Avec du throttle : Limite l'appel de la fonction une fois tout les n temps</p>
           <input type='text' value={thottleValue} onChange={onThrottleChange} placeholder='throttle value' />
           <p>{thottleDebugValue}</p>

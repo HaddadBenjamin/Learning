@@ -1,14 +1,10 @@
 import React, {FC} from "react";
-import cn from 'classnames'
-import styles from './AnimationsWithoutGSAP.module.scss'
+import AnimatedLoader from "./AnimatedLoader/AnimatedLoader";
+import AnimatedProgressiveLoadingBar from "./AnimatedProgressiveLoadingBar/AnimatedProgressiveLoadingBar";
 
-const AnimationsWithoutGSAP : FC = () =>
-  <div className={styles.spinnerContainer}>
-    <div>Loading...</div>
-    <div className={cn(styles.spinner, styles.redSpinner)}/>
-    <div className={cn(styles.spinner, styles.blueSpinner)}/>
-    <div className={cn(styles.spinner, styles.orangeSpinner)}/>
-    <div className={cn(styles.spinner, styles.purpleSpinner)}/>
-  </div>
+const AnimationsWithoutGSAP : FC = () => <div style={{ display: 'flex', gap: '20px' }}>
+  <AnimatedProgressiveLoadingBar/>
+  <AnimatedLoader/>
+</div>
 
 export default AnimationsWithoutGSAP;

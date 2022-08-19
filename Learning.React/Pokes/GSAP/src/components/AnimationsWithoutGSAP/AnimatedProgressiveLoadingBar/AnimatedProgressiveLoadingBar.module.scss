@@ -1,0 +1,30 @@
+.buttonContainer {
+  margin-bottom: 12px;
+  display:flex;
+  gap: 12px;
+  cursor:pointer;
+}
+
+.loadingBarContainer {
+  width : 400px;
+  height : 20px;
+  border-radius : 8px;
+  border: black 2px solid;
+  position:relative;
+  overflow: hidden;
+
+  .loadingBar {
+    position: absolute;
+    background: red;
+    height:100%;
+    transition : 1s ease;
+  }
+
+  .filledPercentageText {
+    position: absolute;
+    height:100%;
+    width: 100%;
+    text-align: center;
+    line-height:20px;
+  }
+}

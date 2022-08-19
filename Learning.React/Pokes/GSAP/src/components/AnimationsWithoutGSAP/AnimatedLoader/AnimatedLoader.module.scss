@@ -1,17 +1,17 @@
 .spinnerContainer {
   position: relative;
-  width : 400px;
-  height : 400px;
+  width : 200px;
+  height : 200px;
   margin: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 3em;
+  font-size: 2em;
   animation: textFadeInAnimation 2.0s ease-in-out infinite;
 
   .spinner {
     position: absolute;
-    border: 15px solid transparent;
+    border: 10px solid transparent;
     border-radius:50%;
     width: 100%;
     height: 100%;

@@ -22,6 +22,7 @@ export default <T extends HTMLElement>(): useElementSizeResponse<T> => {
   });
   const handleResize = () => setElementSize(getElementSize());
 
+  useEffect(() => { new ResizeObserver(handleResize).observe(elementReference?.current); }, []);
   useEffect(() => {
     if (elementReference?.current) handleResize();
 
