@@ -12,4 +12,54 @@
     margin: 5px;
     text-align: center;
   }
+
+  %tick {
+    position: absolute;
+    bottom:50%;
+    left:50%;
+    transform-origin: bottom;
+  }
+
+  .hourTick {
+    @extend %tick;
+
+    background: black;
+    height: 50px;
+    width: 6px;
+
+    border: white 1px solid;
+    border-radius: 2px;
+  }
+
+  .minuteTick {
+    @extend %tick;
+
+    background: black;
+    height: 60px;
+    width: 4px;
+
+    border: white 1px solid;
+    border-radius: 6px;
+  }
+
+  .secondTick {
+    @extend %tick;
+
+    background: red;
+    height: 75px;
+    width: 2px;
+
+    border-radius: 2px;
+  }
+
+  .circleInClockCenter {
+    position: absolute;
+    bottom: calc(50% - 5px);
+    left: calc(50% - 5px);
+    background: black;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: #eef0f1 1px solid;
+  }
 }
