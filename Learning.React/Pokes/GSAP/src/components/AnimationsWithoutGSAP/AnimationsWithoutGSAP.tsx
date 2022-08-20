@@ -6,6 +6,7 @@ import AnimatedText from "./AnimatedText/AnimatedText";
 const AnimationsWithoutGSAP : FC = () => <div style={{ display: 'flex', gap: '20px' }}>
   <div>
     <AnimatedProgressiveLoadingBar/>
+    <h3 style={{ marginTop: '20px' }}>Texte animé</h3>
     <AnimatedText/>
   </div>
 
