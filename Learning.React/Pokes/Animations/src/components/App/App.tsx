@@ -18,11 +18,11 @@ type Tab =
   'timeline & enchainement danimation' |
   'scroll & slider & carrousel'
 const App = () => {
-  const [tabVisible, setTabVisible] = useState<Tab>('Les tweens')
+  const [tabVisible, setTabVisible] = useState<Tab>('Animations sans GSAP')
 
-  return <>
+  return <div className={styles.container}>
     <h2>Animation choisi : {tabVisible}</h2>
-    <div className={styles.container}>
+    <div className={styles.buttonContainer}>
       <button onClick={() => setTabVisible('Animations sans GSAP')}>Animations sans GSAP</button>
       <button onClick={() => setTabVisible('Les tweens')}>Les tweens</button>
       <button onClick={() => setTabVisible('timeline & enchainement danimation')}>Timelines : enchainer les animations</button>
@@ -38,7 +38,7 @@ const App = () => {
         <MacbookSliderAnimations/>
         <PanelSliderAnimations/>
     </>}
-  </>;
+  </div>;
 }
 
 export default App;

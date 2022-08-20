@@ -21,9 +21,10 @@ const AnimatedProgressiveLoadingBar : FC = () => {
     </div>
 
     <div>
-      <div className={styles.loadingBarContainer}>
+      <div className={styles.loadingBarContainerWithoutBorder}>
         <div className={styles.loadingBar} ref={ref}/>
         <div className={styles.filledPercentageText}>{filledPercentageEase.toFixed(2)}%</div>
+        <div className={styles.loadingBarContainer}/>
       </div>
     </div>
   </div>;
