@@ -45,14 +45,13 @@ const App = () => {
       y: topBallValue < 0  ? Math.abs(ballDirection.y) : topBallValue > screenHeight - BALL_SIZE? -Math.abs(ballDirection.y): ballDirection.y
     })
 
-    console.log(topBallValue, screenHeight)
-    // setBallSpeed(ballSpeed * (1 + deltaTime * 0.00001))
+    setBallSpeed(ballSpeed * (1 + deltaTime * 0.00005))
   }
 
   // movePaddle
   // collissionBall :!
   return <div className={styles.screen}>
-    <div className={styles.score}>{`${playerScore} | ${IAScore}`}</div>
+    <div className={styles.score}>{`WORK IN PROGRESS: ${playerScore} | ${IAScore}`}</div>
     <div className={styles.leftPaddle}/>
     <div className={styles.rightPaddle}/>
     <div
