@@ -1,0 +1,44 @@
+%paddle {
+  position: absolute;
+  width: 20px;
+  height: 10vh;
+  background: #eef0f1;
+  border: solid 2px black;
+  border-radius: 2px;
+  top: calc(50% - 5vh);
+}
+
+.screen {
+  background: rgba(30,30,30, 1);
+  width: 100vw;
+  height: 100vh;
+}
+
+.score {
+  position: absolute;
+  width: 100vw;
+  top : 30px;
+  color: brown;
+  font-size: 2em;
+  text-align: center;
+}
+
+.leftPaddle {
+  @extend  %paddle;
+  left : 10px;
+}
+
+.rightPaddle {
+  @extend %paddle;
+  right : 10px;
+}
+
+
+.ball {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: solid 2px black;
+  border-radius: 50%;
+  background: white;
+}

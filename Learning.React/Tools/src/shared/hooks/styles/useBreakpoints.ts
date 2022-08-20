@@ -31,7 +31,7 @@ const mdWidth = 1240;
 const lgWidth = 1440;
 
 export default (): Breakpoints => {
-  const { width: screenWidth } = useScreenSize();
+  const { screenWidth: screenWidth } = useScreenSize();
 
   return {
     isMobile: screenWidth <= smWidth, // équivaut à un belowSm

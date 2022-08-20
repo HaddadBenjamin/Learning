@@ -8,7 +8,7 @@ import FadeInOnVisible from '../../shared/components/animations/FadeInOnVisible/
 import useOnVisibleFirstTime from '../../shared/hooks/styles/useOnVisibleFirstTime';
 
 const AnimationSample = () => {
-  const { width: screenWidth } = useScreenSize();
+  const { screenWidth: screenWidth } = useScreenSize();
 
   const severalAnimationsRef = useRef() as MutableRefObject<HTMLDivElement>;
   useOnVisibleFirstTime(severalAnimationsRef, () => {

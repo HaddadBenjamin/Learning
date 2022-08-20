@@ -3,8 +3,8 @@ import {
 } from 'react';
 
 export interface ElementSize {
-  width: number;
-  height: number;
+  elementWidth: number;
+  elementHeight: number;
 }
 
 interface useElementSizeResponse<T> {
@@ -14,12 +14,12 @@ interface useElementSizeResponse<T> {
 
 // Optimisation possible : passer en paramètre un throttleValue, valeur par défault = 300, mais créera une dépendance à Lodash.
 export default <T extends HTMLElement>(): useElementSizeResponse<T> => {
-  const [elementSize, setElementSize] = useState<ElementSize>({ width: 0, height: 0 });
+  const [elementSize, setElementSize] = useState<ElementSize>({ elementWidth: 0, elementHeight: 0 });
   const elementReference = useRef<T>() as MutableRefObject<T>;
 
   const getElementSize = (): ElementSize => ({
-    width: elementReference?.current?.offsetWidth ?? 0,
-    height: elementReference?.current?.offsetHeight ?? 0,
+    elementWidth: elementReference?.current?.offsetWidth ?? 0,
+    elementHeight: elementReference?.current?.offsetHeight ?? 0,
   });
   const handleResize = () => setElementSize(getElementSize());
 

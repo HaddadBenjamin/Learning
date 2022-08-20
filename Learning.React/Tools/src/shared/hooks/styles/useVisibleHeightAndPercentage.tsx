@@ -22,16 +22,16 @@ const useVisibleHeightAndPercentage = <THTMLElement extends HTMLElement>() : IUs
   const scrollPosition = useScrollPosition();
 
   useEffect(() => {
-    let visibleHeight = elementSize.height - elementReference.current.getBoundingClientRect().y;
+    let visibleHeight = elementSize.elementHeight - elementReference.current.getBoundingClientRect().y;
     if (visibleHeight < 0 || Number.isNaN(visibleHeight)) visibleHeight = 0;
 
-    let visiblePercentNormalized = visibleHeight / elementSize.height;
+    let visiblePercentNormalized = visibleHeight / elementSize.elementHeight;
     if (Number.isNaN(visiblePercentNormalized)) visiblePercentNormalized = 0;
 
     setVisibleHeight(visibleHeight);
     setVisiblePercentNormalized(visiblePercentNormalized);
     setVisiblePercent(visiblePercentNormalized * 100);
-  }, [scrollPosition, elementReference.current, elementSize.height]);
+  }, [scrollPosition, elementReference.current, elementSize.elementHeight]);
 
   return {
     visibleHeight,

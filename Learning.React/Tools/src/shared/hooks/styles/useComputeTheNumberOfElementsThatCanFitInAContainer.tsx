@@ -8,7 +8,7 @@ interface IUseComputeTheNumberOfElementsThatCanFitInAContainerResponse
 }
 
 const useComputeTheNumberOfElementsThatCanFitInAContainer = <T extends HTMLElement, >(elementWidth : number) : IUseComputeTheNumberOfElementsThatCanFitInAContainerResponse => {
-  const { elementSize: { width: containerWidth }, elementReference: containerReference } = useElementSize<T>();
+  const { elementSize: { elementWidth: containerWidth }, elementReference: containerReference } = useElementSize<T>();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const numberOfElementsThatCanFitInAContainer = useMemo(() => Math.floor(containerWidth / elementWidth), [containerWidth]);
 

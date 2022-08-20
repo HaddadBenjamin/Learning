@@ -43,7 +43,7 @@ const Modal : FC<Props> = ({
   addCloseButton = true,
 }) => {
   const modalReference = useRef() as MutableRefObject<HTMLDivElement>;
-  const { elementReference: titleReference, elementSize: { height: titleHeight } } = useElementSize<HTMLDivElement>();
+  const { elementReference: titleReference, elementSize: { elementHeight: titleHeight } } = useElementSize<HTMLDivElement>();
   const numberOfTitleLine = titleHeight / MODAL_LINE_HEIGHT;
 
   useOnClickOutside(modalReference, () => { if (closeOnClickOutside) setShowModal(false); });
