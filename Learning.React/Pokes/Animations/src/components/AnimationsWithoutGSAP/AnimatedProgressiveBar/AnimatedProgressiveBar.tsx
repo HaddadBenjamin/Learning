@@ -1,11 +1,11 @@
 import React, {FC, useEffect, useRef, useState} from "react";
-import styles from './AnimatedProgressiveLoadingBar.module.scss'
+import styles from './AnimatedProgressiveBar..module.scss'
 import useElementSize from "../../../shared/otherThanAnimation/hooks/useElementSize";
 
 //Todo animated percentage + text
 const INITIAL_FILLED_PERCENTAGE = 50
 const LOADING_BAR_WIDTH = 400
-const AnimatedProgressiveLoadingBar : FC = () => {
+const AnimatedProgressiveBar : FC = () => {
   const [filledPercentage, setFilledPercentage] = useState(INITIAL_FILLED_PERCENTAGE)
   const [filledPercentageEase, setFilledPercentageEase] = useState(INITIAL_FILLED_PERCENTAGE)
   const { elementReference: ref, elementSize : { width }} = useElementSize<HTMLDivElement>()
@@ -30,4 +30,4 @@ const AnimatedProgressiveLoadingBar : FC = () => {
   </div>;
 }
 
-export default AnimatedProgressiveLoadingBar;
+export default AnimatedProgressiveBar;

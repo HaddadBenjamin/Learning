@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import AnimatedLoader from "./AnimatedLoader/AnimatedLoader";
-import AnimatedProgressiveLoadingBar from "./AnimatedProgressiveLoadingBar/AnimatedProgressiveLoadingBar";
+import AnimatedProgressiveLoadingBar from "./AnimatedProgressiveBar/AnimatedProgressiveBar";
 import AnimatedText from "./AnimatedText/AnimatedText";
 import AnimatedClock from "./AnimatedClock/AnimatedClock";
 import AnimatedImages from "./AnimatedImages/AnimatedImages";
