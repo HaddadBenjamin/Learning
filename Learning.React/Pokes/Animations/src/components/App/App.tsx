@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
-import MacbookSliderAnimations from "../MacbookSliderAnimations/MacbookSliderAnimations";
 import OnVisibleAnimations from "../OnVisibleAnimations/OnVisibleAnimations";
 import styles from './App.module.scss'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import TimelineAnimations from "../TimelineAnimations/TimelineAnimations";
 import TweenAnimations from "../TweenAnimations/TweenAnimations";
-import PanelSliderAnimations from "../PanelSliderAnimations/PanelSliderAnimations";
 import AnimationsWithoutGSAP from "../AnimationsWithoutGSAP/AnimationsWithoutGSAP";
+import ScrollTriggerAnimations from "../ScrollTriggerAnimations/ScrollTriggerAnimations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,10 +33,7 @@ const App = () => {
     { tabVisible === 'Les tweens' && <TweenAnimations/> }
     { tabVisible === 'Déclencher une animation quand un élément est visible' && <OnVisibleAnimations/> }
     { tabVisible === 'timeline & enchainement danimation' && <TimelineAnimations/> }
-    { tabVisible === 'scroll & slider & carrousel' && <>
-        <MacbookSliderAnimations/>
-        <PanelSliderAnimations/>
-    </>}
+    { tabVisible === 'scroll & slider & carrousel' && <ScrollTriggerAnimations/>}
   </div>;
 }
 

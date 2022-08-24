@@ -1,8 +1,8 @@
 import React, {MutableRefObject, useEffect, useRef} from 'react';
 import styles from './MacbookSliderAnimations.module.scss';
-import MacbookLeftImage from '../../images/macbook-gauche.jpg'
-import MacbookRightImage from '../../images/macbook-gauche.jpg'
-import useScreenSize from "../../shared/otherThanAnimation/hooks/useScreenSize";
+import MacbookLeftImage from '../../../images/macbook-gauche.jpg'
+import MacbookRightImage from '../../../images/macbook-gauche.jpg'
+import useScreenSize from "../../../shared/otherThanAnimation/hooks/useScreenSize";
 import gsap from 'gsap'
 import cn from "classnames";
 

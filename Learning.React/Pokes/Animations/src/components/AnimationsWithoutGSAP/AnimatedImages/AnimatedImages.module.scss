@@ -1,0 +1,45 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap : 4px;
+
+  .imageContainer {
+    position: relative;
+    overflow: hidden; // sans ça le gap ne fonctionne pas
+
+    &:hover {
+      .image.blur { filter: blur(2px); }
+      .image.gray { filter: grayscale(0.8); }
+      .image.zoom { transform: scale(1.1); }
+
+      .content.fade { opacity: 1; }
+      .slideUp, .slideRight, .slideDown, .slideLeft { transform: translateX(0); }
+    }
+
+    > .content.fade { opacity: 0; }
+    > .slideUp { transform: translateY(100%);}
+    > .slideRight { transform: translateX(100%);}
+    > .slideDown { transform: translateY(-100%);}
+    > .slideLeft { transform: translateX(-100%);}
+
+    .image, .content { transition: 400ms ease-in-out; }
+
+    .image {
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .content {
+      position: absolute;
+      inset: 0;
+      font-size: 1.5rem;
+      padding: 1.5rem;
+      background: rgba(0, 0, 0, .4);
+      color:white;
+      font-family : "Berlin Sans FB";
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
