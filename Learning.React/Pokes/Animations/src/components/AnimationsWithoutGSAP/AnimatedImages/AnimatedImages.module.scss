@@ -23,20 +23,19 @@
     > .slideLeft { transform: translateX(-100%);}
 
     .image, .content { transition: 400ms ease-in-out; }
-
-    .image {
-      width: 100%;
-      object-fit: cover;
-    }
+    .image { width: 100%; object-fit: cover; }
 
     .content {
       position: absolute;
       inset: 0;
+
+      font-family : "Berlin Sans FB";
       font-size: 1.5rem;
+      color:white;
+
       padding: 1.5rem;
       background: rgba(0, 0, 0, .4);
-      color:white;
-      font-family : "Berlin Sans FB";
+
       display: flex;
       justify-content: center;
       align-items: center;

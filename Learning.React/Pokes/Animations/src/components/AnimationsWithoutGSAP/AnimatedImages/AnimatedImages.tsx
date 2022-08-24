@@ -7,6 +7,7 @@ const lorem = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse ma
 const AnimatedImages : FC = () =>
 <div>
   <h3>Images animées au hover</h3>
+  <p>Chaque animation est cumulable avec les autres</p>
 
   <div className={styles.container}>
     <div className={styles.imageContainer}>
