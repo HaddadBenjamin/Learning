@@ -25,6 +25,7 @@ interface IUseMutationResponse<TData, TOnFinishGetParameters>
   error?: any,
   isNotFound?: boolean,
   status?: HttpStatus,
+  enabled?: boolean,
 }
 
 export interface IMutateParameters<TOnFinishGetParameters = void> {
@@ -40,6 +41,7 @@ const UseMutation = <TData, TOnFinishGetParameters = void>({
   onBeforeMutate,
   httpClient,
   mutateOnMount,
+  enabled,
 } : IUseMutationRequest<TData, TOnFinishGetParameters>) => {
   const [response, setResponse] = useState<IUseMutationResponse<TData, TOnFinishGetParameters>>({
     // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -97,6 +99,7 @@ const UseMutation = <TData, TOnFinishGetParameters = void>({
   };
 
   useEffect(() => { if (mutateOnMount) mutate(); }, []);
+  useEffect(() => { if (enabled) mutate(); }, [enabled]);
 
   return {
     ...response,

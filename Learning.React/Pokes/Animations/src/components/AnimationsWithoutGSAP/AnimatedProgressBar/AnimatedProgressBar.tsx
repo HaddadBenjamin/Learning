@@ -1,11 +1,11 @@
 import React, {FC, useEffect, useRef, useState} from "react";
-import styles from './AnimatedProgressiveBar..module.scss'
+import styles from './AnimatedProgressBar..module.scss'
 import useElementSize from "../../../shared/otherThanAnimation/hooks/useElementSize";
 
 //Todo animated percentage + text
 const INITIAL_FILLED_PERCENTAGE = 50
 const LOADING_BAR_WIDTH = 400
-const AnimatedProgressiveBar : FC = () => {
+const AnimatedProgressBar : FC = () => {
   const [filledPercentage, setFilledPercentage] = useState(INITIAL_FILLED_PERCENTAGE)
   const [filledPercentageEase, setFilledPercentageEase] = useState(INITIAL_FILLED_PERCENTAGE)
   const { elementReference: ref, elementSize : { width }} = useElementSize<HTMLDivElement>()
@@ -14,7 +14,7 @@ const AnimatedProgressiveBar : FC = () => {
   useEffect(() => { setFilledPercentageEase(width / LOADING_BAR_WIDTH * 100) },[width])
 
   return <div>
-    <h3>Barre de progression animé avec un texte animé</h3>
+    <h3>Barre de progression animé avec un texte animée</h3>
     <div className={styles.buttonContainer}>
       <button onClick={() => { if (filledPercentage > 0) setFilledPercentage(filledPercentage - 25)} }>-25%</button>
       <button onClick={() => { if (filledPercentage < 100) setFilledPercentage(filledPercentage + 25)} }>+25%</button>
@@ -30,4 +30,4 @@ const AnimatedProgressiveBar : FC = () => {
   </div>;
 }
 
-export default AnimatedProgressiveBar;
+export default AnimatedProgressBar;
