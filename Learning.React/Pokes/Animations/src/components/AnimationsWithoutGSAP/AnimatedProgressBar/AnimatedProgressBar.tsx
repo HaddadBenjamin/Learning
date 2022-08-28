@@ -14,7 +14,7 @@ const AnimatedProgressBar : FC = () => {
   useEffect(() => { setFilledPercentageEase(width / LOADING_BAR_WIDTH * 100) },[width])
 
   return <div>
-    <h3>Barre de progression animé avec un texte animée</h3>
+    <h3>Barre de progression animée avec un texte animée</h3>
     <div className={styles.buttonContainer}>
       <button onClick={() => { if (filledPercentage > 0) setFilledPercentage(filledPercentage - 25)} }>-25%</button>
       <button onClick={() => { if (filledPercentage < 100) setFilledPercentage(filledPercentage + 25)} }>+25%</button>

@@ -92,16 +92,6 @@ export const easeInOutElastic = (t: number, b: number, c: number, d: number) : n
   return a * 2 ** (-10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * 0.5 + c + b;
 };
 
-export interface IAnimationCurveParameters {
-  startValue: number
-  endValue: number
-  duration: number
-  timingFunction?: AnimationEase
-  onAnimatedValueChange: (newValue: number) => void
-  onAnimationEnd?: () => void
-  valueWithDecimal?: boolean
-}
-
 export type AnimationEase =
   'linear' |
   'easeInQuad' |
@@ -129,8 +119,18 @@ export type AnimationEase =
   'easeOutElastic' |
   'easeInOutElastic'
 
+export interface IAnimationCurveParameters {
+  startValue: number
+  endValue: number
+  duration: number
+  timingFunction?: AnimationEase
+  onAnimatedValueChange: (newValue: number) => void
+  onAnimationEnd?: () => void
+  valueWithDecimal?: boolean
+}
+
 const FPS = 60;
-class AnimatedCurve {
+class AnimationCurve {
   animatedValue: number | undefined
 
   duration: number
@@ -219,4 +219,4 @@ class AnimatedCurve {
   }
 }
 
-export default AnimatedCurve;
+export default AnimationCurve;

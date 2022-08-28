@@ -5,16 +5,19 @@ import AnimatedText from "./AnimatedText/AnimatedText";
 import AnimatedClock from "./AnimatedClock/AnimatedClock";
 import AnimatedImages from "./AnimatedImages/AnimatedImages";
 import AnimatedCurves from "./AnimatedCurve/AnimatedCurves";
+import AnimatedContent from "./AnimatedContent/AnimatedContent";
 
 const AnimationsWithoutGSAP : FC = () => <div>
   <div style={{ display: 'flex', gap: '20px' }}>
     <div>
       <AnimatedProgressBar/>
-      <h3 style={{ marginTop: '20px' }}>Texte animé</h3>
       <AnimatedText/>
     </div>
 
-    <AnimatedCurves/>
+    <div>
+      <AnimatedCurves/>
+      <AnimatedContent/>
+    </div>
     <AnimatedLoader/>
     <AnimatedClock/>
   </div>

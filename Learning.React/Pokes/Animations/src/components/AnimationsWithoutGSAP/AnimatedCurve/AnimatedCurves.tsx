@@ -2,7 +2,7 @@
 import React, {
   FC, MutableRefObject, useEffect, useRef, useState,
 } from 'react';
-import AnimatedCurve from './AnimatedCurve';
+import AnimationCurve from './AnimationCurve';
 
 const AnimatedCurves : FC = () => {
   const [animatedValue, setAnimatedValue] = useState(0);
@@ -10,14 +10,14 @@ const AnimatedCurves : FC = () => {
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
 
   useEffect(() => {
-    new AnimatedCurve({
+    new AnimationCurve({
       duration: 5,
-      startValue: animatedValue,
+      startValue: 0,
       endValue: 10000,
       timingFunction: 'easeOutQuint',
       onAnimatedValueChange: setAnimatedValue,
       onAnimationEnd: () => {
-        new AnimatedCurve({
+        new AnimationCurve({
           duration: 5,
           startValue: 0,
           endValue: 150,
@@ -31,7 +31,7 @@ const AnimatedCurves : FC = () => {
 
   return (
     <div>
-      <h3>Courbe animée : nombre et position animée</h3>
+      <h3>Courbes animées en JS : nombre et position animées</h3>
       <p>On utilise des courbes animées en JS</p>
       <p>
         Nombre animée:
