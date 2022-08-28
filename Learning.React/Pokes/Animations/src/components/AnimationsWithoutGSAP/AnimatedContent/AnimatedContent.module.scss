@@ -16,13 +16,16 @@
 }
 
 // reveal
-.revealContainer {
+.revealContainer, .revealContainer2 {
   @extend %container;
   height:44px;
 
-  .revealRight  { overflow: hidden; animation: revealRight 2s ease-in-out alternate infinite; white-space: nowrap; }
+  .revealRight  { overflow: hidden; animation: revealRight 2s ease-in-out alternate infinite; white-space: nowrap;
+    text-align: center;
+  }
   .revealDown   { overflow: hidden; animation: revealDown 2s ease-in-out alternate infinite; }
 
+  .image { object-fit: cover; margin-top: 12px; }
 
   @keyframes revealRight {
     from { max-width:0px; }
@@ -33,6 +36,9 @@
     to { max-height: 100%; }
   }
 }
+
+.revealContainer2 { height: 264px; }
+
 
 // slide
 .slideContainer{

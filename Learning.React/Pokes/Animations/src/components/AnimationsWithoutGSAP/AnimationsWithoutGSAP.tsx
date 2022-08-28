@@ -12,14 +12,15 @@ const AnimationsWithoutGSAP : FC = () => <div>
     <div>
       <AnimatedProgressBar/>
       <AnimatedCurves/>
-      <AnimatedText/>
+      <AnimatedLoader/>
+      <AnimatedClock/>
     </div>
 
     <AnimatedContent/>
+    <AnimatedText/>
 
     <div>
-      <AnimatedLoader/>
-      <AnimatedClock/>
+
     </div>
   </div>
 

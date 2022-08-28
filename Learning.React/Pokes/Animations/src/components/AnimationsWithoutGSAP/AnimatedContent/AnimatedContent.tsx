@@ -5,11 +5,18 @@ import cn from "classnames";
 const AnimatedContent : FC = (props) =>
   <div>
     <h5>Reveal animations</h5>
-    <div className={cn(styles.revealContainer)}>
-      <h4 className={cn(styles.text, styles.revealRight)}>Reveal right</h4>
+    <div className={cn(styles.revealContainer2)}>
+      <div className={styles.revealRight}>
+        <h4 className={styles.text}>Reveal right with content</h4>
+        <img src="https://picsum.photos/200?random=2" className={styles.image}/>
+      </div>
     </div>
-    <div className={cn(styles.revealContainer)}>
-      <h4 className={cn(styles.text, styles.revealDown)}>Reveal down</h4>
+
+    <div className={cn(styles.revealContainer2)}>
+      <div className={styles.revealDown}>
+        <h4 className={styles.text}>Reveal down with content</h4>
+        <img src="https://picsum.photos/200?random=1" className={styles.image}/>
+      </div>
     </div>
 
     <h3>Contenus animés</h3>
