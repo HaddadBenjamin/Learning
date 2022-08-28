@@ -8,6 +8,7 @@ import AnimatedCurves from "./AnimatedCurve/AnimatedCurves";
 import RevealContent from "./AnimatedContent/RevealContent/RevealContent";
 import SlideContent from "./AnimatedContent/SlideContent/SlideContent";
 import RotateContent from "./AnimatedContent/RotateContent/RotateContent";
+import FadeInOnVisible from "../../shared/components/animations/WithoutGsap/FadeInOnVisible/FadeInOnVisible";
 
 const AnimationsWithoutGSAP : FC = () => <div>
   <div style={{ display: 'flex', gap: '20px' }}>
@@ -29,7 +30,9 @@ const AnimationsWithoutGSAP : FC = () => <div>
     </div>
   </div>
 
-  <AnimatedImages/>
+  <FadeInOnVisible duration={2000} animatedOnce={false}>
+    <AnimatedImages/>
+  </FadeInOnVisible>
 </div>
 
 export default AnimationsWithoutGSAP;

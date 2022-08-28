@@ -1,6 +1,6 @@
-import React, { FC, MutableRefObject, useRef } from 'react';
+import React, {FC, MutableRefObject, useRef} from 'react';
+import useOnVisible from "../../../../hooks/useOnVisible";
 import gsap from 'gsap';
-import useOnVisible from '../../../hooks/styles/useOnVisible';
 
 interface Props {
   fromVars: gsap.TweenVars
@@ -9,15 +9,15 @@ interface Props {
 }
 
 const OnVisible : FC<Props> = ({ children, fromVars, toVars }) => {
-  const ref = useRef() as MutableRefObject<HTMLDivElement>;
+  const ref = useRef() as MutableRefObject<HTMLDivElement>
 
   useOnVisible(ref, () => {
-    const tween = gsap.fromTo(ref.current.children, fromVars, toVars);
+    const tween = gsap.fromTo(ref.current.children, fromVars, toVars)
 
     return () => { tween.kill(); };
   });
 
   return <span ref={ref}>{children}</span>;
-};
+}
 
 export default OnVisible;

@@ -1,6 +1,6 @@
 import React, {FC, MutableRefObject, useRef} from 'react';
 import gsap from 'gsap';
-import useOnVisibleFirstTime from "../../../hooks/useOnVisibleFirstTime";
+import useOnVisibleFirstTime from "../../../../hooks/useOnVisibleFirstTime";
 
 interface Props {
   vars: gsap.TweenVars

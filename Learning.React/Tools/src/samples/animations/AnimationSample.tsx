@@ -3,8 +3,8 @@ import gsap from 'gsap';
 import styles from './AnimationSample.module.scss';
 import useScreenSize from '../../shared/hooks/styles/useScreenSize';
 import FadeInOnVisibleFirstTime
-  from '../../shared/components/animations/FadeInOnFirstTimeVisible/FadeInOnVisibleFirstTime';
-import FadeInOnVisible from '../../shared/components/animations/FadeInOnVisible/FadeInOnVisible';
+  from '../../shared/components/animations/WithGsap/FadeInOnFirstTimeVisible/FadeInOnVisibleFirstTime';
+import FadeInOnVisible from '../../shared/components/animations/WithGsap/FadeInOnVisible/FadeInOnVisible';
 import useOnVisibleFirstTime from '../../shared/hooks/styles/useOnVisibleFirstTime';
 
 const AnimationSample = () => {

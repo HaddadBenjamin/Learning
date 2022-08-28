@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './OnVisibleAnimations.module.scss';
-import FadeInOnVisible from "../../shared/components/animations/FadeInOnVisible/FadeInOnVisible";
-import FadeInOnVisibleFirstTime from "../../shared/components/animations/FadeInOnFirstTimeVisible/FadeInOnVisibleFirstTime";
+import FadeInOnVisible from "../../shared/components/animations/WithGsap/FadeInOnVisible/FadeInOnVisible";
+import FadeInOnVisibleFirstTime from "../../shared/components/animations/WithGsap/FadeInOnFirstTimeVisible/FadeInOnVisibleFirstTime";
 import FadeInOnVisibleFirstTimeWithGsap
-  from "../../shared/components/animations/FadeInOnFirstTimeVisibleWithGsap/FadeInOnVisibleFirstTimeWithGsap";
+  from "../../shared/components/animations/WithGsap/FadeInOnFirstTimeVisibleWithGsap/FadeInOnVisibleFirstTimeWithGsap";
 import FadeInOnVisibleWithGsap
-  from "../../shared/components/animations/FadeInOnVisibleWithGsap/FadeInOnVisibleWithGsap";
+  from "../../shared/components/animations/WithGsap/FadeInOnVisibleWithGsap/FadeInOnVisibleWithGsap";
 
 const OnVisibleAnimations = () => <>
   <h2>Animation qui se déclenche la première fois qu'un élément est visible</h2>
