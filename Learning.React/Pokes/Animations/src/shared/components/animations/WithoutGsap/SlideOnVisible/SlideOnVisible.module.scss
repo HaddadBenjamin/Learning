@@ -1,0 +1,30 @@
+:root{
+  --duration: 1s;
+  --distance: 100%;
+}
+
+.slideContainer { overflow: hidden; }
+.slideUp     { animation: slideUp var(--duration) ease-in-out; }
+.slideRight  { animation: slideRight var(--duration) ease-in-out; }
+.slideDown   { animation: slideDown var(--duration) ease-in-out; }
+.slideLeft   { animation: slideLeft var(--duration) ease-in-out; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(var(--distance)); }
+  to { opacity: 1; transform: translateY(0%); }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(var(--distance)); }
+  to { opacity: 1; transform: translateX(0%); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(calc(-1 * var(--distance))); }
+  to { opacity: 1; transform: translateY(0%); }
+}
+
+@keyframes slideLeft {
+  from { opacity: 0;transform: translateX(calc(-1 * var(--distance))); }
+  to { opacity: 1; transform: translateX(0%); }
+}

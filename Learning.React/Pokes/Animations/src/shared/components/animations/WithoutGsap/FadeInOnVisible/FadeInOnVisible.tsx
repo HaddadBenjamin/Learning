@@ -10,7 +10,6 @@ interface Props {
   animatedOnce?: boolean
 }
 
-// animatedOnlyFirstTime
 const FadeInOnVisible : FC<Props> = (
 {
   className,
@@ -21,7 +20,7 @@ const FadeInOnVisible : FC<Props> = (
   const ref = useRef() as MutableRefObject<HTMLSpanElement>
   const isVisible = useOnVisibleChange(ref, animatedOnce);
 
-  useEffect(() => { ref?.current?.style?.setProperty('--duration',`${duration}ms`) }, [])
+  useEffect(() => { if (!!duration) ref?.current?.style?.setProperty('--duration',`${duration}ms`) }, [])
 
   return <span ref={ref} className={cn(className, isVisible && styles.fadeIn)}>{children}</span>;
 }

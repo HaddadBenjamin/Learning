@@ -9,30 +9,37 @@ import RevealContent from "./AnimatedContent/RevealContent/RevealContent";
 import SlideContent from "./AnimatedContent/SlideContent/SlideContent";
 import RotateContent from "./AnimatedContent/RotateContent/RotateContent";
 import FadeInOnVisible from "../../shared/components/animations/WithoutGsap/FadeInOnVisible/FadeInOnVisible";
+import SlideOnVisible from "../../shared/components/animations/WithoutGsap/SlideOnVisible/SlideOnVisible";
 
 const AnimationsWithoutGSAP : FC = () => <div>
   <div style={{ display: 'flex', gap: '20px' }}>
-    <div>
+    <FadeInOnVisible>
       <AnimatedProgressBar/>
       <AnimatedLoader/>
       <AnimatedClock/>
       <AnimatedText/>
+    </FadeInOnVisible>
+
+    <div>
+      <SlideOnVisible duration={1500} animatedOnce={false} distance={'200px'} direction='right'>
+        <RevealContent/>
+      </SlideOnVisible>
+      <SlideOnVisible duration={1500} animatedOnce={false} direction='up'>
+        <RotateContent/>
+      </SlideOnVisible>
     </div>
 
     <div>
-      <RevealContent/>
-      <RotateContent/>
-    </div>
-
-    <div>
-      <SlideContent/>
-      <AnimatedCurves/>
+      <SlideOnVisible duration={1500} animatedOnce={false} distance={'200px'} direction='left'>
+        <SlideContent/>
+      </SlideOnVisible>
+      <SlideOnVisible duration={1500} animatedOnce={false} direction='down'>
+        <AnimatedCurves/>
+      </SlideOnVisible>
     </div>
   </div>
 
-  <FadeInOnVisible duration={2000} animatedOnce={false}>
-    <AnimatedImages/>
-  </FadeInOnVisible>
+  <AnimatedImages/>
 </div>
 
 export default AnimationsWithoutGSAP;
