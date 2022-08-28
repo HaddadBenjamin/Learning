@@ -40,7 +40,9 @@ const AnimationsWithoutGSAP : FC = () => <div>
     </div>
   </div>
 
-  <AnimatedImages/>
+  <FadeInOnVisible duration={3000} animatedOnce={false}>
+    <AnimatedImages/>
+  </FadeInOnVisible>
 </div>
 
 export default AnimationsWithoutGSAP;
