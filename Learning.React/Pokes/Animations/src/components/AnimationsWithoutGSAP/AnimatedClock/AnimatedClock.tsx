@@ -26,7 +26,7 @@ const AnimatedClock : FC = () => {
 
   return <div>
     <h3>Une horloge animée</h3>
-    <div style={{textAlign: 'center', marginBottom:'8px'}}>{`${date.getHours()}:${date.getMinutes()} ${date.getSeconds()}`}</div>
+    <div style={{margin: '0 0 8px 116px'}}>{`${date.getHours()}:${date.getMinutes()} ${date.getSeconds()}`}</div>
 
     <div className={styles.clock}>
       {[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,].map(hour =>

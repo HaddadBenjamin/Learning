@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:900');
+
+.text {
+  font-family: Raleway;
+  font-size: 1.5em;
+  font-weight: 900;
+  margin:0;
+}
+
+// rotate
+.rotateContainer {
+  background-color: #002c75;
+  padding: 8px 100px;
+  color: white;
+  text-align: center;
+  margin-bottom: 4px;
+  border-radius: 4px;
+
+  .rotateUp     { animation: rotateUp 2s ease-in-out alternate infinite;  }
+  .rotateRight  { animation: rotateRight 2s ease-in-out alternate infinite;  }
+  .rotateDown   { animation: rotateDown 2s ease-in-out alternate infinite;  }
+  .rotateLeft   { animation: rotateLeft 2s ease-in-out alternate infinite; }
+
+  @keyframes rotateUp    { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @keyframes rotateRight { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+  @keyframes rotateDown  { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @keyframes rotateLeft  { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+}

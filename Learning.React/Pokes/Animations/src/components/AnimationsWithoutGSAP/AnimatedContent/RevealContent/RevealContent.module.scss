@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:900');
+
+.text {
+  font-family: Raleway;
+  font-size: 1.5em;
+  font-weight: 900;
+  margin:0;
+}
+img { object-fit: cover; margin-top: 12px; }
+
+// reveal
+%reveal {
+  background-color: #002c75;
+  padding: 8px 100px;
+  color: white;
+  text-align: center;
+  margin-bottom: 4px;
+  border-radius: 4px;
+
+  position: relative; // important
+}
+
+// important
+.revealUp, .revealRight, .revealDown, .revealLeft { @extend %reveal; }
+
+%revealAfter {
+  // important
+  content:'';
+  position: absolute;
+
+  background:#002c75;
+  border-radius: 4px;
+}
+
+// important
+.revealUp::after   { @extend %revealAfter; inset: 0 0 auto 0; animation: revealUpOrDown 2s ease-in-out alternate infinite; }
+.revealRight::after   { @extend %revealAfter; inset: 0 0 0 auto; animation: revealRightOrLeft 2s ease-in-out alternate infinite; }
+.revealDown::after { @extend %revealAfter; inset: auto 0 0 0; animation: revealUpOrDown 2s ease-in-out alternate infinite; }
+.revealLeft::after   { @extend %revealAfter; inset: 0 auto 0 0; animation: revealRightOrLeft 2s ease-in-out alternate infinite; }
+
+// important
+@keyframes revealUpOrDown { from { height: 100%; } to { height: 0%; } }
+@keyframes revealRightOrLeft { from { width: 100%; } to { width: 0%; } }
