@@ -2,7 +2,7 @@
 
 %container {
   background-color: #002c75;
-  padding: 8px 12px;
+  padding: 8px 100px;
   color: white;
   text-align: center;
   margin-bottom: 4px;
@@ -19,16 +19,18 @@
 .revealContainer {
   @extend %container;
   height:44px;
-  position: relative;
 
-  .revealUp     { animation: revealUp 2s ease-in-out alternate infinite; }
-  .revealRight  { animation: revealRight 2s ease-in-out alternate infinite; }
-  .revealDown   { animation: revealDown 2s ease-in-out alternate infinite; }
-  .revealLeft   { animation: revealLeft 2s ease-in-out alternate infinite; }
+  .revealRight  { overflow: hidden; animation: revealRight 2s ease-in-out alternate infinite; white-space: nowrap; }
+  .revealDown   { overflow: hidden; animation: revealDown 2s ease-in-out alternate infinite; }
 
+
+  @keyframes revealRight {
+    from { max-width:0px; }
+    to { max-width: 100%; }
+  }
   @keyframes revealDown {
     from { max-height:0px;}
-    to { max-height: 28px; }
+    to { max-height: 100%; }
   }
 }
 
@@ -39,7 +41,7 @@
 
   .slideUp     { animation: slideUp 2s ease-in-out alternate infinite; }
   .slideRight  { animation: slideRight 2s ease-in-out alternate infinite; }
-  .slideBottom { animation: slideDown 2s ease-in-out alternate infinite; }
+  .slideDown   { animation: slideDown 2s ease-in-out alternate infinite; }
   .slideLeft   { animation: slideLeft 2s ease-in-out alternate infinite; }
 
   @keyframes slideUp {
@@ -61,4 +63,18 @@
     from { opacity: 0;transform: translateX(-100%); }
     to { opacity: 1; transform: translateX(0%); }
   }
+}
+
+// rotate
+.rotateContainer {
+  @extend %container;
+  .rotateUp     { animation: rotateUp 2s ease-in-out alternate infinite;  }
+  .rotateRight  { animation: rotateRight 2s ease-in-out alternate infinite;  }
+  .rotateDown   { animation: rotateDown 2s ease-in-out alternate infinite;  }
+  .rotateLeft   { animation: rotateLeft 2s ease-in-out alternate infinite; }
+
+  @keyframes rotateUp    { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @keyframes rotateRight { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+  @keyframes rotateDown  { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @keyframes rotateLeft  { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 }

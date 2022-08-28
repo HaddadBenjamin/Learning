@@ -4,6 +4,14 @@ import cn from "classnames";
 
 const AnimatedContent : FC = (props) =>
   <div>
+    <h5>Reveal animations</h5>
+    <div className={cn(styles.revealContainer)}>
+      <h4 className={cn(styles.text, styles.revealRight)}>Reveal right</h4>
+    </div>
+    <div className={cn(styles.revealContainer)}>
+      <h4 className={cn(styles.text, styles.revealDown)}>Reveal down</h4>
+    </div>
+
     <h3>Contenus animés</h3>
     <h5>Slide animations</h5>
     <div className={styles.slideContainer}>
@@ -13,25 +21,26 @@ const AnimatedContent : FC = (props) =>
       <h4 className={cn(styles.text, styles.slideRight)}>Slide right</h4>
     </div>
     <div className={styles.slideContainer}>
-      <h4 className={cn(styles.text, styles.slideBottom)}>Slide bottom</h4>
+      <h4 className={cn(styles.text, styles.slideDown)}>Slide down</h4>
     </div>
     <div className={styles.slideContainer}>
       <h4 className={cn(styles.text, styles.slideLeft)}>Slide left</h4>
     </div>
 
-    <h5>Reveal animations</h5>
-    <div className={cn(styles.revealContainer)}>
-      <h4 className={cn(styles.text, styles.revealUp)}>Reveal down</h4>
+    <h5>Rotate animations</h5>
+    <div className={cn(styles.rotateContainer)}>
+      <h4 className={cn(styles.text, styles.rotateUp)}>Rotate Up</h4>
     </div>
-    <div className={cn(styles.revealContainer)}>
-      <h4 className={cn(styles.text, styles.revealRight)}>Reveal right</h4>
+    <div className={cn(styles.rotateContainer)}>
+      <h4 className={cn(styles.text, styles.rotateRight)}>Rotate right</h4>
     </div>
-    <div className={cn(styles.revealContainer)}>
-      <h4 className={cn(styles.text, styles.revealDown)}>Reveal down</h4>
+    <div className={cn(styles.rotateContainer)}>
+      <h4 className={cn(styles.text, styles.rotateDown)}>Rotate down</h4>
     </div>
-    <div className={cn(styles.revealContainer)}>
-      <h4 className={cn(styles.text, styles.revealLeft)}>Reveal left</h4>
+    <div className={cn(styles.rotateContainer)}>
+      <h4 className={cn(styles.text, styles.rotateLeft)}>Rotate left</h4>
     </div>
+
   </div>
 
 export default AnimatedContent;

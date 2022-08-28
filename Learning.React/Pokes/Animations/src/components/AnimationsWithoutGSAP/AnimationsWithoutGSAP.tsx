@@ -11,15 +11,16 @@ const AnimationsWithoutGSAP : FC = () => <div>
   <div style={{ display: 'flex', gap: '20px' }}>
     <div>
       <AnimatedProgressBar/>
+      <AnimatedCurves/>
       <AnimatedText/>
     </div>
 
+    <AnimatedContent/>
+
     <div>
-      <AnimatedCurves/>
-      <AnimatedContent/>
+      <AnimatedLoader/>
+      <AnimatedClock/>
     </div>
-    <AnimatedLoader/>
-    <AnimatedClock/>
   </div>
 
   <AnimatedImages/>
