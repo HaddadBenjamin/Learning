@@ -10,30 +10,31 @@ import SlideContent from "./AnimatedContent/SlideContent/SlideContent";
 import RotateContent from "./AnimatedContent/RotateContent/RotateContent";
 import FadeInOnVisible from "../../shared/components/animations/WithoutGsap/FadeInOnVisible/FadeInOnVisible";
 import SlideOnVisible from "../../shared/components/animations/WithoutGsap/SlideOnVisible/SlideOnVisible";
+import RevealOnVisible from "../../shared/components/animations/WithoutGsap/ReveaOnVisible/RevealOnVisible";
 
 const AnimationsWithoutGSAP : FC = () => <div>
   <div style={{ display: 'flex', gap: '20px' }}>
-    <FadeInOnVisible>
+    <RevealOnVisible duration={3000} animatedOnce={false} direction='down' backgroundColor='#84CC7D'>
       <AnimatedProgressBar/>
       <AnimatedLoader/>
       <AnimatedClock/>
       <AnimatedText/>
-    </FadeInOnVisible>
+    </RevealOnVisible>
 
     <div>
-      <SlideOnVisible duration={1500} animatedOnce={false} distance={'200px'} direction='right'>
+      <SlideOnVisible duration={2000} animatedOnce={false}  direction='right'>
         <RevealContent/>
       </SlideOnVisible>
-      <SlideOnVisible duration={1500} animatedOnce={false} direction='up'>
+      <SlideOnVisible duration={2000} animatedOnce={false} direction='up'>
         <RotateContent/>
       </SlideOnVisible>
     </div>
 
     <div>
-      <SlideOnVisible duration={1500} animatedOnce={false} distance={'200px'} direction='left'>
+      <SlideOnVisible duration={2000} animatedOnce={false}  direction='left'>
         <SlideContent/>
       </SlideOnVisible>
-      <SlideOnVisible duration={1500} animatedOnce={false} direction='down'>
+      <SlideOnVisible duration={2000} animatedOnce={false} direction='down' distance='200px'>
         <AnimatedCurves/>
       </SlideOnVisible>
     </div>

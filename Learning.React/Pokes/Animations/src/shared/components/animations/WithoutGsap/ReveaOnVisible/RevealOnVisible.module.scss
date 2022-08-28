@@ -1,0 +1,17 @@
+:root{
+  --duration: 1s;
+  --distance: 100%;
+  --background-color: green;
+}
+
+%reveal { position: relative; }
+.revealUp, .revealRight, .revealDown, .revealLeft { @extend %reveal; }
+
+%revealAfter { content:''; position: absolute;  background-color: var(--background-color);}
+.revealUp::after   { @extend %revealAfter; inset: 0 0 auto 0; animation: revealUpOrDown var(--duration) ease-in-out; }
+.revealRight::after   { @extend %revealAfter; inset: 0 0 0 auto; animation: revealRightOrLeft var(--duration) ease-in-out; }
+.revealDown::after { @extend %revealAfter; inset: auto 0 0 0; animation: revealUpOrDown var(--duration) ease-in-out; }
+.revealLeft::after   { @extend %revealAfter; inset: 0 auto 0 0; animation: revealRightOrLeft var(--duration) ease-in-out; }
+
+@keyframes revealUpOrDown { from { height: var(--distance); } to { height: 0%; } }
+@keyframes revealRightOrLeft { from { width: var(--distance); } to { width: 0%; } }
