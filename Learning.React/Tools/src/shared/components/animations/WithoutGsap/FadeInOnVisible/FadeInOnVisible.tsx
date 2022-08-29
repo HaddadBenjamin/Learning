@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import cn from 'classnames';
 import styles from './FadeInOnVisible.module.scss';
-import useOnVisibleChange from "../../../../hooks/useOnIsVisibleChange";
+import useOnVisibleChange from '../../../../hooks/styles/useOnIsVisibleChange';
 
 interface Props {
   children?: React.ReactNode,
