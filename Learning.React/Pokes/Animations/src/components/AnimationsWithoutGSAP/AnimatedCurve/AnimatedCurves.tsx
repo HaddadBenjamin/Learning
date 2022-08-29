@@ -2,7 +2,7 @@
 import React, {
   FC, MutableRefObject, useEffect, useRef, useState,
 } from 'react';
-import AnimationCurve from '../../../shared/components/animations/WithoutGsap/AnimationCurve';
+import AnimationCurve from '../../../shared/components/animations/WithoutGsap/utilities/classes/AnimationCurve';
 
 const AnimatedCurves : FC = () => {
   const [animatedValue, setAnimatedValue] = useState(0);

@@ -1,33 +1,26 @@
 import React, {
-  FC, MutableRefObject, useEffect, useRef,
+  FC, useEffect,
 } from 'react';
 import cn from 'classnames';
 import styles from './SlideOnVisible.module.scss';
-import useOnVisibleChange from "../../../../hooks/useOnIsVisibleChange";
+import {IBaseAnimationsProps} from "../../animation.model";
+import useBaseAnimation from "../../hooks/useBaseAnimation";
 
-interface Props {
-  children?: React.ReactNode,
-  className?: string,
-  animatedOnce?: boolean,
-  duration?: number,
+interface Props extends IBaseAnimationsProps {
   distance?: string,
   direction?: 'up' | 'right' | 'down' | 'left'
 }
 
-const SlideOnVisible : FC<Props> = (
-  {
+const SlideOnVisible : FC<Props> = (props) => {
+  const {
     className,
     children,
-    animatedOnce,
-    duration,
     distance,
     direction = 'up',
-  }) => {
-  const ref = useRef() as MutableRefObject<HTMLDivElement>;
-  const isVisible = useOnVisibleChange(ref, animatedOnce);
+  } = props
+  const { isVisible, ref} = useBaseAnimation<HTMLDivElement>(props);
 
   useEffect(() => {
-    if (duration) ref?.current?.style?.setProperty('--duration', `${duration}ms`);
     if (distance) ref?.current?.style?.setProperty('--distance', distance);
   }, []);
 

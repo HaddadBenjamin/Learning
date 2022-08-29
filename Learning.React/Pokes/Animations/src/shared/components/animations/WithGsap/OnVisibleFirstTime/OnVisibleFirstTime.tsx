@@ -1,6 +1,6 @@
 import React, {FC, MutableRefObject, useRef} from 'react';
 import gsap from 'gsap';
-import useOnVisibleFirstTime from "../../../../hooks/useOnVisibleFirstTime";
+import useOnVisibleOnce from "../../../../hooks/useOnVisibleOnce";
 
 interface Props {
   vars: gsap.TweenVars
@@ -10,10 +10,15 @@ interface Props {
 const OnVisibleFirstTime : FC<Props> = ({ children, vars }) => {
   const ref = useRef() as MutableRefObject<HTMLDivElement>
 
-  useOnVisibleFirstTime(ref, () => {
-    const tween = gsap.from(ref.current.children, vars)
+  useOnVisibleOnce({
+    ref,
+    onVisibleOnce: () => {
+      const tween = gsap.from(ref.current.children, vars)
 
-    return () => { tween.kill(); };
+      return () => {
+        tween.kill();
+      };
+    }
   });
 
   return <span ref={ref}>{children}</span>;

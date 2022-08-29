@@ -1,13 +1,16 @@
 :root {
   --duration: 1s;
+  --ease: ease-in-out;
+  --delay: 0ms;
+
   --distance: 100%;
 }
 
 .slideContainer { overflow: hidden; }
-.slideUp { animation: slide-up var(--duration) ease-in-out; }
-.slideRight { animation: slide-right var(--duration) ease-in-out; }
-.slideDown { animation: slide-down var(--duration) ease-in-out; }
-.slideLeft { animation: slide-left var(--duration) ease-in-out; }
+.slideUp { animation: slide-up var(--duration) var(--ease) var(--delay); }
+.slideRight { animation: slide-right var(--duration) var(--ease) var(--delay); }
+.slideDown { animation: slide-down var(--duration) var(--ease) var(--delay); }
+.slideLeft { animation: slide-left var(--duration) var(--ease) var(--delay); }
 
 @keyframes slide-up {
   from {

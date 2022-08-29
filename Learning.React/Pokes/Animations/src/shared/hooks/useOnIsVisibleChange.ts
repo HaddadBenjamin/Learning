@@ -1,10 +1,18 @@
 import {MutableRefObject, useEffect, useState} from 'react';
 
-const useOnVisibleChange = <THtmlElement extends HTMLElement>(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface IUseOnVisibleChangeParameters<THtmlElement extends HTMLElement> {
   ref: MutableRefObject<THtmlElement>,
+  stopToObserveWhenElementIsVisible?: boolean,
+  // 50: l'élément sera marqué comme visible 50px avant qu'il soit visible
+  // -100 : l'élément sera marqué comme visible 100px après qu'il soit visible
+  offset?: number
+}
+const useOnVisibleChange = <THtmlElement extends HTMLElement>(
+{
+  ref,
   stopToObserveWhenElementIsVisible = true,
-): boolean => {
+  offset = 50
+} : IUseOnVisibleChangeParameters<THtmlElement>): boolean => {
   const [isVisible, setIsVisible] = useState(false);
 
   const intersectionObserverCallback = (
@@ -26,7 +34,7 @@ const useOnVisibleChange = <THtmlElement extends HTMLElement>(
     const intersectionObserver = new IntersectionObserver(
       intersectionObserverCallback,
       {
-        rootMargin: '50px',
+        rootMargin: `${offset}px`,
         threshold: 0.01,
       },
     );

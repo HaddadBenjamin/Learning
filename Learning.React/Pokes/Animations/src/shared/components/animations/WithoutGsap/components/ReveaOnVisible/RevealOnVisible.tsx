@@ -1,35 +1,26 @@
-import React, {
-  FC, MutableRefObject, useEffect, useRef,
-} from 'react';
+import React, { FC, useEffect } from 'react';
 import cn from 'classnames';
 import styles from './RevealOnVisible.module.scss';
-import useOnVisibleChange from "../../../../hooks/useOnIsVisibleChange";
+import {IBaseAnimationsProps} from "../../animation.model";
+import useBaseAnimation from "../../hooks/useBaseAnimation";
 
-interface Props {
-  children?: React.ReactNode,
-  className?: string,
-  animatedOnce?: boolean,
-  duration?: number,
+interface Props extends IBaseAnimationsProps {
   distance?: string,
   backgroundColor?: string,
   direction?: 'up' | 'right' | 'down' | 'left'
 }
 
-const RevealOnVisible : FC<Props> = (
-  {
+const RevealOnVisible : FC<Props> = (props) => {
+  const {
     className,
     children,
-    animatedOnce,
-    duration,
     distance,
     backgroundColor,
     direction,
-  }) => {
-  const ref = useRef() as MutableRefObject<HTMLDivElement>;
-  const isVisible = useOnVisibleChange(ref, animatedOnce);
+  } = props
+  const { isVisible, ref} = useBaseAnimation<HTMLDivElement>(props);
 
   useEffect(() => {
-    if (duration) ref?.current?.style?.setProperty('--duration', `${duration}ms`);
     if (distance) ref?.current?.style?.setProperty('--distance', distance);
     if (backgroundColor) ref?.current?.style?.setProperty('--background-color', backgroundColor);
   }, []);

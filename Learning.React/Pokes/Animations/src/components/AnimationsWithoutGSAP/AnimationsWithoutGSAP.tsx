@@ -8,15 +8,15 @@ import AnimatedCurves from "./AnimatedCurve/AnimatedCurves";
 import RevealContent from "./AnimatedContent/RevealContent/RevealContent";
 import SlideContent from "./AnimatedContent/SlideContent/SlideContent";
 import RotateContent from "./AnimatedContent/RotateContent/RotateContent";
-import FadeInOnVisible from "../../shared/components/animations/WithoutGsap/FadeInOnVisible/FadeInOnVisible";
-import SlideOnVisible from "../../shared/components/animations/WithoutGsap/SlideOnVisible/SlideOnVisible";
-import RevealOnVisible from "../../shared/components/animations/WithoutGsap/ReveaOnVisible/RevealOnVisible";
-import ZoomOnVisible from "../../shared/components/animations/WithoutGsap/ZoomOnVisible/ZoomOnVisible";
+import FadeInOnVisible from "../../shared/components/animations/WithoutGsap/components/FadeInOnVisible/FadeInOnVisible";
+import SlideOnVisible from "../../shared/components/animations/WithoutGsap/components/SlideOnVisible/SlideOnVisible";
+import RevealOnVisible from "../../shared/components/animations/WithoutGsap/components/ReveaOnVisible/RevealOnVisible";
+import ZoomOnVisible from "../../shared/components/animations/WithoutGsap/components/ZoomOnVisible/ZoomOnVisible";
 
 const AnimationsWithoutGSAP : FC = () => <div>
   <div style={{ display: 'flex', gap: '20px' }}>
     <div>
-      <RevealOnVisible duration={3000} animatedOnce={false} direction='down' backgroundColor='#84CC7D'>
+      <RevealOnVisible duration={3000} animatedOnce={false} direction='down' backgroundColor='#84CC7D' delay={0} ease='ease-in'>
         <AnimatedProgressBar/>
         <AnimatedLoader/>
       </RevealOnVisible>
@@ -46,7 +46,7 @@ const AnimationsWithoutGSAP : FC = () => <div>
     </div>
   </div>
 
-  <FadeInOnVisible duration={3000} animatedOnce={false}>
+  <FadeInOnVisible duration={3000} animatedOnce={false} offset={-200}>
     <AnimatedImages/>
   </FadeInOnVisible>
 </div>
