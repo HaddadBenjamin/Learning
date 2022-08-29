@@ -12,19 +12,19 @@ export interface ITypeWriterParameters {
 }
 
 class TypeWriter {
-  element: HTMLElement
+  element: HTMLElement;
 
   queue: (() => Promise<void>)[] = []; // permet chacune des actions de typing les unes à la suite des autres.
 
   loop: boolean;
 
-  typingSpeed: number
+  typingSpeed: number;
 
-  deleteACharaterSpeed: number
+  deleteACharaterSpeed: number;
 
-  deleteAllCharatersSpeed: number
+  deleteAllCharatersSpeed: number;
 
-  pauseDuration: number
+  pauseDuration: number;
 
   constructor(
     {
