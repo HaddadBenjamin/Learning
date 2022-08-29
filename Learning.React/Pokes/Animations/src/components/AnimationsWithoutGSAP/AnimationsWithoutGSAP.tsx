@@ -11,15 +11,21 @@ import RotateContent from "./AnimatedContent/RotateContent/RotateContent";
 import FadeInOnVisible from "../../shared/components/animations/WithoutGsap/FadeInOnVisible/FadeInOnVisible";
 import SlideOnVisible from "../../shared/components/animations/WithoutGsap/SlideOnVisible/SlideOnVisible";
 import RevealOnVisible from "../../shared/components/animations/WithoutGsap/ReveaOnVisible/RevealOnVisible";
+import ZoomOnVisible from "../../shared/components/animations/WithoutGsap/ZoomOnVisible/ZoomOnVisible";
 
 const AnimationsWithoutGSAP : FC = () => <div>
   <div style={{ display: 'flex', gap: '20px' }}>
-    <RevealOnVisible duration={3000} animatedOnce={false} direction='down' backgroundColor='#84CC7D'>
-      <AnimatedProgressBar/>
-      <AnimatedLoader/>
-      <AnimatedClock/>
-      <AnimatedText/>
-    </RevealOnVisible>
+    <div>
+      <RevealOnVisible duration={3000} animatedOnce={false} direction='down' backgroundColor='#84CC7D'>
+        <AnimatedProgressBar/>
+        <AnimatedLoader/>
+      </RevealOnVisible>
+
+      <ZoomOnVisible duration={1500} animatedOnce={false}>
+        <AnimatedClock/>
+        <AnimatedText/>
+      </ZoomOnVisible>
+    </div>
 
     <div>
       <SlideOnVisible duration={2000} animatedOnce={false}  direction='right'>

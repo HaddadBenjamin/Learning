@@ -1,0 +1,18 @@
+:root {
+  --duration: 1s;
+  --zoom: 0.8;
+}
+
+.zoom { animation: zoom var(--duration) ease-in-out; }
+
+@keyframes zoom {
+  from {
+    opacity: 0%;
+    transform: scale(var(--zoom));
+  }
+
+  to {
+    opacity: 100%;
+    transform: scale(1);
+  }
+}
