@@ -14,14 +14,14 @@ const LazyComponent = () => {
   const dispatch = useDispatch();
   const message = useSelector(selectMessage);
 
-  const reducerIsInjected = useLazyReducer(
-    fakeDomainReducerKey,
-    'samples/lazyRedux/fakeDomain.reducer',
-  );
-  const sagaIsInjected = useLazySaga(
-    fakeDomainSagaKey,
-    'samples/lazyRedux/fakeDomain.saga',
-  );
+  const reducerIsInjected = useLazyReducer({
+    key: fakeDomainReducerKey,
+    path: 'samples/lazyRedux/fakeDomain.reducer',
+  });
+  const sagaIsInjected = useLazySaga({
+    key: fakeDomainSagaKey,
+    path: 'samples/lazyRedux/fakeDomain.saga',
+  });
   const [featureFlagIsEnabled] = useFeatureFlags(FeatureFlagIds.fakeDomain);
   const [abTestIsEnabled] = useAbTests(AbTestIds.fakeDomain);
   const [isInitialized, setIsInitialized] = useState(false);

@@ -1,5 +1,5 @@
 import React, {
-  FC, lazy, ReactNode, useRef, useState,
+  FC, lazy, MutableRefObject, ReactNode, useRef, useState,
 } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import useToggle from '../../../../shared/hooks/utilities/useToggle';
@@ -30,7 +30,7 @@ const ResponsiveNavigationSample: FC = () => {
   ] = useToggle(false);
   const { belowSm } = useBreakpoints();
 
-  const componentReference = useRef(null);
+  const componentReference = useRef() as MutableRefObject<HTMLElement>;
   useOnClickOutside({ ref: componentReference, onClickOutside: () => setMobileNavigationIsVisible(false) });
 
   const selectNavigationElement = (navigationElement: INavigationElement) => setNavigationElements(

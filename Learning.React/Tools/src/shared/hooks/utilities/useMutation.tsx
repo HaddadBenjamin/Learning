@@ -13,6 +13,7 @@ interface IUseMutationRequest<TData, TOnFinishGetParameters = void>
   // Nécéssaire pour réaliser de l'UI optimiste : c’est à dire partir du principe que votre requête va fonctionner et la rollback en cas d’erreur, cela permet de mettre à jour votre UI tout de suite sans devoir à attendre que votre requête se termine. On peut utiliser de l’UI optimiste que dans les cas on peut prévoir à l’avance le résultat de la réponse de succès. C’est également une alternative à ajouter des loadeurs lorsque la requête est entrain de se lancer.
   onBeforeMutate? : (parameters?: TOnFinishGetParameters) => void,
   mutateOnMount?: boolean
+  enabled?: boolean,
 }
 
 interface IUseMutationResponse<TData, TOnFinishGetParameters>
@@ -25,7 +26,6 @@ interface IUseMutationResponse<TData, TOnFinishGetParameters>
   error?: any,
   isNotFound?: boolean,
   status?: HttpStatus,
-  enabled?: boolean,
 }
 
 export interface IMutateParameters<TOnFinishGetParameters = void> {

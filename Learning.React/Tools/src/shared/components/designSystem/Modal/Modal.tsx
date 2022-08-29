@@ -46,7 +46,7 @@ const Modal : FC<Props> = ({
   const { elementReference: titleReference, elementSize: { elementHeight: titleHeight } } = useElementSize<HTMLDivElement>();
   const numberOfTitleLine = titleHeight / MODAL_LINE_HEIGHT;
 
-  useOnClickOutside(modalReference, () => { if (closeOnClickOutside) setShowModal(false); });
+  useOnClickOutside({ ref: modalReference, onClickOutside: () => { if (closeOnClickOutside) setShowModal(false); } });
   useLockBodyScroll(lockScrollWhenOpen);
 
   return (
