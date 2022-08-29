@@ -46,7 +46,7 @@ const AnimationsWithoutGSAP : FC = () => <div>
     </div>
   </div>
 
-  <FadeInOnVisible duration={3000} animatedOnce={false} offset={-200}>
+  <FadeInOnVisible duration={3000} animatedOnce={false}>
     <AnimatedImages/>
   </FadeInOnVisible>
 </div>

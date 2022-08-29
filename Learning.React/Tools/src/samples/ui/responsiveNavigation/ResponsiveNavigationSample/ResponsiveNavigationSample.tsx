@@ -11,7 +11,7 @@ import {
   initialNavigationElements,
   routes,
 } from '../responsiveNavigation.configuration';
-import useClickOutside from '../../../../shared/hooks/events/useClickOutside';
+import useOnClickOutside from '../../../../shared/hooks/events/useOnClickOutside';
 
 const LazyHome = lazy(() => import('../FakeRouterComponents/Home'));
 const LazyAbout = lazy(() => import('../FakeRouterComponents/About'));
@@ -31,8 +31,7 @@ const ResponsiveNavigationSample: FC = () => {
   const { belowSm } = useBreakpoints();
 
   const componentReference = useRef(null);
-  useClickOutside(componentReference, () => setMobileNavigationIsVisible(false),
-  );
+  useOnClickOutside({ ref: componentReference, onClickOutside: () => setMobileNavigationIsVisible(false) });
 
   const selectNavigationElement = (navigationElement: INavigationElement) => setNavigationElements(
     navigationElements.map((e) => ({

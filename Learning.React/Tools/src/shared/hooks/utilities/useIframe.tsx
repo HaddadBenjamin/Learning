@@ -4,13 +4,18 @@ import React, {
 } from 'react';
 import styles from './useIframe.module.scss';
 
+interface IUseIframeParameters {
+  url : string,
+  title: string,
+}
+
 interface IUseIframeResponse {
   iframe : ReactElement,
   error : boolean,
   isLoading : boolean
 }
 
-const useIframe = (url : string, title : string) : IUseIframeResponse => {
+const useIframe = ({ url, title }: IUseIframeParameters) : IUseIframeResponse => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const ref = useRef<HTMLIFrameElement>(null);

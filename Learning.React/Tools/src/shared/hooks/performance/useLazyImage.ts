@@ -10,7 +10,7 @@ interface IUseLazyImageResponse {
 
 const useLazyImage = (condition?: boolean) : IUseLazyImageResponse => {
   const imgRef = useRef() as MutableRefObject<HTMLElement>;
-  const isVisible = useOnVisibleChange(imgRef, true);
+  const isVisible = useOnVisibleChange({ ref: imgRef, stopToObserveWhenElementIsVisible: true });
   const [imageIsLoaded, setImageIsLoaded] = useState(false);
 
   const onImageLoad = () : void => setImageIsLoaded(true);

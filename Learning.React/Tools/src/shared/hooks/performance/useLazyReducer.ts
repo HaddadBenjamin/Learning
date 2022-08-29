@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { lazyStore } from '../../../samples/lazyRedux/root.store';
 
-const useLazyReducer = (
+interface IUseLazyReducerParameters {
   key: string,
   path: string,
-  condition = true,
-): boolean => {
+  condition? : boolean,
+}
+
+const useLazyReducer = ({ key, path, condition = true } : IUseLazyReducerParameters): boolean => {
   const [reducerIsInjected, setReducerIsInjected] = useState(
     lazyStore.doesReducerHasBeenInjected(key),
   );

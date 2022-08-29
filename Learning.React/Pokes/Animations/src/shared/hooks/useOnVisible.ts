@@ -13,12 +13,14 @@ const useOnVisible = <THtmlElement extends HTMLElement>(
     ref,
     onVisible,
     offset,
-  }: IUseOnVisibleParameters<THtmlElement>) : void => {
+  }: IUseOnVisibleParameters<THtmlElement>) : boolean => {
   const isVisible = useOnIsVisibleChange({ ref, stopToObserveWhenElementIsVisible: false, offset });
 
   useEffect(() => {
     if (isVisible) onVisible();
   }, [isVisible]);
+
+  return isVisible
 };
 
 export default useOnVisible;

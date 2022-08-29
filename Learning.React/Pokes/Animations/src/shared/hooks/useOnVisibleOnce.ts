@@ -13,12 +13,14 @@ const useOnVisibleOnce = <THtmlElement extends HTMLElement>(
     ref,
     offset,
     onVisibleOnce,
-  }: IUseOnVisibleOnceParameters<THtmlElement>) : void => {
+  }: IUseOnVisibleOnceParameters<THtmlElement>) : boolean => {
   const isVisible = useOnIsVisibleChange({ ref, stopToObserveWhenElementIsVisible: true, offset });
 
   useEffect(() => {
     if (isVisible) onVisibleOnce();
   }, [isVisible]);
+
+  return isVisible
 };
 
 export default useOnVisibleOnce;

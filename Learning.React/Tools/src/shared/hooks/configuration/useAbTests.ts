@@ -14,14 +14,14 @@ export default (...abTestsIds: number[]): boolean[] => {
   const abTestsState = useSelector(selectAbTestsState);
   const dispatch = useDispatch();
 
-  const reducerIsInjected = useLazyReducer(
-    abTestReducerKey,
-    'shared/domains/abTest/abTest.reducer',
-  );
-  const sagaIsInjected = useLazySaga(
-    abTestSagaKey,
-    'shared/domains/abTest/abTest.saga',
-  );
+  const reducerIsInjected = useLazyReducer({
+    key: abTestReducerKey,
+    path: 'shared/domains/abTest/abTest.reducer',
+  });
+  const sagaIsInjected = useLazySaga({
+    key: abTestSagaKey,
+    path: 'shared/domains/abTest/abTest.saga',
+  });
 
   const [isInitialized, setIsInitialized] = useState(false);
 

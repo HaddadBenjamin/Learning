@@ -2,20 +2,28 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import doesElementIsVisible from '../../utilities/domainsHttpAndHtmlElement/doesElementIsVisible';
 
-interface IUseInfiniteScrollingResponse<T> {
-  items : T[],
+interface IUseInfiniteScrollingParameters {
+  containerSelector: string,
+  computeFetchUrl: (page: number, pageSize: number) => string,
+  updateDelay?: number,
+  pageSize?: number,
+  lastPage?: number,
+}
+interface IUseInfiniteScrollingResponse<TItem> {
+  items : TItem[],
   isFetching : boolean
 }
 
 // Pour pouvoir faire de l'infinite scrolling, il est nécéssaire que votre endpoint en GET gère la pagination.
-export default <T, >(
-  containerSelector: string,
-  computeFetchUrl: (page: number, pageSize: number) => string,
-  updateDelay = 500,
-  pageSize = 1,
-  lastPage = 100,
-) : IUseInfiniteScrollingResponse<T> => {
-  const [items, setItems] = useState<T[]>([]);
+export default <TItem, >(
+  {
+    containerSelector,
+    computeFetchUrl,
+    updateDelay = 500,
+    pageSize = 1,
+    lastPage = 100,
+  } : IUseInfiniteScrollingParameters) : IUseInfiniteScrollingResponse<TItem> => {
+  const [items, setItems] = useState<TItem[]>([]);
   const [page, setPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(true);
   const [mustFetch, setMustFetch] = useState(false);

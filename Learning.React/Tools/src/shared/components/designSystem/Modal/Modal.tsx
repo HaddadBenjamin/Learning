@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import cn from 'classnames';
 import styles from './Modal.module.scss';
-import useOnClickOutside from '../../../hooks/styles/useOnClickOutside';
+import useOnClickOutside from '../../../hooks/events/useOnClickOutside';
 import useElementSize from '../../../hooks/styles/useElementSize';
 import useLockBodyScroll from '../../../hooks/utilities/useLockBodyScroll';
 

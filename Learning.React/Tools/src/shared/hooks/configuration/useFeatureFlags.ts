@@ -14,14 +14,14 @@ export default (...featureFlagsIds: number[]): boolean[] => {
   const featureFlagsState = useSelector(selectFeatureFlagsState);
   const dispatch = useDispatch();
 
-  const reducerIsInjected = useLazyReducer(
-    featureFlagReducerKey,
-    'shared/domains/featureFlag/featureFlag.reducer',
-  );
-  const sagaIsInjected = useLazySaga(
-    featureFlagSagaKey,
-    'shared/domains/featureFlag/featureFlag.saga',
-  );
+  const reducerIsInjected = useLazyReducer({
+    key: featureFlagReducerKey,
+    path: 'shared/domains/featureFlag/featureFlag.reducer',
+  });
+  const sagaIsInjected = useLazySaga({
+    key: featureFlagSagaKey,
+    path: 'shared/domains/featureFlag/featureFlag.saga',
+  });
 
   const [isInitialized, setIsInitialized] = useState(false);
 
