@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from 'react';
 import cn from 'classnames';
 import styles from './RevealOnVisible.module.scss';
-import {IBaseAnimationsProps} from "../../animation.model";
-import useBaseAnimation from "../../hooks/useBaseAnimation";
+import { IBaseAnimationsProps } from '../../animation.model';
+import useBaseAnimation from '../../hooks/useBaseAnimation';
 
 interface Props extends IBaseAnimationsProps {
   distance?: string,
@@ -17,8 +17,8 @@ const RevealOnVisible : FC<Props> = (props) => {
     distance,
     backgroundColor,
     direction,
-  } = props
-  const { isVisible, ref} = useBaseAnimation<HTMLDivElement>(props);
+  } = props;
+  const { isVisible, ref } = useBaseAnimation<HTMLDivElement>(props);
 
   useEffect(() => {
     if (distance) ref?.current?.style?.setProperty('--distance', distance);

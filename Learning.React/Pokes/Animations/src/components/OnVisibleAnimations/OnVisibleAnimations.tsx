@@ -1,22 +1,22 @@
 import React from 'react';
 import styles from './OnVisibleAnimations.module.scss';
 import FadeInOnVisible from "../../shared/components/animations/WithGsap/FadeInOnVisible/FadeInOnVisible";
-import FadeInOnVisibleFirstTime from "../../shared/components/animations/WithGsap/FadeInOnFirstTimeVisible/FadeInOnVisibleFirstTime";
-import FadeInOnVisibleFirstTimeWithGsap
-  from "../../shared/components/animations/WithGsap/FadeInOnFirstTimeVisibleWithGsap/FadeInOnVisibleFirstTimeWithGsap";
 import FadeInOnVisibleWithGsap
   from "../../shared/components/animations/WithGsap/FadeInOnVisibleWithGsap/FadeInOnVisibleWithGsap";
+import FadeInOnVisibleOnceWithGsap
+  from "../../shared/components/animations/WithGsap/FadeInOnVisibleOnceWithGsap/FadeInOnVisibleOnceWithGsap";
+import FadeInOnVisibleOnce from "../../shared/components/animations/WithGsap/FadeInOnVisibleOnce/FadeInOnVisibleOnce";
 
 const OnVisibleAnimations = () => <>
   <h2>Animation qui se déclenche la première fois qu'un élément est visible</h2>
   <div className={styles.gridWith2Elements}>
-    <FadeInOnVisibleFirstTimeWithGsap fromVars={{ x: 400 }} toVars={{ x: 0 }}>
+    <FadeInOnVisibleOnceWithGsap fromVars={{ x: 400 }} toVars={{ x: 0 }}>
       <div className={styles.onVisibleFirstTime}>Avec GSAP</div>
-    </FadeInOnVisibleFirstTimeWithGsap>
+    </FadeInOnVisibleOnceWithGsap>
 
-    <FadeInOnVisibleFirstTime vars={{ x: -400 }}>
+    <FadeInOnVisibleOnce vars={{ x: -400 }}>
       <div className={styles.onVisibleFirstTime}>Avec GSAP ET mes hooks</div>
-    </FadeInOnVisibleFirstTime>
+    </FadeInOnVisibleOnce>
   </div>
 
   <h2>Animation qui se déclenche à chaque fois qu'un élément est visible</h2>

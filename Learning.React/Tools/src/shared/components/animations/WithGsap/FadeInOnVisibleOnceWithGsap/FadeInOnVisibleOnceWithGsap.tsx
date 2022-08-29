@@ -2,17 +2,13 @@ import gsap from 'gsap';
 import React, {
   FC, MutableRefObject, useEffect, useRef,
 } from 'react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface Props {
   fromVars?: gsap.TweenVars
   toVars?: gsap.TweenVars
   children: React.ReactNode
 }
-
-const FadeInOnVisibleFirstTimeWithGsap : FC<Props> = (
+const FadeInOnVisibleOnceWithGsap : FC<Props> = (
   {
     children,
     fromVars,
@@ -24,7 +20,7 @@ const FadeInOnVisibleFirstTimeWithGsap : FC<Props> = (
     const tween = gsap.fromTo(ref.current.children,
       { opacity: 0, ...fromVars },
       {
-        opacity: 1, duration: 2, scrollTrigger: ref.current.children, ...toVars,
+        opacity: 1, duration: 1, scrollTrigger: { trigger: ref.current.children }, ...toVars,
       },
     );
 
@@ -34,4 +30,4 @@ const FadeInOnVisibleFirstTimeWithGsap : FC<Props> = (
   return <span ref={ref}>{children}</span>;
 };
 
-export default FadeInOnVisibleFirstTimeWithGsap;
+export default FadeInOnVisibleOnceWithGsap;

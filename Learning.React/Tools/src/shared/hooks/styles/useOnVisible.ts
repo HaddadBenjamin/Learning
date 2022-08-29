@@ -1,11 +1,20 @@
 import { MutableRefObject, useEffect } from 'react';
 import useOnIsVisibleChange from './useOnIsVisibleChange';
 
-const useOnVisible = <THtmlElement extends HTMLElement>(
+interface IUseOnVisibleParameters<THtmlElement extends HTMLElement> {
   ref: MutableRefObject<THtmlElement>,
-  onVisible: () => void,
-) : void => {
-  const isVisible = useOnIsVisibleChange(ref, false);
+  offset?: number,
+  onVisible: () => void
+}
+
+// Se déclenche à chaque fois qu'un élément est visible
+const useOnVisible = <THtmlElement extends HTMLElement>(
+  {
+    ref,
+    onVisible,
+    offset,
+  }: IUseOnVisibleParameters<THtmlElement>) : void => {
+  const isVisible = useOnIsVisibleChange({ ref, stopToObserveWhenElementIsVisible: false, offset });
 
   useEffect(() => {
     if (isVisible) onVisible();

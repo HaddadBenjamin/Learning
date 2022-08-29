@@ -8,8 +8,7 @@ interface Props {
   toVars?: gsap.TweenVars
   children: React.ReactNode
 }
-
-const FadeInOnVisibleWithGsap : FC<Props> = (
+const FadeInOnVisibleOnceWithGsap : FC<Props> = (
   {
     children,
     fromVars,
@@ -21,15 +20,9 @@ const FadeInOnVisibleWithGsap : FC<Props> = (
     const tween = gsap.fromTo(ref.current.children,
       { opacity: 0, ...fromVars },
       {
-        opacity: 1,
-        duration: 1,
-        scrollTrigger:
-        {
-          trigger: ref.current.children,
-          toggleActions: 'restart pause restart restart',
-        },
-        ...toVars,
-      });
+        opacity: 1, duration: 1, scrollTrigger: { trigger: ref.current.children }, ...toVars,
+      },
+    );
 
     return () => { tween.kill(); };
   }, []);
@@ -37,4 +30,4 @@ const FadeInOnVisibleWithGsap : FC<Props> = (
   return <span ref={ref}>{children}</span>;
 };
 
-export default FadeInOnVisibleWithGsap;
+export default FadeInOnVisibleOnceWithGsap;

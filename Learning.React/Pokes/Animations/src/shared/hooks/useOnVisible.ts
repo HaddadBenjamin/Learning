@@ -1,5 +1,5 @@
-import useOnIsVisibleChange from "./useOnIsVisibleChange";
-import {MutableRefObject, useEffect} from "react";
+import { MutableRefObject, useEffect } from 'react';
+import useOnIsVisibleChange from './useOnIsVisibleChange';
 
 interface IUseOnVisibleParameters<THtmlElement extends HTMLElement> {
   ref: MutableRefObject<THtmlElement>,
@@ -9,17 +9,16 @@ interface IUseOnVisibleParameters<THtmlElement extends HTMLElement> {
 
 // Se déclenche à chaque fois qu'un élément est visible
 const useOnVisible = <THtmlElement extends HTMLElement>(
-{
-  ref,
-  onVisible,
-  offset
-}: IUseOnVisibleParameters<HTMLElement>) : void =>
-{
-  const isVisible = useOnIsVisibleChange({ ref, stopToObserveWhenElementIsVisible : false, offset});
+  {
+    ref,
+    onVisible,
+    offset,
+  }: IUseOnVisibleParameters<THtmlElement>) : void => {
+  const isVisible = useOnIsVisibleChange({ ref, stopToObserveWhenElementIsVisible: false, offset });
 
   useEffect(() => {
     if (isVisible) onVisible();
-  }, [isVisible])
-}
+  }, [isVisible]);
+};
 
-export default useOnVisible
+export default useOnVisible;

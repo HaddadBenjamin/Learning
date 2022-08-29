@@ -10,8 +10,8 @@ interface Props {
 
 const FadeInOnVisible : FC<Props> = ({ children, fromVars, toVars }) => (
   <OnVisible
-    fromVars={{ opacity: 0, duration: 2, ...fromVars }}
-    toVars={{ opacity: 1, duration: 2, ...toVars }}
+    fromVars={{ opacity: 0, duration: 1, ...fromVars }}
+    toVars={{ opacity: 1, duration: 1, ...toVars }}
   >
     {children}
   </OnVisible>

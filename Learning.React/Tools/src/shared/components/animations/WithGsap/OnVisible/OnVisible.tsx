@@ -11,10 +11,15 @@ interface Props {
 const OnVisible : FC<Props> = ({ children, fromVars, toVars }) => {
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
 
-  useOnVisible(ref, () => {
-    const tween = gsap.fromTo(ref.current.children, fromVars, toVars);
+  useOnVisible({
+    ref,
+    onVisible: () => {
+      const tween = gsap.fromTo(ref.current.children, fromVars, toVars);
 
-    return () => { tween.kill(); };
+      return () => {
+        tween.kill();
+      };
+    },
   });
 
   return <span ref={ref}>{children}</span>;

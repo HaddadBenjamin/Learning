@@ -1,6 +1,6 @@
 import { MutableRefObject, useEffect, useRef } from 'react';
 import { IBaseAnimationsProps } from '../animation.model';
-import useOnVisibleChange from "../../../../hooks/useOnIsVisibleChange";
+import useOnVisibleChange from '../../../../hooks/styles/useOnIsVisibleChange';
 
 interface IUseBaseAnimationResponse<TRef extends HTMLElement> {
   isVisible: boolean,

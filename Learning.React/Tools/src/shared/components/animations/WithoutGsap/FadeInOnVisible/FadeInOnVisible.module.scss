@@ -1,9 +1,0 @@
-:root {
-  --duration: 2s;
-}
-.fadeIn { animation: fade-in var(--duration) ease-in-out; }
-
-@keyframes fade-in {
-  from { opacity: 0%; }
-  to { opacity: 100%; }
-}

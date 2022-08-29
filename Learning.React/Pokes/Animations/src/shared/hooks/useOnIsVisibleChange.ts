@@ -1,4 +1,4 @@
-import {MutableRefObject, useEffect, useState} from 'react';
+import { MutableRefObject, useEffect, useState } from 'react';
 
 interface IUseOnVisibleChangeParameters<THtmlElement extends HTMLElement> {
   ref: MutableRefObject<THtmlElement>,
@@ -8,11 +8,11 @@ interface IUseOnVisibleChangeParameters<THtmlElement extends HTMLElement> {
   offset?: number
 }
 const useOnVisibleChange = <THtmlElement extends HTMLElement>(
-{
-  ref,
-  stopToObserveWhenElementIsVisible = true,
-  offset = 50
-} : IUseOnVisibleChangeParameters<THtmlElement>): boolean => {
+  {
+    ref,
+    stopToObserveWhenElementIsVisible = true,
+    offset = 50,
+  } : IUseOnVisibleChangeParameters<THtmlElement>): boolean => {
   const [isVisible, setIsVisible] = useState(false);
 
   const intersectionObserverCallback = (
@@ -24,8 +24,7 @@ const useOnVisibleChange = <THtmlElement extends HTMLElement>(
     if (elementIsVisible) {
       if (stopToObserveWhenElementIsVisible) observer.unobserve(entry.target);
       setIsVisible(true);
-    }
-    else setIsVisible(false);
+    } else setIsVisible(false);
   });
 
   useEffect(() => {
@@ -50,4 +49,4 @@ const useOnVisibleChange = <THtmlElement extends HTMLElement>(
   return isVisible;
 };
 
-export default useOnVisibleChange
+export default useOnVisibleChange;

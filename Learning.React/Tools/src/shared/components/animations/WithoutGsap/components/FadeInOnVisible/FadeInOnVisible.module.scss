@@ -1,0 +1,12 @@
+:root {
+  --duration: 2s;
+  --ease: ease-in-out;
+  --delay: 0ms;
+}
+
+.fadeIn { animation: fade-in var(--duration) var(--ease) var(--delay); }
+
+@keyframes fade-in {
+  from { opacity: 0%; }
+  to { opacity: 100%; }
+}
