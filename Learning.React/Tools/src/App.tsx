@@ -20,6 +20,7 @@ import FrontEndPaginationSample from './samples/pagination/frontEndPagination/Fr
 import BackEndPaginationSample from './samples/pagination/backEndPagination/BackEndPagination';
 import AnimationSample from './samples/animations/AnimationSample';
 import ThrottleAndDebounceSample from './samples/throttleAndDebounce/ThrottleAndDebounceSample';
+import LazyComponentSample from './samples/lazyComponent/LazyComponentSample';
 
 const queryClient = new QueryClient();
 export default () => (
@@ -39,6 +40,7 @@ export default () => (
       <SimplePaginationSample />
       <LazyPaginationSample />
       <LazyReduxSample />
+      <LazyComponentSample />
       <LazyImageSample />
       <LazyResponsiveImageSample />
       <ResponsiveImageSample />

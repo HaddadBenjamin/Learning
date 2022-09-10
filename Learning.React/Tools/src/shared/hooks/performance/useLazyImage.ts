@@ -1,15 +1,15 @@
 import { MutableRefObject, useRef, useState } from 'react';
 import useOnVisibleChange from '../styles/useOnIsVisibleChange';
 
-interface IUseLazyImageResponse {
-  imgRef: MutableRefObject<HTMLElement>,
+interface IUseLazyImageResponse<TRef extends HTMLElement> {
+  imgRef: MutableRefObject<TRef>,
   isVisible: boolean,
   imageIsLoaded : boolean
   onImageLoad : () => void
 }
 
-const useLazyImage = (condition?: boolean) : IUseLazyImageResponse => {
-  const imgRef = useRef() as MutableRefObject<HTMLElement>;
+const useLazyImage = <TRef extends HTMLElement>(condition?: boolean) : IUseLazyImageResponse<TRef> => {
+  const imgRef = useRef() as MutableRefObject<TRef>;
   const isVisible = useOnVisibleChange({ ref: imgRef, stopToObserveWhenElementIsVisible: true });
   const [imageIsLoaded, setImageIsLoaded] = useState(false);
 
