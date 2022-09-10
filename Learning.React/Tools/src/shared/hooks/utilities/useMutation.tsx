@@ -2,14 +2,25 @@ import { useEffect, useState } from 'react';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import HttpStatus from '../../constants/httpStatus';
 
+interface IOnUseMutationSuccessParameters<TData, TOnFinishGetParameters = void> {
+  data : TData,
+  parameters?: TOnFinishGetParameters,
+  status?: HttpStatus
+}
+
+interface IOnUseMutationErrorParameters<TOnFinishGetParameters = void> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  error : any,
+  parameters?: TOnFinishGetParameters,
+  status?: HttpStatus
+}
+
 interface IUseMutationRequest<TData, TOnFinishGetParameters = void>
 {
   httpClient? : AxiosInstance,
   config?: AxiosRequestConfig,
-  /// TODO: il aurait fallu que onSuccess et onError prennent un objet en paramètre
-  onSuccess? : (data?: TData, parameters?: TOnFinishGetParameters, status?: HttpStatus) => void,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onError? : (error : any, parameters?: TOnFinishGetParameters, status?: HttpStatus) => void,
+  onSuccess? : (parameters: IOnUseMutationSuccessParameters<TData, TOnFinishGetParameters>) => void,
+  onError? : (parameters : IOnUseMutationErrorParameters<TOnFinishGetParameters>) => void,
   // Nécéssaire pour réaliser de l'UI optimiste : c’est à dire partir du principe que votre requête va fonctionner et la rollback en cas d’erreur, cela permet de mettre à jour votre UI tout de suite sans devoir à attendre que votre requête se termine. On peut utiliser de l’UI optimiste que dans les cas on peut prévoir à l’avance le résultat de la réponse de succès. C’est également une alternative à ajouter des loadeurs lorsque la requête est entrain de se lancer.
   onBeforeMutate? : (parameters?: TOnFinishGetParameters) => void,
   mutateOnMount?: boolean
@@ -70,7 +81,7 @@ const UseMutation = <TData, TOnFinishGetParameters = void>({
         },
       );
 
-      onSuccess?.(data?.data, mutateParameters?.callbacksParameters, data?.status);
+      onSuccess?.({ data: data?.data, parameters: mutateParameters?.callbacksParameters, status: data?.status });
 
       setResponse({
         ...response,
@@ -85,7 +96,7 @@ const UseMutation = <TData, TOnFinishGetParameters = void>({
     } catch (error: any) {
       const status = error?.response?.status;
 
-      onError?.(error, mutateParameters?.callbacksParameters, status);
+      onError?.({ error, parameters: mutateParameters?.callbacksParameters, status });
 
       setResponse({
         ...response,

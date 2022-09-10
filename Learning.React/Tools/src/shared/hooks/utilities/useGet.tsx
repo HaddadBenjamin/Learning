@@ -2,16 +2,27 @@ import { useEffect, useState } from 'react';
 import axios, { AxiosRequestConfig, AxiosInstance } from 'axios';
 import HttpStatus from '../../constants/httpStatus';
 
+interface IOnUseGetSuccessParameters<TData, TOnFinishGetParameters = void> {
+  data : TData,
+  parameters?: TOnFinishGetParameters,
+  status?: HttpStatus
+}
+
+interface IOnUseGetErrorParameters<TOnFinishGetParameters = void> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  error : any,
+  parameters?: TOnFinishGetParameters,
+  status?: HttpStatus
+}
+
 interface IUseGetParameters<TData, TOnFinishGetParameters = void>
 {
   url?: string,
   config?: AxiosRequestConfig,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dependencies? : any[],
-  /// TODO: il aurait fallu que onSuccess et onError prennent un objet en paramètre
-  onSuccess? : (data : TData, parameters?: TOnFinishGetParameters, status?: HttpStatus) => void,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onError? : (error : any, parameters?: TOnFinishGetParameters, status?: HttpStatus) => void,
+  onSuccess? : (parameters : IOnUseGetSuccessParameters<TData, TOnFinishGetParameters>) => void,
+  onError? : (parameters : IOnUseGetErrorParameters<TOnFinishGetParameters>) => void,
   // Nécéssaire pour réaliser de l'UI optimiste : c’est à dire partir du principe que votre requête va fonctionner et la rollback en cas d’erreur, cela permet de mettre à jour votre UI tout de suite sans devoir à attendre que votre requête se termine. On peut utiliser de l’UI optimiste que dans les cas on peut prévoir à l’avance le résultat de la réponse de succès. C’est également une alternative à ajouter des loadeurs lorsque la requête est entrain de se lancer.
   onBeforeGet? : (parameters?: TOnFinishGetParameters) => void,
   httpClient? : AxiosInstance,
@@ -70,7 +81,7 @@ const useGet = <TData, TOnFinishGetParameters = void>(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const { data, status } = await (httpClient ?? axios).get((refetchParameters?.refetchUrl ?? url)!, refetchParameters?.refetchConfig ?? config);
 
-      onSuccess?.(data, refetchParameters?.callbacksParameters, status);
+      onSuccess?.({ data, parameters: refetchParameters?.callbacksParameters, status });
 
       setResponse({
         ...response,
@@ -84,7 +95,7 @@ const useGet = <TData, TOnFinishGetParameters = void>(
     } catch (error : any) {
       const status = error?.response?.status;
 
-      onError?.(error, refetchParameters?.callbacksParameters, status);
+      onError?.({ error, parameters: refetchParameters?.callbacksParameters, status });
 
       setResponse({
         ...response,
