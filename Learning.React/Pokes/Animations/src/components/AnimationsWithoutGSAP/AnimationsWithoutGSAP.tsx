@@ -3,7 +3,7 @@ import AnimatedLoader from "./AnimatedLoader/AnimatedLoader";
 import AnimatedProgressBar from "./AnimatedProgressBar/AnimatedProgressBar";
 import AnimatedText from "./AnimatedText/AnimatedText";
 import AnimatedClock from "./AnimatedClock/AnimatedClock";
-import AnimatedImages from "./AnimatedImages/AnimatedImages";
+import AnimatedImages from "./AnimatedImages/AnimatedImages/AnimatedImages";
 import AnimatedCurves from "./AnimatedCurve/AnimatedCurves";
 import RevealContent from "./AnimatedContent/RevealContent/RevealContent";
 import SlideContent from "./AnimatedContent/SlideContent/SlideContent";
@@ -12,6 +12,7 @@ import FadeInOnVisible from "../../shared/components/animations/WithoutGsap/comp
 import SlideOnVisible from "../../shared/components/animations/WithoutGsap/components/SlideOnVisible/SlideOnVisible";
 import RevealOnVisible from "../../shared/components/animations/WithoutGsap/components/ReveaOnVisible/RevealOnVisible";
 import ZoomOnVisible from "../../shared/components/animations/WithoutGsap/components/ZoomOnVisible/ZoomOnVisible";
+import AnimatedImagesWithDelay from "./AnimatedImages/AnimatedImagesWithDelay/AnimatedImagesWithDelay";
 
 const AnimationsWithoutGSAP : FC = () => <div>
   <div style={{ display: 'flex', gap: '20px' }}>
@@ -42,6 +43,7 @@ const AnimationsWithoutGSAP : FC = () => <div>
       </SlideOnVisible>
       <SlideOnVisible duration={2000} animatedOnce={false} direction='down' distance='200px'>
         <AnimatedCurves/>
+        <AnimatedImagesWithDelay/>
       </SlideOnVisible>
     </div>
   </div>
