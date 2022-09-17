@@ -9,7 +9,7 @@ const LazyComponentSample = () => (
       To test : F12 / Network / JS / it will load on visible
     </div>
 
-    <LazyComponent>
+    <LazyComponent skeleton={<div>Loading skeleton...</div>}>
       <LazyLoadedComponent />
     </LazyComponent>
   </div>

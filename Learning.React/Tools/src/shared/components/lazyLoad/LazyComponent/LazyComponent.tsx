@@ -1,7 +1,7 @@
 import React, {
   FC, MutableRefObject, useRef, Suspense, ReactNode,
 } from 'react';
-import useOnVisibleOnce from '../../../../hooks/styles/useOnVisibleOnce';
+import useOnVisibleOnce from '../../../hooks/styles/useOnVisibleOnce';
 
 interface Props {
   className?: string
