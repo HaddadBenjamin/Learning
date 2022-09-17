@@ -30,6 +30,9 @@ const App = () => {
     <div className={styles.buttonContainer}>
       <button onClick={() => setTabVisible('Animations maison')}>Animations maison</button>
       <button onClick={() => setTabVisible('Animations AOS')}>Animations AOS</button>
+    </div>
+    <div className={styles.buttonContainer}>
+      <div>Animations GSAP :</div>
       <button onClick={() => setTabVisible('Les tweens')}>Les tweens</button>
       <button onClick={() => setTabVisible('timeline & enchainement danimation')}>Timelines : enchainer les animations</button>
       <button onClick={() => setTabVisible('Déclencher une animation quand un élément est visible')}>Déclencher une animation quand un élément est visible</button>

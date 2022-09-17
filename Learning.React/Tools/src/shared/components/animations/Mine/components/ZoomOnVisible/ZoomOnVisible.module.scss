@@ -1,11 +1,10 @@
 :root {
   --duration: 1s;
-  --ease: ease-in-out;
   --delay: 0ms;
   --zoom: 0.8;
 }
 
-.zoom { animation: zoom var(--duration) var(--ease) var(--delay); }
+.zoom { animation: zoom var(--duration) var(--delay); }
 
 @keyframes zoom {
   from {

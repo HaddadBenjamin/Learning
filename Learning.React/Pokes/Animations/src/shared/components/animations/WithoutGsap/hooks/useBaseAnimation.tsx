@@ -22,6 +22,8 @@ const useBaseAnimation = <TRef extends HTMLElement>(
     if (duration) ref?.current?.style?.setProperty('--duration', `${duration}ms`);
     if (delay) ref?.current?.style?.setProperty('--delay', `${delay}ms`);
     if (ease) ref?.current?.style?.setProperty('--ease', ease);
+
+    ref?.current?.classList.add(`ease-${ease}`)
   }, []);
 
   return {

@@ -17,7 +17,7 @@ import AnimatedImagesWithDelay from "./AnimatedImages/AnimatedImagesWithDelay/An
 const MyAnimations : FC = () => <div>
   <div style={{ display: 'flex', gap: '20px' }}>
     <div>
-      <RevealOnVisible duration={3000} animatedOnce={false} direction='down' backgroundColor='#84CC7D' delay={0} ease='ease-in'>
+      <RevealOnVisible duration={3000} animatedOnce={false} direction='down' backgroundColor='#84CC7D' delay={0} ease='ease-in-out-quart'>
         <AnimatedProgressBar/>
         <AnimatedLoader/>
       </RevealOnVisible>

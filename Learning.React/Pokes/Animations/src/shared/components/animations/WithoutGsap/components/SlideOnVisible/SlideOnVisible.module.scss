@@ -1,15 +1,16 @@
+@import '../../hooks/useBaseAnimation.module';
+
 :root {
   --duration: 1s;
-  --ease: ease-in-out;
   --delay: 0ms;
   --distance: 100%;
 }
 
 .slideContainer { overflow: hidden; }
-.slideUp { animation: slide-up var(--duration) var(--ease) var(--delay); }
-.slideRight { animation: slide-right var(--duration) var(--ease) var(--delay); }
-.slideDown { animation: slide-down var(--duration) var(--ease) var(--delay); }
-.slideLeft { animation: slide-left var(--duration) var(--ease) var(--delay); }
+.slideUp { animation: slide-up var(--duration) var(--delay); }
+.slideRight { animation: slide-right var(--duration) var(--delay); }
+.slideDown { animation: slide-down var(--duration) var(--delay); }
+.slideLeft { animation: slide-left var(--duration) var(--delay); }
 
 @keyframes slide-up {
   from {

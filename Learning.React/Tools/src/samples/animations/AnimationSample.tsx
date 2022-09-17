@@ -2,9 +2,9 @@ import React, { MutableRefObject, useRef } from 'react';
 import gsap from 'gsap';
 import styles from './AnimationSample.module.scss';
 import useScreenSize from '../../shared/hooks/styles/useScreenSize';
-import FadeInOnVisible from '../../shared/components/animations/WithGsap/FadeInOnVisible/FadeInOnVisible';
+import FadeInOnVisible from '../../shared/components/animations/GSAP/FadeInOnVisible/FadeInOnVisible';
 import useOnVisibleOnce from '../../shared/hooks/styles/useOnVisibleOnce';
-import FadeInOnVisibleOnce from '../../shared/components/animations/WithGsap/FadeInOnVisibleOnce/FadeInOnVisibleOnce';
+import FadeInOnVisibleOnce from '../../shared/components/animations/GSAP/FadeInOnVisibleOnce/FadeInOnVisibleOnce';
 
 const AnimationSample = () => {
   const { screenWidth } = useScreenSize();
