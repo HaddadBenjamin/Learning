@@ -9,7 +9,7 @@ const HightlightSample = () => {
   const onChangeSearchTerm = (event: ChangeEvent<HTMLInputElement>): void => setSearchTerm(event.target.value);
 
   return (
-    <>
+    <div data-aos='fade-up' data-aos-duration={3000}>
       <h2>Highlight</h2>
       <div>
         This component search elements by a text and highlight this text in your
@@ -27,7 +27,7 @@ const HightlightSample = () => {
             key={`Highlight${index}`}
           />
         ))}
-    </>
+    </div>
   );
 };
 

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import Aos from 'aos';
 import InfiniteScrollingSample from './samples/infiniteScrolling/InfiniteScrollingSample';
 import LazyImageSample from './samples/lazyImage/LazyImageSample';
 import HightlightSample from './samples/ui/highlight/HightlightSample';
@@ -22,32 +23,38 @@ import AnimationSample from './samples/animations/AnimationSample';
 import ThrottleAndDebounceSample from './samples/throttleAndDebounce/ThrottleAndDebounceSample';
 import LazyComponentSample from './samples/lazyComponent/LazyComponentSample';
 
+import 'aos/dist/aos.css';
+
 const queryClient = new QueryClient();
-export default () => (
-  <Provider store={store}>
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
+export default () => {
+  useEffect(() => { Aos.init(); }, []);
 
-      <ThrottleAndDebounceSample />
+  return (
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
 
-      <FrontEndPaginationSample />
-      <BackEndPaginationSample />
+        <ThrottleAndDebounceSample />
 
-      <ResponsiveNavigationSample />
-      <HightlightSample />
-      <LocalizationSample />
-      <AnimationSample />
-      <SimplePaginationSample />
-      <LazyPaginationSample />
-      <LazyReduxSample />
-      <LazyComponentSample />
-      <LazyImageSample />
-      <LazyResponsiveImageSample />
-      <ResponsiveImageSample />
-      <InfiniteScrollingSample />
-      <BreakpointsSample />
+        <FrontEndPaginationSample />
+        <BackEndPaginationSample />
 
-      <WebSocketSample />
-    </QueryClientProvider>
-  </Provider>
-);
+        <ResponsiveNavigationSample />
+        <HightlightSample />
+        <LocalizationSample />
+        <AnimationSample />
+        <SimplePaginationSample />
+        <LazyPaginationSample />
+        <LazyReduxSample />
+        <LazyComponentSample />
+        <LazyImageSample />
+        <LazyResponsiveImageSample />
+        <ResponsiveImageSample />
+        <InfiniteScrollingSample />
+        <BreakpointsSample />
+
+        <WebSocketSample />
+      </QueryClientProvider>
+    </Provider>
+  );
+};

@@ -14,7 +14,7 @@ import RevealOnVisible from "../../shared/components/animations/WithoutGsap/comp
 import ZoomOnVisible from "../../shared/components/animations/WithoutGsap/components/ZoomOnVisible/ZoomOnVisible";
 import AnimatedImagesWithDelay from "./AnimatedImages/AnimatedImagesWithDelay/AnimatedImagesWithDelay";
 
-const AnimationsWithoutGSAP : FC = () => <div>
+const MyAnimations : FC = () => <div>
   <div style={{ display: 'flex', gap: '20px' }}>
     <div>
       <RevealOnVisible duration={3000} animatedOnce={false} direction='down' backgroundColor='#84CC7D' delay={0} ease='ease-in'>
@@ -53,4 +53,4 @@ const AnimationsWithoutGSAP : FC = () => <div>
   </FadeInOnVisible>
 </div>
 
-export default AnimationsWithoutGSAP;
+export default MyAnimations;

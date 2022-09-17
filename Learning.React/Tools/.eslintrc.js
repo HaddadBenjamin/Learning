@@ -51,6 +51,7 @@ module.exports = {
         'react-hooks/exhaustive-deps' :'off',
 
         semi: ['error', 'always'],
+        "linebreak-style": 0,
         'jsx-quotes': [2, 'prefer-single'],
         'react/jsx-fragments': 'off',
         'react/jsx-props-no-spreading': 'off',
