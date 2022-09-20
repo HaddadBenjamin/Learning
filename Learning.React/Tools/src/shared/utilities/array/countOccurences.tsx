@@ -6,7 +6,7 @@ const countOccurences = <T, >(array: T[]) : IKeyValue<T, number>[] => {
   // eslint-disable-next-line @typescript-eslint/restrict-plus-operands,no-restricted-syntax
   for (const element of array) occurencesMap.set(element, (occurencesMap.get(element) || 0) + 1);
 
-  return mapToArray<T, number>(occurencesMap);
+  return mapToArray(occurencesMap);
 };
 
 export default countOccurences;

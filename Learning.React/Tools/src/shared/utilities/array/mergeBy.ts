@@ -7,7 +7,7 @@ export interface IMergeByParameters<TElement1, TElement2>
 	removeElementWithoutMatches?: boolean
 }
 
-export interface IMerge <TElement2>
+export interface IMergeFields <TElement2>
 {
 	haveMergeMatches: boolean,
 	mergeMatchesCount: number,
@@ -15,7 +15,7 @@ export interface IMerge <TElement2>
 	mergeMatches: TElement2[]
 }
 
-export type MergeByResponse<TElement1, TElement2> = IMerge<TElement2> & TElement1
+export type MergeByResponse<TElement1, TElement2> = IMergeFields<TElement2> & TElement1
 
 const mergeBy = <TElement1, TElement2>(
   {
