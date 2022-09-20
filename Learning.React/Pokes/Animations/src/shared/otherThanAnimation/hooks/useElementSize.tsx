@@ -26,6 +26,7 @@ export default <T extends HTMLElement>(): useElementSizeResponse<T> => {
   useEffect(() => {
     if (elementReference?.current) handleResize();
 
+    // Fonctionne en SSR car le composant est monté à ce moment
     window.addEventListener('resize', handleResize);
 
     return () => {

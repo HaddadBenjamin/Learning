@@ -25,8 +25,9 @@ export default <T extends HTMLElement>(): useElementSizeResponse<T> => {
 
   useEffect(() => { new ResizeObserver(handleResize).observe(elementReference?.current); }, []);
   useEffect(() => {
-    if (elementReference?.current) handleResize();
+    handleResize();
 
+    // Fonctionne en SSR car le composant est monté à ce moment
     window.addEventListener('resize', handleResize);
 
     return () => {

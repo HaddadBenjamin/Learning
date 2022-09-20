@@ -34,6 +34,8 @@ export default (): Breakpoints => {
   const { screenWidth } = useScreenSize();
 
   return {
+    // Pour que ce hook fonctionne en SSR, il faut que soit le composant soit monté, soit on se base sur la librairie react-device-detect
+    // import { isMobile } from 'react-device-detect'
     isMobile: screenWidth <= smWidth, // équivaut à un belowSm
 
     belowXs: screenWidth <= xsWidth,

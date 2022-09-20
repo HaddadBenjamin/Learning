@@ -24,8 +24,9 @@ const useElementSize = <T extends HTMLElement>(): useElementSizeResponse<T> => {
   const handleResize = () => setElementSize(getElementSize());
 
   useEffect(() => {
-    if (elementReference?.current) handleResize();
+    handleResize();
 
+    // Fonctionne en SSR car le composant est monté à ce moment
     window.addEventListener('resize', handleResize);
 
     return () => {

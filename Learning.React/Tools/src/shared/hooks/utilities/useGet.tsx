@@ -23,6 +23,7 @@ interface IUseGetParameters<TData, TOnFinishGetParameters = void>
   dependencies? : any[],
   onSuccess? : (parameters : IOnUseGetSuccessParameters<TData, TOnFinishGetParameters>) => void,
   onError? : (parameters : IOnUseGetErrorParameters<TOnFinishGetParameters>) => void,
+  onFinish?: () => void,
   // Nécéssaire pour réaliser de l'UI optimiste : c’est à dire partir du principe que votre requête va fonctionner et la rollback en cas d’erreur, cela permet de mettre à jour votre UI tout de suite sans devoir à attendre que votre requête se termine. On peut utiliser de l’UI optimiste que dans les cas on peut prévoir à l’avance le résultat de la réponse de succès. C’est également une alternative à ajouter des loadeurs lorsque la requête est entrain de se lancer.
   onBeforeGet? : (parameters?: TOnFinishGetParameters) => void,
   httpClient? : AxiosInstance,
@@ -55,6 +56,7 @@ const useGet = <TData, TOnFinishGetParameters = void>(
     dependencies = [],
     onSuccess,
     onError,
+    onFinish,
     onBeforeGet,
     httpClient,
     enabled = true,
@@ -105,6 +107,8 @@ const useGet = <TData, TOnFinishGetParameters = void>(
         data: undefined,
         error,
       });
+    } finally {
+      onFinish?.();
     }
   };
 

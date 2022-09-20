@@ -24,6 +24,7 @@ const App = () => {
     if (!!lastTime) setDeltaTime(currentTime! - lastTime)
 
     lastTime = currentTime
+    // Fonctionne en SSR car le composant est monté à ce moment
     window.requestAnimationFrame(updateDeltaTime)
   }
   useEffect(() => { updateBallAtEachFrame(deltaTime) /* boucle de jeu */}, [deltaTime])
