@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 
+// Fonctionne pas en SSR tant que le composant n'est pas monté
 export const getFromSessionStorage = <T,>(key : string, initialState : T) : T => {
   if (typeof window === 'undefined') return initialState;
 

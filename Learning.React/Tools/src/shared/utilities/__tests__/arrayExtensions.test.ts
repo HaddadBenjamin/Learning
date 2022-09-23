@@ -4,6 +4,7 @@ import containsAll from "../array/containsAll";
 import groupBy from "../array/groupBy";
 import swap from "../array/swap";
 import swapIndex from "../array/swapIndex";
+import mergeBy from "../array/mergeBy";
 
 describe('arrayExtension', () => {
   it("addRangeWithoutDuplicate'", () => {
@@ -65,4 +66,57 @@ describe('arrayExtension', () => {
 
     expect(result).toStrictEqual(expected)
   });
+
+  describe("mergeBy", () => {
+    const mergedElements = [
+      {
+        id : 1,
+        s: '1',
+        haveMergeMatches: true,
+        mergeMatchesCount: 2,
+        firstMergeMatch: { id : 1, text: 'other test 1' },
+        mergeMatches: [{ id : 1, text: 'other test 1' }, { id : 1, text: 'other test 1-2' }]
+      },
+      {
+        id : 2,
+        s: '2',
+        haveMergeMatches: true,
+        mergeMatchesCount: 1,
+        firstMergeMatch: { id : 2, text: 'other test 2' },
+        mergeMatches: [{ id : 2, text: 'other test 2' }]
+      }
+    ]
+
+    it("return matches and no matches elements - removeElementWithoutMatches: false", () => {
+      // Given & When
+      const result  = mergeBy({
+        array1: [{ id : 1, s: '1' }, { id : 2, s: '2' }, { id : 3, s: '3' }],
+        array2: [{ id : 1, text: 'other test 1' }, { id : 2, text: 'other test 2' }, { id : 1, text: 'other test 1-2' }],
+        mergeCondition: (element1, element2) => element1.id === element2.id,
+      })
+      const expected = [...mergedElements,
+        {
+          id : 3,
+          s: '3',
+          haveMergeMatches: false,
+          firstMergeMatch: undefined,
+          mergeMatchesCount: 0,
+          mergeMatches: []
+        }]
+
+      expect(result).toStrictEqual(expected)
+    });
+
+    it("return only matches elements - removeElementWithoutMatches: true", () => {
+      // Given & When
+      const result  = mergeBy({
+        array1: [{ id : 1, s: '1' }, { id : 2, s: '2' }, { id : 3, s: '3' }],
+        array2: [{ id : 1, text: 'other test 1' }, { id : 2, text: 'other test 2' }, { id : 1, text: 'other test 1-2' }],
+        mergeCondition: (element1, element2) => element1.id === element2.id,
+        removeElementWithoutMatches: true
+      })
+
+      expect(result).toStrictEqual(mergedElements)
+    });
+  })
 });

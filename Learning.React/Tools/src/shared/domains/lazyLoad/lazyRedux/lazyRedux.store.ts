@@ -34,6 +34,8 @@ class LazyStore<TApplicationState> implements ILazyStore {
 
     this.store = createStore(
       this.createRootReducer(),
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       initialApplicationState,
       middlewares,
     );

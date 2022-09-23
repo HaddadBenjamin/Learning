@@ -21,6 +21,7 @@ interface IUseMutationRequest<TData, TOnFinishGetParameters = void>
   config?: AxiosRequestConfig,
   onSuccess? : (parameters: IOnUseMutationSuccessParameters<TData, TOnFinishGetParameters>) => void,
   onError? : (parameters : IOnUseMutationErrorParameters<TOnFinishGetParameters>) => void,
+  onFinish?: () => void,
   // Nécéssaire pour réaliser de l'UI optimiste : c’est à dire partir du principe que votre requête va fonctionner et la rollback en cas d’erreur, cela permet de mettre à jour votre UI tout de suite sans devoir à attendre que votre requête se termine. On peut utiliser de l’UI optimiste que dans les cas on peut prévoir à l’avance le résultat de la réponse de succès. C’est également une alternative à ajouter des loadeurs lorsque la requête est entrain de se lancer.
   onBeforeMutate? : (parameters?: TOnFinishGetParameters) => void,
   mutateOnMount?: boolean
@@ -49,6 +50,7 @@ const UseMutation = <TData, TOnFinishGetParameters = void>({
   config,
   onSuccess,
   onError,
+  onFinish,
   onBeforeMutate,
   httpClient,
   mutateOnMount,
@@ -106,6 +108,8 @@ const UseMutation = <TData, TOnFinishGetParameters = void>({
         status,
         error,
       });
+    } finally {
+      onFinish?.();
     }
   };
 

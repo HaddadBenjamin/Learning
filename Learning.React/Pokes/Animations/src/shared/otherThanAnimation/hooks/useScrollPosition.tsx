@@ -6,6 +6,7 @@ export default () : number => {
   const handleScroll = () => setScrollPosition(window.pageYOffset);
 
   useEffect(() => {
+    // Fonctionne en SSR car le composant est monté à ce moment
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => window.removeEventListener('scroll', handleScroll);

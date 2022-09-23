@@ -49,6 +49,7 @@ const useIdle = (minutesToBeIdle : number) : boolean => {
       // On pourrait rajouter lse évènements 'move', 'scroll' mais on va éviter de sorte à ne pas surcharger les rendus.
     ];
 
+    // Fonctionne en SSR car le composant est monté à ce moment
     events.forEach((event) => window.addEventListener(event, onActive));
 
     return () => {
