@@ -16,17 +16,17 @@ const useIdle = (minutesToBeIdle : number) : boolean => {
   if (typeof window === 'undefined') return false;
 
   const secondsToBeConsideredAsIdle = useMemo(() => (MILLISECONDS_IN_ONE_MINUTE * minutesToBeIdle) / 1000, [minutesToBeIdle]);
-  const [getIdleState, setIdleState] = useSessionStorage('idleState', {
+  const [idleState, setIdleState] = useSessionStorage('idleState', {
     secondsToBeIdle: 0,
     isIdle: false,
     secondsToBeConsideredAsIdle,
   } as IIdleState);
 
   const updateIdleState = () => {
-    const idleState = getIdleState();
     const isIdle = idleState.secondsToBeIdle >= secondsToBeConsideredAsIdle;
 
     setIdleState({
+      // eslint-disable-next-line  @typescript-eslint/restrict-plus-operands
       secondsToBeIdle: idleState.secondsToBeIdle + 1,
       isIdle,
       secondsToBeConsideredAsIdle,
@@ -59,7 +59,7 @@ const useIdle = (minutesToBeIdle : number) : boolean => {
     };
   }, []);
 
-  return getIdleState().isIdle;
+  return idleState.isIdle;
 };
 
 export default useIdle;

@@ -23,7 +23,7 @@ const useDrop = <T extends HTMLElement, Y>({
   onDragOver,
   onDragLeave,
 } : IUseDragParameters<Y>) : IUseDragResponse<T> => {
-  const [getDraggedElementProps, setDraggedElementProps] = useSessionStorage<Y | undefined>('DRAGGED_ELEMENT', undefined);
+  const [draggedElementProps, setDraggedElementProps] = useSessionStorage<Y | undefined>('DRAGGED_ELEMENT', undefined);
 
   const dropReference = useRef() as MutableRefObject<T>;
   const [isOver, setIsOver] = useState(false);
@@ -32,12 +32,12 @@ const useDrop = <T extends HTMLElement, Y>({
   const drop = (event: Event) => {
     setIsOver(false);
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    onDrop?.(getDraggedElementProps()!, event);
+    onDrop?.(draggedElementProps!, event);
     setDraggedElementProps(undefined);
   };
-  const dragEnter = useCallback((event: Event) => { setIsOver(true); onDragEnter?.(getDraggedElementProps()!, event); }, []);
-  const dragOver = useCallback((event: Event) => { event.stopPropagation(); event.preventDefault(); onDragOver?.(getDraggedElementProps()!, event); }, []);
-  const dragLeave = useCallback((event: Event) => { setIsOver(false); onDragLeave?.(getDraggedElementProps()!, event); }, []);
+  const dragEnter = useCallback((event: Event) => { setIsOver(true); onDragEnter?.(draggedElementProps!, event); }, []);
+  const dragOver = useCallback((event: Event) => { event.stopPropagation(); event.preventDefault(); onDragOver?.(draggedElementProps!, event); }, []);
+  const dragLeave = useCallback((event: Event) => { setIsOver(false); onDragLeave?.(draggedElementProps!, event); }, []);
 
   useEventListener('drop', drop, dropReference);
   useEventListener('dragenter', dragEnter, dropReference);

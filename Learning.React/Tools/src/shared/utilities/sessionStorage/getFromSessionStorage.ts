@@ -1,17 +1,17 @@
 import setFromSessionStorage from './setFromSessionStorage';
 
-const getFromSessionStorage = <T>(key : string, initialState : T) : T => {
-  if (typeof window === 'undefined') return initialState;
+const getFromSessionStorage = <T>(key : string, valueIfUndefined : T) : T => {
+  if (typeof window === 'undefined') return valueIfUndefined;
 
   try {
     const item = window.sessionStorage.getItem(key);
 
     if (item) return JSON.parse(item) as T;
 
-    setFromSessionStorage(key, initialState);
-    return initialState;
+    setFromSessionStorage(key, valueIfUndefined);
+    return valueIfUndefined;
   } catch (error) {
-    return initialState;
+    return valueIfUndefined;
   }
 };
 
