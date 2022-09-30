@@ -1,25 +1,26 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
 import getFromSessionStorage from '../../utilities/sessionStorage/getFromSessionStorage';
 import removeFromSessionStorage from '../../utilities/sessionStorage/removeFromSessionStorage';
 import setFromSessionStorage from '../../utilities/sessionStorage/setFromSessionStorage';
+import useOnSSR from './useOnSSR';
 
 type UseSessionStorageResponse<T> = [T, (value : T) => void, () => void]
 
-// Équivalent à useState pour l'état partagé, équivalent à Redux en une ligne
+// Équivalent d'un useState pour gérer un état partagé d'une durée de vie d'une session, c'est à dire, tant qu'on ne ferme pas le navigateur.
 const useSessionStorage = <T, >(key : string, valueIfUndefined : T) : UseSessionStorageResponse<T> => {
   const get = () :T => getFromSessionStorage(key, valueIfUndefined);
-  const set = (value: T) : void => { setValue(value); setFromSessionStorage(key, value); };
+  const set = (value: T) : void => setFromSessionStorage(key, value);
   const remove = (): void => removeFromSessionStorage(key);
 
   const [value, setValue] = useState(get());
 
-  const onStorageChange = (event: StorageEvent) => {
-    const { storageArea } = event;
-    const newValue = event.newValue as T;
+  useOnSSR({ onSSR: () => setValue(get()) });
 
-    if (storageArea === sessionStorage && event.key === key && newValue !== value) {
-      setValue(newValue);
+  const onStorageChange = (event: StorageEvent) => {
+    // Le stringify permet de gérer les types références comme les objets.
+    if (event.storageArea === sessionStorage && event.key === key && event.newValue !== JSON.stringify(value)) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      setValue(JSON.parse(event.newValue!) as T);
     }
   };
 

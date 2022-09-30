@@ -3,75 +3,65 @@ import {
 } from 'react';
 import paginate from '../../utilities/array/paginate';
 
-interface IUsePaginationParameters<T>
-{
-  defaultItems : T[],
-  defaultPageSize? : number
+interface IUsePaginationParameters<T> {
+  defaultItems: T[],
+  defaultPageSize?: number
   defaultMoveSize?: number
-  shouldComputePageOnPageSizeChange? : boolean
 }
 
-interface IUsePaginationResponse<T>
-{
-  paginatedItems : T[]
+interface IUsePaginationResponse<T> {
+  paginatedItems: T[]
 
-  hasPreviousPage : boolean
-  hasNextPage : boolean
+  hasPreviousPage: boolean
+  hasNextPage: boolean
 
-  page : number
-  pageSize : number,
-  moveSize : number, // permet d'utiliser la pagination comme un slider, exemple : on bouge de 1 en 1 au lieu de pageSize
-  offset : number
+  pageNumber: number
+  pageSize: number,
+  moveSize: number, // permet d'utiliser la pagination comme un slider, exemple : on bouge de 1 en 1 au lieu de pageSize
+  offset: number
 
-  goToPreviousPage : () => void
-  goToNextPage : () => void
+  goToPreviousPage: () => void
+  goToNextPage: () => void
 
-  setPage : (page : number) => void
-  setPageSize : (pageSize : number) => void
-  setMoveSize : (moveSize : number) => void
-  setItems : (items : T[]) => void
+  setPageNumber: (page: number) => void
+  setPageSize: (pageSize: number) => void
+  setMoveSize: (moveSize: number) => void
+  setItems: (items: T[]) => void
 }
 
-export const computePageOnPageSizeChange = (pageSize : number, page: number, newPageSize : number) : number => {
-  const itemsCount = pageSize * page;
-  const newPage = Math.floor(itemsCount / newPageSize);
+export const computePageNumberOnPageSizeChange = (pageSize: number, pageNumber: number, newPageSize: number, count: number): number => {
+  const firstItemIndexOfPage = (((count / (count / pageSize)) * pageNumber) - pageSize);
+  const newPageNumber = Math.ceil(count / firstItemIndexOfPage);
 
-  return newPage;
+  return firstItemIndexOfPage < 1 ? 1 : Math.min(Math.ceil(count / newPageSize), newPageNumber);
 };
 
-const usePagination = <T, >({
-  defaultItems,
-  defaultPageSize = 1,
-  defaultMoveSize,
-  shouldComputePageOnPageSizeChange,
-} : IUsePaginationParameters<T>) : IUsePaginationResponse<T> => {
+const usePagination = <T, >(
+  {
+    defaultItems,
+    defaultPageSize = 1,
+    defaultMoveSize,
+  }: IUsePaginationParameters<T>): IUsePaginationResponse<T> => {
   const [items, setItems] = useState<T[]>(defaultItems);
-  const [page, setPage] = useState(1);
+  const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(defaultPageSize);
   const [paginatedItems, setPaginatedItems] = useState<T[]>(items);
   const [moveSize, setMoveSize] = useState(defaultMoveSize ?? defaultPageSize);
 
-  const hasPreviousPage = useMemo(() => page > 1, [page]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const hasNextPage = useMemo(() => ((page - 1) * moveSize) + pageSize < items.length, [page, moveSize, pageSize]);
-  const offset = useMemo(() => (page === 1 ? 0 : (page - 1) * moveSize), [page, moveSize]);
+  const hasPreviousPage = useMemo(() => pageNumber > 1, [pageNumber]);
+  const hasNextPage = useMemo(() => ((pageNumber - 1) * moveSize) + pageSize < items.length, [pageNumber, moveSize, pageSize]);
+  const offset = useMemo(() => (pageNumber === 1 ? 0 : (pageNumber - 1) * moveSize), [pageNumber, moveSize]);
 
   const goToPreviousPage = useCallback(() => {
-    if (hasPreviousPage) setPage(page - 1);
-  }, [page, hasPreviousPage]);
+    if (hasPreviousPage) setPageNumber(pageNumber - 1);
+  }, [pageNumber, hasPreviousPage]);
   const goToNextPage = useCallback(() => {
-    if (hasNextPage) setPage(page + 1);
-  }, [page, hasNextPage]);
+    if (hasNextPage) setPageNumber(pageNumber + 1);
+  }, [pageNumber, hasNextPage]);
 
   useEffect(() => {
-    setPaginatedItems(paginate(items, page, pageSize, moveSize));
-  }, [pageSize, page, moveSize, items]);
-
-  const setPageSizeAndComputePageOnPageSizeChange = useCallback((newPageSize : number) => {
-    if (shouldComputePageOnPageSizeChange) setPage(computePageOnPageSizeChange(pageSize, page, newPageSize));
-
-    setPageSize(newPageSize);
-  }, [pageSize, page, shouldComputePageOnPageSizeChange]);
+    setPaginatedItems(paginate(items, pageNumber, pageSize, moveSize));
+  }, [pageSize, pageNumber, moveSize, items]);
 
   return {
     paginatedItems,
@@ -79,7 +69,7 @@ const usePagination = <T, >({
     hasPreviousPage,
     hasNextPage,
 
-    page,
+    pageNumber,
     pageSize,
     moveSize,
     offset,
@@ -87,8 +77,8 @@ const usePagination = <T, >({
     goToPreviousPage,
     goToNextPage,
 
-    setPageSize: setPageSizeAndComputePageOnPageSizeChange,
-    setPage,
+    setPageSize,
+    setPageNumber,
     setMoveSize,
     setItems,
   };
