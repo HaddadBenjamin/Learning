@@ -48,8 +48,8 @@ const usePagination = <T, >(
   const [paginatedItems, setPaginatedItems] = useState<T[]>(items);
   const [moveSize, setMoveSize] = useState(defaultMoveSize ?? defaultPageSize);
 
-  const hasPreviousPage = useMemo(() => pageNumber > 1, [pageNumber]);
-  const hasNextPage = useMemo(() => ((pageNumber - 1) * moveSize) + pageSize < items.length, [pageNumber, moveSize, pageSize]);
+  const hasPreviousPage = useMemo(() => pageNumber > 1, [pageNumber, items]);
+  const hasNextPage = useMemo(() => ((pageNumber - 1) * moveSize) + pageSize < items.length, [pageNumber, moveSize, pageSize, items]);
   const offset = useMemo(() => (pageNumber === 1 ? 0 : (pageNumber - 1) * moveSize), [pageNumber, moveSize]);
 
   const goToPreviousPage = useCallback(() => {
