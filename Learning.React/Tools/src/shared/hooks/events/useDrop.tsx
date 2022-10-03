@@ -2,7 +2,7 @@ import {
   MutableRefObject, useCallback, useRef, useState,
 } from 'react';
 import useEventListener from './useEventListener';
-import useSessionStorage from '../utilities/useSessionStorage';
+import useSharedSessionStorage from '../state/useSessionStorage';
 
 /* eslint-disable */
 interface IUseDragParameters<T> {
@@ -23,7 +23,7 @@ const useDrop = <T extends HTMLElement, Y>({
   onDragOver,
   onDragLeave,
 } : IUseDragParameters<Y>) : IUseDragResponse<T> => {
-  const [draggedElementProps, setDraggedElementProps] = useSessionStorage<Y | undefined>('DRAGGED_ELEMENT', undefined);
+  const [draggedElementProps, setDraggedElementProps] = useSharedSessionStorage<Y | undefined>('DRAGGED_ELEMENT', undefined);
 
   const dropReference = useRef() as MutableRefObject<T>;
   const [isOver, setIsOver] = useState(false);

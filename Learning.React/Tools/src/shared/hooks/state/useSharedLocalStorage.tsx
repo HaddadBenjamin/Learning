@@ -3,12 +3,12 @@ import { useEffect, useState } from 'react';
 import getFromLocalStorage from '../../utilities/localStorage/getFromLocalStorage';
 import setFromLocalStorage from '../../utilities/localStorage/setFromLocalStorage';
 import deleteFromLocalStorage from '../../utilities/localStorage/deleteFromLocalStorage';
-import useOnSSR from './useOnSSR';
+import useOnSSR from '../utilities/useOnSSR';
 
 type UseLocalStorageResponse<T> = [T, (value : T) => void, () => void]
 
 // Équivalent d'un useState pour gérer un état partagé d'une durée de vie infinie tant qu'on clear pas le cache ou qu'on ne vide pas le local storage.
-const useLocalStorage = <T, >(key : string, valueIfUndefined : T) : UseLocalStorageResponse<T> => {
+const useSharedLocalStorage = <T, >(key : string, valueIfUndefined : T) : UseLocalStorageResponse<T> => {
   const get = () :T => getFromLocalStorage(key, valueIfUndefined);
   const set = (value: T) : void => setFromLocalStorage(key, value);
   const remove = (): void => deleteFromLocalStorage(key);
@@ -36,4 +36,4 @@ const useLocalStorage = <T, >(key : string, valueIfUndefined : T) : UseLocalStor
   return [value, set, remove];
 };
 
-export default useLocalStorage;
+export default useSharedLocalStorage;

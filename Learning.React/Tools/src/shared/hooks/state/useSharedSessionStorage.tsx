@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import getFromSessionStorage from '../../utilities/sessionStorage/getFromSessionStorage';
 import removeFromSessionStorage from '../../utilities/sessionStorage/removeFromSessionStorage';
 import setFromSessionStorage from '../../utilities/sessionStorage/setFromSessionStorage';
-import useOnSSR from './useOnSSR';
+import useOnSSR from '../utilities/useOnSSR';
 
 type UseSessionStorageResponse<T> = [T, (value : T) => void, () => void]
 
 // Équivalent d'un useState pour gérer un état partagé d'une durée de vie d'une session, c'est à dire, tant qu'on ne ferme pas le navigateur.
-const useSessionStorage = <T, >(key : string, valueIfUndefined : T) : UseSessionStorageResponse<T> => {
+const useSharedSessionStorage = <T, >(key : string, valueIfUndefined : T) : UseSessionStorageResponse<T> => {
   const get = () :T => getFromSessionStorage(key, valueIfUndefined);
   const set = (value: T) : void => setFromSessionStorage(key, value);
   const remove = (): void => removeFromSessionStorage(key);
@@ -35,4 +35,4 @@ const useSessionStorage = <T, >(key : string, valueIfUndefined : T) : UseSession
   return [value, set, remove];
 };
 
-export default useSessionStorage;
+export default useSharedSessionStorage;

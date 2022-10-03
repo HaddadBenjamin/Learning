@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useMemo } from 'react';
-import useSessionStorage from './useSessionStorage';
+import useSharedSessionStorage from '../state/useSessionStorage';
 
 const MILLISECONDS_IN_ONE_MINUTE = 60000;
 
@@ -16,7 +16,7 @@ const useIdle = (minutesToBeIdle : number) : boolean => {
   if (typeof window === 'undefined') return false;
 
   const secondsToBeConsideredAsIdle = useMemo(() => (MILLISECONDS_IN_ONE_MINUTE * minutesToBeIdle) / 1000, [minutesToBeIdle]);
-  const [idleState, setIdleState] = useSessionStorage('idleState', {
+  const [idleState, setIdleState] = useSharedSessionStorage('idleState', {
     secondsToBeIdle: 0,
     isIdle: false,
     secondsToBeConsideredAsIdle,

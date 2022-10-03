@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
 import IAuthentificationState, { authentificationInitialState } from '../../domains/authentification/authentification.state';
 import selectAuthentification from '../../domains/authentification/authentification.selector';
-import useLocalStorage from '../utilities/useLocalStorage';
+import useSharedLocalStorage from '../state/useLocalStorage';
 
 const useAuthentification = () : IAuthentificationState => {
   const authentificationFromStore = useSelector(selectAuthentification);
-  const [authentificationFromLocalStorage] = useLocalStorage('authentification', authentificationInitialState);
+  const [authentificationFromLocalStorage] = useSharedLocalStorage('authentification', authentificationInitialState);
 
   return authentificationFromStore.parsedAccessToken !== undefined ? authentificationFromStore : authentificationFromLocalStorage;
 };

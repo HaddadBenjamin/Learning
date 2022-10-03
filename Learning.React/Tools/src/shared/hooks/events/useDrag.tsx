@@ -2,7 +2,7 @@ import {
   MutableRefObject, useCallback, useRef, useState,
 } from 'react';
 import useEventListener from './useEventListener';
-import useSessionStorage from '../utilities/useSessionStorage';
+import useSharedSessionStorage from '../state/useSessionStorage';
 
 interface IUseDragParameters<T> {
   getDraggedElementProps : () => T,
@@ -22,7 +22,7 @@ const useDrag = <T extends HTMLElement, Y>({
   onDragging,
   onDragEnd,
 } : IUseDragParameters<Y>) : IUseDragResponse<T> => {
-  const [, setDraggedElementProps] = useSessionStorage<Y | undefined>('DRAGGED_ELEMENT', undefined);
+  const [, setDraggedElementProps] = useSharedSessionStorage<Y | undefined>('DRAGGED_ELEMENT', undefined);
 
   const dragReference = useRef() as MutableRefObject<T>;
   const [isDragging, setIsDragging] = useState(false);
