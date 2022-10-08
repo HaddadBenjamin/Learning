@@ -12,16 +12,19 @@ export const ToastContext = createContext<IToastContextState>({
 const ToastContextProvider: FC = ({ children }) => {
   const [toasts, setToasts] = useState<IToast[]>([]);
 
-  const success = (text: string) => toast(text);
-  const warning = (text: string) => toast(text, 'warning');
-  const error = (text: string) => toast(text, 'error');
-  const toast = (text : string, type : ToastType = 'success') => {
+  const success = (text: string, duration? : number, callback?: () => void) => toast(text, 'success', duration, callback);
+  const warning = (text: string, duration? : number, callback?: () => void) => toast(text, 'warning', duration, callback);
+  const error = (text: string, duration? : number, callback?: () => void) => toast(text, 'error', duration, callback);
+  const toast = (text : string, type : ToastType = 'success', duration = 4, callback?: () => void) => {
     const id = newGuid();
 
     setToasts([...toasts, {
-      text, type, duration: 4, id,
+      text, type, duration, id,
     }]);
-    setTimeout(() => removeToast(id), 4000);
+    setTimeout(() => {
+      removeToast(id);
+      callback?.();
+    }, duration * 1000);
   };
 
   const removeToast = (id: string) => setToasts((previousToasts) => previousToasts.filter((toast) => toast.id !== id));

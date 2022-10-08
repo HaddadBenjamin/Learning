@@ -24,6 +24,7 @@ import ThrottleAndDebounceSample from './samples/throttleAndDebounce/ThrottleAnd
 import LazyComponentSample from './samples/lazyComponent/LazyComponentSample';
 
 import 'aos/dist/aos.css';
+import ToastContextProvider from './shared/components/designSystem/Toast/toast.context';
 
 const queryClient = new QueryClient();
 export default () => {
@@ -32,28 +33,30 @@ export default () => {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
+        <ToastContextProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
 
-        <ThrottleAndDebounceSample />
+          <ThrottleAndDebounceSample />
 
-        <FrontEndPaginationSample />
-        <BackEndPaginationSample />
+          <FrontEndPaginationSample />
+          <BackEndPaginationSample />
 
-        <ResponsiveNavigationSample />
-        <HightlightSample />
-        <LocalizationSample />
-        <AnimationSample />
-        <SimplePaginationSample />
-        <LazyPaginationSample />
-        <LazyReduxSample />
-        <LazyComponentSample />
-        <LazyImageSample />
-        <LazyResponsiveImageSample />
-        <ResponsiveImageSample />
-        <InfiniteScrollingSample />
-        <BreakpointsSample />
+          <ResponsiveNavigationSample />
+          <HightlightSample />
+          <LocalizationSample />
+          <AnimationSample />
+          <SimplePaginationSample />
+          <LazyPaginationSample />
+          <LazyReduxSample />
+          <LazyComponentSample />
+          <LazyImageSample />
+          <LazyResponsiveImageSample />
+          <ResponsiveImageSample />
+          <InfiniteScrollingSample />
+          <BreakpointsSample />
 
-        <WebSocketSample />
+          <WebSocketSample />
+        </ToastContextProvider>
       </QueryClientProvider>
     </Provider>
   );
