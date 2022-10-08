@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useWebSocket from '../../shared/hooks/utilities/useWebSocket';
+import useWebSocket from '../../shared/hooks/api/useWebSocket';
 import styles from './WebSocketSample.module.scss';
 
 const WebSocketSample = () => {

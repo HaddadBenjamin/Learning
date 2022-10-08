@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useMemo } from 'react';
-import useSharedSessionStorage from '../state/useSessionStorage';
+import useSharedSessionStorage from '../state/useSharedSessionStorage';
 
 const MILLISECONDS_IN_ONE_MINUTE = 60000;
 

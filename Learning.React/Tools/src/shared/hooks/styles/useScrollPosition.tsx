@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react';
-import useOnSSR from '../utilities/useOnSSR';
+import { useEffect } from 'react';
+import useCSRAndSSRState from '../prerendering/useCSRAndSSRState';
 
 // Optimisation possible : passer en paramètre un throttleValue, valeur par défault = 300, mais créera une dépendance à Lodash.
 export default () : number => {
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const [scrollPosition, setScrollPosition] = useCSRAndSSRState(window.pageYOffset);
 
   const handleScroll = () => setScrollPosition(window.pageYOffset);
-
-  useOnSSR({ onSSR: handleScroll });
 
   useEffect(() => {
     // Fonctionne en SSR car le composant est monté à ce moment

@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import getFromLocalStorage from '../../utilities/localStorage/getFromLocalStorage';
 import setFromLocalStorage from '../../utilities/localStorage/setFromLocalStorage';
 import deleteFromLocalStorage from '../../utilities/localStorage/deleteFromLocalStorage';
-import useOnSSR from '../utilities/useOnSSR';
+import useCSRAndSSRState from '../prerendering/useCSRAndSSRState';
 
 type UseLocalStorageResponse<T> = [T, (value : T) => void, () => void]
 
@@ -13,9 +13,7 @@ const useSharedLocalStorage = <T, >(key : string, valueIfUndefined : T) : UseLoc
   const set = (value: T) : void => setFromLocalStorage(key, value);
   const remove = (): void => deleteFromLocalStorage(key);
 
-  const [value, setValue] = useState(get());
-
-  useOnSSR({ onSSR: () => setValue(get()) });
+  const [value, setValue] = useCSRAndSSRState(get());
 
   const onStorageChange = (event: StorageEvent) => {
     // Le stringify permet de gérer les types références comme les objets.

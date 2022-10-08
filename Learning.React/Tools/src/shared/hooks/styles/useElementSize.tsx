@@ -1,7 +1,7 @@
 import {
   useEffect, useState, MutableRefObject, useRef,
 } from 'react';
-import useOnSSR from '../utilities/useOnSSR';
+import useOnSSR from '../prerendering/useOnSSR';
 
 export interface ElementSize {
   elementWidth: number;
@@ -24,7 +24,7 @@ export default <T extends HTMLElement>(): useElementSizeResponse<T> => {
   });
   const handleResize = () => setElementSize(getElementSize());
 
-  useOnSSR({ onSSR: getElementSize });
+  useOnSSR({ onSSR: () => setElementSize(getElementSize()) });
 
   useEffect(() => { new ResizeObserver(handleResize).observe(elementReference?.current); }, []);
   useEffect(() => {

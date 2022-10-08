@@ -2,7 +2,7 @@ import {
   MutableRefObject, useCallback, useRef, useState,
 } from 'react';
 import useEventListener from './useEventListener';
-import useSharedSessionStorage from '../state/useSessionStorage';
+import useSharedSessionStorage from '../state/useSharedSessionStorage';
 
 /* eslint-disable */
 interface IUseDragParameters<T> {

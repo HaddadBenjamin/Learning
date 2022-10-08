@@ -1,5 +1,5 @@
 import { GET_USER_INFO_ENDPOINT } from '../authentification.constant';
-import useGet from '../../../hooks/utilities/useGet';
+import useGet from '../../../hooks/api/useGet';
 import authenticatedApiClient from '../authentification.api-client';
 import { IGetUserInfoResponse } from '../authentification.model';
 
