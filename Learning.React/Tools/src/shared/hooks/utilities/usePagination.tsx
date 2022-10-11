@@ -63,6 +63,11 @@ const usePagination = <T, >(
     setPaginatedItems(paginate(items, pageNumber, pageSize, moveSize));
   }, [pageSize, pageNumber, moveSize, items]);
 
+  // Pour avoir une pagination fonctionnelle, on doit prendre en compte les changements des paramètres de pagination dès qu'ils surviennent.
+  useEffect(() => { setItems(defaultItems); }, [defaultItems]);
+  useEffect(() => { setPageSize(defaultPageSize); }, [defaultPageSize]);
+  useEffect(() => { setMoveSize(defaultMoveSize ?? defaultPageSize); }, [defaultMoveSize]);
+
   return {
     paginatedItems,
 
