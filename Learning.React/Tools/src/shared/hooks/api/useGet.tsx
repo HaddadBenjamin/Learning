@@ -15,7 +15,7 @@ interface IOnUseGetErrorParameters<TOnFinishGetParameters = void> {
   status?: HttpStatus
 }
 
-interface IUseGetParameters<TData, TOnFinishGetParameters = void>
+export interface IUseGetParameters<TData, TOnFinishGetParameters = void>
 {
   url?: string,
   config?: AxiosRequestConfig,
