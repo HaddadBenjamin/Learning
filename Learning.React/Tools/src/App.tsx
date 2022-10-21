@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import Aos from 'aos';
+import crypto from 'crypto';
 import InfiniteScrollingSample from './samples/infiniteScrolling/InfiniteScrollingSample';
 import LazyImageSample from './samples/lazyImage/LazyImageSample';
 import HightlightSample from './samples/ui/highlight/HightlightSample';
@@ -26,6 +27,7 @@ import LazyComponentSample from './samples/lazyComponent/LazyComponentSample';
 import 'aos/dist/aos.css';
 import ToastContextProvider from './shared/components/designSystem/Toast/toast.context';
 
+const generateSha256Hash = (code : string) : string => crypto.createHash('sha256').update(code).digest('hex');
 const queryClient = new QueryClient();
 export default () => {
   useEffect(() => { Aos.init(); }, []);
@@ -34,6 +36,7 @@ export default () => {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <ToastContextProvider>
+          {generateSha256Hash('abc')}
           <ReactQueryDevtools initialIsOpen={false} />
 
           <ThrottleAndDebounceSample />

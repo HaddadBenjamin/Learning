@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default (element: any) => {
+export default (element: any) : boolean => {
   if (!element) return false;
 
   const rect = element.getBoundingClientRect();
