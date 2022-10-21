@@ -25,7 +25,7 @@ module.exports = {
     plugins: ['react', '@typescript-eslint', 'prettier'],
     settings: {
         react: {
-            version: 'latest',
+            version: 'detect',
         },
         'import/resolver': {
             node: {

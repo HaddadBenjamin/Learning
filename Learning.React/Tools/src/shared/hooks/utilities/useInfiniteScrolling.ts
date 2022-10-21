@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import doesElementIsVisible from '../../utilities/domainsHttpAndHtmlElement/doesElementIsVisible';
+import doesElementIsVisible from '../../utilities/htmlElement/doesElementIsVisible';
 
 interface IUseInfiniteScrollingParameters {
   containerSelector: string,

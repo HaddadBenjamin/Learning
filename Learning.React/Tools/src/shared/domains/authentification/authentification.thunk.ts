@@ -22,7 +22,8 @@ const loginThunk = (payload : LoginActionPayload) => async (dispatch : ThunkDisp
 
 interface ILoginKeycloakThunk {
   code?: string,
-  redirect_uri?: string,
+  code_verifier: string,
+  redirect_uri: string,
   intervalRef: MutableRefObject<number | undefined>,
   popup: Window | null,
   setPopup: (popup: Window | null) => void,
@@ -39,6 +40,7 @@ interface ILoginKeycloakThunk {
 export const loginKeycloakThunk = (
   {
     code,
+    code_verifier,
     redirect_uri,
     intervalRef,
     popup,
@@ -46,10 +48,10 @@ export const loginKeycloakThunk = (
     onSuccess,
     onError,
     onSuccessOrError,
-  } : ILoginKeycloakThunk) => (dispatch : ThunkDispatchType) => {
+  }: ILoginKeycloakThunk) => (dispatch: ThunkDispatchType) => {
   dispatch(loginRequestAction());
 
-  getKeycloakToken({ code, redirect_uri })
+  getKeycloakToken({ code, redirect_uri, code_verifier })
     .then((jwtToken) => {
       clearInterval(intervalRef.current);
       dispatch(loginSuccessAction(jwtToken.data));
@@ -63,6 +65,7 @@ export const loginKeycloakThunk = (
       popup?.close();
       setPopup(null);
       onSuccessOrError?.();
+      clearInterval(intervalRef.current);
     });
 };
 

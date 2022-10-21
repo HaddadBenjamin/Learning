@@ -1,4 +1,5 @@
 // Content-Type : 'multipart/form-data'
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const multipartFormData = (object : any) : FormData => {
   const formData = new FormData();
 

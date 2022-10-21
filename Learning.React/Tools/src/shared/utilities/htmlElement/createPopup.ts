@@ -1,4 +1,7 @@
-export interface ICreatePopup {
+/* eslint-disable no-tabs,no-mixed-spaces-and-tabs */
+import { MutableRefObject, useEffect, useRef } from 'react';
+
+interface ICreatePopup {
 	url: string,
 	popup : {
 		title?: string,
@@ -26,21 +29,20 @@ const createPopup = (
 
 export default createPopup;
 
-
 interface IListenPopupUrl {
 	popup: Window | null,
 	onPopupUrlChange : (url: string, intervalRef: MutableRefObject<number | undefined>) => void
 }
 
 export const useListenPopupUrl = ({ onPopupUrlChange, popup } : IListenPopupUrl) : void => {
-	const intervalRef = useRef<number>();
+  const intervalRef = useRef<number>();
 
-	useEffect(() => {
-		if (popup) {
-			intervalRef.current = window.setInterval(() => {
-				onPopupUrlChange(popup.location.href, intervalRef);
-			}, 700);
-		}
-	}, [popup]);
+  useEffect(() => {
+    if (popup) {
+      intervalRef.current = window.setInterval(() => {
+        // eslint-disable-next-line no-empty
+        try { onPopupUrlChange(popup.location.href, intervalRef); } catch (e) { }
+      }, 700);
+    }
+  }, [popup]);
 };
-

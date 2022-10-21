@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import removeHtmlTags from '../../../utilities/domainsHttpAndHtmlElement/removeHtmlTags';
+import removeHtmlTags from '../../../utilities/http/removeHtmlTags';
 
 interface Props {
   text: string;
