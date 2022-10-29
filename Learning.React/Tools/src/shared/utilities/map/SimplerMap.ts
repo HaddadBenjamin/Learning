@@ -1,5 +1,5 @@
 /* eslint-disable no-tabs,no-mixed-spaces-and-tabs,no-underscore-dangle */
-export default class SimpleMap<TKey, TValue> {
+export default class SimplerMap<TKey, TValue> {
 	_map: [TKey, TValue][]
 
 	constructor(map?: [TKey, TValue][]) {
