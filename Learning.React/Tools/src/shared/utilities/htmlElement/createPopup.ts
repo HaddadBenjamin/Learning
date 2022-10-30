@@ -46,3 +46,20 @@ export const useListenPopupUrl = ({ onPopupUrlChange, popup } : IListenPopupUrl)
     }
   }, [popup]);
 };
+
+// Cross window communication :
+// // Main application - http://blabla:8080 :
+// const popupOrigin = 'http://blabla:5443';
+// const popup = window.open(popupOrigin);
+// popup?.opener.addEventListener('message', ({ origin, data: message }) => {
+// 	if (origin === popupOrigin && message === 'UNIQUE_MESSAGE') {
+// 		popup.close();
+// 		navigate(URL_INSCRIPTION);
+// 	}
+// });
+
+// // Popup application - http://blabla:5443 :
+// onClick = () => {
+// 	const mainApplicationOrigin = 'http://blabla:8080';
+// 	window.postMessage('UNIQUE_MESSAGE', mainApplicationOrigin);
+// };
