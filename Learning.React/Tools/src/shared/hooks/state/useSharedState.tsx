@@ -24,6 +24,7 @@ export const setShareState = <T, >(key : string, data : T) : void => {
 
 export const removeShareState = (key: string) : void => {
   SharedState.Cache.delete(key);
+  window.dispatchEvent(new StorageEvent('storage', { key, newValue: undefined, storageArea: null }));
 };
 
 // Équivalent d'un useState pour gérer un état partagé d'une durée d'une tabulation, comme Redux.
