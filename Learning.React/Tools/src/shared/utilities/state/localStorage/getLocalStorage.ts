@@ -1,6 +1,6 @@
-import setFromLocalStorage from './setFromLocalStorage';
+import setLocalStorage from './setLocalStorage';
 
-const getFromLocalStorage = <T>(key : string, valueIfUndefined : T) : T => {
+const getLocalStorage = <T>(key : string, valueIfUndefined : T) : T => {
   if (typeof window === 'undefined') return valueIfUndefined;
 
   try {
@@ -8,7 +8,7 @@ const getFromLocalStorage = <T>(key : string, valueIfUndefined : T) : T => {
 
     if (item) return JSON.parse(item) as T;
 
-    setFromLocalStorage(key, valueIfUndefined);
+    setLocalStorage(key, valueIfUndefined);
     return valueIfUndefined;
   } catch (error) {
     console.log(error);
@@ -17,4 +17,4 @@ const getFromLocalStorage = <T>(key : string, valueIfUndefined : T) : T => {
   }
 };
 
-export default getFromLocalStorage;
+export default getLocalStorage;

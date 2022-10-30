@@ -1,4 +1,4 @@
-const setFromLocalStorage = <T>(key : string, data : T) => {
+const setLocalStorage = <T>(key : string, data : T) => {
   if (typeof window !== 'undefined') {
     const newValue = JSON.stringify(data);
 
@@ -11,4 +11,4 @@ const setFromLocalStorage = <T>(key : string, data : T) => {
   }
 };
 
-export default setFromLocalStorage;
+export default setLocalStorage;

@@ -1,4 +1,4 @@
-const removeFromSessionStorage = (key : string) : void => {
+const removeSessionStorage = (key : string) : void => {
   if (typeof window !== 'undefined') {
     window.sessionStorage.removeItem(key);
 
@@ -10,4 +10,4 @@ const removeFromSessionStorage = (key : string) : void => {
   }
 };
 
-export default removeFromSessionStorage;
+export default removeSessionStorage;

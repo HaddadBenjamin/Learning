@@ -1,4 +1,4 @@
-const deleteFromLocalStorage = (key : string) : void => {
+const removeLocalStorage = (key : string) : void => {
   if (typeof window !== 'undefined') {
     window.localStorage.removeItem(key);
 
@@ -10,4 +10,4 @@ const deleteFromLocalStorage = (key : string) : void => {
   }
 };
 
-export default deleteFromLocalStorage;
+export default removeLocalStorage;

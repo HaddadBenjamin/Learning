@@ -1,4 +1,4 @@
-/* eslint-disable no-restricted-syntax,@typescript-eslint/no-non-null-asserted-optional-chain,no-tabs,no-undef */
+/* eslint-disable no-restricted-syntax,@typescript-eslint/no-non-null-asserted-optional-chain,no-tabs,no-undef,@typescript-eslint/no-non-null-assertion */
 const durationMap : [string, number][] = ['years', 'months', 'days', 'hours', 'minutes', 'seconds', 'milliseconds'].map((k, i) => [k, i]);
 const durationStringToDurationIndex = (durationString: string) : number => durationMap.find(([key]) => key === durationString)?.[1]!;
 

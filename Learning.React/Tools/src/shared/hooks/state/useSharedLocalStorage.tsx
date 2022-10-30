@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from 'react';
-import getFromLocalStorage from '../../utilities/state/localStorage/getFromLocalStorage';
-import setFromLocalStorage from '../../utilities/state/localStorage/setFromLocalStorage';
-import deleteFromLocalStorage from '../../utilities/state/localStorage/deleteFromLocalStorage';
 import useCSRAndSSRState from './useCSRAndSSRState';
+import getLocalStorage from '../../utilities/state/localStorage/getLocalStorage';
+import setLocalStorage from '../../utilities/state/localStorage/setLocalStorage';
+import removeLocalStorage from '../../utilities/state/localStorage/removeLocalStorage';
 
 type UseLocalStorageResponse<T> = [T, (value : T) => void, () => void]
 
 // Équivalent d'un useState pour gérer un état partagé d'une durée de vie infinie tant qu'on clear pas le cache ou qu'on ne vide pas le local storage.
 const useSharedLocalStorage = <T, >(key : string, valueIfUndefined : T) : UseLocalStorageResponse<T> => {
-  const get = () :T => getFromLocalStorage(key, valueIfUndefined);
-  const set = (value: T) : void => setFromLocalStorage(key, value);
-  const remove = (): void => deleteFromLocalStorage(key);
+  const get = () :T => getLocalStorage(key, valueIfUndefined);
+  const set = (value: T) : void => setLocalStorage(key, value);
+  const remove = (): void => removeLocalStorage(key);
 
   const [value, setValue] = useCSRAndSSRState(get());
 

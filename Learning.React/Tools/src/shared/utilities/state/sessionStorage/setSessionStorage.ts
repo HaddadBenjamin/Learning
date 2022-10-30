@@ -1,4 +1,4 @@
-const setFromSessionStorage = <T>(key : string, data : T) => {
+const setSessionStorage = <T>(key : string, data : T) => {
   if (typeof window !== 'undefined') {
     const newValue = JSON.stringify(data);
 
@@ -11,4 +11,4 @@ const setFromSessionStorage = <T>(key : string, data : T) => {
   }
 };
 
-export default setFromSessionStorage;
+export default setSessionStorage;
