@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import getFromSessionStorage from '../../utilities/state/sessionStorage/getFromSessionStorage';
 import removeFromSessionStorage from '../../utilities/state/sessionStorage/removeFromSessionStorage';
 import setFromSessionStorage from '../../utilities/state/sessionStorage/setFromSessionStorage';
-import useCSRAndSSRState from '../prerendering/useCSRAndSSRState';
+import useCSRAndSSRState from './useCSRAndSSRState';
 
 type UseSessionStorageResponse<T> = [T, (value : T) => void, () => void]
 
@@ -25,9 +25,7 @@ const useSharedSessionStorage = <T, >(key : string, valueIfUndefined : T) : UseS
   useEffect(() => {
     window.addEventListener('storage', onStorageChange);
 
-    return () => {
-      window.removeEventListener('storage', onStorageChange);
-    };
+    return () => { window.removeEventListener('storage', onStorageChange); };
   }, []);
 
   return [value, set, remove];

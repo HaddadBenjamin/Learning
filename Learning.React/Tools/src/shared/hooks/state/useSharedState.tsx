@@ -45,9 +45,7 @@ const useSharedState = <T, >(key : string, valueIfUndefined : T) : UseSharedStat
   useEffect(() => {
     window.addEventListener('storage', onStorageChange);
 
-    return () => {
-      window.removeEventListener('storage', onStorageChange);
-    };
+    return () => { window.removeEventListener('storage', onStorageChange); };
   }, []);
 
   return [value, set, remove];

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import getFromLocalStorage from '../../utilities/state/localStorage/getFromLocalStorage';
 import setFromLocalStorage from '../../utilities/state/localStorage/setFromLocalStorage';
 import deleteFromLocalStorage from '../../utilities/state/localStorage/deleteFromLocalStorage';
-import useCSRAndSSRState from '../prerendering/useCSRAndSSRState';
+import useCSRAndSSRState from './useCSRAndSSRState';
 
 type UseLocalStorageResponse<T> = [T, (value : T) => void, () => void]
 
@@ -26,9 +26,7 @@ const useSharedLocalStorage = <T, >(key : string, valueIfUndefined : T) : UseLoc
   useEffect(() => {
     window.addEventListener('storage', onStorageChange);
 
-    return () => {
-      window.removeEventListener('storage', onStorageChange);
-    };
+    return () => { window.removeEventListener('storage', onStorageChange); };
   }, []);
 
   return [value, set, remove];

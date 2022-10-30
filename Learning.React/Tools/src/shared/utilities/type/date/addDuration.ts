@@ -2,7 +2,7 @@
 const durationMap : [string, number][] = ['years', 'months', 'days', 'hours', 'minutes', 'seconds', 'milliseconds'].map((k, i) => [k, i]);
 const durationStringToDurationIndex = (durationString: string) : number => durationMap.find(([key]) => key === durationString)?.[1]!;
 
-interface IAddDuration {
+export interface IDuration {
 	years?: number
 	months?: number
 	days?: number
@@ -18,10 +18,10 @@ interface IAddDuration {
 //   days: 1,
 //   minutes: 3,
 // });
-const addDuration = (date : Date, interval: IAddDuration) => {
+const addDuration = (date : Date, duration: IDuration) => {
   const dateDurations = [date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()];
 
-  for (const [key, value] of Object.entries(interval)) dateDurations[durationStringToDurationIndex(key)] += value;
+  for (const [key, value] of Object.entries(duration)) dateDurations[durationStringToDurationIndex(key)] += value;
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore

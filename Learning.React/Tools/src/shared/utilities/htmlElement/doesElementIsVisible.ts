@@ -2,13 +2,15 @@
 export default (element: any) : boolean => {
   if (!element) return false;
 
-  const rect = element.getBoundingClientRect();
+  const {
+    top, left, bottom, right,
+  } = element.getBoundingClientRect();
 
   return (
-    rect.top >= 0
-    && rect.left >= 0
-    && rect.bottom
+    top >= 0
+    && left >= 0
+    && bottom
       <= (window.innerHeight || document.documentElement.clientHeight)
-    && rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    && right <= (window.innerWidth || document.documentElement.clientWidth)
   );
 };
