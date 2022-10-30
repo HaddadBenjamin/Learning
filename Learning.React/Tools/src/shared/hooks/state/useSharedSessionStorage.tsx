@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import getFromSessionStorage from '../../utilities/sessionStorage/getFromSessionStorage';
-import removeFromSessionStorage from '../../utilities/sessionStorage/removeFromSessionStorage';
-import setFromSessionStorage from '../../utilities/sessionStorage/setFromSessionStorage';
+import getFromSessionStorage from '../../utilities/state/sessionStorage/getFromSessionStorage';
+import removeFromSessionStorage from '../../utilities/state/sessionStorage/removeFromSessionStorage';
+import setFromSessionStorage from '../../utilities/state/sessionStorage/setFromSessionStorage';
 import useCSRAndSSRState from '../prerendering/useCSRAndSSRState';
 
 type UseSessionStorageResponse<T> = [T, (value : T) => void, () => void]

@@ -1,7 +1,7 @@
 import React, { createContext, FC, useState } from 'react';
 import { IToast, IToastContextState, ToastType } from './toast.model';
 import styles from './toast.context.module.scss';
-import newGuid from '../../../utilities/string/newGuid';
+import newGuid from '../../../utilities/type/string/newGuid';
 import Toast from './Toast';
 
 export const ToastContext = createContext<IToastContextState>({

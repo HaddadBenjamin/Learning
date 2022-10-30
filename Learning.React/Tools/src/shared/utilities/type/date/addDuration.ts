@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-syntax,@typescript-eslint/no-non-null-asserted-optional-chain,no-tabs,no-undef */
-const durationMap : [string, number][] = [['years', 0], ['months', 1], ['days', 2], ['hours', 3], ['minutes', 4], ['seconds', 5], ['milliseconds', 6]];
+const durationMap : [string, number][] = ['years', 'months', 'days', 'hours', 'minutes', 'seconds', 'milliseconds'].map((k, i) => [k, i]);
 const durationStringToDurationIndex = (durationString: string) : number => durationMap.find(([key]) => key === durationString)?.[1]!;
 
 interface IAddDuration {

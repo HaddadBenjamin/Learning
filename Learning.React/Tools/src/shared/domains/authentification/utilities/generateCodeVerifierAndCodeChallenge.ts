@@ -1,4 +1,4 @@
-import encodeToBase64 from '../../../utilities/string/encodeToBase64';
+import encodeToBase64 from '../../../utilities/type/string/encodeToBase64';
 
 const generateCodeVerifier = () => {
   const array = new Uint32Array(56 / 2);

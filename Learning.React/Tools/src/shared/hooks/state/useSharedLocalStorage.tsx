@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from 'react';
-import getFromLocalStorage from '../../utilities/localStorage/getFromLocalStorage';
-import setFromLocalStorage from '../../utilities/localStorage/setFromLocalStorage';
-import deleteFromLocalStorage from '../../utilities/localStorage/deleteFromLocalStorage';
+import getFromLocalStorage from '../../utilities/state/localStorage/getFromLocalStorage';
+import setFromLocalStorage from '../../utilities/state/localStorage/setFromLocalStorage';
+import deleteFromLocalStorage from '../../utilities/state/localStorage/deleteFromLocalStorage';
 import useCSRAndSSRState from '../prerendering/useCSRAndSSRState';
 
 type UseLocalStorageResponse<T> = [T, (value : T) => void, () => void]

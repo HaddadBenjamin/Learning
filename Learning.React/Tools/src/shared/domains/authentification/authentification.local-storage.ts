@@ -1,7 +1,7 @@
 import IAuthentificationState, { authentificationInitialState } from './authentification.state';
-import getFromLocalStorage from '../../utilities/localStorage/getFromLocalStorage';
-import setFromLocalStorage from '../../utilities/localStorage/setFromLocalStorage';
-import deleteFromLocalStorage from '../../utilities/localStorage/deleteFromLocalStorage';
+import getFromLocalStorage from '../../utilities/state/localStorage/getFromLocalStorage';
+import setFromLocalStorage from '../../utilities/state/localStorage/setFromLocalStorage';
+import deleteFromLocalStorage from '../../utilities/state/localStorage/deleteFromLocalStorage';
 
 const AUTHENTIFICATION_LOCAL_STORAGE_KEY = 'authentification';
 

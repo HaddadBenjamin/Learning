@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './RestrictedPage.module.scss';
 import useAuthentification from '../../hooks/useAuthentification';
-import containsAll from '../../../../utilities/array/containsAll';
+import containsAll from '../../../../utilities/type/array/containsAll';
 import useUserInfo from '../../hooks/useUserInfo';
 
 interface Props

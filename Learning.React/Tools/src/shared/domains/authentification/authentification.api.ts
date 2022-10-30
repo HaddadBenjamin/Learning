@@ -8,7 +8,7 @@ import LOGIN_ENDPOINT, {
   KEYCLOAK_CLIENT_ID,
   OPENID_CONNECT_TOKEN_ENDPOINT,
 } from './authentification.constant';
-import utf8ToBase64 from '../../utilities/string/utf8ToBase64';
+import utf8ToBase64 from '../../utilities/type/string/utf8ToBase64';
 import XWwwFormUrlencoded from '../../utilities/http/x-www-form-urlencoded';
 
 const login = async ({ userName, password } : LoginActionPayload) : Promise<IJwtToken> => (await axios.get(`${LOGIN_ENDPOINT}?${qs.stringify({ userName, password })}`)).data;

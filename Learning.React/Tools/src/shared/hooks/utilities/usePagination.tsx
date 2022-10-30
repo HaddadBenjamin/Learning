@@ -1,7 +1,7 @@
 import {
   useCallback, useEffect, useMemo, useState,
 } from 'react';
-import paginate from '../../utilities/array/paginate';
+import paginate from '../../utilities/type/array/paginate';
 
 interface IUsePaginationParameters<T> {
   defaultItems: T[],
