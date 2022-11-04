@@ -49,10 +49,11 @@ export const useListenPopupUrl = ({ onPopupUrlChange, popup } : IListenPopupUrl)
 
 // Cross window communication :
 // // Main application - http://blabla:8080 :
-// const popupOrigin = 'http://blabla:5443';
-// const popup = window.open(popupOrigin);
+// const popupUrl = 'http://blabla:5443?blabla=2';
+// const popupOrigin = (new URL(popupUrl)).origin;
+// const popup = window.open(popupUrl);
 // popup?.opener.addEventListener('message', ({ origin, data: message }) => {
-// 	if (origin === popupOrigin && message === 'UNIQUE_MESSAGE') {
+// 	if (origin === popupOrigin && message === 'INSCRIPTION_REDIRECT') {
 // 		popup.close();
 // 		navigate(URL_INSCRIPTION);
 // 	}
@@ -60,6 +61,7 @@ export const useListenPopupUrl = ({ onPopupUrlChange, popup } : IListenPopupUrl)
 
 // // Popup application - http://blabla:5443 :
 // onClick = () => {
-// 	const mainApplicationOrigin = 'http://blabla:8080';
-// 	window.postMessage('UNIQUE_MESSAGE', mainApplicationOrigin);
+// 	const mainApplicationOrigin = 'http://blabla:8080'; // vous pouvez récupérer l'origine en l'envoyant en query parameter.
+// 	window.opener.postMessage('INSCRIPTION_REDIRECT', mainApplicationOrigin);
 // };
+// Main application - http://blabla:8080 :

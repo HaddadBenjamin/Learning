@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import useIsomorphicState from './useIsomorphicState';
 
 type UseSharedStateResponse<T> = [T, (value : T) => void, () => void]
 
@@ -33,7 +34,7 @@ const useSharedState = <T, >(key : string, valueIfUndefined : T) : UseSharedStat
   const set = (value: T) : void => setShareState(key, value);
   const remove = (): void => removeShareState(key);
 
-  const [value, setValue] = useState(get());
+  const [value, setValue] = useIsomorphicState(get());
 
   const onStorageChange = (event: StorageEvent) => {
     // Le stringify permet de gérer les types références comme les objets.

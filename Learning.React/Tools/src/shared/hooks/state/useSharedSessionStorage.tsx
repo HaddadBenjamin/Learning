@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import useCSRAndSSRState from './useCSRAndSSRState';
 import getSessionStorage from '../../utilities/state/sessionStorage/getSessionStorage';
 import setSessionStorage from '../../utilities/state/sessionStorage/setSessionStorage';
 import removeSessionStorage from '../../utilities/state/sessionStorage/removeSessionStorage';
+import useIsomorphicState from './useIsomorphicState';
 
 type UseSessionStorageResponse<T> = [T, (value : T) => void, () => void]
 
@@ -12,7 +12,7 @@ const useSharedSessionStorage = <T, >(key : string, valueIfUndefined : T) : UseS
   const set = (value: T) : void => setSessionStorage(key, value);
   const remove = (): void => removeSessionStorage(key);
 
-  const [value, setValue] = useCSRAndSSRState(get());
+  const [value, setValue] = useIsomorphicState(get());
 
   const onStorageChange = (event: StorageEvent) => {
     // Le stringify permet de gérer les types références comme les objets.

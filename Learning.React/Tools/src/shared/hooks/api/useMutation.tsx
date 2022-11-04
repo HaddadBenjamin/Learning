@@ -30,7 +30,7 @@ interface IUseMutationRequest<TData, TOnFinishGetParameters = void>
 
 interface IUseMutationResponse<TData, TOnFinishGetParameters>
 {
-  mutate : (mutateParameters?: IMutateParameters<TOnFinishGetParameters>) => TData | void
+  mutate : (mutateParameters?: IMutateParameters<TOnFinishGetParameters>) => Promise<TData | undefined>
   data? : TData,
   isCalled: boolean,
   isLoading : boolean,
@@ -57,13 +57,13 @@ const UseMutation = <TData, TOnFinishGetParameters = void>({
   enabled,
 } : IUseMutationRequest<TData, TOnFinishGetParameters>) => {
   const [response, setResponse] = useState<IUseMutationResponse<TData, TOnFinishGetParameters>>({
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    mutate: () => {},
+    // eslint-disable-next-line no-promise-executor-return
+    mutate: async () => new Promise((resolve) => resolve(undefined)),
     isCalled: false,
     isLoading: false,
   });
 
-  const mutate = async (mutateParameters? : IMutateParameters<TOnFinishGetParameters>) => {
+  async function mutate(mutateParameters? : IMutateParameters<TOnFinishGetParameters>) : Promise<TData|void> {
     try {
       onBeforeMutate?.(mutateParameters?.callbacksParameters);
 
@@ -111,7 +111,7 @@ const UseMutation = <TData, TOnFinishGetParameters = void>({
     } finally {
       onFinish?.();
     }
-  };
+  }
 
   useEffect(() => { if (mutateOnMount) mutate(); }, []);
   useEffect(() => { if (enabled) mutate(); }, [enabled]);
