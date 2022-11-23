@@ -25,10 +25,13 @@ import LazyComponentSample from './samples/lazyComponent/LazyComponentSample';
 
 import 'aos/dist/aos.css';
 import ToastContextProvider from './shared/components/designSystem/Toast/toast.context';
+import useGetRefreshTokenWhenTokenHasExpired
+  from './shared/hooks/authentification/useGetRefreshTokenWhenTokenHasExpired';
 
 const queryClient = new QueryClient();
 export default () => {
   useEffect(() => { Aos.init(); }, []);
+  useGetRefreshTokenWhenTokenHasExpired();
 
   return (
     <Provider store={store}>

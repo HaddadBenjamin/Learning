@@ -1,6 +1,8 @@
 import { MutableRefObject } from 'react';
-import login, { getKeycloakToken } from './authentification.api';
+import login, { getKeycloakToken, getRefreshToken } from './authentification.api';
 import {
+  getRefreshTokenFailedAction,
+  getRefreshTokenRequestAction, getRefreshTokenSuccessAction,
   loginFailedAction,
   loginRequestAction,
   loginSuccessAction,
@@ -67,6 +69,14 @@ export const loginKeycloakThunk = (
       onSuccessOrError?.();
       clearInterval(intervalRef.current);
     });
+};
+
+export const getRefreshTokenThunk = (refreshToken: string) => (dispatch: ThunkDispatchType) => {
+  dispatch(getRefreshTokenRequestAction());
+
+  getRefreshToken({ refreshToken })
+    .then((data) => dispatch(getRefreshTokenSuccessAction(data)))
+    .catch((error) => dispatch(getRefreshTokenFailedAction(error.message)));
 };
 
 export default loginThunk;
