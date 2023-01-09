@@ -3,13 +3,12 @@ import getSessionStorage from '../../utilities/state/sessionStorage/getSessionSt
 import setSessionStorage from '../../utilities/state/sessionStorage/setSessionStorage';
 import removeSessionStorage from '../../utilities/state/sessionStorage/removeSessionStorage';
 import useIsomorphicState from './useIsomorphicState';
-import addEnvironmentInKey from '../../utilities/state/addEnvironmentInKey';
 
 type UseSessionStorageResponse<T> = [T, (value : T) => void, () => void]
 
 // Équivalent d'un useState pour gérer un état partagé d'une durée de vie d'une session, c'est à dire, tant qu'on ne ferme pas le navigateur.
 const useSharedSessionStorage = <T, >(key : string, valueIfUndefined : T) : UseSessionStorageResponse<T> => {
-  const keyWithEnvironment = addEnvironmentInKey(key);
+  const keyWithEnvironment = `${key}_${process.env.NODE_ENV}`; // permet d'éviter que les mêmes variables soient utilisées sur plusieurs environnements
 
   const get = () :T => getSessionStorage(keyWithEnvironment, valueIfUndefined);
   const set = (value: T) : void => setSessionStorage(keyWithEnvironment, value);

@@ -4,7 +4,6 @@ import setCookie from '../../utilities/state/cookies/setCookie';
 import { IDuration } from '../../utilities/type/date/addDuration';
 import removeCookie from '../../utilities/state/cookies/removeCookie';
 import useIsomorphicState from './useIsomorphicState';
-import addEnvironmentInKey from '../../utilities/state/addEnvironmentInKey';
 
 const COOKIE_STORAGE_AREA = 'cookie';
 type UseSharedCookieResponse = [string|undefined, (value: string) => void, () => void]
@@ -37,7 +36,7 @@ interface IUseSharedCookie {
   valueIfUndefined?: string
 }
 const useSharedCookie = ({ key, duration = { days: 1 }, valueIfUndefined } : IUseSharedCookie) : UseSharedCookieResponse => {
-  const keyWithEnvironment = addEnvironmentInKey(key);
+  const keyWithEnvironment = `${key}_${process.env.NODE_ENV}`; // permet d'éviter que les mêmes variables soient utilisées sur plusieurs environnements
 
   const get = () : string|undefined => getSharedCookie(keyWithEnvironment, duration, valueIfUndefined);
   const set = (value: string) : void => setSharedCookie(keyWithEnvironment, value, duration);
