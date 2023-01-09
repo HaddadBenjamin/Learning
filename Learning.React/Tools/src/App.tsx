@@ -25,12 +25,16 @@ import LazyComponentSample from './samples/lazyComponent/LazyComponentSample';
 
 import 'aos/dist/aos.css';
 import ToastContextProvider from './shared/components/designSystem/Toast/toast.context';
+import useGetRefreshTokenWhenTokenHasExpired
+  from './shared/hooks/authentification/useGetRefreshTokenWhenTokenHasExpired';
+import useConditionalHook from './shared/hooks/utilities/useConditionalHook';
 
 const queryClient = new QueryClient();
 
-const Layout : FC = () => {
+const LayoutLogic : FC = () => {
   useEffect(() => { Aos.init(); }, []);
-  // useGetRefreshTokenWhenTokenHasExpired();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useConditionalHook(false, () => useGetRefreshTokenWhenTokenHasExpired());
 
   return null;
 };
@@ -40,7 +44,7 @@ export default () => (
     <QueryClientProvider client={queryClient}>
       <ToastContextProvider>
         <ReactQueryDevtools initialIsOpen={false} />
-        <Layout />
+        <LayoutLogic />
 
         <ThrottleAndDebounceSample />
 
