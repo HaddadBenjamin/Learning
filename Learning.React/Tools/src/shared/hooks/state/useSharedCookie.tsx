@@ -4,6 +4,7 @@ import setCookie from '../../utilities/state/cookies/setCookie';
 import { IDuration } from '../../utilities/type/date/addDuration';
 import removeCookie from '../../utilities/state/cookies/removeCookie';
 import useIsomorphicState from './useIsomorphicState';
+import addEnvironmentInKey from '../../utilities/state/addEnvironmentInKey';
 
 const COOKIE_STORAGE_AREA = 'cookie';
 type UseSharedCookieResponse = [string|undefined, (value: string) => void, () => void]
@@ -36,16 +37,18 @@ interface IUseSharedCookie {
   valueIfUndefined?: string
 }
 const useSharedCookie = ({ key, duration = { days: 1 }, valueIfUndefined } : IUseSharedCookie) : UseSharedCookieResponse => {
-  const get = () : string|undefined => getSharedCookie(key, duration, valueIfUndefined);
-  const set = (value: string) : void => setSharedCookie(key, value, duration);
-  const remove = () : void => removeSharedCookie(key);
+  const keyWithEnvironment = addEnvironmentInKey(key);
+
+  const get = () : string|undefined => getSharedCookie(keyWithEnvironment, duration, valueIfUndefined);
+  const set = (value: string) : void => setSharedCookie(keyWithEnvironment, value, duration);
+  const remove = () : void => removeSharedCookie(keyWithEnvironment);
 
   const [value, setValue] = useIsomorphicState(get());
 
   const onStorageChange = ({ storageArea, key: eventKey, newValue }: StorageEvent) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    if (storageArea === COOKIE_STORAGE_AREA && eventKey === key && newValue) setValue(newValue);
+    if (storageArea === COOKIE_STORAGE_AREA && eventKey === keyWithEnvironment && newValue) setValue(newValue);
   };
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -25,42 +25,44 @@ import LazyComponentSample from './samples/lazyComponent/LazyComponentSample';
 
 import 'aos/dist/aos.css';
 import ToastContextProvider from './shared/components/designSystem/Toast/toast.context';
-import useGetRefreshTokenWhenTokenHasExpired
-  from './shared/hooks/authentification/useGetRefreshTokenWhenTokenHasExpired';
 
 const queryClient = new QueryClient();
-export default () => {
+
+const Layout : FC = () => {
   useEffect(() => { Aos.init(); }, []);
-  useGetRefreshTokenWhenTokenHasExpired();
+  // useGetRefreshTokenWhenTokenHasExpired();
 
-  return (
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <ToastContextProvider>
-          <ReactQueryDevtools initialIsOpen={false} />
-
-          <ThrottleAndDebounceSample />
-
-          <FrontEndPaginationSample />
-          <BackEndPaginationSample />
-
-          <ResponsiveNavigationSample />
-          <HightlightSample />
-          <LocalizationSample />
-          <AnimationSample />
-          <SimplePaginationSample />
-          <LazyPaginationSample />
-          <LazyReduxSample />
-          <LazyComponentSample />
-          <LazyImageSample />
-          <LazyResponsiveImageSample />
-          <ResponsiveImageSample />
-          <InfiniteScrollingSample />
-          <BreakpointsSample />
-
-          <WebSocketSample />
-        </ToastContextProvider>
-      </QueryClientProvider>
-    </Provider>
-  );
+  return null;
 };
+
+export default () => (
+  <Provider store={store}>
+    <QueryClientProvider client={queryClient}>
+      <ToastContextProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <Layout />
+
+        <ThrottleAndDebounceSample />
+
+        <FrontEndPaginationSample />
+        <BackEndPaginationSample />
+
+        <ResponsiveNavigationSample />
+        <HightlightSample />
+        <LocalizationSample />
+        <AnimationSample />
+        <SimplePaginationSample />
+        <LazyPaginationSample />
+        <LazyReduxSample />
+        <LazyComponentSample />
+        <LazyImageSample />
+        <LazyResponsiveImageSample />
+        <ResponsiveImageSample />
+        <InfiniteScrollingSample />
+        <BreakpointsSample />
+
+        <WebSocketSample />
+      </ToastContextProvider>
+    </QueryClientProvider>
+  </Provider>
+);
