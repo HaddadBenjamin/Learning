@@ -6,6 +6,7 @@ interface IRemoveFalsiesObjectKeys {
 }
 
 // exemple :removeFalsiesObjectKeys({ a : null, b: undefined, c: 'blabla' }) => { c : 'blabla' }
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
 const removeFalsiesObjectKeys = (object: any, parameters?: IRemoveFalsiesObjectKeys) : any => {
   const { removeNull, removeUndefined, removeEmptyString } = parameters ?? { removeNull: true, removeUndefined: true, removeEmptyString: false };
 

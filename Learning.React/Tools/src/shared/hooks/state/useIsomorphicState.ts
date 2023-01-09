@@ -11,6 +11,7 @@ const useIsomorphicState = <TState>(value?: TState) : [TState, (newState:TState)
     if (isSSR) setState(value);
   }, []);
 
+  // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
   return [state!, setState];
 };
 
