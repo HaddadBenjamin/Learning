@@ -9,17 +9,18 @@ type UseLocalStorageResponse<T> = [T, (value : T) => void, () => void]
 
 // Équivalent d'un useState pour gérer un état partagé d'une durée de vie infinie tant qu'on clear pas le cache ou qu'on ne vide pas le local storage.
 const useSharedLocalStorage = <T, >(key : string, valueIfUndefined : T) : UseLocalStorageResponse<T> => {
-  const keyWithEnvironment = `${key}_${process.env.NODE_ENV}`; // permet d'éviter que les mêmes variables soient utilisées sur plusieurs environnements
+  // Assure que vos variables sont différentes à travers vos différents sites, ex: test FR ou, test NC.
+  const moreUniqueKey = `${key}_${process.env.NODE_ENV.toString()}_PUT_YOUR_LOCALE_HERE`;
 
-  const get = () :T => getLocalStorage(keyWithEnvironment, valueIfUndefined);
-  const set = (value: T) : void => setLocalStorage(keyWithEnvironment, value);
-  const remove = (): void => removeLocalStorage(keyWithEnvironment);
+  const get = () :T => getLocalStorage(moreUniqueKey, valueIfUndefined);
+  const set = (value: T) : void => setLocalStorage(moreUniqueKey, value);
+  const remove = (): void => removeLocalStorage(moreUniqueKey);
 
   const [value, setValue] = useIsomorphicState(get());
 
   const onStorageChange = (event: StorageEvent) => {
     // Le stringify permet de gérer les types références comme les objets.
-    if (event.storageArea === localStorage && event.key === keyWithEnvironment && event.newValue !== JSON.stringify(value)) {
+    if (event.storageArea === localStorage && event.key === moreUniqueKey && event.newValue !== JSON.stringify(value)) {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       setValue(JSON.parse(event.newValue!) as T);
     }

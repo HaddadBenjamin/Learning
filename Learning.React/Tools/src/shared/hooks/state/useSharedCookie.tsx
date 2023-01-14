@@ -36,18 +36,19 @@ interface IUseSharedCookie {
   valueIfUndefined?: string
 }
 const useSharedCookie = ({ key, duration = { days: 1 }, valueIfUndefined } : IUseSharedCookie) : UseSharedCookieResponse => {
-  const keyWithEnvironment = `${key}_${process.env.NODE_ENV}`; // permet d'éviter que les mêmes variables soient utilisées sur plusieurs environnements
+  // Assure que vos variables sont différentes à travers vos différents sites, ex: test FR ou, test NC.
+  const moreUniqueKey = `${key}_${process.env.NODE_ENV.toString()}_PUT_YOUR_LOCALE_HERE`;
 
-  const get = () : string|undefined => getSharedCookie(keyWithEnvironment, duration, valueIfUndefined);
-  const set = (value: string) : void => setSharedCookie(keyWithEnvironment, value, duration);
-  const remove = () : void => removeSharedCookie(keyWithEnvironment);
+  const get = () : string|undefined => getSharedCookie(moreUniqueKey, duration, valueIfUndefined);
+  const set = (value: string) : void => setSharedCookie(moreUniqueKey, value, duration);
+  const remove = () : void => removeSharedCookie(moreUniqueKey);
 
   const [value, setValue] = useIsomorphicState(get());
 
   const onStorageChange = ({ storageArea, key: eventKey, newValue }: StorageEvent) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    if (storageArea === COOKIE_STORAGE_AREA && eventKey === keyWithEnvironment && newValue) setValue(newValue);
+    if (storageArea === COOKIE_STORAGE_AREA && eventKey === moreUniqueKey && newValue) setValue(newValue);
   };
 
   useEffect(() => {

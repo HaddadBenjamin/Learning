@@ -8,17 +8,18 @@ type UseSessionStorageResponse<T> = [T, (value : T) => void, () => void]
 
 // Équivalent d'un useState pour gérer un état partagé d'une durée de vie d'une session, c'est à dire, tant qu'on ne ferme pas le navigateur.
 const useSharedSessionStorage = <T, >(key : string, valueIfUndefined : T) : UseSessionStorageResponse<T> => {
-  const keyWithEnvironment = `${key}_${process.env.NODE_ENV}`; // permet d'éviter que les mêmes variables soient utilisées sur plusieurs environnements
+// Assure que vos variables sont différentes à travers vos différents sites, ex: test FR ou, test NC.
+  const moreUniqueKey = `${key}_${process.env.NODE_ENV.toString()}_PUT_YOUR_LOCALE_HERE`;
 
-  const get = () :T => getSessionStorage(keyWithEnvironment, valueIfUndefined);
-  const set = (value: T) : void => setSessionStorage(keyWithEnvironment, value);
-  const remove = (): void => removeSessionStorage(keyWithEnvironment);
+  const get = () :T => getSessionStorage(moreUniqueKey, valueIfUndefined);
+  const set = (value: T) : void => setSessionStorage(moreUniqueKey, value);
+  const remove = (): void => removeSessionStorage(moreUniqueKey);
 
   const [value, setValue] = useIsomorphicState(get());
 
   const onStorageChange = (event: StorageEvent) => {
     // Le stringify permet de gérer les types références comme les objets.
-    if (event.storageArea === sessionStorage && event.key === keyWithEnvironment && event.newValue !== JSON.stringify(value)) {
+    if (event.storageArea === sessionStorage && event.key === moreUniqueKey && event.newValue !== JSON.stringify(value)) {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       setValue(JSON.parse(event.newValue!) as T);
     }
