@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import useIsomorphicState from './useIsomorphicState';
+import { useEffect, useState } from 'react';
+import useOnSSR from '../prerendering/useOnSSR';
 
 type UseSharedStateResponse<T> = [T, (value : T) => void, () => void]
 
@@ -9,9 +9,17 @@ export class SharedState {
 }
 
 export const getShareState = <T, >(key : string, valueIfUndefined : T) : T => {
+  console.log(JSON.stringify(SharedState.Cache));
+
   const value = SharedState.Cache.get(key);
 
-  return value ? JSON.parse(key) as T : valueIfUndefined;
+  if (value) JSON.parse(value) as T;
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  if (valueIfUndefined) { SharedState.Cache[key] = valueIfUndefined; }
+
+  return valueIfUndefined;
 };
 
 export const setShareState = <T, >(key : string, data : T) : void => {
@@ -34,7 +42,9 @@ const useSharedState = <T, >(key : string, valueIfUndefined : T) : UseSharedStat
   const set = (value: T) : void => setShareState(key, value);
   const remove = (): void => removeShareState(key);
 
-  const [value, setValue] = useIsomorphicState(get());
+  const [value, setValue] = useState(get());
+
+  useOnSSR({ onSSR: () => setValue(get()) });
 
   const onStorageChange = (event: StorageEvent) => {
     // Le stringify permet de gérer les types références comme les objets.

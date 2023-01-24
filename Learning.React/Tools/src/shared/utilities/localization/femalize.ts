@@ -1,3 +1,3 @@
-const femalize = (text : string, sexe : string) : string => `${text}${sexe === 'F' ? 'e' : ''}`;
+const femalize = (text : string, isFemale : boolean) : string => `${text}${isFemale ? 'e' : ''}`;
 
-export default femalize; // heeeey, c'est un super nom de fonction Benjamin :D
+export default femalize;
