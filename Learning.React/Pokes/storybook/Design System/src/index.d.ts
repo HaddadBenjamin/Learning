@@ -1,4 +1,4 @@
 import { FC } from 'react';
 
-import { TestProps } from './components/Test/test.d';
+import { TestProps } from './stories/Test/Test.d';
 export declare const Test: FC<TestProps>;
