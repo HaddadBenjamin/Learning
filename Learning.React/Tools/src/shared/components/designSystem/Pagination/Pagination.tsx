@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import styles from './Pagination.module.scss';
 import clamp from '../../../utilities/type/number/clamp';
+import ClickableDiv from '../../utilities/ClickableDiv/ClickableDiv';
 
 const computeButtonsPageRange = (
   page : number,
@@ -68,16 +69,13 @@ const Pagination = <TItem, >({
     <div className={styles.container}>
       <button onClick={() => setPage(page > 1 ? page - 1 : page)}>{'<'}</button>
       { new Array(maximumPageRange - minimumPageRange + 1).fill(minimumPageRange).map((p, pageIndex) => (
-        <div
-          role='button'
+        <ClickableDiv
           className={cn(styles.page, page === p + pageIndex && styles.currentPage)}
           key={`page-button-${p + pageIndex}`}
           onClick={() => setPage(p + pageIndex)}
-          onKeyPress={() => setPage(p + pageIndex)}
-          tabIndex={0}
         >
           {p + pageIndex}
-        </div>
+        </ClickableDiv>
       )) }
       <button onClick={() => setPage(page < lastPage ? page + 1 : page)}>{'>'}</button>
     </div>

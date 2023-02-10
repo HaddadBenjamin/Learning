@@ -22,6 +22,7 @@ const useSharedSessionStorage = <T, >(key : string, valueIfUndefined : T) : UseS
   const onStorageChange = (event: StorageEvent) => {
     // Le stringify permet de gérer les types références comme les objets.
     if (event.storageArea === sessionStorage && event.key === moreUniqueKey && event.newValue !== JSON.stringify(value)) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       setValue(JSON.parse(event.newValue!) as T);
     }
   };

@@ -24,7 +24,6 @@ import ThrottleAndDebounceSample from './samples/throttleAndDebounce/ThrottleAnd
 import LazyComponentSample from './samples/lazyComponent/LazyComponentSample';
 
 import 'aos/dist/aos.css';
-import ToastContextProvider from './shared/components/designSystem/Toast/toast.context';
 import useGetRefreshTokenWhenTokenHasExpired
   from './shared/hooks/authentification/useGetRefreshTokenWhenTokenHasExpired';
 import useConditionalHook from './shared/hooks/utilities/useConditionalHook';
@@ -42,31 +41,29 @@ const LayoutLogic : FC = () => {
 export default () => (
   <Provider store={store}>
     <QueryClientProvider client={queryClient}>
-      <ToastContextProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <LayoutLogic />
+      <ReactQueryDevtools initialIsOpen={false} />
+      <LayoutLogic />
 
-        <ThrottleAndDebounceSample />
+      <ThrottleAndDebounceSample />
 
-        <FrontEndPaginationSample />
-        <BackEndPaginationSample />
+      <FrontEndPaginationSample />
+      <BackEndPaginationSample />
 
-        <ResponsiveNavigationSample />
-        <HightlightSample />
-        <LocalizationSample />
-        <AnimationSample />
-        <SimplePaginationSample />
-        <LazyPaginationSample />
-        <LazyReduxSample />
-        <LazyComponentSample />
-        <LazyImageSample />
-        <LazyResponsiveImageSample />
-        <ResponsiveImageSample />
-        <InfiniteScrollingSample />
-        <BreakpointsSample />
+      <ResponsiveNavigationSample />
+      <HightlightSample />
+      <LocalizationSample />
+      <AnimationSample />
+      <SimplePaginationSample />
+      <LazyPaginationSample />
+      <LazyReduxSample />
+      <LazyComponentSample />
+      <LazyImageSample />
+      <LazyResponsiveImageSample />
+      <ResponsiveImageSample />
+      <InfiniteScrollingSample />
+      <BreakpointsSample />
 
-        <WebSocketSample />
-      </ToastContextProvider>
+      <WebSocketSample />
     </QueryClientProvider>
   </Provider>
 );

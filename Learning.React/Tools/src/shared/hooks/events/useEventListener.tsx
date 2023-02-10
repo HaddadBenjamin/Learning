@@ -7,7 +7,6 @@ const useEventListener = <T extends HTMLElement>(
   useEffect(() => {
     reference?.current?.addEventListener(eventName, eventHandler);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     return () => reference?.current?.removeEventListener(eventName, eventHandler);
   },
   // eslint-disable-next-line react-hooks/exhaustive-deps

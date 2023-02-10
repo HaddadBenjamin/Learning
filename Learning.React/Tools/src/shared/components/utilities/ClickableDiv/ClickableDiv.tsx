@@ -1,21 +1,31 @@
-import React, { FC, PointerEventHandler } from 'react';
+import React, { forwardRef, ReactNode } from 'react';
 import cn from 'classnames';
 import styles from './ClickableDiv.module.scss';
 
 interface Props {
-  onClick: PointerEventHandler<HTMLDivElement> | undefined,
+  onClick?: () => void,
   className?: string,
+  children: ReactNode
 }
 
-const ClickableDiv : FC<Props> = ({ onClick, className, children }) => (
+const ClickableDiv = forwardRef<HTMLDivElement, Props>((
+  {
+    children,
+    className,
+    onClick,
+  },
+  ref,
+) => (
   <div
-    onPointerDown={onClick} // Gère le click, le touch mobile et au pinceau, évite de définir onClick & onKeyDown.
+    className={cn(styles.container, className)}
+    onClick={onClick}
+    onKeyPress={onClick}
+    ref={ref}
     role='button'
     tabIndex={0}
-    className={cn(className, styles.container)}
   >
     {children}
   </div>
-);
+));
 
 export default ClickableDiv;
