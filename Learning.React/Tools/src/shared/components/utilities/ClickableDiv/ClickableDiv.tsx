@@ -1,6 +1,4 @@
 import React, { forwardRef, ReactNode } from 'react';
-import cn from 'classnames';
-import styles from './ClickableDiv.module.scss';
 
 interface Props {
   onClick?: () => void,
@@ -17,7 +15,8 @@ const ClickableDiv = forwardRef<HTMLDivElement, Props>((
   ref,
 ) => (
   <div
-    className={cn(styles.container, className)}
+    className={className}
+    style={{ cursor: onClick ? 'pointer' : 'auto' }}
     onClick={onClick}
     onKeyPress={onClick}
     ref={ref}
