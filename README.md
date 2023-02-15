@@ -21,7 +21,7 @@ Refaire le menu de configuration l'Iphone avec le système de grille en CSS http
 Développement d'une boîte à outils que je réutilise dans chacune de mes missions : https://github.com/HaddadBenjamin/Learning/tree/master/Learning.React/Tools
 > ![Image of Yaktocat](https://imgur.com/NDNAu0C.png)
 
-Développement d'une librairie de composants (projet privée) : 
+Développement d'une librairie de composants (projet privée) : https://trying-learning-and-become-better.netlify.app/?path=/docs/formulaires-button--color
 > ![Image of Yaktocat](https://imgur.com/9cXIDuA.png)
 > ![Image of Yaktocat](https://imgur.com/3jSGV0y.png)
 
