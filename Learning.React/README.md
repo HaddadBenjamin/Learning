@@ -7,7 +7,7 @@ Développement d'une librairie de composants (projet privée) :
 > ![Image of Yaktocat](https://imgur.com/9cXIDuA.png)
 > ![Image of Yaktocat](https://imgur.com/3jSGV0y.png)
 
-> Développement d'une application qui permet d'envoyer des messages privés, dans un groupe ou visibles par tout le monde https://www.youtube.com/watch?v=K4WVlXHjnG4
+Développement d'une application qui permet d'envoyer des messages privés, dans un groupe ou visibles par tout le monde https://www.youtube.com/watch?v=K4WVlXHjnG4
 > ![Image of Yaktocat](https://imgur.com/Tb4ip0L.png)
 
 Développement d'une architecture que l'on peut réutiliser de projet en projet avec 100% de coverage.
