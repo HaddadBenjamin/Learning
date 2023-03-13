@@ -13,6 +13,7 @@ const useOnFrameTimeChange = (callback: (deltaTime: number) => void) => {
 
   useEffect(() => {
     requestRef.current = requestAnimationFrame(animate);
+    // eslint-disable-next-line consistent-return, @typescript-eslint/no-non-null-assertion
     return () => cancelAnimationFrame(requestRef.current!);
   }, []);
 };
