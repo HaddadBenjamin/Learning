@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import useSimplerMap from '../../shared/hooks/types/useSimplerMap';
 import useMap from '../../shared/hooks/types/useMap';
+import usePreviousState from '../../shared/hooks/state/usePreviousState';
 
 const SimplerMapSample: FC = () => {
   const [key, setKey] = useState('1');
@@ -25,17 +26,16 @@ const SimplerMapSample: FC = () => {
     getKeyByValue,
     toMap,
   }] = useSimplerMap([['1', 1]]);
+  const previousSimplerMapState = usePreviousState(simplerMap);
 
   return (
     <div>
-      <h2>Simpler map & Map</h2>
-      Key:
-      {' '}
+      <h2>Simpler map & Map & use previous state</h2>
+      {'Key: '}
       <input value={key} onChange={(e) => setKey(e.target.value)} />
-      Value:
-      {' '}
+      {' Value: '}
       <input value={value.toString()} type='number' onChange={(e) => setValue(parseInt(e.target.value, 10))} />
-
+      <div>{`Use previous state of simpler map: ${previousSimplerMapState}`}</div>
       <div style={{ display: 'flex', gap: '20px' }}>
         <div>
           <h3>Simpler map</h3>
