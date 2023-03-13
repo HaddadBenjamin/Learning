@@ -13,7 +13,10 @@ type UseSimplerMapResponse<TKey, TValue> = [[TKey, TValue][],
     // Met à jour l'état React
     remove: (key: TKey) => readonly [TKey, TValue][],
     removeByKey: (key: TKey) => readonly [TKey, TValue][],
-    removeByValue: (value: TValue) => readonly [TKey, TValue][],
+    removeAllByValue: (value: TValue) => readonly [TKey, TValue][],
+
+    // Met à jour l'état React
+    clear: () => readonly [TKey, TValue][],
 
     get: (key: TKey) => TValue | undefined,
     getKeyByValue: (value: TValue) => TKey | undefined,
@@ -26,37 +29,50 @@ type UseSimplerMapResponse<TKey, TValue> = [[TKey, TValue][],
 const useSimplerMap = <TKey, TValue>(initialValue?: [TKey, TValue][]) : UseSimplerMapResponse<TKey, TValue> => {
   const [simplerMap, setSimplerMap] = useState(new SimplerMap(initialValue));
 
-  return [[...simplerMap.entries], {
+  const set = (key: TKey, value: TValue) : readonly [TKey, TValue][] => {
+    const newSimplerMap = simplerMap.set(key, value);
+
+    setSimplerMap(new SimplerMap([...newSimplerMap]));
+
+    return newSimplerMap;
+  };
+
+  const remove = (key: TKey) : readonly [TKey, TValue][] => {
+    const newSimplerMap = simplerMap.remove(key);
+
+    setSimplerMap(new SimplerMap([...newSimplerMap]));
+
+    return newSimplerMap;
+  };
+
+  const removeByKey = (key: TKey) : readonly [TKey, TValue][] => {
+    const newSimplerMap = simplerMap.removeByKey(key);
+
+    setSimplerMap(new SimplerMap([...newSimplerMap]));
+
+    return newSimplerMap;
+  };
+
+  const removeAllByValue = (value: TValue) : readonly [TKey, TValue][] => {
+    const newSimplerMap = simplerMap.removeAllByValue(value);
+
+    setSimplerMap(new SimplerMap([...newSimplerMap]));
+
+    return newSimplerMap;
+  };
+  const entries = [...simplerMap.entries];
+  return [entries, {
     keys: simplerMap.keys,
     values: simplerMap.values,
     entries: simplerMap.entries,
+    set,
+    remove,
+    removeByKey,
+    removeAllByValue,
+    clear: () : readonly [TKey, TValue][] => {
+      const newSimplerMap = simplerMap.clear();
 
-    set: (key: TKey, value: TValue) : readonly [TKey, TValue][] => {
-      const newSimplerMap = simplerMap.set(key, value);
-
-      setSimplerMap(new SimplerMap([...newSimplerMap]));
-
-      return newSimplerMap;
-    },
-
-    remove: (key: TKey) : readonly [TKey, TValue][] => {
-      const newSimplerMap = simplerMap.remove(key);
-
-      setSimplerMap(new SimplerMap([...newSimplerMap]));
-
-      return newSimplerMap;
-    },
-    removeByKey: (key: TKey) : readonly [TKey, TValue][] => {
-      const newSimplerMap = simplerMap.removeByKey(key);
-
-      setSimplerMap(new SimplerMap([...newSimplerMap]));
-
-      return newSimplerMap;
-    },
-    removeByValue: (value: TValue) : readonly [TKey, TValue][] => {
-      const newSimplerMap = simplerMap.removeByValue(value);
-
-      setSimplerMap(new SimplerMap([...newSimplerMap]));
+      setSimplerMap(new SimplerMap(newSimplerMap));
 
       return newSimplerMap;
     },

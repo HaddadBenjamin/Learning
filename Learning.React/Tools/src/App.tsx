@@ -27,6 +27,7 @@ import 'aos/dist/aos.css';
 import useGetRefreshTokenWhenTokenHasExpired
   from './shared/hooks/authentification/useGetRefreshTokenWhenTokenHasExpired';
 import useConditionalHook from './shared/hooks/utilities/useConditionalHook';
+import SimplerMapSample from './samples/map/SimplerMapSample';
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ export default () => (
       <LayoutLogic />
 
       <ThrottleAndDebounceSample />
+      <SimplerMapSample />
 
       <FrontEndPaginationSample />
       <BackEndPaginationSample />

@@ -1,8 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 export default class SimplerMap<TKey, TValue> {
-  _map: [TKey, TValue][];
+  _map: readonly [TKey, TValue][];
 
-  constructor(map?: [TKey, TValue][]) {
+  constructor(map?: readonly [TKey, TValue][]) {
     this._map = map ?? [];
   }
 
@@ -27,14 +27,19 @@ export default class SimplerMap<TKey, TValue> {
   getValueByKey(key: TKey) : TValue | undefined { return this.get(key); }
 
   remove(key: TKey) : readonly [TKey, TValue][] {
-    this._map = this._map.filter(([k]) => k === key);
+    this._map = this._map.filter(([k]) => k !== key);
     return this._map;
   }
 
   removeByKey(key: TKey) : readonly [TKey, TValue][] { return this.remove(key); }
 
-  removeByValue(value: TValue) : readonly [TKey, TValue][] {
-    this._map = this._map.filter(([, v]) => v === value);
+  removeAllByValue(value: TValue) : readonly [TKey, TValue][] {
+    this._map = this._map.filter(([, v]) => v !== value);
+    return this._map;
+  }
+
+  clear(): readonly [TKey, TValue][] {
+    this._map = [];
     return this._map;
   }
 
