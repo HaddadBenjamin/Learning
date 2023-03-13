@@ -6,11 +6,11 @@ export default class SimplerMap<TKey, TValue> {
     this._map = map ?? [];
   }
 
-  get(key: TKey) : TValue | undefined { return this._map.find(([k]) => key === k)?.[1]; }
+  get keys() : TKey[] { return this._map.map(([key]) => key); }
 
-  getKeyByValue(value: TValue) : TKey | undefined { return this._map.find(([, v]) => value === v)?.[0]; }
+  get values() : TValue[] { return this._map.map(([, value]) => value); }
 
-  getValueByKey(key: TKey) : TValue | undefined { return this.get(key); }
+  get entries() : readonly [TKey, TValue][] { return this._map; }
 
   set(key: TKey, value: TValue) : readonly [TKey, TValue][] {
     this._map = this._map.find(([k]) => k === key)
@@ -20,9 +20,23 @@ export default class SimplerMap<TKey, TValue> {
     return this._map;
   }
 
-  get keys() : TKey[] { return this._map.map(([key]) => key); }
+  get(key: TKey) : TValue | undefined { return this._map.find(([k]) => key === k)?.[1]; }
 
-  get values() : TValue[] { return this._map.map(([, value]) => value); }
+  getKeyByValue(value: TValue) : TKey | undefined { return this._map.find(([, v]) => value === v)?.[0]; }
 
-  get entries() : readonly [TKey, TValue][] { return this._map; }
+  getValueByKey(key: TKey) : TValue | undefined { return this.get(key); }
+
+  remove(key: TKey) : readonly [TKey, TValue][] {
+    this._map = this._map.filter(([k]) => k === key);
+    return this._map;
+  }
+
+  removeByKey(key: TKey) : readonly [TKey, TValue][] { return this.remove(key); }
+
+  removeByValue(value: TValue) : readonly [TKey, TValue][] {
+    this._map = this._map.filter(([, v]) => v === value);
+    return this._map;
+  }
+
+  toMap() : Map<TKey, TValue> { return new Map(this._map); }
 }
