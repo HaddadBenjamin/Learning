@@ -31,7 +31,7 @@ const ThrottleAndDebounceSample = () => {
 
   return (
     <div>
-      <h2>Throttle VS Debounce : Voir mes hooks useThrottle & useDebounce pour simplifier</h2>
+      <h2>Throttle VS Debounce : on peut simplifier avec mes hooks use[Throttle|Debounce]State</h2>
 
       <div className={styles.container}>
         <div>
