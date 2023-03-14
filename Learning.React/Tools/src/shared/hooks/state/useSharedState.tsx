@@ -9,11 +9,9 @@ export class SharedState {
 }
 
 export const getShareState = <T, >(key : string, valueIfUndefined : T) : T => {
-  console.log(JSON.stringify(SharedState.Cache));
-
   const value = SharedState.Cache.get(key);
 
-  if (value) JSON.parse(value) as T;
+  if (value) return JSON.parse(value) as T;
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore

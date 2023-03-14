@@ -8,7 +8,7 @@ interface ScreenSize {
 // Optimisation possible : passer en paramètre un throttleValue, valeur par défault = 300, mais créera une dépendance à Lodash.
 export default () : ScreenSize => {
   const getScreenSize = (): ScreenSize => ({
-    screenWidth: window?.innerWidth,
+    screenWidth: window.innerWidth,
     screenHeight: window.innerHeight,
   });
 
