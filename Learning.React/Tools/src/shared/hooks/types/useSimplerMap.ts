@@ -26,6 +26,8 @@ type UseSimplerMapResponse<TKey, TValue> = [[TKey, TValue][],
   }
 ]
 
+// Créer une map stateful, si vous la modifier, ça rerendra le composant.
+// Ex : const [map, { set, remove, clear }] = useMap([['apples', 10]]);
 const useSimplerMap = <TKey, TValue>(initialValue?: [TKey, TValue][]) : UseSimplerMapResponse<TKey, TValue> => {
   const [simplerMap, setSimplerMap] = useState(new SimplerMap(initialValue));
 

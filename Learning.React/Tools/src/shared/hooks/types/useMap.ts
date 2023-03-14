@@ -8,6 +8,7 @@ type UseMapResponse<TKey, TValue> = [
   }
 ]
 
+// Créer une map stateful, si vous la modifier, ça rerendra le composant.
 // Ex : const [map, { set, remove, clear }] = useMap([['apples', 10]]);
 const useMap = <TKey, TValue>(initialValue? : [TKey, TValue][]) : UseMapResponse<TKey, TValue> => {
   const [map, setMap] = useState(new Map(initialValue));
