@@ -1,59 +1,25 @@
-/* eslint-disable react/no-unescaped-entities */
-import React, { ChangeEvent, useCallback, useState } from 'react';
-import { throttle, debounce } from 'lodash';
+import React from 'react';
 import styles from './ThrottleAndDebounce.module.scss';
+import useThrottleState from '../../shared/hooks/state/useThrottleState';
+import useDebounceValue from '../../shared/hooks/performance/useDebounceValue';
 
 const ThrottleAndDebounceSample = () => {
-  const [value, setValue] = useState<string|undefined>();
-  const [thottleValue, setThrottleValue] = useState<string|undefined>();
-  const [debounceValue, setDebounceValue] = useState<string|undefined>();
-
-  const [debugValue, setDebugValue] = useState<string|undefined>();
-  const [thottleDebugValue, setThrottleDebugValue] = useState<string|undefined>();
-  const [debounceDebugValue, setDebounceDebugValue] = useState<string|undefined>();
-
-  const onValueChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-    setDebugValue(event.target.value);
-  };
-
-  const onThrottleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setThrottleValue(event.target.value);
-    throttledChange(event.target.value);
-  };
-  const throttledChange = useCallback(throttle((value : string) => setThrottleDebugValue(value), 300), []);
-
-  const onDebounceChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setDebounceValue(event.target.value);
-    debouncedChange(event.target.value);
-  };
-  const debouncedChange = useCallback(debounce((value : string) => setDebounceDebugValue(value), 300), []);
+  const [value, setValue, throttleValue] = useThrottleState('');
+  const debounceValue = useDebounceValue(value); // on aurait pu également faire un useDebounceState
+  const useDefferedValue = useDebounceValue(value, 100); // on aurait pu également faire un useDebounceState
 
   return (
     <div>
-      <h2>Throttle VS Debounce : on peut simplifier avec mes hooks use[Throttle|Debounce]State</h2>
+      <h2>Throttle VS Debounce : use[Throttle|Debounce]State</h2>
 
       <div className={styles.container}>
         <div>
-          <p>Par défault : La fonction est appelée à chaque modification</p>
-          <input type='text' value={value} onChange={onValueChange} placeholder='value without throttle or debounce' />
-          <p>{debugValue}</p>
-        </div>
-
-        <div>
-          <p>Avec useDefferedValue: équivalent à un debounce de 100ms, voir mes notes</p>
-        </div>
-
-        <div>
-          <p>Avec du throttle : Limite l'appel de la fonction une fois tout les n temps</p>
-          <input type='text' value={thottleValue} onChange={onThrottleChange} placeholder='throttle value' />
-          <p>{thottleDebugValue}</p>
-        </div>
-
-        <div>
-          <p>Avec du debounce : Apelle la fonction qu'une fois à la fin des actions de l'utilisateur</p>
-          <input type='text' value={debounceValue} onChange={onDebounceChange} placeholder='debounce value' />
-          <p>{debounceDebugValue}</p>
+          {'Value: '}
+          <input type='text' value={value} onChange={(e) => setValue(e.target.value)} placeholder='value without throttle or debounce' />
+          {' - Par défault la fonction est appelé à chaque modification.'}
+          <div>{`Throttle: ${throttleValue} - Limite l'appel de la fonction une fois tout les n temps.`}</div>
+          <div>{`Debounce: ${debounceValue} - Apelle la fonction qu'une fois à la fin des actions de l'utilisateur.`}</div>
+          <div>{`useDefferedValue: ${useDefferedValue} - Equivalent à un debounce de 100ms, voir mes notes.`}</div>
         </div>
       </div>
     </div>
