@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 // Le debounce permet d'appeller une fonction qu'après un délai passé à la fin des actions de l'utilisateur
-// Voir aussi useDebounceState pour simplifier => const [value, setValue, debounceValue] = useDebounceValue('default value')
+// useDebounceState simplifie => const [value, setValue, debounceValue] = useDebounceValue('default value')
 // Ex :
 //  const [value, setValue] = useState('default value')
 //  const debouncedValue = useDebounceValue(value) => debouncedValue se met moins souvent à jour que value

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 // Le throttle permet d'appeller une fonction qu'une fois tous les n temps
-// Voir aussi useThrottleState pour simplifier => const [value, setValue, throtleValue] = useThrottleState('default value')
+// useThrottleState simplifie => const [value, setValue, throtleValue] = useThrottleState('default value')
 // Ex :
 //  const [value, setValue] = useState('default value')
 //  const throttleValue = useThrottleValue(value) => throttleValue se met moins souvent à jour que value
@@ -13,14 +13,10 @@ const useThrottleValue = <T>(value: T, intervalAsMilliseconds = 500): T => {
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {
-    if (Date.now() >= lastExecutionTime.current + intervalAsMilliseconds) {
-      lastExecutionTime.current = Date.now();
-      setThrottledValue(value);
-    } else {
-      const timerId = setTimeout(() => {
-        lastExecutionTime.current = Date.now();
-        setThrottledValue(value);
-      }, intervalAsMilliseconds);
+    const updateThrottleValue = () : void => { lastExecutionTime.current = Date.now(); setThrottledValue(value); };
+    if (Date.now() >= lastExecutionTime.current + intervalAsMilliseconds) updateThrottleValue();
+    else {
+      const timerId = setTimeout(updateThrottleValue, intervalAsMilliseconds);
 
       return () => clearTimeout(timerId);
     }
