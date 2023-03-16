@@ -9,12 +9,9 @@ const useInterval = (callback: () => void, delayAsMilliseconds: number) : void =
 
   useEffect(() => { onInterval.current = callback; }, [callback]);
 
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
-    if (delayAsMilliseconds !== null) {
-      const id = setInterval(() => onInterval?.current?.(), delayAsMilliseconds);
-      return () => clearInterval(id);
-    }
+    const id = setInterval(() => onInterval?.current?.(), delayAsMilliseconds);
+    return () => clearInterval(id);
   }, [delayAsMilliseconds]);
 };
 
