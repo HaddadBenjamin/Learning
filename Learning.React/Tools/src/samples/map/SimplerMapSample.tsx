@@ -30,7 +30,7 @@ const SimplerMapSample: FC = () => {
 
   return (
     <div>
-      <h2>Simpler map & Map & use previous state</h2>
+      <h2>Use[Map|SimplerMap|PreviousState]</h2>
       {'Key: '}
       <input value={key} onChange={(e) => setKey(e.target.value)} />
       {' Value: '}

@@ -6,7 +6,7 @@ const computeIsOnline = () => (typeof navigator !== 'undefined' && typeof naviga
   : true);
 
 // Permet de savoir si l'utilisateur est connnecté ou pas à internet
-const useIsOnline = () => {
+const useIsOnline = () : boolean => {
   const [isOnline, setIsOnline] = useState(computeIsOnline());
 
   const setOnline = () => setIsOnline(true);

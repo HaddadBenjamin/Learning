@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-const usePageTitle = (pageTitle: string) => {
+const useTabTitle = (pageTitle: string) : void => {
   const documentDefined = typeof document !== 'undefined';
   const originalTitle = useRef(documentDefined ? document.title : null);
 
@@ -13,4 +13,4 @@ const usePageTitle = (pageTitle: string) => {
   }, []);
 };
 
-export default usePageTitle;
+export default useTabTitle;
