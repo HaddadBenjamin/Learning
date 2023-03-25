@@ -1,0 +1,25 @@
+@import '../../../../styles/styles.scss';
+@import '../../styles.scss';
+
+.container
+{
+    @include flex(center, center, row);
+}
+
+.addButton
+{
+    @include text($spacingXL, #37a2ff, $fontWeightBold, undefined);
+    cursor: pointer;
+    margin-right : $spacingSm;
+}
+
+.input
+{
+    @include text($textH5FontSize, undefined, $fontWeightSemiBold);
+    padding : $spacingMd 0;
+}
+
+.input::placeholder
+{
+    @include text($textH5FontSize, undefined, $fontWeightSemiBold);
+}
