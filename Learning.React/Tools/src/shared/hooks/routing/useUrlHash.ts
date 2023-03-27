@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import useWindowEvent from '../events/useWindowEvent';
 
-const useUrlHash = () => {
+const useUrlHash = () : [string, (urlHash:string)=> void] => {
   const [urlHash, setUrlHash] = useState(window.location.hash);
 
   const onUrlHashChange = useCallback(() => setUrlHash(window.location.hash), []);
