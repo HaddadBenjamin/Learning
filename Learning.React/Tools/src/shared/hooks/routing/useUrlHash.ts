@@ -1,11 +1,16 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useWindowEvent from '../events/useWindowEvent';
 
-const useUrlHash = () : [string, (urlHash:string)=> void] => {
-  const [urlHash, setUrlHash] = useState(window.location.hash);
+// Ex : http://localhost:3000#test
+// const [urlHash] = useUrlHash => test
+const useUrlHash = () : [string|undefined, (urlHash:string)=> void] => {
+  const getHash = () : string => window.location.hash.replace('#', '');
 
-  const onUrlHashChange = useCallback(() => setUrlHash(window.location.hash), []);
+  const [urlHash, setUrlHash] = useState<string|undefined>();
 
+  const onUrlHashChange = useCallback(() => setUrlHash(getHash()), []);
+
+  useEffect(() => setUrlHash(getHash()), []);
   useWindowEvent('hashChange', onUrlHashChange);
 
   const updateUrlHash = useCallback(
