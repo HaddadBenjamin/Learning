@@ -12,7 +12,7 @@ const useSmoothAnchorFromUrlHash = (topOffset = 0) : () => void => {
   // eslint-disable-next-line no-undef,consistent-return
   const smoothAnchorScroll = () : NodeJS.Timeout| void => {
     if (urlHash) {
-      const element = document?.querySelector(urlHash);
+      const element = document?.querySelector(`#${urlHash}`);
       if (element) {
         const { leftPageOffset, topPageOffset } = pageOffset(element as HTMLElement);
 
