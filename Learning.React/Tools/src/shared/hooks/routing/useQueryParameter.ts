@@ -11,9 +11,9 @@ const useQueryParameter = (queryParameterName: string) => {
 
   const [queryParameterValue, setQueryParameterValue] = useState<string|undefined|null>();
 
-  useEffect(() => { getValue(); }, []);
-
   const onQueryParameterChange = () => setQueryParameterValue(getValue());
+
+  useEffect(onQueryParameterChange, []);
 
   useWindowEvent('popstate', onQueryParameterChange);
   useWindowEvent('pushstate', onQueryParameterChange);

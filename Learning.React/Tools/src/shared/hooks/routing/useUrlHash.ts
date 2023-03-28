@@ -10,7 +10,7 @@ const useUrlHash = () : [string|undefined, (urlHash:string)=> void] => {
 
   const onUrlHashChange = useCallback(() => setUrlHash(getHash()), []);
 
-  useEffect(() => setUrlHash(getHash()), []);
+  useEffect(onUrlHashChange, []);
   useWindowEvent('hashChange', onUrlHashChange);
 
   const updateUrlHash = useCallback(

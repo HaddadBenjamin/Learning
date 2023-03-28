@@ -13,6 +13,7 @@ const useSmoothAnchorFromQueryParameter = (queryParameterName: string, topOffset
   const smoothAnchorScroll = () : NodeJS.Timeout| void => {
     if (queryParameter) {
       const element = document?.querySelector(`#${queryParameter}`);
+
       if (element) {
         const { leftPageOffset, topPageOffset } = pageOffset(element as HTMLElement);
 
