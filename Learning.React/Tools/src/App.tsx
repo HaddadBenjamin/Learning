@@ -28,6 +28,7 @@ import useGetRefreshTokenWhenTokenHasExpired
   from './shared/hooks/authentification/useGetRefreshTokenWhenTokenHasExpired';
 import useConditionalHook from './shared/hooks/utilities/useConditionalHook';
 import SimplerMapSample from './samples/map/SimplerMapSample';
+import NavigationSample from './samples/navigation/NavigationSample';
 
 const queryClient = new QueryClient();
 
@@ -44,9 +45,9 @@ export default () => (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <LayoutLogic />
-
       <ThrottleAndDebounceSample />
       <SimplerMapSample />
+      <NavigationSample />
 
       <FrontEndPaginationSample />
       <BackEndPaginationSample />
