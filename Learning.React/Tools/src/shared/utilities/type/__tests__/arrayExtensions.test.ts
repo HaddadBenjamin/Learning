@@ -1,10 +1,10 @@
-import addRangeWithoutDuplicate from '../array/addRangeWithoutDuplicate';
-import distinctBy from "../array/distinctBy";
-import containsAll from "../array/containsAll";
-import groupBy from "../array/groupBy";
-import swap from "../array/swap";
-import swapIndex from "../array/swapIndex";
-import mergeBy from "../array/mergeBy";
+import addRangeWithoutDuplicate from '../array/transform/addRangeWithoutDuplicate';
+import distinctBy from "../array/filter/distinctBy";
+import containsAll from "../array/predicate/containsAll";
+import groupBy from "../array/transform/groupBy";
+import swap from "../array/transform/swap";
+import swapIndex from "../array/transform/swapIndex";
+import mergeBy from "../array/transform/mergeBy";
 
 describe('arrayExtension', () => {
   it("addRangeWithoutDuplicate'", () => {

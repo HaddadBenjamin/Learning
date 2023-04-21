@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './RestrictedPage.module.scss';
-import containsAll from '../../../utilities/type/array/containsAll';
+import containsAll from '../../../utilities/type/array/predicate/containsAll';
 import useAuthentification from '../../../hooks/authentification/useAuthentification';
 import useUserInfo from '../../../hooks/authentification/useUserInfo';
 

@@ -1,5 +1,5 @@
-import distinct from './distinct';
-import distinctBy from './distinctBy';
+import distinct from '../filter/distinct';
+import distinctBy from '../filter/distinctBy';
 
 const addRangeWithoutDuplicate = <T, >(
   array: T[],
