@@ -3,7 +3,7 @@ import cn from 'classnames';
 import styles from './PaginationButtons.module.scss';
 import IPagination from '../../pagination.model';
 import computePageRange from '../../pagination.utils';
-import range from '../../../../../utilities/type/array/range';
+import range from '../../../../../utilities/type/array/generation/range';
 
 interface Props<T> {
   showFirstAndLastButtons?: boolean;
