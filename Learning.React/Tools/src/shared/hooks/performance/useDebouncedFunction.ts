@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-function useDebouncedFunction(func: () => void, delay: number): () => void {
+function useDebouncedFunction(callback: () => void, delay: number): () => void {
   // eslint-disable-next-line no-undef
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -12,7 +12,7 @@ function useDebouncedFunction(func: () => void, delay: number): () => void {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
     timeoutRef.current = setTimeout(() => {
-      func();
+      callback();
       timeoutRef.current = null;
     }, delay);
   };
