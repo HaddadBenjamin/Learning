@@ -29,6 +29,7 @@ import useGetRefreshTokenWhenTokenHasExpired
 import useConditionalHook from './shared/hooks/utilities/useConditionalHook';
 import SimplerMapSample from './samples/map/SimplerMapSample';
 import NavigationSample from './samples/navigation/NavigationSample';
+import useViewportsCssVariables from './shared/hooks/styles/useViewportsCssVariables';
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const LayoutLogic : FC = () => {
   useEffect(() => { Aos.init(); }, []);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useConditionalHook(false, () => useGetRefreshTokenWhenTokenHasExpired());
+  useViewportsCssVariables();
 
   return null;
 };
