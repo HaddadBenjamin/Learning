@@ -1,9 +1,9 @@
 **Année de développement :** 2021.</br>
 
-Développement d'une boîte à outils que je réutilise dans chacune de mes missions : https://github.com/HaddadBenjamin/Learning/tree/master/Learning.React/Tools
+Développement d'une boîte à outils que je réutilise en mission, il s'agit d'un projet privé.
 > ![Image of Yaktocat](https://imgur.com/NDNAu0C.png)
 
-Développement d'une librairie de composants (projet privée) : https://design-system-storybook.netlify.app/?path=/docs/formulaires-button--color
+Développement d'une librairie de composants (projet privé) : https://design-system-storybook.netlify.app/?path=/docs/formulaires-button--color
 > ![Image of Yaktocat](https://imgur.com/9cXIDuA.png)
 > ![Image of Yaktocat](https://imgur.com/3jSGV0y.png)
 
