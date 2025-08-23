@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Button } from "@repo/ui/button";
+import { formatDate} from '@repo/tools/utils/date'
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
           height={38}
           priority
         />
+        FORMAT DATE : {formatDate(new Date())}
         <ol>
           <li>
             Get started by editing <code>app/page.tsx</code>
