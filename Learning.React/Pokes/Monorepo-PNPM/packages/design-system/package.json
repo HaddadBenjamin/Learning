@@ -1,0 +1,29 @@
+{
+  "name": "@design-system",
+  "version": "0.0.1",
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build": "storybook build",
+    "dev:watch": "tsup src/index.ts --format cjs,esm --dts --out-dir dist --watch"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@storybook/react": "8.6.15",
+    "@storybook/react-vite": "8.6.15",
+    "@vitejs/plugin-react": "^4.3.0",
+    "storybook": "8.6.15",
+    "tsup": "^8.5.1",
+    "vite": "^5.4.0"
+  },
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js"
+    }
+  }
+}
